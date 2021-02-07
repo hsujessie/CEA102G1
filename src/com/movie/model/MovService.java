@@ -33,7 +33,7 @@ public class MovService {
 		return movVO;
 	}
 
-	public MovVO updateMov(String movname, String movver,String movtype, String movlan, Date movondate, Date movoffdate, Integer movdurat, String movrating, String movditor, String movcast, String movdes, byte[] movpos, byte[] movtra) {
+	public MovVO updateMov(String movname, String movver,String movtype, String movlan, Date movondate, Date movoffdate, Integer movdurat, String movrating, String movditor, String movcast, String movdes, byte[] movpos, byte[] movtra, Integer movno) {
 		
 		MovVO movVO = new MovVO();
 
@@ -50,6 +50,7 @@ public class MovService {
 		movVO.setMovdes(movdes);
 		movVO.setMovpos(movpos);
 		movVO.setMovtra(movtra);
+		movVO.setMovno(movno);
 		dao.update(movVO);
 		
 		return movVO;

@@ -198,8 +198,11 @@ public class MovServlet extends HttpServlet{
 				/***************************2.開始新增資料***************************************/
 				
 				MovService movSvc = new MovService();
+				//movSvc.addMov(movname, movver, movtype, movlan, movondate, movoffdate, movdurat, movrating, movditor, movcast, movdes, movpos, movtra);
+				System.out.print(movpos);
+				System.out.print(movtra);
 				movSvc.addMov(movname, movver, movtype, movlan, movondate, movoffdate, movdurat, movrating, movditor, movcast, movdes, movpos, movtra);
-				
+
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
 				String url = "/back-end/movie/listAllMovie.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);

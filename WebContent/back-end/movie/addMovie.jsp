@@ -63,7 +63,7 @@
 <table id="table-1">
 	<tr><td>
 		 <h3>新增電影資訊 - addMov.jsp</h3></td><td>
-		 <h4><a href="select_page.jsp">回首頁</a></h4>
+		 <h4><a href="<%=request.getContextPath()%>/back-end/movie/select_page.jsp">回首頁</a></h4>
 	</td></tr>
 </table>
 
@@ -79,7 +79,7 @@
 	</ul>
 </c:if>
 
-<FORM method="post" action="mov.do" name="form1" enctype="multipart/form-data">
+<FORM method="post" action="<%=request.getContextPath()%>/movie/mov.do" name="form_addMovie" enctype="multipart/form-data">
 <table>
 	<tr>
 		<td>電影名稱:</td>
@@ -90,9 +90,9 @@
 		<td>電影種類:</td>
 		<td>
 			<!-- 多選checkbox -->
-			<input type="checkbox" name="movver" value="2D"> 2D<br>
-			<input type="checkbox" name="movver" value="3D"> 3D<br>
-			<input type="checkbox" name="movver" value="IMAX 3D"> IMAX 3D<br>
+			<input type="checkbox" name="movver" value="2D">2D<br>
+			<input type="checkbox" name="movver" value="3D">3D<br>
+			<input type="checkbox" name="movver" value="IMAX 3D">IMAX 3D<br>
 		</td>
 	</tr>
 	<tr>
@@ -142,28 +142,28 @@
 	<tr>
 		<td>導演:</td>
 		<td><input type="text" name="movditor" size="30"
-			 value="<%= (movVO==null)? "" : movVO.getMovditor()%>" /></td>
+			 value="<%= (movVO==null)? "dicrector" : movVO.getMovditor()%>" /></td>
 	</tr>
 	<tr>
 		<td>演員:</td>
 		<td><input type="text" name="movcast" size="100"
-			 value="<%= (movVO==null)? "" : movVO.getMovcast()%>" /></td>
+			 value="<%= (movVO==null)? "actors" : movVO.getMovcast()%>" /></td>
 	</tr>
 	<tr>
 		<td>電影簡介:</td>
 		<td><textarea name="movdes" maxlength="500">
-			<%= (movVO==null)? "" : movVO.getMovdes()%></textarea>
+			<%= (movVO==null)? "description" : movVO.getMovdes()%></textarea>
 		</td>
 	</tr>
 	<tr>
 		<td>電影海報:</td>
 		<td><input type="file" name="movpos"
-			 value="<%= (movVO==null)? "" : movVO.getMovpos()%>" /></td>
+			 value="<%= (movVO==null)? "poster" : movVO.getMovpos()%>" /></td>
 	</tr>
 	<tr>
 		<td>電影預告片:</td>
 		<td><input type="file" name="movtra"
-			 value="<%=  (movVO==null)? "" : movVO.getMovtra()%>" /></td>
+			 value="<%=  (movVO==null)? "trailer" : movVO.getMovtra()%>" /></td>
 	</tr>
 </table>
 <br>
