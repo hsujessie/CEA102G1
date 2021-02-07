@@ -34,16 +34,26 @@
 
 <style>
   table {
+	table-layout: fixed;
 	width: 450px;
 	background-color: white;
-	margin-top: 1px;
-	margin-bottom: 1px;
+	margin-top: 5px;
+	margin-bottom: 5px;
   }
   table, th, td {
-    border: 0px solid #CCCCFF;
+    border: 1px solid #CCCCFF;
   }
-  th, td {
-    padding: 1px;
+  th,td{
+  	padding: 5px;
+  	box-sizing:border-box;white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+  }
+  th{
+  	width:150px;
+  }
+  td{
+  	width:300px;
   }
 </style>
 
@@ -57,7 +67,7 @@
 	</td></tr>
 </table>
 
-<h3>電影資訊新增:</h3>
+<h3>新增電影資訊:</h3>
 
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -89,11 +99,11 @@
 		<td>電影類型:</td>
 		<td>
 			<select name="movtype">
-				<option value= "動畫片"></option>
-				<option value= "喜劇片"></option>
-				<option value= "愛情片"></option>
-				<option value= "科幻片"></option>
-				<option value= "恐怖片"></option>
+				<option value= "動畫片">動畫片</option>
+				<option value= "喜劇片">喜劇片</option>
+				<option value= "愛情片">愛情片</option>
+				<option value= "科幻片">科幻片</option>
+				<option value= "恐怖片">恐怖片</option>
 			</select>
 		</td>
 	</tr>
@@ -101,8 +111,8 @@
 		<td>電影語言:</td>
 		<td>
 			<!-- 多選checkbox -->
-			<input type="checkbox" name="movlan" value="英文"> 英文<br>
-			<input type="checkbox" name="movlan" value="中文"> 中文<br>
+			<input type="checkbox" name="movlan" value="英文">英文<br>
+			<input type="checkbox" name="movlan" value="中文">中文<br>
 		</td>
 	</tr>
 	<tr>
@@ -122,10 +132,10 @@
 		<td>電影級數:</td>
 		<td>
 			<select name="movrating">
-				<option value="普遍級"></option>
-				<option value="保護級"></option>
-				<option value="輔導級"></option>
-				<option value="限制級"></option>
+				<option value="普遍級">普遍級</option>
+				<option value="保護級">保護級</option>
+				<option value="輔導級">輔導級</option>
+				<option value="限制級">限制級</option>
 			</select>
 		</td>
 	</tr>
@@ -171,10 +181,10 @@
 	   movoffdate = new java.sql.Date(System.currentTimeMillis());
    }
 %>
-<script src="<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>"></script>
-<script src="<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.13.16/jquery.timepicker.min.css"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.13.16/jquery.timepicker.min.js"></script>
+
+<link   rel="stylesheet" type="text/css" href="datetimepicker/jquery.datetimepicker.css" />
+<script src="datetimepicker/jquery.js"></script>
+<script src="datetimepicker/jquery.datetimepicker.full.js"></script>
 <style>
   .xdsoft_datetimepicker .xdsoft_datepicker {
            width:  300px;
@@ -184,30 +194,26 @@
   }
 </style>
 <script>
-	$.datetimepicker.setLocale('zh');
-	$('#mov_ondate').datetimepicker({
-	   theme: 'dark',
-	   timepicker:false,
-	   step: 240,                //step: 60 (這是timepicker的預設間隔60分鐘)
-	   format:'Y-m-d',
-	   value: '<%=movondate%>'
-	});
-	$('#mov_offdate').datetimepicker({
-	   theme: 'dark',
-	   timepicker:false,
-	   step: 240,                //step: 60 (這是timepicker的預設間隔60分鐘)
-	   format:'Y-m-d',
-	   value: '<%=movoffdate%>',
-	   beforeShowDay: function(date) { //某一天之前的日期無法選擇
-		   var somedate1 = '<%=movondate%>';
-		   if ( date.getYear() <  somedate1.getYear() ||
-	        	(date.getYear() == somedate1.getYear() && date.getMonth() <  somedate1.getMonth()) ||
-	        	(date.getYear() == somedate1.getYear() && date.getMonth() == somedate1.getMonth() && date.getDate() < somedate1.getDate())
-	           ) {
-	        		return [false, ""]
-	           }
-	           return [true, ""];
-	   }
-	});
+$.datetimepicker.setLocale('zh'); // kr ko ja en
+jQuery(function(){
+    jQuery('#mov_ondate').datetimepicker({
+        format:'Y-m-d',
+        onShow:function( ct ){
+        this.setOptions({
+            maxDate:jQuery('#mov_offdate').val()?jQuery('#mov_offdate').val():false
+        })
+        },
+        timepicker:false
+ });
+jQuery('#mov_offdate').datetimepicker({
+    format:'Y-m-d',
+    onShow:function( ct ){
+    this.setOptions({
+        minDate:jQuery('#mov_ondate').val()?jQuery('#mov_ondate').val():false
+    })
+    },
+    timepicker:false
+    });
+});
 </script>
 </html>
