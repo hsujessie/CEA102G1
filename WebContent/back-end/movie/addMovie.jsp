@@ -84,7 +84,7 @@
 	<tr>
 		<td>電影名稱:</td>
 		<td><input type="text" name="movname" size="30"
-			 value="<%= (movVO==null)? "《金牌特務》" : movVO.getMovname()%>" /></td>
+			 value="<%= (movVO==null)? "金牌特務" : movVO.getMovname()%>" /></td>
 	</tr>
 	<tr>
 		<td>電影種類:</td>
@@ -158,12 +158,12 @@
 	<tr>
 		<td>電影海報:</td>
 		<td><input type="file" name="movpos"
-			 value="<%= movVO.getMovpos()%>" /></td>
+			 value="<%= (movVO==null)? "" : movVO.getMovpos()%>" /></td>
 	</tr>
 	<tr>
 		<td>電影預告片:</td>
 		<td><input type="file" name="movtra"
-			 value="<%= movVO.getMovtra()%>" /></td>
+			 value="<%=  (movVO==null)? "" : movVO.getMovtra()%>" /></td>
 	</tr>
 </table>
 <br>
@@ -182,9 +182,9 @@
    }
 %>
 
-<link   rel="stylesheet" type="text/css" href="datetimepicker/jquery.datetimepicker.css" />
-<script src="datetimepicker/jquery.js"></script>
-<script src="datetimepicker/jquery.datetimepicker.full.js"></script>
+<link   rel="stylesheet" type="text/css" href="../../source/datetimepicker/jquery.datetimepicker.css" />
+<script src="../../source/datetimepicker/jquery.js"></script>
+<script src="../../source/datetimepicker/jquery.datetimepicker.full.js"></script>
 <style>
   .xdsoft_datetimepicker .xdsoft_datepicker {
            width:  300px;
@@ -194,10 +194,11 @@
   }
 </style>
 <script>
-$.datetimepicker.setLocale('zh'); // kr ko ja en
+$.datetimepicker.setLocale('zh');
 jQuery(function(){
     jQuery('#mov_ondate').datetimepicker({
         format:'Y-m-d',
+        value: '<%=movondate%>',
         onShow:function( ct ){
         this.setOptions({
             maxDate:jQuery('#mov_offdate').val()?jQuery('#mov_offdate').val():false
@@ -207,6 +208,7 @@ jQuery(function(){
  });
 jQuery('#mov_offdate').datetimepicker({
     format:'Y-m-d',
+    value: '<%=movoffdate%>',
     onShow:function( ct ){
     this.setOptions({
         minDate:jQuery('#mov_ondate').val()?jQuery('#mov_ondate').val():false

@@ -11,11 +11,10 @@ public class MovService {
 		dao = new MovDAO();
 	}
 	
-	public MovVO addMov(Integer movno, String movname, String movver,String movtype, String movlan, Date movondate, Date movoffdate, Integer movdurat, String movrating, String movditor, String movcast, String movdes, byte[] movpos, byte[] movtra) {
+	public MovVO addMov(String movname, String movver,String movtype, String movlan, Date movondate, Date movoffdate, Integer movdurat, String movrating, String movditor, String movcast, String movdes, byte[] movpos, byte[] movtra) {
 
 		MovVO movVO = new MovVO();
 		
-		movVO.setMovno(movno);
 		movVO.setMovname(movname);
 		movVO.setMovver(movver);
 		movVO.setMovtype(movtype);
@@ -34,11 +33,10 @@ public class MovService {
 		return movVO;
 	}
 
-	public MovVO updateMov(Integer movno, String movname, String movver,String movtype, String movlan, Date movondate, Date movoffdate, Integer movdurat, String movrating, String movditor, String movcast, String movdes, byte[] movpos, byte[] movtra) {
+	public MovVO updateMov(String movname, String movver,String movtype, String movlan, Date movondate, Date movoffdate, Integer movdurat, String movrating, String movditor, String movcast, String movdes, byte[] movpos, byte[] movtra) {
 		
 		MovVO movVO = new MovVO();
 
-		movVO.setMovno(movno);
 		movVO.setMovname(movname);
 		movVO.setMovver(movver);
 		movVO.setMovtype(movtype);

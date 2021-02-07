@@ -79,7 +79,6 @@ public class MovServlet extends HttpServlet{
 				}
 				
 				//多選checkbox
-				 //要怎麼字串串接？    // 1 0 0  -> 有2D 無3D 無IMAX 3D   //查詢的時候要判斷！ORZ
 				String[] movverStr = req.getParameterValues("movver");	
 		        StringBuilder movverSb = new StringBuilder();
 		        String movver = null;
@@ -95,7 +94,6 @@ public class MovServlet extends HttpServlet{
 				String movtype = req.getParameter("movtype");
 				
 				//多選checkbox
-				//要怎麼字串串接？    // 1 0  -> 有英文 無中文   //查詢的時候要判斷！ORZ
 				String[] movlanStr = req.getParameterValues("movlan");	
 		        StringBuilder movlanSb = new StringBuilder();
 		        String movlan = null;
@@ -156,7 +154,7 @@ public class MovServlet extends HttpServlet{
 				if(movdes == null || movname.length() == 0) {
 					errorMsgs.add("電影簡介: 請勿空白");
 				}else if(!movdes.trim().matches(movdesReg)) {
-					errorMsgs.add("電影簡介: 只能是中、英文字母、數字和_ , 且長度必需在1到500之間");
+					errorMsgs.add("電影簡介: 長度必需在500字以內");
 				}
 
 				byte[] movpos = null;
@@ -200,8 +198,12 @@ public class MovServlet extends HttpServlet{
 				/***************************2.開始新增資料***************************************/
 				
 				MovService movSvc = new MovService();
-				//movSvc.addMov(movname, movver, movver);
-
+				movSvc.addMov(movname, movver, movtype, movlan, movondate, movoffdate, movdurat, movrating, movditor, movcast, movdes, movpos, movtra);
+				
+				/***************************3.新增完成,準備轉交(Send the Success view)***********/
+				String url = "/back-end/movie/listAllMovie.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, res);	
 				
 				/***************************其他可能的錯誤處理**********************************/
 			}catch (Exception e) {
