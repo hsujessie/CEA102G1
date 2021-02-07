@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +16,7 @@ import javax.servlet.http.Part;
 import com.movie.model.MovService;
 import com.movie.model.MovVO;
 
+@MultipartConfig()
 public class MovServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;  
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
@@ -25,6 +26,7 @@ public class MovServlet extends HttpServlet{
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
+		System.out.println("~~action~~"+action);
 		
 		// 來自select_page.jsp的請求
 		if("getOne_For_Display".equals(action)) { 
@@ -84,7 +86,7 @@ public class MovServlet extends HttpServlet{
 		        String movver = null;
 		        if (movverStr != null) {
 		            for (int i = 0; i < movverStr.length; i++) {
-		            	movverSb = movverSb.append(movverStr[i].trim());
+		            	movverSb = movverSb.append(","+movverStr[i].trim());
 		            	movver = movverSb.toString();
 		            }
 		            System.out.println("movver="+movver);
@@ -99,7 +101,7 @@ public class MovServlet extends HttpServlet{
 		        String movlan = null;
 		        if (movlanStr != null) {
 		            for (int i = 0; i < movlanStr.length; i++) {
-		            	movlanSb = movlanSb.append(movlanStr[i].trim());
+		            	movlanSb = movlanSb.append(","+movlanStr[i].trim());
 		                movlan = movlanSb.toString();
 		            }
 		            System.out.println("movlan="+movlan);
@@ -130,7 +132,7 @@ public class MovServlet extends HttpServlet{
 				}
 				
 				//單選下拉選單
-				String movrating = req.getParameter("movrating");
+				String movrating = req.getParameter("movrating").trim();
 				
 				
 				String movditor = req.getParameter("movditor").trim();
@@ -171,6 +173,7 @@ public class MovServlet extends HttpServlet{
 				movtrais.read(movtra);
 				movtrais.close();
 				
+				
 				MovVO movVO = new MovVO();
 				movVO.setMovname(movname);
 				movVO.setMovver(movver);
@@ -189,8 +192,7 @@ public class MovServlet extends HttpServlet{
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("movVO", movVO);
-					RequestDispatcher failureView = req
-							.getRequestDispatcher("/back-end/movie/addMov.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/movie/addMov.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -198,9 +200,6 @@ public class MovServlet extends HttpServlet{
 				/***************************2.開始新增資料***************************************/
 				
 				MovService movSvc = new MovService();
-				//movSvc.addMov(movname, movver, movtype, movlan, movondate, movoffdate, movdurat, movrating, movditor, movcast, movdes, movpos, movtra);
-				System.out.print(movpos);
-				System.out.print(movtra);
 				movSvc.addMov(movname, movver, movtype, movlan, movondate, movoffdate, movdurat, movrating, movditor, movcast, movdes, movpos, movtra);
 
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
