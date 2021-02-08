@@ -2,9 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.movie.model.*"%>
 
-<%
-  MovVO movVO = (MovVO) request.getAttribute("movVO");
-%>
+<%MovVO movVO = (MovVO) request.getAttribute("movVO");%>
 
 <html>
 <head>
@@ -183,9 +181,9 @@
    }
 %>
 
-<link   rel="stylesheet" type="text/css" href="../../source/datetimepicker/jquery.datetimepicker.css" />
-<script src="../../source/datetimepicker/jquery.js"></script>
-<script src="../../source/datetimepicker/jquery.datetimepicker.full.js"></script>
+<link   rel="stylesheet" type="text/css" href="../../sources/datetimepicker/jquery.datetimepicker.css"/>
+<script src="../../sources/datetimepicker/jquery.js"></script>
+<script src="../../sources/datetimepicker/jquery.datetimepicker.full.js"></script>
 <style>
   .xdsoft_datetimepicker .xdsoft_datepicker {
            width:  300px;

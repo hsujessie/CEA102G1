@@ -62,8 +62,7 @@
 <h3>電影管理</h3>
 
 <ul>
-  <li><a href='addMovie.jsp'>Add</a> a new Movie.</li>
+  <li><a href='<%=request.getContextPath()%>/back-end/movie/addMovie.jsp'>Add</a> a new Movie.</li>
 </ul>
-${movVO.movno}
 </body>
 </html>

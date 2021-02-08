@@ -117,7 +117,7 @@
 		<td>
 		  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" style="margin-bottom: 0px; text-align:center;">
 		     <input type="submit" value="修改">
-		     <input type="hidden" name="movno"  value="${smovVO.movno}">
+		     <input type="hidden" name="movno"  value="${movVO.movno}">
 		     <input type="hidden" name="action"	value="getOne_For_Update">
 		   </FORM>
 		</td>
