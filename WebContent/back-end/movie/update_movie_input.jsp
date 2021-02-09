@@ -97,9 +97,9 @@
 			<%-- <c:forEach var="movVO" items="${movSvc.all}">
 				<input type="checkbox" name="movver" value="${movVO.movno}" ${movVO.movver?'selected':''} >${movVO.movver}
 			</c:forEach> --%>
-			<input type="checkbox" name="movver" value="<%=movVO.getMovtype()%>">2D<br>
-			<input type="checkbox" name="movver" value="<%=movVO.getMovtype()%>">3D<br>
-			<input type="checkbox" name="movver" value="<%=movVO.getMovtype()%>">IMAX 3D<br>
+			<input type="checkbox" name="movver" value="<%=movVO.getMovver()%>">2D<br>
+			<input type="checkbox" name="movver" value="<%=movVO.getMovver()%>">3D<br>
+			<input type="checkbox" name="movver" value="<%=movVO.getMovver()%>">IMAX 3D<br>
 		</td>
 	</tr>
 	<tr>
