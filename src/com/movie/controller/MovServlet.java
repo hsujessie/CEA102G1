@@ -83,14 +83,9 @@ public class MovServlet extends HttpServlet{
 				
 				//多選checkbox
 				String[] movverStr = req.getParameterValues("movver");	
-		        StringBuilder movverSb = new StringBuilder();
 		        String movver = null;
 		        if (movverStr != null) {
-		            for (int i = 0; i < movverStr.length; i++) {
-		            	movverSb = movverSb.append(movverStr[i].trim());
-		            	movver = movverSb.toString();
-		            }
-		            System.out.println("movver="+movver);
+					movver = appendStr(movverStr);
 		        }
 				
 				//單選下拉選單
@@ -99,17 +94,11 @@ public class MovServlet extends HttpServlet{
 				// ???????選多個會死掉
 				//多選checkbox
 				String[] movlanStr = req.getParameterValues("movlan");	
-		        StringBuilder movlanSb = new StringBuilder();
 		        String movlan = null;
 		        if (movlanStr != null) {
-		            for (int i = 0; i < movlanStr.length; i++) {
-		            	movlanSb = movlanSb.append(movlanStr[i].trim());
-		                movlan = movlanSb.toString();
-		            }
-		            System.out.println("movlan="+movlan);
-		        }
-						
-
+		        	movlan = appendStr(movlanStr);
+		        }					
+		        
 				java.sql.Date movondate = null;
 				try {
 					movondate = java.sql.Date.valueOf(req.getParameter("movondate").trim());
@@ -237,31 +226,20 @@ public class MovServlet extends HttpServlet{
 				
 				//多選checkbox
 				String[] movverStr = req.getParameterValues("movver");	
-		        StringBuilder movverSb = new StringBuilder();
 		        String movver = null;
 		        if (movverStr != null) {
-		            for (int i = 0; i < movverStr.length; i++) {
-		            	movverSb = movverSb.append(movverStr[i].trim());
-		            	movver = movverSb.toString();
-		            }
-		            System.out.println("movver="+movver);
+					movver = appendStr(movverStr);
 		        }
 				
 				//單選下拉選單
 				String movtype = req.getParameter("movtype");
 				
 				//多選checkbox
-				String[] movlanStr = req.getParameterValues("movlan");	
-		        StringBuilder movlanSb = new StringBuilder();
+				String[] movlanStr = req.getParameterValues("movlan");
 		        String movlan = null;
 		        if (movlanStr != null) {
-		            for (int i = 0; i < movlanStr.length; i++) {
-		            	movlanSb = movlanSb.append(movlanStr[i].trim());
-		                movlan = movlanSb.toString();
-		            }
-		            System.out.println("movlan="+movlan);
-		        }
-						
+		        	movlan = appendStr(movlanStr);
+		        }				
 
 				java.sql.Date movondate = null;
 				try {
@@ -398,6 +376,20 @@ public class MovServlet extends HttpServlet{
 				failureView.forward(req, res);
 			}
 		}
-	}
+	} 
 	
+	public static String appendStr(String[] str) {
+		String resultStr = null;
+        StringBuilder strSb = new StringBuilder();
+        
+        for (int i = 0; i < str.length; i++) {
+        	if(i == 0) {
+        		strSb = strSb.append(str[i].trim());
+        	}else {
+        		strSb = strSb.append(","+str[i].trim());
+        	}
+        	resultStr =  strSb.toString();
+        }
+		return resultStr;
+	}
 }

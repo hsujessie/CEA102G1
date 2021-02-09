@@ -226,5 +226,10 @@ jQuery('#mov_offdate').datetimepicker({
     timepicker:false
     });
 });
+	/* https://cythilya.github.io/2017/09/10/jquery-attr-vs-prop/ */
+	/* 判斷input是否被選取，頁面顯示被選的那個value */
+	let movver = document.getElementsByName("movver");
+	console.log("JS movver:"+movver);
+	//$(movver).prop(('checked'); //???
 </script>
 </html>
