@@ -85,7 +85,7 @@
 	</tr>
 	<tr>
 		<td>電影名稱:</td>
-		<td><input type="text" name="movname" size="30" value="<%=movVO.getMovname()%>" />
+		<td><input type="text" name="movname" value="<%=movVO.getMovname()%>" />
 		</td>
 	</tr>
 
@@ -94,8 +94,8 @@
 		<td>電影種類:</td>
 		<td>
 			<!-- 多選checkbox -->
-				<input type="checkbox" name="movver" value="2D" <c:forEach var="i" begin="0" end="2"> <c:if test="${movverToken[i].contains('2D')}"> checked </c:if></c:forEach>      >2D<br/>
-				<input type="checkbox" name="movver" value="3D" <c:forEach var="i" begin="0" end="2"> <c:if test="${movverToken[i].contains('2D')}"> checked </c:if></c:forEach>      >3D<br/>
+				<input type="checkbox" name="movver" value="2D"      <c:forEach var="i" begin="0" end="2"> <c:if test="${movverToken[i].contains('2D')}">      checked </c:if></c:forEach> >2D<br/>
+				<input type="checkbox" name="movver" value="3D"      <c:forEach var="i" begin="0" end="2"> <c:if test="${movverToken[i].contains('2D')}">      checked </c:if></c:forEach> >3D<br/>
 				<input type="checkbox" name="movver" value="IMAX 3D" <c:forEach var="i" begin="0" end="2"> <c:if test="${movverToken[i].contains('IMAX 3D')}"> checked </c:if></c:forEach> >IMAX 3D<br/>
 		</td>
 	</tr>
@@ -103,15 +103,11 @@
 		<td>電影類型:</td>
 		<td>
 			<select name="movtype">
-				<%-- <c:forEach var="movVO" items="${movSvc.all}">
-					<option value="${deptVO.deptno}" ${(empVO.deptno==deptVO.deptno)?'selected':'' } >${deptVO.dname}
-					<option value="${movVO.movno}" ${movVO.movtype?'selected':''} >${movVO.movtype}
-				</c:forEach> --%>
-				<option value= "動畫片">動畫片</option>
-				<option value= "喜劇片">喜劇片</option>
-				<option value= "愛情片">愛情片</option>
-				<option value= "科幻片">科幻片</option>
-				<option value= "恐怖片">恐怖片</option>
+				<option value= "動畫片" <c:forEach var="movVO" items="${movSvc.all}">  <c:if test="${movVO.movtype.contains('動畫片')}"> selected </c:if></c:forEach> >動畫片</option>
+				<option value= "喜劇片" <c:forEach var="movVO" items="${movSvc.all}">  <c:if test="${movVO.movtype.contains('喜劇片')}"> selected </c:if></c:forEach> >喜劇片</option>
+				<option value= "愛情片" <c:forEach var="movVO" items="${movSvc.all}">  <c:if test="${movVO.movtype.contains('愛情片')}"> selected </c:if></c:forEach> >愛情片</option>
+				<option value= "科幻片" <c:forEach var="movVO" items="${movSvc.all}">  <c:if test="${movVO.movtype.contains('科幻片')}"> selected </c:if></c:forEach> >科幻片</option>
+				<option value= "恐怖片" <c:forEach var="movVO" items="${movSvc.all}">  <c:if test="${movVO.movtype.contains('恐怖片')}"> selected </c:if></c:forEach> >恐怖片</option>
 			</select>
 		</td>
 	</tr>
@@ -119,8 +115,8 @@
 		<td>電影語言:</td>
 		<td>
 			<!-- 多選checkbox -->
-			<input type="checkbox" name="movlan" value="英文" <c:forEach var="i" begin="0" end="1"> <c:if test="${movlanToken[i].contains('英文')}"> checked </c:if></c:forEach>      >英文<br/>
-			<input type="checkbox" name="movlan" value="中文" <c:forEach var="i" begin="0" end="1"> <c:if test="${movlanToken[i].contains('中文')}"> checked </c:if></c:forEach>      >中文<br/>
+			<input type="checkbox" name="movlan" value="英文" <c:forEach var="i" begin="0" end="1"> <c:if test="${movlanToken[i].contains('英文')}"> checked </c:if></c:forEach> >英文<br/>
+			<input type="checkbox" name="movlan" value="中文" <c:forEach var="i" begin="0" end="1"> <c:if test="${movlanToken[i].contains('中文')}"> checked </c:if></c:forEach> >中文<br/>
 		</td>
 	</tr>
 	<tr>
@@ -133,33 +129,26 @@
 	</tr>
 	<tr>
 		<td>片長:</td>
-		<td><input type="text" name="movdurat" size="1"
-			 value="<%= (movVO==null)? "2" : movVO.getMovdurat()%>" />小時</td>
+		<td><input type="text" name="movdurat" value="<%=(movVO==null)? "2" : movVO.getMovdurat()%>" />小時</td>
 	</tr>
 	<tr>
 		<td>電影級數:</td>
 		<td>
 			<select name="movrating">
-				<%-- <c:forEach var="movVO" items="${movSvc.all}">
-					<option value="${deptVO.deptno}" ${(empVO.deptno==deptVO.deptno)?'selected':'' } >${deptVO.dname}
-					<option value="${movVO.movno}" ${movVO.movrating?'selected':''} >${movVO.movrating}
-				</c:forEach> --%>
-				<option value="普遍級">普遍級</option>
-				<option value="保護級">保護級</option>
-				<option value="輔導級">輔導級</option>
-				<option value="限制級">限制級</option>
+				<option value="普遍級" <c:forEach var="movVO" items="${movSvc.all}"><c:if test="${movVO.movrating.contains('普遍級')}"> selected </c:if></c:forEach> >普遍級</option>
+				<option value="保護級" <c:forEach var="movVO" items="${movSvc.all}"><c:if test="${movVO.movrating.contains('保護級')}"> selected </c:if></c:forEach> >保護級</option>
+				<option value="輔導級" <c:forEach var="movVO" items="${movSvc.all}"><c:if test="${movVO.movrating.contains('輔導級')}"> selected </c:if></c:forEach> >輔導級</option>
+				<option value="限制級" <c:forEach var="movVO" items="${movSvc.all}"><c:if test="${movVO.movrating.contains('限制級')}"> selected </c:if></c:forEach> >限制級</option>
 			</select>
 		</td>
 	</tr>
 	<tr>
 		<td>導演:</td>
-		<td><input type="text" name="movditor" size="30"
-			 value="<%=movVO.getMovditor()%>" /></td>
+		<td><input type="text" name="movditor" value="<%=movVO.getMovditor()%>" /></td>
 	</tr>
 	<tr>
 		<td>演員:</td>
-		<td><input type="text" name="movcast" size="100"
-			 value="<%=movVO.getMovcast()%>" /></td>
+		<td><input type="text" name="movcast" value="<%=movVO.getMovcast()%>" /></td>
 	</tr>
 	<tr>
 		<td>電影簡介:</td>
@@ -168,14 +157,13 @@
 		</td>
 	</tr>
 	<tr>
+		<!-- 修改時，原本的圖片會消失不見?Orz -->
 		<td>電影海報:</td>
-		<td><input type="file" name="movpos"
-			 value="<%=movVO.getMovpos()%>" /></td>
+		<td><input type="file" name="movpos" value="<%=movVO.getMovpos()%>" /></td>
 	</tr>
 	<tr>
 		<td>電影預告片:</td>
-		<td><input type="file" name="movtra"
-			 value="<%=movVO.getMovtra()%>" /></td>
+		<td><input type="file" name="movtra" value="<%=movVO.getMovtra()%>" /></td>
 	</tr>
 </table>
 <br>
@@ -220,21 +208,5 @@ jQuery('#mov_offdate').datetimepicker({
     timepicker:false
     });
 });
-
-
-	/* 判斷input是否被選取，頁面顯示被選的那個value */		
-$("#btn").click(function(){
-  $("input[name='movver']").each(function() {
-    if($(this).prop('checked')){
-      let movverValue = $(this).val();
-      console.log("enter~~ " + movverValue);
-    }
-  });
-});
-	
-/* 	function splitStr(){
-		var str = ${movverSet};
-		console.log("str= "+str);
-	} */
 </script>
 </html>
