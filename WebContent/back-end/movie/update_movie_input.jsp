@@ -8,9 +8,6 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 <title>電影資訊修改 - Update Movie input.jsp</title>
-${movverToken[0]}
-${movlanToken[0]}
-
 <style>
   #table-1 {
 	width: 450px;
@@ -96,10 +93,9 @@ ${movlanToken[0]}
 		<td>電影種類:</td>
 		<td>
 			<!-- 多選checkbox -->
-			<%-- <c:forEach var="movVO" items="${movSvc.all}">
-				<input type="checkbox" name="movver" value="javascript:splitStr(${movVO.movver})">${movVO.movver}<br>
-			</c:forEach> --%>
- 			
+			<c:forEach var="i" begin="0" end="2">
+				<input type="checkbox" name="movver" value="${movverToken[i]}">${movverToken[i]}<br>
+			</c:forEach>
 	   <%-- <input type="checkbox" name="movver" value="<%=movVO.getMovver()%>">2D<br>
 			<input type="checkbox" name="movver" value="<%=movVO.getMovver()%>">3D<br>
 			<input type="checkbox" name="movver" value="<%=movVO.getMovver()%>">IMAX 3D<br> --%>
@@ -125,11 +121,11 @@ ${movlanToken[0]}
 		<td>電影語言:</td>
 		<td>
 			<!-- 多選checkbox -->
-		<%-- 	<c:forEach var="movVO" items="${movSvc.all}">
-				<input type="checkbox" name="movver" value="${movVO.movlan}" ${movVO.movlan?'selected':''} >${movVO.movlan}
-			</c:forEach> --%>
-			<input type="checkbox" name="movlan" value="英文">英文<br>
-			<input type="checkbox" name="movlan" value="中文">中文<br>
+			<c:forEach var="i" begin="0" end="1">
+				<input type="checkbox" name="movver" value="${movlanToken[i]}">${movlanToken[i]}<br>
+			</c:forEach>
+			<!-- <input type="checkbox" name="movlan" value="英文">英文<br>
+			<input type="checkbox" name="movlan" value="中文">中文<br> -->
 		</td>
 	</tr>
 	<tr>
