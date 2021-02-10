@@ -123,7 +123,7 @@
 	</tr>
 	<tr>
 		<td>片長:</td>
-		<td><input type="text" name="movdurat" size="1"
+		<td><input type="text" name="movdurat"
 			 value="<%= (movVO==null)? "2" : movVO.getMovdurat()%>" />小時</td>
 	</tr>
 	<tr>
@@ -139,17 +139,17 @@
 	</tr>
 	<tr>
 		<td>導演:</td>
-		<td><input type="text" name="movditor" size="30"
+		<td><input type="text" name="movditor"
 			 value="<%= (movVO==null)? "dicrector" : movVO.getMovditor()%>" /></td>
 	</tr>
 	<tr>
 		<td>演員:</td>
-		<td><input type="text" name="movcast" size="100"
+		<td><input type="text" name="movcast"
 			 value="<%= (movVO==null)? "actors" : movVO.getMovcast()%>" /></td>
 	</tr>
 	<tr>
 		<td>電影簡介:</td>
-		<td><textarea name="movdes" maxlength="500">
+		<td><textarea name="movdes">
 			<%= (movVO==null)? "description" : movVO.getMovdes()%></textarea>
 		</td>
 	</tr>
@@ -181,9 +181,9 @@
    }
 %>
 
-<link   rel="stylesheet" type="text/css" href="../../sources/datetimepicker/jquery.datetimepicker.css"/>
-<script src="../../sources/datetimepicker/jquery.js"></script>
-<script src="../../sources/datetimepicker/jquery.datetimepicker.full.js"></script>
+<link   rel="stylesheet" type="text/css" href="/CEA102G1/sources/datetimepicker/jquery.datetimepicker.css"/>
+<script src="/CEA102G1/sources/datetimepicker/jquery.js"></script>
+<script src="/CEA102G1/sources/datetimepicker/jquery.datetimepicker.full.js"></script>
 <style>
   .xdsoft_datetimepicker .xdsoft_datepicker {
            width:  300px;

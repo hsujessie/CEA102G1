@@ -68,7 +68,7 @@ public class MovServlet extends HttpServlet{
 			}
 		}
 		
-		// 來自addMov.jsp的請求 
+		// 來自addMovie.jsp的請求 
 		if ("insert".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs",errorMsgs);
@@ -132,27 +132,18 @@ public class MovServlet extends HttpServlet{
 				
 				
 				String movditor = req.getParameter("movditor").trim();
-				String movditorReg = "^[(\u4e00-\u9fa5)(a-zA-Z)]{1,30}$";
 				if(movditor == null || movditor.length() == 0) {
 					errorMsgs.add("導演資料: 請勿空白");
-				}else if(!movditor.trim().matches(movditorReg)) {
-					errorMsgs.add("導演資料: 只能是中、英文字母, 且長度必需在1到30之間");
 				}
 				
 				String movcast = req.getParameter("movcast").trim();
-				String movcastReg = "^[(\u4e00-\u9fa5)(a-zA-Z)]{1,100}$";
 				if(movcast == null || movcast.length() == 0) {
 					errorMsgs.add("演員資料: 請勿空白");
-				}else if(!movcast.trim().matches(movcastReg)) {
-					errorMsgs.add("演員資料: 只能是中、英文字母, 且長度必需在1到100之間");
 				}
 				
 				String movdes = req.getParameter("movdes").trim();
-				String movdesReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{1,500}$";
 				if(movdes == null || movname.length() == 0) {
 					errorMsgs.add("電影簡介: 請勿空白");
-				}else if(!movdes.trim().matches(movdesReg)) {
-					errorMsgs.add("電影簡介: 長度必需在500字以內");
 				}
 
 				byte[] movpos = null;
@@ -188,7 +179,7 @@ public class MovServlet extends HttpServlet{
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("movVO", movVO);
-					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/movie/addMov.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/movie/addMovie.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -273,7 +264,8 @@ public class MovServlet extends HttpServlet{
 				}
 				
 				//多選checkbox
-				String[] movverStr = req.getParameterValues("movver");	
+				String[] movverStr = req.getParameterValues("movver");	  //??? why取不到值
+				System.out.println("movverToken: "+movverStr);
 		        String movver = "";
 		        if (movverStr.length != 0) {
 					movver = appendStr(movverStr);
@@ -285,7 +277,8 @@ public class MovServlet extends HttpServlet{
 				String movtype = req.getParameter("movtype");
 				
 				//多選checkbox
-				String[] movlanStr = req.getParameterValues("movlan");
+				String[] movlanStr = req.getParameterValues("movlan");	  //??? why取不到值
+				System.out.println("movlanToken: "+movlanStr);
 		        String movlan = "";
 		        if (movlanStr.length != 0) {
 		        	movlan = appendStr(movlanStr);
@@ -321,27 +314,18 @@ public class MovServlet extends HttpServlet{
 				
 				
 				String movditor = req.getParameter("movditor").trim();
-				String movditorReg = "^[(\u4e00-\u9fa5)(a-zA-Z)]{1,30}$";
 				if(movditor == null || movditor.length() == 0) {
 					errorMsgs.add("導演資料: 請勿空白");
-				}else if(!movditor.trim().matches(movditorReg)) {
-					errorMsgs.add("導演資料: 只能是中、英文字母, 且長度必需在1到30之間");
 				}
 				
 				String movcast = req.getParameter("movcast").trim();
-				String movcastReg = "^[(\u4e00-\u9fa5)(a-zA-Z)]{1,100}$";
 				if(movcast == null || movcast.length() == 0) {
 					errorMsgs.add("演員資料: 請勿空白");
-				}else if(!movcast.trim().matches(movcastReg)) {
-					errorMsgs.add("演員資料: 只能是中、英文字母, 且長度必需在1到100之間");
 				}
 				
 				String movdes = req.getParameter("movdes").trim();
-				String movdesReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{1,500}$";
 				if(movdes == null || movname.length() == 0) {
 					errorMsgs.add("電影簡介: 請勿空白");
-				}else if(!movdes.trim().matches(movdesReg)) {
-					errorMsgs.add("電影簡介: 長度必需在500字以內");
 				}
 
 				byte[] movpos = null;
@@ -380,8 +364,8 @@ public class MovServlet extends HttpServlet{
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("movVO", movVO);
-					RequestDispatcher failureView = req.getRequestDispatcher("back-end/movie/movie/update_movie_input.jsp");
+					req.setAttribute("movVO", movVO);             
+					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/movie/update_movie_input.jsp");
 					failureView.forward(req, res);
 					return;
 				}

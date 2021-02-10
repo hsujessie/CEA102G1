@@ -122,9 +122,9 @@
 		<td>
 			<!-- 多選checkbox -->
 			<c:forEach var="i" begin="0" end="1">
-				<input type="checkbox" name="movver" value="${movlanToken[i]}">${movlanToken[i]}<br>
+				<input type="checkbox" name="movlan" value="${movlanToken[i]}">${movlanToken[i]}<br>
 			</c:forEach>
-			<!-- <input type="checkbox" name="movlan" value="英文">英文<br>
+	   <!-- <input type="checkbox" name="movlan" value="英文">英文<br>
 			<input type="checkbox" name="movlan" value="中文">中文<br> -->
 		</td>
 	</tr>
