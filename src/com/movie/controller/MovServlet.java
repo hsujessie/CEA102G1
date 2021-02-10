@@ -2,11 +2,8 @@ package com.movie.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -52,7 +49,7 @@ public class MovServlet extends HttpServlet{
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/back-end/movie/select_page.jsp");
 					failureView.forward(req, res);
-					return;//程式中斷
+					return;
 				}
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
@@ -241,9 +238,7 @@ public class MovServlet extends HttpServlet{
 				/***************************2.開始查詢資料****************************************/
 				MovService movSvc = new MovService();
 				MovVO movVO = movSvc.getOneMov(movno);
-
-				
-				//??? 我很有事，更新時，會把原本的值也存進去，傻眼ㄟ。-> 電影種類2D,3D,3D 
+			
 				//先split電影種類字串，再把值送到update_movie_input.jsp
 				String movverStrs = movVO.getMovver();
 				String[] movverToken = movverStrs.split(",");
@@ -251,8 +246,7 @@ public class MovServlet extends HttpServlet{
 				//先split電影語言字串，再把值送到update_movie_input.jsp
 				String movlanStrs = movVO.getMovlan();
 				String[] movlanToken = movlanStrs.split(",");
-				
-				
+								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("movVO", movVO); 
 				req.setAttribute("movverToken", movverToken);    
