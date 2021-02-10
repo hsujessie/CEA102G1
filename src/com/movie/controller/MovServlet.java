@@ -68,6 +68,33 @@ public class MovServlet extends HttpServlet{
 			}
 		}
 		
+		// 來自listAllMovie.jsp的請求 - for displaying pictures
+		if ("get_One_MovPic".equals(action)) {
+			res.setContentType("img/jpg");
+			Integer movno = new Integer(req.getParameter("movno").trim());
+			MovService movSvc = new MovService();
+			MovVO movVO = movSvc.getOneMov(movno);
+			byte[] movpos = movVO.getMovpos();
+			byte[] movtra = movVO.getMovtra();
+			
+			String img = req.getParameter("img");
+			if(img.equals("movpos")) {
+				if(movpos!=null) {
+					res.getOutputStream().write(movpos);
+					res.getOutputStream().flush();
+					return;
+				}
+			}
+
+			if(img.equals("movtra")) {
+				if(movtra!=null) {
+					res.getOutputStream().write(movtra);
+					res.getOutputStream().flush();
+					return;
+				}				
+			}
+		}
+				
 		// 來自addMovie.jsp的請求 
 		if ("insert".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();
@@ -201,7 +228,6 @@ public class MovServlet extends HttpServlet{
 				failureView.forward(req, res);
 			}
 		} 
-
 		
 		 // 來自listAllMovie.jsp的請求
 		if ("getOne_For_Update".equals(action)) {
@@ -264,7 +290,7 @@ public class MovServlet extends HttpServlet{
 				}
 				
 				//多選checkbox
-				String[] movverStr = req.getParameterValues("movver");	  //??? why取不到值
+				String[] movverStr = req.getParameterValues("movver");
 				System.out.println("movverToken: "+movverStr);
 		        String movver = "";
 		        if (movverStr.length != 0) {
@@ -277,7 +303,7 @@ public class MovServlet extends HttpServlet{
 				String movtype = req.getParameter("movtype");
 				
 				//多選checkbox
-				String[] movlanStr = req.getParameterValues("movlan");	  //??? why取不到值
+				String[] movlanStr = req.getParameterValues("movlan");
 				System.out.println("movlanToken: "+movlanStr);
 		        String movlan = "";
 		        if (movlanStr.length != 0) {
@@ -389,7 +415,7 @@ public class MovServlet extends HttpServlet{
 			}
 		}
 	} 
-	
+
 	public static String appendStr(String[] str) {
 		String resultStr = null;
         StringBuilder strSb = new StringBuilder();

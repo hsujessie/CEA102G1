@@ -58,6 +58,9 @@
   td{
   	width:300px;
   }
+  img{
+  	width:50px;
+  }
 </style>
 
 </head>
@@ -112,8 +115,8 @@
 		<td>${movVO.getMovditor()}</td>
 		<td>${movVO.getMovcast()}</td>
 		<td>${movVO.getMovdes()}</td>
-		<td>${movVO.getMovpos()}</td>
-		<td>${movVO.getMovtra()}</td>
+		<td><img src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movpos&action=get_One_MovPic"></td>
+		<td><img src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movtra&action=get_One_MovPic"></td>
 		<td>
 		  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" style="margin-bottom: 0px; text-align:center;">
 		     <input type="submit" value="修改">

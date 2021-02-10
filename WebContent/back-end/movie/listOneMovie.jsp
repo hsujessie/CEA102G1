@@ -27,6 +27,9 @@ MovVO movVO = (MovVO) request.getAttribute("movVO");
     color: blue;
     display: inline;
   }
+  img{
+  	width:50px;
+  }
 </style>
 
 <style>
@@ -112,11 +115,11 @@ MovVO movVO = (MovVO) request.getAttribute("movVO");
 	</tr>
 	<tr>
 		<th>電影海報</th>
-		<td><%=movVO.getMovpos()%></td>
+		<td><img src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movpos&action=get_One_MovPic"></td>
 	</tr>
 	<tr>
 		<th>電影預告片</th>
-		<td><%=movVO.getMovtra()%></td>
+		<td><img src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movtra&action=get_One_MovPic"></td>
 	</tr>
 	<tr>
 		<th>滿意度總分</th>
