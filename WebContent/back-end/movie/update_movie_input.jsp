@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="com.movie.model.*"%>
 
 <%MovVO movVO = (MovVO) request.getAttribute("movVO");%>
@@ -93,12 +94,9 @@
 		<td>電影種類:</td>
 		<td>
 			<!-- 多選checkbox -->
-			<c:forEach var="i" begin="0" end="2">
-				<input type="checkbox" name="movver" value="${movverToken[i]}">${movverToken[i]}<br>
-			</c:forEach>
-	   <%-- <input type="checkbox" name="movver" value="<%=movVO.getMovver()%>">2D<br>
-			<input type="checkbox" name="movver" value="<%=movVO.getMovver()%>">3D<br>
-			<input type="checkbox" name="movver" value="<%=movVO.getMovver()%>">IMAX 3D<br> --%>
+				<input type="checkbox" name="movver" value="2D" <c:forEach var="i" begin="0" end="2"> <c:if test="${movverToken[i].contains('2D')}"> checked </c:if></c:forEach>      >2D<br/>
+				<input type="checkbox" name="movver" value="3D" <c:forEach var="i" begin="0" end="2"> <c:if test="${movverToken[i].contains('2D')}"> checked </c:if></c:forEach>      >3D<br/>
+				<input type="checkbox" name="movver" value="IMAX 3D" <c:forEach var="i" begin="0" end="2"> <c:if test="${movverToken[i].contains('IMAX 3D')}"> checked </c:if></c:forEach> >IMAX 3D<br/>
 		</td>
 	</tr>
 	<tr>
@@ -121,11 +119,8 @@
 		<td>電影語言:</td>
 		<td>
 			<!-- 多選checkbox -->
-			<c:forEach var="i" begin="0" end="1">
-				<input type="checkbox" name="movlan" value="${movlanToken[i]}">${movlanToken[i]}<br>
-			</c:forEach>
-	   <!-- <input type="checkbox" name="movlan" value="英文">英文<br>
-			<input type="checkbox" name="movlan" value="中文">中文<br> -->
+			<input type="checkbox" name="movlan" value="英文" <c:forEach var="i" begin="0" end="1"> <c:if test="${movlanToken[i].contains('英文')}"> checked </c:if></c:forEach>      >英文<br/>
+			<input type="checkbox" name="movlan" value="中文" <c:forEach var="i" begin="0" end="1"> <c:if test="${movlanToken[i].contains('中文')}"> checked </c:if></c:forEach>      >中文<br/>
 		</td>
 	</tr>
 	<tr>
