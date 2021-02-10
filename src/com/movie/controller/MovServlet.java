@@ -2,8 +2,10 @@ package com.movie.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -83,20 +85,23 @@ public class MovServlet extends HttpServlet{
 				
 				//多選checkbox
 				String[] movverStr = req.getParameterValues("movver");	
-		        String movver = null;
-		        if (movverStr != null) {
+		        String movver = "";
+		        if (movverStr.length != 0) {
 					movver = appendStr(movverStr);
+		        }else {
+					errorMsgs.add("電影種類: 請勿空白");
 		        }
 				
 				//單選下拉選單
 				String movtype = req.getParameter("movtype");
 
-				// ???????選多個會死掉
 				//多選checkbox
 				String[] movlanStr = req.getParameterValues("movlan");	
-		        String movlan = null;
-		        if (movlanStr != null) {
+		        String movlan = "";
+		        if (movlanStr.length != 0) {
 		        	movlan = appendStr(movlanStr);
+		        }else {
+					errorMsgs.add("電影類型: 請勿空白");
 		        }					
 		        
 				java.sql.Date movondate = null;
@@ -205,6 +210,49 @@ public class MovServlet extends HttpServlet{
 				failureView.forward(req, res);
 			}
 		} 
+
+		
+		 // 來自listAllMovie.jsp的請求
+		if ("getOne_For_Update".equals(action)) {
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			try {
+				/***************************1.接收請求參數****************************************/
+				Integer movno = new Integer(req.getParameter("movno").trim());
+				
+				/***************************2.開始查詢資料****************************************/
+				MovService movSvc = new MovService();
+				MovVO movVO = movSvc.getOneMov(movno);
+
+				
+				//??? 我很有事，更新時，會把原本的值也存進去，傻眼ㄟ。-> 電影種類2D,3D,3D 
+				//先split電影種類字串，再把值送到update_movie_input.jsp
+				String movverStrs = movVO.getMovver();
+				String[] movverToken = movverStrs.split(",");
+				
+				//先split電影語言字串，再把值送到update_movie_input.jsp
+				String movlanStrs = movVO.getMovlan();
+				String[] movlanToken = movlanStrs.split(",");
+				
+				
+				/***************************3.查詢完成,準備轉交(Send the Success view)************/
+				req.setAttribute("movVO", movVO); 
+				req.setAttribute("movverToken", movverToken);    
+				req.setAttribute("movlanToken", movlanToken);         
+				
+				String url = "/back-end/movie/update_movie_input.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, res);
+
+				/***************************其他可能的錯誤處理**********************************/
+			} catch (Exception e) {
+				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/movie/listAllMovie.jsp");
+				failureView.forward(req, res);
+			}
+		}
+		
 		
 		// 來自update_movie_input.jsp的請求
 		if ("update".equals(action)) {
@@ -226,9 +274,11 @@ public class MovServlet extends HttpServlet{
 				
 				//多選checkbox
 				String[] movverStr = req.getParameterValues("movver");	
-		        String movver = null;
-		        if (movverStr != null) {
+		        String movver = "";
+		        if (movverStr.length != 0) {
 					movver = appendStr(movverStr);
+		        }else {
+					errorMsgs.add("電影種類: 請勿空白");
 		        }
 				
 				//單選下拉選單
@@ -236,9 +286,11 @@ public class MovServlet extends HttpServlet{
 				
 				//多選checkbox
 				String[] movlanStr = req.getParameterValues("movlan");
-		        String movlan = null;
-		        if (movlanStr != null) {
+		        String movlan = "";
+		        if (movlanStr.length != 0) {
 		        	movlan = appendStr(movlanStr);
+		        }else {
+					errorMsgs.add("電影類型: 請勿空白");
 		        }				
 
 				java.sql.Date movondate = null;
@@ -306,7 +358,10 @@ public class MovServlet extends HttpServlet{
 				movtrais.read(movtra);
 				movtrais.close();
 				
-				
+				//??????
+                System.out.println("movver="+movver);
+                System.out.println("movlan="+movlan);
+                
 				MovVO movVO = new MovVO();
 				movVO.setMovno(movno);
 				movVO.setMovname(movname);
@@ -346,33 +401,6 @@ public class MovServlet extends HttpServlet{
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 
 				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/movie/update_movie_input.jsp");
-				failureView.forward(req, res);
-			}
-		}
-		
-		 // 來自listAllMovie.jsp的請求
-		if ("getOne_For_Update".equals(action)) {
-			List<String> errorMsgs = new LinkedList<String>();
-			req.setAttribute("errorMsgs", errorMsgs);
-			
-			try {
-				/***************************1.接收請求參數****************************************/
-				Integer movno = new Integer(req.getParameter("movno").trim());
-				
-				/***************************2.開始查詢資料****************************************/
-				MovService movSvc = new MovService();
-				MovVO movVO = movSvc.getOneMov(movno);
-								
-				/***************************3.查詢完成,準備轉交(Send the Success view)************/
-				req.setAttribute("movVO", movVO);      
-				String url = "/back-end/movie/update_movie_input.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url);
-				successView.forward(req, res);
-
-				/***************************其他可能的錯誤處理**********************************/
-			} catch (Exception e) {
-				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/movie/listAllMovie.jsp");
 				failureView.forward(req, res);
 			}
 		}

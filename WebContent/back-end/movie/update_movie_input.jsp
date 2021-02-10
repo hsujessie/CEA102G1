@@ -8,6 +8,8 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 <title>電影資訊修改 - Update Movie input.jsp</title>
+${movverToken[0]}
+${movlanToken[0]}
 
 <style>
   #table-1 {
@@ -95,11 +97,12 @@
 		<td>
 			<!-- 多選checkbox -->
 			<%-- <c:forEach var="movVO" items="${movSvc.all}">
-				<input type="checkbox" name="movver" value="${movVO.movno}" ${movVO.movver?'selected':''} >${movVO.movver}
+				<input type="checkbox" name="movver" value="javascript:splitStr(${movVO.movver})">${movVO.movver}<br>
 			</c:forEach> --%>
-			<input type="checkbox" name="movver" value="<%=movVO.getMovver()%>">2D<br>
+ 			
+	   <%-- <input type="checkbox" name="movver" value="<%=movVO.getMovver()%>">2D<br>
 			<input type="checkbox" name="movver" value="<%=movVO.getMovver()%>">3D<br>
-			<input type="checkbox" name="movver" value="<%=movVO.getMovver()%>">IMAX 3D<br>
+			<input type="checkbox" name="movver" value="<%=movVO.getMovver()%>">IMAX 3D<br> --%>
 		</td>
 	</tr>
 	<tr>
@@ -187,7 +190,7 @@
 <br>
 <input type="hidden" name="action" value="update">
 <input type="hidden" name="movno" value="<%=movVO.getMovno()%>">
-<input type="submit" value="送出修改">
+<input type="submit" value="送出修改" id="btn">
 </FORM>
 </body>
 
@@ -226,10 +229,21 @@ jQuery('#mov_offdate').datetimepicker({
     timepicker:false
     });
 });
-	/* https://cythilya.github.io/2017/09/10/jquery-attr-vs-prop/ */
-	/* 判斷input是否被選取，頁面顯示被選的那個value */
-	let movver = document.getElementsByName("movver");
-	console.log("JS movver:"+movver);
-	//$(movver).prop(('checked'); //???
+
+
+	/* 判斷input是否被選取，頁面顯示被選的那個value */		
+$("#btn").click(function(){
+  $("input[name='movver']").each(function() {
+    if($(this).prop('checked')){
+      let movverValue = $(this).val();
+      console.log("enter~~ " + movverValue);
+    }
+  });
+});
+	
+/* 	function splitStr(){
+		var str = ${movverSet};
+		console.log("str= "+str);
+	} */
 </script>
 </html>
