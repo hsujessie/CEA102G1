@@ -103,7 +103,7 @@ public class MovDAO implements MovDAO_interface{
 			pstmt.setString(9,movVO.getMovditor());
 			pstmt.setString(10,movVO.getMovcast());
 			pstmt.setString(11,movVO.getMovdes());
-			pstmt.setInt(12, movVO.getMovno());
+			pstmt.setInt(12,movVO.getMovno());
 			
 			pstmt.executeUpdate();
 			
@@ -298,7 +298,7 @@ public class MovDAO implements MovDAO_interface{
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE_TRA);
-			
+
 			pstmt.setBytes(1,movVO.getMovtra());
 			pstmt.setInt(2,movVO.getMovno());
 			

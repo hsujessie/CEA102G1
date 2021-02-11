@@ -3,8 +3,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="com.movie.model.*"%>
 
-<%MovVO movVO = (MovVO) request.getAttribute("movVO");%>
-
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -84,12 +82,11 @@
 <table>
 	<tr>
 		<td>電影編號:</td>
-		<td><%=movVO.getMovno()%></td>
+		<td>${movVO.movno}</td>
 	</tr>
 	<tr>
 		<td>電影名稱:</td>
-		<td><input type="text" name="movname" value="<%=movVO.getMovname()%>" />
-		</td>
+		<td><input type="text" name="movname" value="${movVO.movname}" /></td>
 	</tr>
 
 	<jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService" />
@@ -132,7 +129,7 @@
 	</tr>
 	<tr>
 		<td>片長:</td>
-		<td><input type="text" name="movdurat" value="<%=(movVO==null)? "2" : movVO.getMovdurat()%>" />小時</td>
+		<td><input type="text" name="movdurat" value="${ empty movVO.movdurat ? '2' : movVO.movdurat}" />小時</td>
 	</tr>
 	<tr>
 		<td>電影級數:</td>
@@ -147,39 +144,41 @@
 	</tr>
 	<tr>
 		<td>導演:</td>
-		<td><input type="text" name="movditor" value="<%=movVO.getMovditor()%>" /></td>
+		<td><input type="text" name="movditor" value="${movVO.movditor}" /></td>
 	</tr>
 	<tr>
 		<td>演員:</td>
-		<td><input type="text" name="movcast" value="<%=movVO.getMovcast()%>" /></td>
+		<td><input type="text" name="movcast" value="${movVO.movcast}" /></td>
 	</tr>
 	<tr>
 		<td>電影簡介:</td>
-		<td><textarea name="movdes" maxlength="500">
-			<%=movVO.getMovdes()%></textarea>
+		<td>
+			<textarea name="movdes" maxlength="500">
+				${movVO.movdes}
+			</textarea>
 		</td>
 	</tr>
 	<tr>
 		<!-- 修改時，原本的圖片會消失不見?Orz -->
 		<td>電影海報:</td>
 		<td><input type="file" name="movpos" value="${movVO.movpos}" />
-			<c:if test="${not empty movVO.movpos}">
+			<%-- <c:if test="${not empty movVO.movpos}">
 				<img src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movpos&action=get_One_MovPic">
-			</c:if>
+			</c:if> --%>
 		</td>
 	</tr>
 	<tr>
 		<td>電影預告片:</td>	
 		<td><input type="file" name="movtra" value="${movVO.movtra}" />
-			<c:if test="${not empty movVO.movtra}">
+		<%-- 	<c:if test="${not empty movVO.movtra}">
 				<img src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movtra&action=get_One_MovPic">
-			</c:if>
+			</c:if> --%>
 		</td>
 	</tr>
 </table>
 <br>
 <input type="hidden" name="action" value="update">
-<input type="hidden" name="movno" value="<%=movVO.getMovno()%>">
+<input type="hidden" name="movno" value="${movVO.movno}">
 <input type="submit" value="送出修改" id="btn">
 </FORM>
 </body>
@@ -200,7 +199,7 @@ $.datetimepicker.setLocale('zh');
 jQuery(function(){
     jQuery('#mov_ondate').datetimepicker({
         format:'Y-m-d',
-        value:'<%=movVO.getMovondate()%>',
+        value:'${movVO.movondate}',
         onShow:function( ct ){
         this.setOptions({
             maxDate:jQuery('#mov_offdate').val()?jQuery('#mov_offdate').val():false
@@ -210,7 +209,7 @@ jQuery(function(){
  });
 jQuery('#mov_offdate').datetimepicker({
     format:'Y-m-d',
-    value:'<%=movVO.getMovoffdate()%>',
+    value:'${movVO.movoffdate}',
     onShow:function( ct ){
     this.setOptions({
         minDate:jQuery('#mov_ondate').val()?jQuery('#mov_ondate').val():false

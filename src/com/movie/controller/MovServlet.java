@@ -2,6 +2,7 @@ package com.movie.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Date;
 import java.util.LinkedList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -34,9 +35,7 @@ public class MovServlet extends HttpServlet{
 			
 			try {
 				/***************************1.接收請求參數*****************************************/
-				String str = req.getParameter("movno");
-				Integer movno = null;
-				movno = new Integer(str);
+				Integer movno = new Integer(req.getParameter("movno"));
 				
 				/***************************2.開始查詢資料*****************************************/
 				MovService movSvc = new MovService();
@@ -241,11 +240,20 @@ public class MovServlet extends HttpServlet{
 			
 				//先split電影種類字串，再把值送到update_movie_input.jsp
 				String movverStrs = movVO.getMovver();
-				String[] movverToken = movverStrs.split(",");
+				String[] movverToken = {"2D"};
+				if(movverStrs != null) {
+					System.out.println("enter movverToken");
+					movverToken = movverStrs.split(",");
+				}
+				
 				
 				//先split電影語言字串，再把值送到update_movie_input.jsp
 				String movlanStrs = movVO.getMovlan();
-				String[] movlanToken = movlanStrs.split(",");
+				String[] movlanToken = {""};
+				if(movlanStrs != null) {
+					System.out.println("enter movlanToken");
+					movlanToken = movlanStrs.split(",");
+				}
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("movVO", movVO); 
@@ -345,35 +353,43 @@ public class MovServlet extends HttpServlet{
 				if(movdes == null || movname.length() == 0) {
 					errorMsgs.add("電影簡介: 請勿空白");
 				}
-				
-				MovService movSvc = new MovService();
-				
-				byte[] movpos = null;
+											
 				Part movposPart = req.getPart("movpos");
-				if(movposPart != null) {
-					System.out.println("~enter movpos if~");
-					InputStream movposIs = movposPart.getInputStream();
-					movpos = new byte[movposIs.available()];
-					movposIs.read(movpos);
-					movposIs.close();
-					movSvc.updateMovpos(movpos, movno);
-				}else {
-					System.out.println("~enter movpos else~");
+				byte[] movpos = null;
+				if(movposPart != null) {			
+					System.out.println("~enter movpos if movno~" + movno);					
+					System.out.println("~enter movpos if movposPart~" + movposPart);
+					
+//					InputStream movposis = movposPart.getInputStream();
+//					movpos = new byte[movposis.available()];
+//					movposis.read(movpos);
+//					movposis.close();
+//					
+//					MovService movSvc = new MovService();
+//					movSvc.updateMovpos(movpos, movno);
 				}
+//				else {
+//					
+//				}
 
-				byte[] movtra = null;
 				Part movtraPart = req.getPart("movtra");
+				byte[] movtra = null;
 				if(movtraPart != null) {
-					System.out.println("~enter movtra if~");
-					InputStream movtraIs = movtraPart.getInputStream();
-					movtra = new byte[movtraIs.available()];
-					movtraIs.read(movtra);
-					movtraIs.close();
-					movSvc.updateMovtra(movtra, movno);
-				}else {
-					System.out.println("~enter movtra else~");
+					System.out.println("~enter movtra if movno~" + movno);
+					System.out.println("~enter movtra if movtraPart~" + movtraPart);
+					
+//					InputStream movtrais = movtraPart.getInputStream();
+//					movtra = new byte[movtrais.available()];
+//					movtrais.read(movtra);
+//					movtrais.close();				
+//					
+//					MovService movSvc = new MovService();
+//					movSvc.updateMovtra(movtra, movno);
 				}
-                
+//				else {
+//					
+//				}
+				
 				MovVO movVO = new MovVO();
 				movVO.setMovno(movno);
 				movVO.setMovname(movname);
@@ -399,6 +415,7 @@ public class MovServlet extends HttpServlet{
 				}
 				
 				/***************************2.開始修改資料*****************************************/
+				MovService movSvc = new MovService();
 				movVO = movSvc.updateMov(movname, movver, movtype, movlan, movondate, movoffdate, movdurat, movrating, movditor, movcast, movdes, movno);
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
