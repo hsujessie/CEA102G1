@@ -345,20 +345,34 @@ public class MovServlet extends HttpServlet{
 				if(movdes == null || movname.length() == 0) {
 					errorMsgs.add("電影簡介: 請勿空白");
 				}
-
+				
+				MovService movSvc = new MovService();
+				
 				byte[] movpos = null;
 				Part movposPart = req.getPart("movpos");
-				InputStream movposis = movposPart.getInputStream();
-				movpos = new byte[movposis.available()];
-				movposis.read(movpos);
-				movposis.close();
+				if(movposPart != null) {
+					System.out.println("~enter movpos if~");
+					InputStream movposIs = movposPart.getInputStream();
+					movpos = new byte[movposIs.available()];
+					movposIs.read(movpos);
+					movposIs.close();
+					movSvc.updateMovpos(movpos, movno);
+				}else {
+					System.out.println("~enter movpos else~");
+				}
 
 				byte[] movtra = null;
 				Part movtraPart = req.getPart("movtra");
-				InputStream movtrais = movtraPart.getInputStream();
-				movtra = new byte[movtrais.available()];
-				movtrais.read(movtra);
-				movtrais.close();
+				if(movtraPart != null) {
+					System.out.println("~enter movtra if~");
+					InputStream movtraIs = movtraPart.getInputStream();
+					movtra = new byte[movtraIs.available()];
+					movtraIs.read(movtra);
+					movtraIs.close();
+					movSvc.updateMovtra(movtra, movno);
+				}else {
+					System.out.println("~enter movtra else~");
+				}
                 
 				MovVO movVO = new MovVO();
 				movVO.setMovno(movno);
@@ -385,8 +399,7 @@ public class MovServlet extends HttpServlet{
 				}
 				
 				/***************************2.開始修改資料*****************************************/
-				MovService movSvc = new MovService();
-				movVO = movSvc.updateMov(movname, movver, movtype, movlan, movondate, movoffdate, movdurat, movrating, movditor, movcast, movdes, movpos, movtra, movno);
+				movVO = movSvc.updateMov(movname, movver, movtype, movlan, movondate, movoffdate, movdurat, movrating, movditor, movcast, movdes, movno);
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("movVO", movVO);

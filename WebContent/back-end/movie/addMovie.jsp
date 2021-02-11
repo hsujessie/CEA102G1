@@ -81,8 +81,7 @@
 <table>
 	<tr>
 		<td>電影名稱:</td>
-		<td><input type="text" name="movname" size="30"
-			 value="<%= (movVO==null)? "金牌特務" : movVO.getMovname()%>" /></td>
+		<td><input type="text" name="movname" value="<%= (movVO==null)? "金牌特務" : movVO.getMovname()%>" /></td>
 	</tr>
 	<tr>
 		<td>電影種類:</td>
@@ -123,8 +122,7 @@
 	</tr>
 	<tr>
 		<td>片長:</td>
-		<td><input type="text" name="movdurat"
-			 value="<%= (movVO==null)? "2" : movVO.getMovdurat()%>" />小時</td>
+		<td><input type="text" name="movdurat" value="<%= (movVO==null)? "2" : movVO.getMovdurat()%>" />小時</td>
 	</tr>
 	<tr>
 		<td>電影級數:</td>
@@ -139,13 +137,11 @@
 	</tr>
 	<tr>
 		<td>導演:</td>
-		<td><input type="text" name="movditor"
-			 value="<%= (movVO==null)? "dicrector" : movVO.getMovditor()%>" /></td>
+		<td><input type="text" name="movditor" value="<%= (movVO==null)? "dicrector" : movVO.getMovditor()%>" /></td>
 	</tr>
 	<tr>
 		<td>演員:</td>
-		<td><input type="text" name="movcast"
-			 value="<%= (movVO==null)? "actors" : movVO.getMovcast()%>" /></td>
+		<td><input type="text" name="movcast" value="<%= (movVO==null)? "actors" : movVO.getMovcast()%>" /></td>
 	</tr>
 	<tr>
 		<td>電影簡介:</td>
@@ -155,13 +151,11 @@
 	</tr>
 	<tr>
 		<td>電影海報:</td>
-		<td><input type="file" name="movpos"
-			 value="<%= (movVO==null)? "poster" : movVO.getMovpos()%>" /></td>
+		<td><input type="file" name="movpos" value="<%= (movVO==null)? "poster" : movVO.getMovpos()%>" /></td>
 	</tr>
 	<tr>
 		<td>電影預告片:</td>
-		<td><input type="file" name="movtra"
-			 value="<%=  (movVO==null)? "trailer" : movVO.getMovtra()%>" /></td>
+		<td><input type="file" name="movtra" value="<%=  (movVO==null)? "trailer" : movVO.getMovtra()%>" /></td>
 	</tr>
 </table>
 <br>

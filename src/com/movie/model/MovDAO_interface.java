@@ -7,4 +7,6 @@ public interface MovDAO_interface {
 	public void update(MovVO movVO);
     public MovVO findByPrimaryKey(Integer movno);
     public List<MovVO> getAll();
+    public void updateMovpos(MovVO movVO);
+    public void updateMovtra(MovVO movVO);
 }

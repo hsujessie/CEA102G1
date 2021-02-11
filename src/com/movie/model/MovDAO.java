@@ -32,7 +32,11 @@ public class MovDAO implements MovDAO_interface{
 		"SELECT mov_no,mov_name,mov_ver,mov_type,mov_lan,mov_ondate,mov_offdate,mov_durat,mov_rating,mov_ditor,mov_cast,mov_des,mov_pos,mov_tra,mov_satitotal,mov_satipers,mov_expetotal,mov_expepers FROM movie where mov_no = ?";
 	private static final String UPDATE =
 		"UPDATE movie set mov_name=?, mov_ver=?, mov_type=?, mov_lan=?, mov_ondate=?, mov_offdate=?, mov_durat=?, mov_rating=?, mov_ditor=?, mov_cast=?, mov_des=?, mov_pos=?, mov_tra=? where mov_no = ?";
-
+	private static final String UPDATE_POS =
+		"UPDATE movie set mov_pos=? where mov_no = ?";
+	private static final String UPDATE_TRA =
+		"UPDATE movie set mov_tra=? where mov_no = ?";
+	
 	@Override
 	public void insert(MovVO movVO) {
 		Connection con = null;
@@ -99,9 +103,7 @@ public class MovDAO implements MovDAO_interface{
 			pstmt.setString(9,movVO.getMovditor());
 			pstmt.setString(10,movVO.getMovcast());
 			pstmt.setString(11,movVO.getMovdes());
-			pstmt.setBytes(12, movVO.getMovpos());
-			pstmt.setBytes(13, movVO.getMovtra());
-			pstmt.setInt(14, movVO.getMovno());
+			pstmt.setInt(12, movVO.getMovno());
 			
 			pstmt.executeUpdate();
 			
@@ -252,5 +254,73 @@ public class MovDAO implements MovDAO_interface{
 		}
 		
 		return list;
+	}
+	
+	@Override
+	 public void updateMovpos(MovVO movVO) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATE_POS);
+			
+			pstmt.setBytes(1,movVO.getMovpos());
+			pstmt.setInt(2,movVO.getMovno());
+			
+			pstmt.executeUpdate();
+			
+		}catch(SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				}catch(SQLException se){
+					se.printStackTrace(System.err);
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				}catch(Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+	}
+
+	@Override
+	public void updateMovtra(MovVO movVO) {	
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATE_TRA);
+			
+			pstmt.setBytes(1,movVO.getMovtra());
+			pstmt.setInt(2,movVO.getMovno());
+			
+			pstmt.executeUpdate();
+			
+		}catch(SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				}catch(SQLException se){
+					se.printStackTrace(System.err);
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				}catch(Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
 	}
 }

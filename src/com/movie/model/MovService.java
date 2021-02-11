@@ -33,7 +33,7 @@ public class MovService {
 		return movVO;
 	}
 
-	public MovVO updateMov(String movname, String movver,String movtype, String movlan, Date movondate, Date movoffdate, Integer movdurat, String movrating, String movditor, String movcast, String movdes, byte[] movpos, byte[] movtra, Integer movno) {
+	public MovVO updateMov(String movname, String movver,String movtype, String movlan, Date movondate, Date movoffdate, Integer movdurat, String movrating, String movditor, String movcast, String movdes, Integer movno) {
 		
 		MovVO movVO = new MovVO();
 
@@ -48,8 +48,6 @@ public class MovService {
 		movVO.setMovditor(movditor);
 		movVO.setMovcast(movcast);
 		movVO.setMovdes(movdes);
-		movVO.setMovpos(movpos);
-		movVO.setMovtra(movtra);
 		movVO.setMovno(movno);
 		dao.update(movVO);
 		
@@ -62,6 +60,24 @@ public class MovService {
 	
 	public List<MovVO> getAll(){
 		return dao.getAll();
+	}
+	
+	public MovVO updateMovpos(byte[] movpos, Integer movno) {
+		MovVO movVO = new MovVO();
+		movVO.setMovpos(movpos);
+		movVO.setMovno(movno);
+		dao.updateMovpos(movVO);
+		
+		return movVO;
+	}
+	
+	public MovVO updateMovtra(byte[] movtra, Integer movno) {
+		MovVO movVO = new MovVO();
+		movVO.setMovtra(movtra);
+		movVO.setMovno(movno);
+		dao.updateMovtra(movVO);
+		
+		return movVO;
 	}
 	
 }
