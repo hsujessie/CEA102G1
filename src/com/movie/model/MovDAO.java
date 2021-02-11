@@ -31,7 +31,7 @@ public class MovDAO implements MovDAO_interface{
 	private static final String GET_ONE_STMT =
 		"SELECT mov_no,mov_name,mov_ver,mov_type,mov_lan,mov_ondate,mov_offdate,mov_durat,mov_rating,mov_ditor,mov_cast,mov_des,mov_pos,mov_tra,mov_satitotal,mov_satipers,mov_expetotal,mov_expepers FROM movie where mov_no = ?";
 	private static final String UPDATE =
-		"UPDATE movie set mov_name=?, mov_ver=?, mov_type=?, mov_lan=?, mov_ondate=?, mov_offdate=?, mov_durat=?, mov_rating=?, mov_ditor=?, mov_cast=?, mov_des=?, mov_pos=?, mov_tra=? where mov_no = ?";
+		"UPDATE movie set mov_name=?, mov_ver=?, mov_type=?, mov_lan=?, mov_ondate=?, mov_offdate=?, mov_durat=?, mov_rating=?, mov_ditor=?, mov_cast=?, mov_des=? where mov_no = ?";
 	private static final String UPDATE_POS =
 		"UPDATE movie set mov_pos=? where mov_no = ?";
 	private static final String UPDATE_TRA =
@@ -63,7 +63,7 @@ public class MovDAO implements MovDAO_interface{
 			pstmt.executeUpdate();
 			
 		}catch(SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
+			throw new RuntimeException("DAO insert A database error occured. " + se.getMessage());
 		
 		} finally {
 			if(pstmt !=  null) {
@@ -91,7 +91,7 @@ public class MovDAO implements MovDAO_interface{
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
-
+			
 			pstmt.setString(1,movVO.getMovname());
 			pstmt.setString(2,movVO.getMovver());
 			pstmt.setString(3,movVO.getMovtype());
@@ -108,7 +108,7 @@ public class MovDAO implements MovDAO_interface{
 			pstmt.executeUpdate();
 			
 		}catch(SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
+			throw new RuntimeException("DAO update A database error occured. " + se.getMessage());
 		
 		} finally {
 			if(pstmt !=  null) {
@@ -164,7 +164,7 @@ public class MovDAO implements MovDAO_interface{
 			}
 			
 		}catch(SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
+			throw new RuntimeException("DAO findByPrimaryKey A database error occured. " + se.getMessage());
 		} finally {
 			if(rs != null) {
 				try {
@@ -228,7 +228,7 @@ public class MovDAO implements MovDAO_interface{
 				list.add(movVO);
 			}
 		}catch(SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
+			throw new RuntimeException("DAO getAll A database error occured. " + se.getMessage());
 		} finally {
 			if(rs != null) {
 				try {
@@ -271,7 +271,7 @@ public class MovDAO implements MovDAO_interface{
 			pstmt.executeUpdate();
 			
 		}catch(SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
+			throw new RuntimeException("DAO updateMovpos A database error occured. " + se.getMessage());
 		} finally {
 			if(pstmt != null) {
 				try {
@@ -305,7 +305,7 @@ public class MovDAO implements MovDAO_interface{
 			pstmt.executeUpdate();
 			
 		}catch(SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
+			throw new RuntimeException("DAO updateMovtra A database error occured. " + se.getMessage());
 		} finally {
 			if(pstmt != null) {
 				try {

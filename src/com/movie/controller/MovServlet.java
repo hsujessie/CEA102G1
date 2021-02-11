@@ -354,43 +354,58 @@ public class MovServlet extends HttpServlet{
 					errorMsgs.add("電影簡介: 請勿空白");
 				}
 											
-				Part movposPart = req.getPart("movpos");
-				byte[] movpos = null;
-				if(movposPart != null) {			
-					System.out.println("~enter movpos if movno~" + movno);					
-					System.out.println("~enter movpos if movposPart~" + movposPart);
+				MovService movSvc = new MovService();
+				MovVO movVO = movSvc.getOneMov(movno);
+				
+				Part movposPart = req.getPart("movpos");	
+				byte[] movpos = movVO.getMovpos();
+				System.out.println("~movpos~" + movpos);
+				if(movposPart.getContentType() != null && movposPart.getContentType().indexOf("image")>=0) {			
+					System.out.println("~enter movpos if movno~" + movno);				
 					
-//					InputStream movposis = movposPart.getInputStream();
-//					movpos = new byte[movposis.available()];
-//					movposis.read(movpos);
-//					movposis.close();
-//					
-//					MovService movSvc = new MovService();
-//					movSvc.updateMovpos(movpos, movno);
+					InputStream movposis = movposPart.getInputStream();
+					movpos = new byte[movposis.available()];
+					movposis.read(movpos);
+					movposis.close();
+					
+					//MovService movSvc = new MovService();
+					movSvc.updateMovpos(movpos, movno);
+				}else {
+					System.out.println("~enter movpos else movno~" + movno);		
 				}
-//				else {
-//					
-//				}
 
 				Part movtraPart = req.getPart("movtra");
-				byte[] movtra = null;
-				if(movtraPart != null) {
+				byte[] movtra = movVO.getMovtra();
+				System.out.println("~movtra~" + movtra);
+				if(movtraPart.getContentType() != null && movtraPart.getContentType().indexOf("image")>=0) {
 					System.out.println("~enter movtra if movno~" + movno);
-					System.out.println("~enter movtra if movtraPart~" + movtraPart);
 					
-//					InputStream movtrais = movtraPart.getInputStream();
-//					movtra = new byte[movtrais.available()];
-//					movtrais.read(movtra);
-//					movtrais.close();				
-//					
-//					MovService movSvc = new MovService();
-//					movSvc.updateMovtra(movtra, movno);
+					InputStream movtrais = movtraPart.getInputStream();
+					movtra = new byte[movtrais.available()];
+					movtrais.read(movtra);
+					movtrais.close();				
+					
+					//MovService movSvc = new MovService();
+					movSvc.updateMovtra(movtra, movno);
+				}else {
+					System.out.println("~enter movtra else movno~" + movno);
 				}
-//				else {
-//					
-//				}
 				
-				MovVO movVO = new MovVO();
+				//MovVO movVO = new MovVO();
+				System.out.println("movno: " + movno);
+				System.out.println("movname: " + movname);
+				System.out.println("movver: " + movver);
+				System.out.println("movtype: " + movtype);
+				System.out.println("movlan: " + movlan);
+				System.out.println("movondate: " + movondate);
+				System.out.println("movoffdate: " + movoffdate);
+				System.out.println("movdurat: " + movdurat);
+				System.out.println("movrating: " + movrating);
+				System.out.println("movditor: " + movditor);
+				System.out.println("movcast: " + movcast);
+				System.out.println("movdes: " + movdes);
+				System.out.println("movpos: " + movpos);
+				System.out.println("movtra: " + movtra);
 				movVO.setMovno(movno);
 				movVO.setMovname(movname);
 				movVO.setMovver(movver);
@@ -403,8 +418,8 @@ public class MovServlet extends HttpServlet{
 				movVO.setMovditor(movditor);
 				movVO.setMovcast(movcast);
 				movVO.setMovdes(movdes);
-				movVO.setMovpos(movpos);
-				movVO.setMovtra(movtra);
+				//movVO.setMovpos(movpos);
+				//movVO.setMovtra(movtra);
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
@@ -415,7 +430,7 @@ public class MovServlet extends HttpServlet{
 				}
 				
 				/***************************2.開始修改資料*****************************************/
-				MovService movSvc = new MovService();
+				//MovService movSvc = new MovService();
 				movVO = movSvc.updateMov(movname, movver, movtype, movlan, movondate, movoffdate, movdurat, movrating, movditor, movcast, movdes, movno);
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
