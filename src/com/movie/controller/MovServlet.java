@@ -285,7 +285,6 @@ public class MovServlet extends HttpServlet{
 				
 				//多選checkbox
 				String[] movverStr = req.getParameterValues("movver");
-				System.out.println("movverToken: "+movverStr);
 		        String movver = "";
 		        if (movverStr.length != 0) {
 					movver = appendStr(movverStr);
@@ -298,7 +297,6 @@ public class MovServlet extends HttpServlet{
 				
 				//多選checkbox
 				String[] movlanStr = req.getParameterValues("movlan");
-				System.out.println("movlanToken: "+movlanStr);
 		        String movlan = "";
 		        if (movlanStr.length != 0) {
 		        	movlan = appendStr(movlanStr);
@@ -361,10 +359,6 @@ public class MovServlet extends HttpServlet{
 				movtra = new byte[movtrais.available()];
 				movtrais.read(movtra);
 				movtrais.close();
-				
-				//??????
-                System.out.println("movver="+movver);
-                System.out.println("movlan="+movlan);
                 
 				MovVO movVO = new MovVO();
 				movVO.setMovno(movno);
