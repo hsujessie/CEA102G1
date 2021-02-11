@@ -159,20 +159,19 @@
 		</td>
 	</tr>
 	<tr>
-		<!-- 修改時，原本的圖片會消失不見?Orz -->
 		<td>電影海報:</td>
 		<td><input type="file" name="movpos" value="${movVO.movpos}" />
-			<%-- <c:if test="${not empty movVO.movpos}">
+			<c:if test="${not empty movVO.movpos}">
 				<img src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movpos&action=get_One_MovPic">
-			</c:if> --%>
+			</c:if>
 		</td>
 	</tr>
 	<tr>
 		<td>電影預告片:</td>	
 		<td><input type="file" name="movtra" value="${movVO.movtra}" />
-		<%-- 	<c:if test="${not empty movVO.movtra}">
+			<c:if test="${not empty movVO.movtra}">
 				<img src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movtra&action=get_One_MovPic">
-			</c:if> --%>
+			</c:if>
 		</td>
 	</tr>
 </table>

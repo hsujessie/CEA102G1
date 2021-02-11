@@ -2,7 +2,6 @@ package com.movie.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Date;
 import java.util.LinkedList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -242,7 +241,6 @@ public class MovServlet extends HttpServlet{
 				String movverStrs = movVO.getMovver();
 				String[] movverToken = {"2D"};
 				if(movverStrs != null) {
-					System.out.println("enter movverToken");
 					movverToken = movverStrs.split(",");
 				}
 				
@@ -251,7 +249,6 @@ public class MovServlet extends HttpServlet{
 				String movlanStrs = movVO.getMovlan();
 				String[] movlanToken = {""};
 				if(movlanStrs != null) {
-					System.out.println("enter movlanToken");
 					movlanToken = movlanStrs.split(",");
 				}
 								
@@ -359,53 +356,32 @@ public class MovServlet extends HttpServlet{
 				
 				Part movposPart = req.getPart("movpos");	
 				byte[] movpos = movVO.getMovpos();
-				System.out.println("~movpos~" + movpos);
-				if(movposPart.getContentType() != null && movposPart.getContentType().indexOf("image")>=0) {			
-					System.out.println("~enter movpos if movno~" + movno);				
+				System.out.println("~enter else movpos~ " + movpos);
+				if(movposPart.getContentType() != null && movposPart.getContentType().indexOf("image") >= 0) {	
+				//if(movposPart != null) {	//這樣判斷是不對的，因為即便沒東西，會回傳這個 application/octet-stream	 			
 					
 					InputStream movposis = movposPart.getInputStream();
 					movpos = new byte[movposis.available()];
 					movposis.read(movpos);
 					movposis.close();
 					
-					//MovService movSvc = new MovService();
 					movSvc.updateMovpos(movpos, movno);
-				}else {
-					System.out.println("~enter movpos else movno~" + movno);		
 				}
 
 				Part movtraPart = req.getPart("movtra");
 				byte[] movtra = movVO.getMovtra();
-				System.out.println("~movtra~" + movtra);
-				if(movtraPart.getContentType() != null && movtraPart.getContentType().indexOf("image")>=0) {
-					System.out.println("~enter movtra if movno~" + movno);
+				System.out.println("~enter else movtra~ " + movtra);
+				if(movtraPart.getContentType() != null && movtraPart.getContentType().indexOf("image") >= 0) {
+				//if(movtraPart != null) {	//這樣判斷是不對的，因為即便沒東西，會回傳這個 application/octet-stream	
 					
 					InputStream movtrais = movtraPart.getInputStream();
 					movtra = new byte[movtrais.available()];
 					movtrais.read(movtra);
 					movtrais.close();				
 					
-					//MovService movSvc = new MovService();
 					movSvc.updateMovtra(movtra, movno);
-				}else {
-					System.out.println("~enter movtra else movno~" + movno);
 				}
-				
-				//MovVO movVO = new MovVO();
-				System.out.println("movno: " + movno);
-				System.out.println("movname: " + movname);
-				System.out.println("movver: " + movver);
-				System.out.println("movtype: " + movtype);
-				System.out.println("movlan: " + movlan);
-				System.out.println("movondate: " + movondate);
-				System.out.println("movoffdate: " + movoffdate);
-				System.out.println("movdurat: " + movdurat);
-				System.out.println("movrating: " + movrating);
-				System.out.println("movditor: " + movditor);
-				System.out.println("movcast: " + movcast);
-				System.out.println("movdes: " + movdes);
-				System.out.println("movpos: " + movpos);
-				System.out.println("movtra: " + movtra);
+
 				movVO.setMovno(movno);
 				movVO.setMovname(movname);
 				movVO.setMovver(movver);
@@ -418,8 +394,6 @@ public class MovServlet extends HttpServlet{
 				movVO.setMovditor(movditor);
 				movVO.setMovcast(movcast);
 				movVO.setMovdes(movdes);
-				//movVO.setMovpos(movpos);
-				//movVO.setMovtra(movtra);
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
@@ -430,7 +404,6 @@ public class MovServlet extends HttpServlet{
 				}
 				
 				/***************************2.開始修改資料*****************************************/
-				//MovService movSvc = new MovService();
 				movVO = movSvc.updateMov(movname, movver, movtype, movlan, movondate, movoffdate, movdurat, movrating, movditor, movcast, movdes, movno);
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
