@@ -7,9 +7,9 @@ public class ComRepVO implements Serializable{
 	private Integer comRepNo;
 	private Integer comNo;
 	private Integer memNo;
-	private String comrepReason;
-	private Timestamp comrepTime;
-	private Integer comrepStatus;
+	private String comRepReason;
+	private Timestamp comRepTime;
+	private Integer comRepStatus;
 	
 	public ComRepVO() {}
 
@@ -37,27 +37,27 @@ public class ComRepVO implements Serializable{
 		this.memNo = memNo;
 	}
 
-	public String getComrepReason() {
-		return comrepReason;
+	public String getComRepReason() {
+		return comRepReason;
 	}
 
-	public void setComrepReason(String comrepReason) {
-		this.comrepReason = comrepReason;
+	public void setComRepReason(String comRepReason) {
+		this.comRepReason = comRepReason;
 	}
 
-	public Timestamp getComrepTime() {
-		return comrepTime;
+	public Timestamp getComRepTime() {
+		return comRepTime;
 	}
 
-	public void setComrepTime(Timestamp comrepTime) {
-		this.comrepTime = comrepTime;
+	public void setComRepTime(Timestamp comRepTime) {
+		this.comRepTime = comRepTime;
 	}
 
-	public Integer getComrepStatus() {
-		return comrepStatus;
+	public Integer getComRepStatus() {
+		return comRepStatus;
 	}
 
-	public void setComrepStatus(Integer comrepStatus) {
-		this.comrepStatus = comrepStatus;
+	public void setComRepStatus(Integer comRepStatus) {
+		this.comRepStatus = comRepStatus;
 	}
 }

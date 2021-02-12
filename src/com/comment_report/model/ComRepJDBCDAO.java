@@ -1,4 +1,4 @@
-package com.comment.model;
+package com.comment_report.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,7 +10,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ComJDBCDAO implements ComDAO_interface{
+import com.comment.model.ComJDBCDAO;
+import com.comment.model.ComVO;
+
+public class ComRepJDBCDAO implements ComRepDAO_interface{
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/seenema?serverTimezone=Asia/Taipei";
 	String userid = "root";
@@ -18,16 +21,16 @@ public class ComJDBCDAO implements ComDAO_interface{
 
 	
 	private static final String INSERT_STMT =
-		"INSERT INTO COMMENT (mov_no,mem_no,com_time,com_content,com_status) VALUES (?,?,?,?,?)"; 
+		"INSERT INTO COMMENT_REPORT (com_no,mem_no,comrep_reason,comrep_time,comrep_status) VALUES (?,?,?,?,?)"; 
 	private static final String GET_ALL_STMT =
-		"SELECT com_no,mov_no,mem_no,com_time,com_content,com_status FROM COMMENT ORDER BY com_no";
+		"SELECT comrep_no,com_no,mem_no,comrep_reason,comrep_time,comrep_status FROM COMMENT_REPORT ORDER BY comrep_no";
 	private static final String GET_ONE_STMT =
-		"SELECT com_no,mov_no,mem_no,com_time,com_content,com_status FROM COMMENT WHERE com_no=?";
+		"SELECT comrep_no,com_no,mem_no,comrep_reason,comrep_time,comrep_status FROM COMMENT_REPORT WHERE comrep_no=?";
 	private static final String UPDATE =
-		"UPDATE COMMENT SET com_status=? WHERE com_no=?";
+		"UPDATE COMMENT_REPORT SET comrep_status=? WHERE comrep_no=?";
 
 	@Override
-	public void insert(ComVO comVO) {
+	public void insert(ComRepVO comRepVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
@@ -36,18 +39,18 @@ public class ComJDBCDAO implements ComDAO_interface{
 			con = DriverManager.getConnection(url, userid, passwd);
 			
 			pstmt = con.prepareStatement(INSERT_STMT);
-			pstmt.setInt(1,comVO.getMovNo());
-			pstmt.setInt(2,comVO.getMemNo());
-			pstmt.setTimestamp(3,comVO.getComTime());
-			pstmt.setString(4,comVO.getComContent());
-			pstmt.setInt(5,comVO.getComStatus());
+			pstmt.setInt(1,comRepVO.getComNo());
+			pstmt.setInt(2,comRepVO.getMemNo());
+			pstmt.setString(3,comRepVO.getComRepReason());
+			pstmt.setTimestamp(4,comRepVO.getComRepTime());
+			pstmt.setInt(5,comRepVO.getComRepStatus());
 			
 			pstmt.executeUpdate();
 			
 		} catch(ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 		} catch(SQLException se) {
-			throw new RuntimeException("ComJDBCDAO insert A database error occured. " + se.getMessage());		
+			throw new RuntimeException("ComRepJDBCDAO insert A database error occured. " + se.getMessage());		
 		} finally {
 			if(pstmt !=  null) {
 				try {
@@ -67,7 +70,7 @@ public class ComJDBCDAO implements ComDAO_interface{
 	}
 
 	@Override
-	public void update(ComVO comVO) {
+	public void update(ComRepVO comRepVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -76,15 +79,15 @@ public class ComJDBCDAO implements ComDAO_interface{
 			con = DriverManager.getConnection(url, userid, passwd);
 			
 			pstmt = con.prepareStatement(UPDATE);
-			pstmt.setInt(1,comVO.getComStatus());
-			pstmt.setInt(2,comVO.getComNo());	
+			pstmt.setInt(1,comRepVO.getComRepStatus());
+			pstmt.setInt(2,comRepVO.getComRepNo());	
 			
 			pstmt.executeUpdate();
 			
 		} catch(ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 		} catch(SQLException se) {
-			throw new RuntimeException("ComJDBCDAO update A database error occured. " + se.getMessage());
+			throw new RuntimeException("ComRepJDBCDAO update A database error occured. " + se.getMessage());
 		
 		} finally {
 			if(pstmt !=  null) {
@@ -101,12 +104,12 @@ public class ComJDBCDAO implements ComDAO_interface{
 					e.printStackTrace(System.err);
 				}
 			}
-		}	
+		}
 	}
 
 	@Override
-	public ComVO findByPrimaryKey(Integer comNo) {
-		ComVO comVO = null;
+	public ComRepVO findByPrimaryKey(Integer comRepNo) {
+		ComRepVO comRepVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -116,23 +119,23 @@ public class ComJDBCDAO implements ComDAO_interface{
 			con = DriverManager.getConnection(url, userid, passwd);
 			
 			pstmt = con.prepareStatement(GET_ONE_STMT);
-			pstmt.setInt(1,comNo);
+			pstmt.setInt(1,comRepNo);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				comVO = new ComVO();
-				comVO.setComNo(rs.getInt("com_no"));
-				comVO.setMovNo(rs.getInt("mov_no"));
-				comVO.setMemNo(rs.getInt("mem_no"));
-				comVO.setComTime(rs.getTimestamp("com_time"));
-				comVO.setComContent(rs.getString("com_content"));
-				comVO.setComStatus(rs.getInt("com_status"));
+				comRepVO = new ComRepVO();
+				comRepVO.setComRepNo(rs.getInt("comrep_no"));
+				comRepVO.setComNo(rs.getInt("com_no"));
+				comRepVO.setMemNo(rs.getInt("mem_no"));
+				comRepVO.setComRepReason(rs.getString("comrep_reason"));
+				comRepVO.setComRepTime(rs.getTimestamp("comrep_time"));
+				comRepVO.setComRepStatus(rs.getInt("comrep_status"));
 			}		
 			
 		} catch(ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());			
 		} catch(SQLException se) {
-			throw new RuntimeException("ComJDBCDAO findByPrimaryKey A database error occured. " + se.getMessage());	
+			throw new RuntimeException("ComRepJDBCDAO findByPrimaryKey A database error occured. " + se.getMessage());	
 		} finally {
 			if(rs != null) {
 				try {
@@ -158,13 +161,13 @@ public class ComJDBCDAO implements ComDAO_interface{
 				}
 			}
 		}
-		return comVO;
+		return comRepVO;
 	}
 
 	@Override
-	public List<ComVO> getAll() {
-		List<ComVO> list = new ArrayList<ComVO>();
-		ComVO comVO = null;
+	public List<ComRepVO> getAll() {
+		List<ComRepVO> list = new ArrayList<ComRepVO>();
+		ComRepVO comRepVO = null;
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -177,20 +180,20 @@ public class ComJDBCDAO implements ComDAO_interface{
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();			
 			while(rs.next()){
-				comVO = new ComVO();
-				comVO.setComNo(rs.getInt("com_no"));
-				comVO.setMovNo(rs.getInt("mov_no"));
-				comVO.setMemNo(rs.getInt("mem_no"));
-				comVO.setComTime(rs.getTimestamp("com_time"));
-				comVO.setComContent(rs.getString("com_content"));
-				comVO.setComStatus(rs.getInt("com_status"));
-				list.add(comVO);
+				comRepVO = new ComRepVO();
+				comRepVO.setComRepNo(rs.getInt("comrep_no"));
+				comRepVO.setComNo(rs.getInt("com_no"));
+				comRepVO.setMemNo(rs.getInt("mem_no"));
+				comRepVO.setComRepReason(rs.getString("comrep_reason"));
+				comRepVO.setComRepTime(rs.getTimestamp("comrep_time"));
+				comRepVO.setComRepStatus(rs.getInt("comrep_status"));
+				list.add(comRepVO);
 			}
 			
 		} catch(ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());	
 		} catch(SQLException se) {
-			throw new RuntimeException("ComJDBCDAO getAll A database error occured. " + se.getMessage());	
+			throw new RuntimeException("ComRepJDBCDAO getAll A database error occured. " + se.getMessage());	
 		} finally {
 			if(rs != null) {
 				try {
@@ -220,7 +223,7 @@ public class ComJDBCDAO implements ComDAO_interface{
 	}
 	
 	public static void main(String[] args) {
-		ComJDBCDAO dao = new ComJDBCDAO();
+		ComRepJDBCDAO dao = new ComRepJDBCDAO();
 		
 		// java Timestamp
 		Timestamp time= new Timestamp(System.currentTimeMillis()); //獲取系統當前時間 
@@ -229,40 +232,41 @@ public class ComJDBCDAO implements ComDAO_interface{
 		time = Timestamp.valueOf(timeStr); 
 		
 		// 新增
-		ComVO comVO = new ComVO();
-		comVO.setMovNo(1);
-		comVO.setMemNo(1);
-		comVO.setComTime(time);
-		comVO.setComContent("contentTest");
-		comVO.setComStatus(0);
-		dao.insert(comVO);
+		ComRepVO comRepVO = new ComRepVO();
+		comRepVO.setComNo(1);
+		comRepVO.setMemNo(1);
+		comRepVO.setComRepReason("reasonTest");
+		comRepVO.setComRepTime(time);
+		comRepVO.setComRepStatus(0);
+		dao.insert(comRepVO);
 		
 		// 修改
-		ComVO comVO2 = new ComVO();
-		comVO2.setComStatus(0);
-		comVO2.setComNo(2);
-		dao.update(comVO2);
+		ComRepVO comRepVO2 = new ComRepVO();
+		comRepVO2.setComRepStatus(1);
+		comRepVO2.setComRepNo(1);
+		dao.update(comRepVO2);
 		
 		// 查詢
-		ComVO comVO3 = dao.findByPrimaryKey(1);
-		System.out.print(comVO3.getComNo() + ",");
-		System.out.print(comVO3.getMovNo() + ",");
-		System.out.print(comVO3.getMemNo() + ",");
-		System.out.print(comVO3.getComTime() + ",");
-		System.out.print(comVO3.getComContent() + ",");
-		System.out.print(comVO3.getComStatus());
+		ComRepVO comRepVO3 = dao.findByPrimaryKey(1);
+		System.out.print(comRepVO3.getComRepNo() + ",");
+		System.out.print(comRepVO3.getComNo() + ",");
+		System.out.print(comRepVO3.getMemNo() + ",");
+		System.out.print(comRepVO3.getComRepReason() + ",");
+		System.out.print(comRepVO3.getComRepTime() + ",");
+		System.out.print(comRepVO3.getComRepStatus());
 		System.out.println("---------------------");
 		
 		// 查詢
-		List<ComVO> list = dao.getAll();
-		for (ComVO aCom : list) {
-			System.out.print(aCom.getComNo() + ",");
-			System.out.print(aCom.getMovNo() + ",");
-			System.out.print(aCom.getMemNo() + ",");
-			System.out.print(aCom.getComTime() + ",");
-			System.out.print(aCom.getComContent() + ",");
-			System.out.print(aCom.getComStatus());
+		List<ComRepVO> list = dao.getAll();
+		for (ComRepVO aComRep : list) {
+			System.out.print(aComRep.getComRepNo() + ",");
+			System.out.print(aComRep.getComNo() + ",");
+			System.out.print(aComRep.getMemNo() + ",");
+			System.out.print(aComRep.getComRepReason() + ",");
+			System.out.print(aComRep.getComRepTime() + ",");
+			System.out.print(aComRep.getComRepStatus());
 			System.out.println();
 		}
 	}
+
 }
