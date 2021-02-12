@@ -20,7 +20,7 @@ public class ExpService {
 		return expVO;
 	}
 	
-	public ExpVO updateSat(Integer movNo, Integer memNo, Integer expRating) {
+	public ExpVO updateExp(Integer movNo, Integer memNo, Integer expRating) {
 		ExpVO expVO = new ExpVO();
 		
 		expVO.setMovNo(movNo);
@@ -31,7 +31,7 @@ public class ExpService {
 		return expVO;
 	}
 	
-	public ExpVO getOneMov(Integer movNo, Integer memNo) {
+	public ExpVO getOneExp(Integer movNo, Integer memNo) {
 		return dao.findByPrimaryKey(movNo,memNo);
 	}
 	

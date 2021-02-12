@@ -31,7 +31,7 @@ public class SatService {
 		return satVO;
 	}
 	
-	public SatVO getOneMov(Integer movNo, Integer memNo) {
+	public SatVO getOneSat(Integer movNo, Integer memNo) {
 		return dao.findByPrimaryKey(movNo,memNo);
 	}
 	

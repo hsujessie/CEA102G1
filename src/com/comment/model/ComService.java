@@ -33,7 +33,7 @@ public class ComService {
 		return comVO;	
 	}
 	
-	public ComVO getOneMov(Integer comNo) {
+	public ComVO getOneCom(Integer comNo) {
 		return dao.findByPrimaryKey(comNo);
 	}
 	
