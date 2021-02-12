@@ -1,17 +1,16 @@
-package com.expectation.model;
+package com.comment.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.satisfaction.model.SatJDBCDAO;
-import com.satisfaction.model.SatVO;
-
-public class ExpJDBCDAO implements ExpDAO_interface{
+public class ComJDBCDAO implements ComDAO_interface{
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/seenema?serverTimezone=Asia/Taipei";
 	String userid = "root";
@@ -19,16 +18,16 @@ public class ExpJDBCDAO implements ExpDAO_interface{
 
 	
 	private static final String INSERT_STMT =
-		"INSERT INTO EXPECTATION (mov_no,mem_no,exp_rating) VALUES (?,?,?)"; 
+		"INSERT INTO COMMENT (mov_no,mem_no,com_time,com_content,com_status) VALUES (?,?,?,?,?)"; 
 	private static final String GET_ALL_STMT =
-		"SELECT mov_no,mem_no,exp_rating FROM EXPECTATION ORDER BY exp_rating";
+		"SELECT com_no,mov_no,mem_no,com_time,com_content,com_status FROM COMMENT ORDER BY com_no";
 	private static final String GET_ONE_STMT =
-		"SELECT mov_no,mem_no,exp_rating FROM EXPECTATION WHERE mov_no=? AND mem_no=?";
+		"SELECT com_no,mov_no,mem_no,com_time,com_content,com_status FROM COMMENT WHERE com_no=?";
 	private static final String UPDATE =
-		"UPDATE EXPECTATION SET exp_rating=? WHERE mov_no=? AND mem_no=?";
+		"UPDATE COMMENT SET com_status=? WHERE com_no=?";
 
 	@Override
-	public void insert(ExpVO expVO) {
+	public void insert(ComVO comVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
@@ -37,16 +36,18 @@ public class ExpJDBCDAO implements ExpDAO_interface{
 			con = DriverManager.getConnection(url, userid, passwd);
 			
 			pstmt = con.prepareStatement(INSERT_STMT);
-			pstmt.setInt(1,expVO.getMovNo());
-			pstmt.setInt(2,expVO.getMemNo());
-			pstmt.setInt(3,expVO.getExpRating());
+			pstmt.setInt(1,comVO.getMovNo());
+			pstmt.setInt(2,comVO.getMemNo());
+			pstmt.setTimestamp(3,comVO.getComTime());
+			pstmt.setString(4,comVO.getComContent());
+			pstmt.setInt(5,comVO.getComStatus());
 			
 			pstmt.executeUpdate();
 			
 		} catch(ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 		} catch(SQLException se) {
-			throw new RuntimeException("ExpJDBCDAO insert A database error occured. " + se.getMessage());		
+			throw new RuntimeException("ComJDBCDAO insert A database error occured. " + se.getMessage());		
 		} finally {
 			if(pstmt !=  null) {
 				try {
@@ -66,7 +67,7 @@ public class ExpJDBCDAO implements ExpDAO_interface{
 	}
 
 	@Override
-	public void update(ExpVO expVO) {
+	public void update(ComVO comVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -74,17 +75,16 @@ public class ExpJDBCDAO implements ExpDAO_interface{
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			
-			pstmt = con.prepareStatement(UPDATE);			
-			pstmt.setInt(1,expVO.getExpRating());
-			pstmt.setInt(2,expVO.getMovNo());
-			pstmt.setInt(3,expVO.getMemNo());
+			pstmt = con.prepareStatement(UPDATE);
+			pstmt.setInt(1,comVO.getComStatus());
+			pstmt.setInt(2,comVO.getComNo());	
 			
 			pstmt.executeUpdate();
 			
 		} catch(ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 		} catch(SQLException se) {
-			throw new RuntimeException("ExpJDBCDAO update A database error occured. " + se.getMessage());
+			throw new RuntimeException("ComJDBCDAO update A database error occured. " + se.getMessage());
 		
 		} finally {
 			if(pstmt !=  null) {
@@ -105,8 +105,8 @@ public class ExpJDBCDAO implements ExpDAO_interface{
 	}
 
 	@Override
-	public ExpVO findByPrimaryKey(Integer movNo, Integer memNo) {
-		ExpVO expVO = null;
+	public ComVO findByPrimaryKey(Integer comNo) {
+		ComVO comVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -116,21 +116,23 @@ public class ExpJDBCDAO implements ExpDAO_interface{
 			con = DriverManager.getConnection(url, userid, passwd);
 			
 			pstmt = con.prepareStatement(GET_ONE_STMT);
-			pstmt.setInt(1,movNo);
-			pstmt.setInt(2,memNo);
+			pstmt.setInt(1,comNo);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				expVO = new ExpVO();
-				expVO.setMovNo(rs.getInt("mov_no"));
-				expVO.setMemNo(rs.getInt("mem_no"));
-				expVO.setExpRating(rs.getInt("exp_rating"));
+				comVO = new ComVO();
+				comVO.setComNo(rs.getInt("com_no"));
+				comVO.setMovNo(rs.getInt("mov_no"));
+				comVO.setMemNo(rs.getInt("mem_no"));
+				comVO.setComTime(rs.getTimestamp("com_time"));
+				comVO.setComContent(rs.getString("com_content"));
+				comVO.setComStatus(rs.getInt("com_status"));
 			}		
 			
 		}  catch(ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());			
 		} catch(SQLException se) {
-			throw new RuntimeException("ExpJDBCDAO findByPrimaryKey A database error occured. " + se.getMessage());	
+			throw new RuntimeException("ComJDBCDAO findByPrimaryKey A database error occured. " + se.getMessage());	
 		} finally {
 			if(rs != null) {
 				try {
@@ -156,13 +158,13 @@ public class ExpJDBCDAO implements ExpDAO_interface{
 				}
 			}
 		}
-		return expVO;
+		return comVO;
 	}
 
 	@Override
-	public List<ExpVO> getAll() {
-		List<ExpVO> list = new ArrayList<ExpVO>();
-		ExpVO expVO = null;
+	public List<ComVO> getAll() {
+		List<ComVO> list = new ArrayList<ComVO>();
+		ComVO comVO = null;
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -175,17 +177,20 @@ public class ExpJDBCDAO implements ExpDAO_interface{
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();			
 			while(rs.next()){
-				expVO = new ExpVO();
-				expVO.setMovNo(rs.getInt("mov_no"));
-				expVO.setMemNo(rs.getInt("mem_no"));
-				expVO.setExpRating(rs.getInt("exp_rating"));
-				list.add(expVO);
+				comVO = new ComVO();
+				comVO.setComNo(rs.getInt("com_no"));
+				comVO.setMovNo(rs.getInt("mov_no"));
+				comVO.setMemNo(rs.getInt("mem_no"));
+				comVO.setComTime(rs.getTimestamp("com_time"));
+				comVO.setComContent(rs.getString("com_content"));
+				comVO.setComStatus(rs.getInt("com_status"));
+				list.add(comVO);
 			}
 			
 		} catch(ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());	
 		} catch(SQLException se) {
-			throw new RuntimeException("ExpJDBCDAO getAll A database error occured. " + se.getMessage());	
+			throw new RuntimeException("ComJDBCDAO getAll A database error occured. " + se.getMessage());	
 		} finally {
 			if(rs != null) {
 				try {
@@ -216,36 +221,50 @@ public class ExpJDBCDAO implements ExpDAO_interface{
 	}
 	
 	public static void main(String[] args) {
-		ExpJDBCDAO dao = new ExpJDBCDAO();
+		ComJDBCDAO dao = new ComJDBCDAO();
+		
+		// java Timestamp
+		Timestamp time= new Timestamp(System.currentTimeMillis()); //獲取系統當前時間 
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String timeStr = df.format(time); 
+		time = Timestamp.valueOf(timeStr); 
 		
 		// 新增
-		ExpVO expVO = new ExpVO();
-		expVO.setMovNo(1);
-		expVO.setMemNo(1);
-		expVO.setExpRating(1000);
-		dao.insert(expVO);
+		ComVO comVO = new ComVO();
+		comVO.setMovNo(1);
+		comVO.setMemNo(1);
+		comVO.setComTime(time);
+		comVO.setComContent("contentTest");
+		comVO.setComStatus(0);
+		dao.insert(comVO);
 		
 		// 修改
-		ExpVO expVO2 = new ExpVO();
-		expVO2.setMovNo(1);
-		expVO2.setMemNo(1);
-		expVO2.setExpRating(1500);
-		dao.update(expVO2);
+		ComVO comVO2 = new ComVO();
+		comVO2.setComStatus(0);
+		comVO2.setComNo(2);
+		dao.update(comVO2);
 		
 		// 查詢
-		ExpVO expVO3 = dao.findByPrimaryKey(1,1);
-		System.out.print(expVO3.getMovNo() + ",");
-		System.out.print(expVO3.getMemNo() + ",");
-		System.out.print(expVO3.getExpRating());
+		ComVO comVO3 = dao.findByPrimaryKey(1);
+		System.out.print(comVO3.getComNo() + ",");
+		System.out.print(comVO3.getMovNo() + ",");
+		System.out.print(comVO3.getMemNo() + ",");
+		System.out.print(comVO3.getComTime() + ",");
+		System.out.print(comVO3.getComContent() + ",");
+		System.out.print(comVO3.getComStatus());
 		System.out.println("---------------------");
 		
 		// 查詢
-		List<ExpVO> list = dao.getAll();
-		for (ExpVO aExp : list) {
-			System.out.print(aExp.getMovNo() + ",");
-			System.out.print(aExp.getMemNo() + ",");
-			System.out.print(aExp.getExpRating());
+		List<ComVO> list = dao.getAll();
+		for (ComVO aCom : list) {
+			System.out.print(aCom.getComNo() + ",");
+			System.out.print(aCom.getMovNo() + ",");
+			System.out.print(aCom.getMemNo() + ",");
+			System.out.print(aCom.getComTime() + ",");
+			System.out.print(aCom.getComContent() + ",");
+			System.out.print(aCom.getComStatus());
 			System.out.println();
 		}
 	}
+
 }
