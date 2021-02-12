@@ -63,7 +63,7 @@ public class MovDAO implements MovDAO_interface{
 			pstmt.executeUpdate();
 			
 		}catch(SQLException se) {
-			throw new RuntimeException("DAO insert A database error occured. " + se.getMessage());
+			throw new RuntimeException("MovDAO insert A database error occured. " + se.getMessage());
 		
 		} finally {
 			if(pstmt !=  null) {
@@ -108,7 +108,7 @@ public class MovDAO implements MovDAO_interface{
 			pstmt.executeUpdate();
 			
 		}catch(SQLException se) {
-			throw new RuntimeException("DAO update A database error occured. " + se.getMessage());
+			throw new RuntimeException("MovDAO update A database error occured. " + se.getMessage());
 		
 		} finally {
 			if(pstmt !=  null) {
@@ -164,7 +164,7 @@ public class MovDAO implements MovDAO_interface{
 			}
 			
 		}catch(SQLException se) {
-			throw new RuntimeException("DAO findByPrimaryKey A database error occured. " + se.getMessage());
+			throw new RuntimeException("MovDAO findByPrimaryKey A database error occured. " + se.getMessage());
 		} finally {
 			if(rs != null) {
 				try {
@@ -228,7 +228,7 @@ public class MovDAO implements MovDAO_interface{
 				list.add(movVO);
 			}
 		}catch(SQLException se) {
-			throw new RuntimeException("DAO getAll A database error occured. " + se.getMessage());
+			throw new RuntimeException("MovDAO getAll A database error occured. " + se.getMessage());
 		} finally {
 			if(rs != null) {
 				try {
@@ -271,7 +271,7 @@ public class MovDAO implements MovDAO_interface{
 			pstmt.executeUpdate();
 			
 		}catch(SQLException se) {
-			throw new RuntimeException("DAO updateMovpos A database error occured. " + se.getMessage());
+			throw new RuntimeException("MovDAO updateMovpos A database error occured. " + se.getMessage());
 		} finally {
 			if(pstmt != null) {
 				try {
@@ -305,7 +305,7 @@ public class MovDAO implements MovDAO_interface{
 			pstmt.executeUpdate();
 			
 		}catch(SQLException se) {
-			throw new RuntimeException("DAO updateMovtra A database error occured. " + se.getMessage());
+			throw new RuntimeException("MovDAO updateMovtra A database error occured. " + se.getMessage());
 		} finally {
 			if(pstmt != null) {
 				try {
