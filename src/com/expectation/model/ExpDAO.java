@@ -1,4 +1,4 @@
-package com.satisfaction.model;
+package com.expectation.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +12,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-public class SatDAO implements SatDAO_interface{
+public class ExpDAO implements ExpDAO_interface{
 	private static DataSource ds = null;
 	static {
 		try {
@@ -24,31 +24,31 @@ public class SatDAO implements SatDAO_interface{
 	}
 	
 	private static final String INSERT_STMT =
-		"INSERT INTO SATISFACTION (mov_no,mem_no,sat_rating) VALUES (?,?,?)"; 
+		"INSERT INTO EXPECTATION (mov_no,mem_no,exp_rating) VALUES (?,?,?)"; 
 	private static final String GET_ALL_STMT =
-		"SELECT mov_no,mem_no,sat_rating FROM SATISFACTION ORDER BY sat_rating";
+		"SELECT mov_no,mem_no,exp_rating FROM EXPECTATION ORDER BY exp_rating";
 	private static final String GET_ONE_STMT =
-		"SELECT mov_no,mem_no,sat_rating FROM SATISFACTION WHERE mov_no=? AND mem_no=?";
+		"SELECT mov_no,mem_no,exp_rating FROM EXPECTATION WHERE mov_no=? AND mem_no=?";
 	private static final String UPDATE =
-		"UPDATE SATISFACTION SET sat_rating=? WHERE mov_no=? AND mem_no=?";
+		"UPDATE EXPECTATION SET exp_rating=? WHERE mov_no=? AND mem_no=?";
 
 	@Override
-	public void insert(SatVO satVO) {
+	public void insert(ExpVO expVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
 		try {
 			con = ds.getConnection();
+			
 			pstmt = con.prepareStatement(INSERT_STMT);
-
-			pstmt.setInt(1,satVO.getMovNo());
-			pstmt.setInt(2,satVO.getMemNo());
-			pstmt.setInt(3,satVO.getSatRating());
+			pstmt.setInt(1,expVO.getMovNo());
+			pstmt.setInt(2,expVO.getMemNo());
+			pstmt.setInt(3,expVO.getExpRating());
 			
 			pstmt.executeUpdate();
 			
 		}catch(SQLException se) {
-			throw new RuntimeException("SatDAO insert A database error occured. " + se.getMessage());
+			throw new RuntimeException("ExpDAO insert A database error occured. " + se.getMessage());
 		
 		} finally {
 			if(pstmt !=  null) {
@@ -69,23 +69,22 @@ public class SatDAO implements SatDAO_interface{
 	}
 
 	@Override
-	public void update(SatVO satVO) {
+	public void update(ExpVO expVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
 		try {
 			con = ds.getConnection();
 			
-			pstmt = con.prepareStatement(UPDATE);
-			
-			pstmt.setInt(1,satVO.getSatRating());
-			pstmt.setInt(2,satVO.getMovNo());
-			pstmt.setInt(3,satVO.getMemNo());
+			pstmt = con.prepareStatement(UPDATE);			
+			pstmt.setInt(1,expVO.getExpRating());
+			pstmt.setInt(2,expVO.getMovNo());
+			pstmt.setInt(3,expVO.getMemNo());
 			
 			pstmt.executeUpdate();
 			
 		}catch(SQLException se) {
-			throw new RuntimeException("SatDAO update A database error occured. " + se.getMessage());
+			throw new RuntimeException("ExpDAO update A database error occured. " + se.getMessage());
 		
 		} finally {
 			if(pstmt !=  null) {
@@ -102,12 +101,12 @@ public class SatDAO implements SatDAO_interface{
 					e.printStackTrace(System.err);
 				}
 			}
-		}		
+		}	
 	}
 
 	@Override
-	public SatVO findByPrimaryKey(Integer movNo, Integer memNo) {
-		SatVO satVO = null;
+	public ExpVO findByPrimaryKey(Integer movNo, Integer memNo) {
+		ExpVO expVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -118,17 +117,17 @@ public class SatDAO implements SatDAO_interface{
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 			pstmt.setInt(1,movNo);
 			pstmt.setInt(2,memNo);
-			rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();	
 			
 			while(rs.next()) {
-				satVO = new SatVO();
-				satVO.setMovNo(rs.getInt("mov_no"));
-				satVO.setMemNo(rs.getInt("mem_no"));
-				satVO.setSatRating(rs.getInt("sat_rating"));
+				expVO = new ExpVO();
+				expVO.setMovNo(rs.getInt("mov_no"));
+				expVO.setMemNo(rs.getInt("mem_no"));
+				expVO.setExpRating(rs.getInt("exp_rating"));
 			}		
 			
 		} catch(SQLException se) {
-			throw new RuntimeException("SatDAO findByPrimaryKey A database error occured. " + se.getMessage());	
+			throw new RuntimeException("ExpDAO findByPrimaryKey A database error occured. " + se.getMessage());	
 		} finally {
 			if(rs != null) {
 				try {
@@ -154,14 +153,13 @@ public class SatDAO implements SatDAO_interface{
 				}
 			}
 		}
-		
-		return satVO;
+		return expVO;
 	}
 
 	@Override
-	public List<SatVO> getAll() {
-		List<SatVO> list = new ArrayList<SatVO>();
-		SatVO satVO = null;
+	public List<ExpVO> getAll() {
+		List<ExpVO> list = new ArrayList<ExpVO>();
+		ExpVO expVO = null;
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -174,15 +172,15 @@ public class SatDAO implements SatDAO_interface{
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()){
-				satVO = new SatVO();
-				satVO.setMovNo(rs.getInt("mov_no"));
-				satVO.setMemNo(rs.getInt("mem_no"));
-				satVO.setSatRating(rs.getInt("sat_rating"));
-				list.add(satVO);
+				expVO = new ExpVO();
+				expVO.setMovNo(rs.getInt("mov_no"));
+				expVO.setMemNo(rs.getInt("mem_no"));
+				expVO.setExpRating(rs.getInt("exp_rating"));
+				list.add(expVO);
 			}
 			
 		} catch(SQLException se) {
-			throw new RuntimeException("SatDAO getAll A database error occured. " + se.getMessage());	
+			throw new RuntimeException("ExpDAO getAll A database error occured. " + se.getMessage());	
 		} finally {
 			if(rs != null) {
 				try {
@@ -211,5 +209,4 @@ public class SatDAO implements SatDAO_interface{
 		
 		return list;
 	}
-
 }

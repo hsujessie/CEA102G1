@@ -22,8 +22,7 @@ public class MovVO implements java.io.Serializable{
     private Integer movexpetotal;
     private Integer movexpepers;
 	
-	public MovVO() {
-	}
+	public MovVO() {}
 
 	public Integer getMovno() {
 		return movno;

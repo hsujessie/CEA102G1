@@ -34,8 +34,8 @@ public class MovJDBCDAO implements MovDAO_interface{
 
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(INSERT_STMT);
 			
+			pstmt = con.prepareStatement(INSERT_STMT);			
 			pstmt.setString(1,movVO.getMovname());
 			pstmt.setString(2,movVO.getMovver());
 			pstmt.setString(3,movVO.getMovtype());
@@ -86,11 +86,10 @@ public class MovJDBCDAO implements MovDAO_interface{
 		PreparedStatement pstmt = null;
 
 		try {
-
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
+			
 			pstmt = con.prepareStatement(UPDATE);
-
 			pstmt.setString(1,movVO.getMovname());
 			pstmt.setString(2,movVO.getMovver());
 			pstmt.setString(3,movVO.getMovtype());
@@ -142,9 +141,9 @@ public class MovJDBCDAO implements MovDAO_interface{
 		ResultSet rs = null;
 		
 		try {
-
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
+			
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 			pstmt.setInt(1,movno);
 			rs = pstmt.executeQuery();
@@ -218,6 +217,7 @@ public class MovJDBCDAO implements MovDAO_interface{
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
+			
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 			
@@ -290,8 +290,8 @@ public class MovJDBCDAO implements MovDAO_interface{
 
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(UPDATE_POS);
 			
+			pstmt = con.prepareStatement(UPDATE_POS);			
 			pstmt.setBytes(1, movVO.getMovpos());
 			pstmt.setInt(2, movVO.getMovno());
 			
@@ -333,8 +333,8 @@ public class MovJDBCDAO implements MovDAO_interface{
 
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
+			
 			pstmt = con.prepareStatement(UPDATE_TRA);
-
 			pstmt.setBytes(1, movVO.getMovtra());
 			pstmt.setInt(2, movVO.getMovno());
 			
@@ -368,7 +368,6 @@ public class MovJDBCDAO implements MovDAO_interface{
 	}
 	
 	public static void main(String[] args) {
-
 		MovJDBCDAO dao = new MovJDBCDAO();
 
 		// ·s¼W

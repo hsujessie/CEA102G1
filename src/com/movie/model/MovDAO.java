@@ -44,8 +44,8 @@ public class MovDAO implements MovDAO_interface{
 		
 		try {
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(INSERT_STMT);
 			
+			pstmt = con.prepareStatement(INSERT_STMT);		
 			pstmt.setString(1,movVO.getMovname());
 			pstmt.setString(2,movVO.getMovver());
 			pstmt.setString(3,movVO.getMovtype());
@@ -90,8 +90,8 @@ public class MovDAO implements MovDAO_interface{
 
 		try {
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(UPDATE);
 			
+			pstmt = con.prepareStatement(UPDATE);		
 			pstmt.setString(1,movVO.getMovname());
 			pstmt.setString(2,movVO.getMovver());
 			pstmt.setString(3,movVO.getMovtype());
@@ -138,9 +138,11 @@ public class MovDAO implements MovDAO_interface{
 		
 		try {
 			con = ds.getConnection();
+			
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 			pstmt.setInt(1,movno);
 			rs = pstmt.executeQuery();
+			
 			while(rs.next()) {
 				movVO = new MovVO();
 				movVO.setMovno(rs.getInt("mov_no"));
@@ -202,6 +204,7 @@ public class MovDAO implements MovDAO_interface{
 		
 		try {
 			con = ds.getConnection();
+			
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 			
@@ -263,6 +266,7 @@ public class MovDAO implements MovDAO_interface{
 		
 		try {
 			con = ds.getConnection();
+			
 			pstmt = con.prepareStatement(UPDATE_POS);
 			
 			pstmt.setBytes(1,movVO.getMovpos());
@@ -297,6 +301,7 @@ public class MovDAO implements MovDAO_interface{
 		
 		try {
 			con = ds.getConnection();
+			
 			pstmt = con.prepareStatement(UPDATE_TRA);
 
 			pstmt.setBytes(1,movVO.getMovtra());
