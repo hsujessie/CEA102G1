@@ -13,17 +13,17 @@ public class MovJDBCDAO implements MovDAO_interface{
 	
 	//要先去資料庫，測試看看sql指令是否正確!!
 	private static final String INSERT_STMT =
-		"INSERT INTO movie (mov_name,mov_ver,mov_type,mov_lan,mov_ondate,mov_offdate,mov_durat,mov_rating,mov_ditor,mov_cast,mov_des,mov_pos,mov_tra) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)"; 
+		"INSERT INTO MOVIE (mov_name,mov_ver,mov_type,mov_lan,mov_ondate,mov_offdate,mov_durat,mov_rating,mov_ditor,mov_cast,mov_des,mov_pos,mov_tra) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)"; 
 	private static final String GET_ALL_STMT =
-		"SELECT mov_no,mov_name,mov_ver,mov_type,mov_lan,mov_ondate,mov_offdate,mov_durat,mov_rating,mov_ditor,mov_cast,mov_des,mov_pos,mov_tra,mov_satitotal,mov_satipers,mov_expetotal,mov_expepers FROM movie order by mov_no";
+		"SELECT mov_no,mov_name,mov_ver,mov_type,mov_lan,mov_ondate,mov_offdate,mov_durat,mov_rating,mov_ditor,mov_cast,mov_des,mov_pos,mov_tra,mov_satitotal,mov_satipers,mov_expetotal,mov_expepers FROM MOVIE ORDER BY mov_no";
 	private static final String GET_ONE_STMT =
-		"SELECT mov_no,mov_name,mov_ver,mov_type,mov_lan,mov_ondate,mov_offdate,mov_durat,mov_rating,mov_ditor,mov_cast,mov_des,mov_pos,mov_tra,mov_satitotal,mov_satipers,mov_expetotal,mov_expepers FROM movie where mov_no = ?";
+		"SELECT mov_no,mov_name,mov_ver,mov_type,mov_lan,mov_ondate,mov_offdate,mov_durat,mov_rating,mov_ditor,mov_cast,mov_des,mov_pos,mov_tra,mov_satitotal,mov_satipers,mov_expetotal,mov_expepers FROM MOVIE WHERE mov_no=?";
 	private static final String UPDATE =
-		"UPDATE movie set mov_name=?, mov_ver=?, mov_type=?, mov_lan=?, mov_ondate=?, mov_offdate=?, mov_durat=?, mov_rating=?, mov_ditor=?, mov_cast=?, mov_des=? where mov_no = ?";
+		"UPDATE MOVIE SET mov_name=?, mov_ver=?, mov_type=?, mov_lan=?, mov_ondate=?, mov_offdate=?, mov_durat=?, mov_rating=?, mov_ditor=?, mov_cast=?, mov_des=? WHERE mov_no=?";
 	private static final String UPDATE_POS =
-		"UPDATE movie set mov_pos=? where mov_no = ?";
+		"UPDATE MOVIE SET mov_pos=? WHERE mov_no=?";
 	private static final String UPDATE_TRA =
-		"UPDATE movie set mov_tra=? where mov_no = ?";
+		"UPDATE MOVIE SET mov_tra=? WHERE mov_no=?";
 	
 	@Override
 	public void insert(MovVO movVO) {
@@ -148,6 +148,7 @@ public class MovJDBCDAO implements MovDAO_interface{
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 			pstmt.setInt(1,movno);
 			rs = pstmt.executeQuery();
+			
 			while(rs.next()) {
 				movVO = new MovVO();
 				movVO.setMovno(rs.getInt("mov_no"));
