@@ -10,13 +10,22 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ComJDBCDAO implements ComDAO_interface{
-	String driver = "com.mysql.cj.jdbc.Driver";
-	String url = "jdbc:mysql://localhost:3306/seenema?serverTimezone=Asia/Taipei";
-	String userid = "root";
-	String passwd = "123456";
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
-	
+public class ComDAO implements ComDAO_interface{
+	private static DataSource ds = null;
+	static {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/seenema");
+		}catch(NamingException e) {
+			e.printStackTrace();
+		}
+	}
+
 	private static final String INSERT_STMT =
 		"INSERT INTO COMMENT (mov_no,mem_no,com_time,com_content,com_status) VALUES (?,?,?,?,?)"; 
 	private static final String GET_ALL_STMT =
@@ -32,8 +41,7 @@ public class ComJDBCDAO implements ComDAO_interface{
 		PreparedStatement pstmt = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			
 			pstmt = con.prepareStatement(INSERT_STMT);
 			pstmt.setInt(1,comVO.getMovNo());
@@ -44,8 +52,6 @@ public class ComJDBCDAO implements ComDAO_interface{
 			
 			pstmt.executeUpdate();
 			
-		} catch(ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 		} catch(SQLException se) {
 			throw new RuntimeException("ComJDBCDAO insert A database error occured. " + se.getMessage());		
 		} finally {
@@ -72,8 +78,7 @@ public class ComJDBCDAO implements ComDAO_interface{
 		PreparedStatement pstmt = null;
 
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			
 			pstmt = con.prepareStatement(UPDATE);
 			pstmt.setInt(1,comVO.getComStatus());
@@ -81,8 +86,6 @@ public class ComJDBCDAO implements ComDAO_interface{
 			
 			pstmt.executeUpdate();
 			
-		} catch(ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 		} catch(SQLException se) {
 			throw new RuntimeException("ComJDBCDAO update A database error occured. " + se.getMessage());
 		
@@ -112,8 +115,7 @@ public class ComJDBCDAO implements ComDAO_interface{
 		ResultSet rs = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 			pstmt.setInt(1,comNo);
@@ -129,8 +131,6 @@ public class ComJDBCDAO implements ComDAO_interface{
 				comVO.setComStatus(rs.getInt("com_status"));
 			}		
 			
-		} catch(ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());			
 		} catch(SQLException se) {
 			throw new RuntimeException("ComJDBCDAO findByPrimaryKey A database error occured. " + se.getMessage());	
 		} finally {
@@ -171,8 +171,7 @@ public class ComJDBCDAO implements ComDAO_interface{
 		ResultSet rs = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();			
@@ -187,8 +186,6 @@ public class ComJDBCDAO implements ComDAO_interface{
 				list.add(comVO);
 			}
 			
-		} catch(ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());	
 		} catch(SQLException se) {
 			throw new RuntimeException("ComJDBCDAO getAll A database error occured. " + se.getMessage());	
 		} finally {
@@ -218,52 +215,5 @@ public class ComJDBCDAO implements ComDAO_interface{
 		}
 		
 		return list;
-	}
-	
-	public static void main(String[] args) {
-		ComJDBCDAO dao = new ComJDBCDAO();
-		
-		// java Timestamp
-		Timestamp time= new Timestamp(System.currentTimeMillis()); //獲取系統當前時間 
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String timeStr = df.format(time); 
-		time = Timestamp.valueOf(timeStr); 
-		
-		// 新增
-		ComVO comVO = new ComVO();
-		comVO.setMovNo(1);
-		comVO.setMemNo(1);
-		comVO.setComTime(time);
-		comVO.setComContent("contentTest");
-		comVO.setComStatus(0);
-		dao.insert(comVO);
-		
-		// 修改
-		ComVO comVO2 = new ComVO();
-		comVO2.setComStatus(0);
-		comVO2.setComNo(2);
-		dao.update(comVO2);
-		
-		// 查詢
-		ComVO comVO3 = dao.findByPrimaryKey(1);
-		System.out.print(comVO3.getComNo() + ",");
-		System.out.print(comVO3.getMovNo() + ",");
-		System.out.print(comVO3.getMemNo() + ",");
-		System.out.print(comVO3.getComTime() + ",");
-		System.out.print(comVO3.getComContent() + ",");
-		System.out.print(comVO3.getComStatus());
-		System.out.println("---------------------");
-		
-		// 查詢
-		List<ComVO> list = dao.getAll();
-		for (ComVO aCom : list) {
-			System.out.print(aCom.getComNo() + ",");
-			System.out.print(aCom.getMovNo() + ",");
-			System.out.print(aCom.getMemNo() + ",");
-			System.out.print(aCom.getComTime() + ",");
-			System.out.print(aCom.getComContent() + ",");
-			System.out.print(aCom.getComStatus());
-			System.out.println();
-		}
 	}
 }
