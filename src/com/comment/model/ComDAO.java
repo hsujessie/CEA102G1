@@ -53,7 +53,7 @@ public class ComDAO implements ComDAO_interface{
 			pstmt.executeUpdate();
 			
 		} catch(SQLException se) {
-			throw new RuntimeException("ComJDBCDAO insert A database error occured. " + se.getMessage());		
+			throw new RuntimeException("ComDAO insert A database error occured. " + se.getMessage());		
 		} finally {
 			if(pstmt !=  null) {
 				try {
@@ -87,7 +87,7 @@ public class ComDAO implements ComDAO_interface{
 			pstmt.executeUpdate();
 			
 		} catch(SQLException se) {
-			throw new RuntimeException("ComJDBCDAO update A database error occured. " + se.getMessage());
+			throw new RuntimeException("ComDAO update A database error occured. " + se.getMessage());
 		
 		} finally {
 			if(pstmt !=  null) {
@@ -132,7 +132,7 @@ public class ComDAO implements ComDAO_interface{
 			}		
 			
 		} catch(SQLException se) {
-			throw new RuntimeException("ComJDBCDAO findByPrimaryKey A database error occured. " + se.getMessage());	
+			throw new RuntimeException("ComDAO findByPrimaryKey A database error occured. " + se.getMessage());	
 		} finally {
 			if(rs != null) {
 				try {
@@ -187,7 +187,7 @@ public class ComDAO implements ComDAO_interface{
 			}
 			
 		} catch(SQLException se) {
-			throw new RuntimeException("ComJDBCDAO getAll A database error occured. " + se.getMessage());	
+			throw new RuntimeException("ComDAO getAll A database error occured. " + se.getMessage());	
 		} finally {
 			if(rs != null) {
 				try {

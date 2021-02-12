@@ -10,9 +10,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.comment.model.ComJDBCDAO;
-import com.comment.model.ComVO;
-
 public class ComRepJDBCDAO implements ComRepDAO_interface{
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/seenema?serverTimezone=Asia/Taipei";
