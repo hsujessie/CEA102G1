@@ -1,4 +1,4 @@
-package com.satisfaction.model;
+package com.session.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +12,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-public class SatDAO implements SatDAO_interface{
+public class SesDAO implements SesDAO_interface{
 	private static DataSource ds = null;
 	static {
 		try {
@@ -22,18 +22,19 @@ public class SatDAO implements SatDAO_interface{
 			e.printStackTrace();
 		}
 	}
+
 	
 	private static final String INSERT_STMT =
-		"INSERT INTO SATISFACTION (mov_no,mem_no,sat_rating) VALUES (?,?,?)"; 
+		"INSERT INTO SESSION (mov_no,the_no,ses_date,ses_time,ses_seat_status,ses_seatno,ses_order) VALUES (?,?,?,?,?,?,?)"; 
 	private static final String GET_ALL_STMT =
-		"SELECT mov_no,mem_no,sat_rating FROM SATISFACTION ORDER BY sat_rating";
+		"SELECT ses_no,mov_no,the_no,ses_date,ses_time,ses_seat_status,ses_seatno,ses_order FROM SESSION ORDER BY ses_no";
 	private static final String GET_ONE_STMT =
-		"SELECT mov_no,mem_no,sat_rating FROM SATISFACTION WHERE mov_no=? AND mem_no=?";
+		"SELECT ses_no,mov_no,the_no,ses_date,ses_time,ses_seat_status,ses_seatno,ses_order FROM SESSION WHERE ses_no=?";
 	private static final String UPDATE =
-		"UPDATE SATISFACTION SET sat_rating=? WHERE mov_no=? AND mem_no=?";
+		"UPDATE SESSION SET mov_no=?,the_no=?,ses_date=?,ses_time=?,ses_order=? WHERE ses_no=?";
 
 	@Override
-	public void insert(SatVO satVO) {
+	public void insert(SesVO sesVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
@@ -41,15 +42,18 @@ public class SatDAO implements SatDAO_interface{
 			con = ds.getConnection();
 			
 			pstmt = con.prepareStatement(INSERT_STMT);
-			pstmt.setInt(1,satVO.getMovNo());
-			pstmt.setInt(2,satVO.getMemNo());
-			pstmt.setInt(3,satVO.getSatRating());
+			pstmt.setInt(1,sesVO.getMovNo());
+			pstmt.setInt(2,sesVO.getTheNo());
+			pstmt.setDate(3,sesVO.getSesDate());
+			pstmt.setTimestamp(4,sesVO.getSesTime());
+			pstmt.setString(5,sesVO.getSesSeatStatus());
+			pstmt.setString(6,sesVO.getSesSeatNo());
+			pstmt.setInt(7,sesVO.getSesOrder());
 			
 			pstmt.executeUpdate();
 			
-		}catch(SQLException se) {
-			throw new RuntimeException("SatDAO insert A database error occured. " + se.getMessage());
-		
+		} catch(SQLException se) {
+			throw new RuntimeException("SesDAO insert A database error occured. " + se.getMessage());		
 		} finally {
 			if(pstmt !=  null) {
 				try {
@@ -66,25 +70,29 @@ public class SatDAO implements SatDAO_interface{
 				}
 			}
 		}
+		
 	}
 
 	@Override
-	public void update(SatVO satVO) {
+	public void update(SesVO sesVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
 		try {
 			con = ds.getConnection();
 			
-			pstmt = con.prepareStatement(UPDATE);		
-			pstmt.setInt(1,satVO.getSatRating());
-			pstmt.setInt(2,satVO.getMovNo());
-			pstmt.setInt(3,satVO.getMemNo());
+			pstmt = con.prepareStatement(UPDATE);
+			pstmt.setInt(1,sesVO.getMovNo());
+			pstmt.setInt(2,sesVO.getTheNo());
+			pstmt.setDate(3,sesVO.getSesDate());
+			pstmt.setTimestamp(4,sesVO.getSesTime());
+			pstmt.setInt(5,sesVO.getSesOrder());
+			pstmt.setInt(6,sesVO.getSesNo());
 			
 			pstmt.executeUpdate();
 			
-		}catch(SQLException se) {
-			throw new RuntimeException("SatDAO update A database error occured. " + se.getMessage());
+		} catch(SQLException se) {
+			throw new RuntimeException("SesDAO update A database error occured. " + se.getMessage());
 		
 		} finally {
 			if(pstmt !=  null) {
@@ -101,12 +109,13 @@ public class SatDAO implements SatDAO_interface{
 					e.printStackTrace(System.err);
 				}
 			}
-		}		
+		}	
+		
 	}
 
 	@Override
-	public SatVO findByPrimaryKey(Integer movNo, Integer memNo) {
-		SatVO satVO = null;
+	public SesVO findByPrimaryKey(Integer sesNo) {
+		SesVO sesVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -115,19 +124,23 @@ public class SatDAO implements SatDAO_interface{
 			con = ds.getConnection();
 			
 			pstmt = con.prepareStatement(GET_ONE_STMT);
-			pstmt.setInt(1,movNo);
-			pstmt.setInt(2,memNo);
+			pstmt.setInt(1,sesNo);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				satVO = new SatVO();
-				satVO.setMovNo(rs.getInt("mov_no"));
-				satVO.setMemNo(rs.getInt("mem_no"));
-				satVO.setSatRating(rs.getInt("sat_rating"));
+				sesVO = new SesVO();
+				sesVO.setSesNo(rs.getInt("ses_no"));
+				sesVO.setMovNo(rs.getInt("mov_no"));
+				sesVO.setTheNo(rs.getInt("the_no"));
+				sesVO.setSesDate(rs.getDate("ses_date"));
+				sesVO.setSesTime(rs.getTimestamp("ses_time"));
+				sesVO.setSesSeatStatus(rs.getString("ses_seat_status"));
+				sesVO.setSesSeatNo(rs.getString("ses_seatno"));
+				sesVO.setSesOrder(rs.getInt("ses_order"));
 			}		
 			
 		} catch(SQLException se) {
-			throw new RuntimeException("SatDAO findByPrimaryKey A database error occured. " + se.getMessage());	
+			throw new RuntimeException("SesDAO findByPrimaryKey A database error occured. " + se.getMessage());	
 		} finally {
 			if(rs != null) {
 				try {
@@ -153,14 +166,13 @@ public class SatDAO implements SatDAO_interface{
 				}
 			}
 		}
-		
-		return satVO;
+		return sesVO;
 	}
 
 	@Override
-	public List<SatVO> getAll() {
-		List<SatVO> list = new ArrayList<SatVO>();
-		SatVO satVO = null;
+	public List<SesVO> getAll() {
+		List<SesVO> list = new ArrayList<SesVO>();
+		SesVO sesVO = null;
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -170,18 +182,22 @@ public class SatDAO implements SatDAO_interface{
 			con = ds.getConnection();
 			
 			pstmt = con.prepareStatement(GET_ALL_STMT);
-			rs = pstmt.executeQuery();
-			
+			rs = pstmt.executeQuery();			
 			while(rs.next()){
-				satVO = new SatVO();
-				satVO.setMovNo(rs.getInt("mov_no"));
-				satVO.setMemNo(rs.getInt("mem_no"));
-				satVO.setSatRating(rs.getInt("sat_rating"));
-				list.add(satVO);
+				sesVO = new SesVO();
+				sesVO.setSesNo(rs.getInt("ses_no"));
+				sesVO.setMovNo(rs.getInt("mov_no"));
+				sesVO.setTheNo(rs.getInt("the_no"));
+				sesVO.setSesDate(rs.getDate("ses_date"));
+				sesVO.setSesTime(rs.getTimestamp("ses_time"));
+				sesVO.setSesSeatStatus(rs.getString("ses_seat_status"));
+				sesVO.setSesSeatNo(rs.getString("ses_seatno"));
+				sesVO.setSesOrder(rs.getInt("ses_order"));
+				list.add(sesVO);
 			}
 			
 		} catch(SQLException se) {
-			throw new RuntimeException("SatDAO getAll A database error occured. " + se.getMessage());	
+			throw new RuntimeException("SesDAO getAll A database error occured. " + se.getMessage());	
 		} finally {
 			if(rs != null) {
 				try {
