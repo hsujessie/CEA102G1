@@ -115,11 +115,11 @@ MovVO movVO = (MovVO) request.getAttribute("movVO");
 	</tr>
 	<tr>
 		<th>電影海報</th>
-		<td><img src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movpos&action=get_One_MovPic"></td>
+		<td><img src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovPos"></td>
 	</tr>
 	<tr>
 		<th>電影預告片</th>
-		<td><img src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movtra&action=get_One_MovPic"></td>
+		<td><video controls width="150"><source src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovTra" type="video/mp4"></video></td>
 	</tr>
 	<tr>
 		<th>滿意度總分</th>

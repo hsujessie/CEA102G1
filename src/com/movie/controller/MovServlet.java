@@ -68,30 +68,32 @@ public class MovServlet extends HttpServlet{
 		}
 		
 		// 來自listAllMovie.jsp的請求 - for displaying pictures
-		if ("get_One_MovPic".equals(action)) {
+		if ("get_One_MovPos".equals(action)) {
 			res.setContentType("img/jpg");
 			Integer movno = new Integer(req.getParameter("movno").trim());
 			MovService movSvc = new MovService();
 			MovVO movVO = movSvc.getOneMov(movno);
 			byte[] movpos = movVO.getMovpos();
+			
+			if(movpos!=null) {
+				res.getOutputStream().write(movpos);
+				res.getOutputStream().flush();
+				return;
+			}
+		}
+		// 來自listAllMovie.jsp的請求 - for displaying trailers
+		if ("get_One_MovTra".equals(action)) {
+			res.setContentType("video/mp4");
+			Integer movno = new Integer(req.getParameter("movno").trim());
+			MovService movSvc = new MovService();
+			MovVO movVO = movSvc.getOneMov(movno);
 			byte[] movtra = movVO.getMovtra();
 			
-			String img = req.getParameter("img");
-			if(img.equals("movpos")) {
-				if(movpos!=null) {
-					res.getOutputStream().write(movpos);
-					res.getOutputStream().flush();
-					return;
-				}
-			}
-
-			if(img.equals("movtra")) {
-				if(movtra!=null) {
-					res.getOutputStream().write(movtra);
-					res.getOutputStream().flush();
-					return;
-				}				
-			}
+			if(movtra!=null) {
+				res.getOutputStream().write(movtra);
+				res.getOutputStream().flush();
+				return;
+			}				
 		}
 				
 		// 來自addMovie.jsp的請求 
@@ -374,7 +376,7 @@ public class MovServlet extends HttpServlet{
 				Part movtraPart = req.getPart("movtra");
 				byte[] movtra = movVO.getMovtra();
 				System.out.println("~enter else movtra~ " + movtra);
-				if(movtraPart.getContentType() != null && movtraPart.getContentType().indexOf("image") >= 0) {
+				if(movtraPart.getContentType() != null && movtraPart.getContentType().indexOf("video") >= 0) {
 				//if(movtraPart != null) {	//這樣判斷是不對的，因為即便沒東西，會回傳這個 application/octet-stream	
 					
 					InputStream movtrais = movtraPart.getInputStream();

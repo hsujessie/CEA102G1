@@ -115,8 +115,8 @@
 		<td>${movVO.getMovditor()}</td>
 		<td>${movVO.getMovcast()}</td>
 		<td>${movVO.getMovdes()}</td>
-		<td><img src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movpos&action=get_One_MovPic"></td>
-		<td><img src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movtra&action=get_One_MovPic"></td>
+		<td><img src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovPos"></td>
+		<td><video controls width="150"><source src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovTra" type="video/mp4"></video></td>
 		<td>
 		  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" style="margin-bottom: 0px; text-align:center;">
 		     <input type="submit" value="修改">
