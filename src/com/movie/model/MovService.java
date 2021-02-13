@@ -2,6 +2,7 @@ package com.movie.model;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 
 public class MovService {
 	
@@ -60,6 +61,10 @@ public class MovService {
 		return dao.getAll();
 	}
 	
+	public List<MovVO> getAll(Map<String, String[]> map) {
+		return dao.getAll(map);
+	}
+	
 	public MovVO updateMovpos(byte[] movpos, Integer movno) {
 		MovVO movVO = new MovVO();
 		
@@ -79,5 +84,4 @@ public class MovService {
 		
 		return movVO;
 	}
-	
 }

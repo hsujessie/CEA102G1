@@ -6,11 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
+import jdbc.util.CompositeQuery.jdbcUtil_CompositeQuery_Movie;
 
 public class MovDAO implements MovDAO_interface{
 	private static DataSource ds = null;
@@ -228,6 +231,62 @@ public class MovDAO implements MovDAO_interface{
 				movVO.setMovsatipers(rs.getInt("mov_satipers"));
 				movVO.setMovexpetotal(rs.getInt("mov_expetotal"));
 				movVO.setMovexpepers(rs.getInt("mov_expepers"));
+				list.add(movVO);
+			}
+		}catch(SQLException se) {
+			throw new RuntimeException("MovDAO getAll A database error occured. " + se.getMessage());
+		} finally {
+			if(rs != null) {
+				try {
+					rs.close();
+				}catch(SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				}catch(SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				}catch(SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+		}
+		
+		return list;
+	}
+
+	@Override
+	public List<MovVO> getAll(Map<String, String[]> map) {
+		List<MovVO> list = new ArrayList<MovVO>();
+		MovVO movVO = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = ds.getConnection();
+			
+			String finalSQL = "select * from movie "
+			          		   + jdbcUtil_CompositeQuery_Movie.get_WhereCondition(map)
+			          		   + "order by mov_no";
+			pstmt = con.prepareStatement(finalSQL);
+			System.out.println("¡´¡´finalSQL(by MovDAO) = "+finalSQL);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				movVO = new MovVO();
+				movVO.setMovno(rs.getInt("mov_no"));
+				movVO.setMovtype(rs.getString("mov_type"));
+				movVO.setMovondate(rs.getDate("mov_ondate"));
 				list.add(movVO);
 			}
 		}catch(SQLException se) {

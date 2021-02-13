@@ -366,6 +366,11 @@ public class MovJDBCDAO implements MovDAO_interface{
 			}
 		}
 	}
+
+	@Override
+	public List<MovVO> getAll(Map<String, String[]> map) {
+		return null;
+	}
 	
 	public static void main(String[] args) {
 		MovJDBCDAO dao = new MovJDBCDAO();

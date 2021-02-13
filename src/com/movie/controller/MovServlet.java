@@ -2,14 +2,18 @@ package com.movie.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import com.movie.model.MovService;
@@ -420,8 +424,43 @@ public class MovServlet extends HttpServlet{
 				failureView.forward(req, res);
 			}
 		}
-	} 
 
+		// 來自select_page.jsp的請求---複合查詢
+		if("listMovies_ByCompositeQuery".equals(action)) {
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			try {
+				HttpSession session = req.getSession();
+				Map<String, String[]> map = (Map<String,String[]>)session.getAttribute("map");
+				
+				if(req.getParameter("whichPage") == null) {
+					HashMap<String, String[]> map1 = new HashMap<String, String[]>(req.getParameterMap());
+					
+					session.setAttribute("map",map1);
+					map = map1;
+				}
+	System.out.println("map.size()= " + map.size());
+
+			/***************************2.開始複合查詢***************************************/
+			MovService movSvc = new MovService();
+			List<MovVO> list  = movSvc.getAll(map);
+			
+			/***************************3.查詢完成,準備轉交(Send the Success view)************/
+			req.setAttribute("listEmps_ByCompositeQuery", list); // 資料庫取出的list物件,存入request
+			RequestDispatcher successView = req.getRequestDispatcher("/back-end/movie/listMovies_ByCompositeQuery.jsp"); // 成功轉交listEmps_ByCompositeQuery.jsp
+			successView.forward(req, res);
+			
+			/***************************其他可能的錯誤處理**********************************/
+			}catch(Exception e) {
+				errorMsgs.add(e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/movie/select_page.jsp");
+				failureView.forward(req, res);
+			}
+		}
+	} 
+	
+	
 	public static String appendStr(String[] str) {
 		String resultStr = null;
         StringBuilder strSb = new StringBuilder();
