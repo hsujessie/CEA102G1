@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.movie.model.*"%>
 
-<jsp:useBean id="listMovies_ByCompositeQuery" scope="request" type="java.util.List<MovVO>" />
+<jsp:useBean id="listMovies_ByCompositeQuery" scope="request" type="java.util.List<MovVO>"/>
 
 <html>
 <title>複合查詢 - listMovies_ByCompositeQuery.jsp</title>

@@ -233,6 +233,9 @@ public class MovServlet extends HttpServlet{
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 			
+			String requestURL = req.getParameter("requestURL");
+			System.out.println("getOne_For_Update requestURL= " + requestURL);
+			
 			try {
 				/***************************1.接收請求參數****************************************/
 				Integer movno = new Integer(req.getParameter("movno").trim());
@@ -268,7 +271,7 @@ public class MovServlet extends HttpServlet{
 				/***************************其他可能的錯誤處理**********************************/
 			} catch (Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/movie/listAllMovie.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher(requestURL);
 				failureView.forward(req, res);
 			}
 		}
@@ -278,7 +281,10 @@ public class MovServlet extends HttpServlet{
 		if ("update".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
-		
+			
+			String requestURL = req.getParameter("requestURL");
+			System.out.println("update requestURL= " + requestURL);
+			
 			try {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 				Integer movno = new Integer(req.getParameter("movno").trim());
@@ -411,8 +417,17 @@ public class MovServlet extends HttpServlet{
 				movVO = movSvc.updateMov(movname, movver, movtype, movlan, movondate, movoffdate, movdurat, movrating, movditor, movcast, movdes, movno);
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
-				req.setAttribute("movVO", movVO);
-				String url = "/back-end/movie/listOneMovie.jsp";
+				//修改我  ///back-end/movie/listMovies_ByCompositeQuery.jsp
+//				req.setAttribute("movVO", movVO);
+//				String url = "/back-end/movie/listOneMovie.jsp";
+				if(requestURL.equals("/back-end/movie/listMovies_ByCompositeQuery.jsp")){
+					HttpSession session = req.getSession();
+					Map<String, String[]> map = (Map<String, String[]>)session.getAttribute("map");
+					List<MovVO> list  = movSvc.getAll(map);
+					req.setAttribute("listEmps_ByCompositeQuery",list); //  複合查詢, 資料庫取出的list物件,存入request
+				}
+				String url = requestURL;
+				
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 

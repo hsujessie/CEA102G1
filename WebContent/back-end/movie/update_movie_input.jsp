@@ -178,8 +178,15 @@
 <br>
 <input type="hidden" name="action" value="update">
 <input type="hidden" name="movno" value="${movVO.movno}">
+<input type="hidden" name="requestURL" value="<%=request.getParameter("requestURL")%>">
+<input type="hidden" name="whichPage"  value="<%=request.getParameter("whichPage")%>">
 <input type="submit" value="送出修改" id="btn">
 </FORM>
+
+<br>送出修改的來源網頁路徑:<br><b>
+   <font color=blue>request.getParameter("requestURL"):</font> <%=request.getParameter("requestURL")%><br>
+   <font color=blue>request.getParameter("whichPage"): </font> <%=request.getParameter("whichPage")%> 
+</body>
 </body>
 
 <link   rel="stylesheet" type="text/css" href="/CEA102G1/sources/datetimepicker/jquery.datetimepicker.css"/>
