@@ -285,12 +285,27 @@ public class MovDAO implements MovDAO_interface{
 			while(rs.next()) {
 				movVO = new MovVO();
 				movVO.setMovno(rs.getInt("mov_no"));
+				movVO.setMovname(rs.getString("mov_name"));
+				movVO.setMovver(rs.getString("mov_ver"));
 				movVO.setMovtype(rs.getString("mov_type"));
+				movVO.setMovlan(rs.getString("mov_lan"));
 				movVO.setMovondate(rs.getDate("mov_ondate"));
+				movVO.setMovoffdate(rs.getDate("mov_offdate"));
+				movVO.setMovdurat(rs.getInt("mov_durat"));
+				movVO.setMovrating(rs.getString("mov_rating"));
+				movVO.setMovditor(rs.getString("mov_ditor"));
+				movVO.setMovcast(rs.getString("mov_cast"));
+				movVO.setMovdes(rs.getString("mov_des"));
+				movVO.setMovpos(rs.getBytes("mov_pos"));
+				movVO.setMovtra(rs.getBytes("mov_tra"));
+				movVO.setMovsatitotal(rs.getInt("mov_satitotal"));
+				movVO.setMovsatipers(rs.getInt("mov_satipers"));
+				movVO.setMovexpetotal(rs.getInt("mov_expetotal"));
+				movVO.setMovexpepers(rs.getInt("mov_expepers"));
 				list.add(movVO);
 			}
 		}catch(SQLException se) {
-			throw new RuntimeException("MovDAO getAll A database error occured. " + se.getMessage());
+			throw new RuntimeException("MovDAO Map getAll A database error occured. " + se.getMessage());
 		} finally {
 			if(rs != null) {
 				try {

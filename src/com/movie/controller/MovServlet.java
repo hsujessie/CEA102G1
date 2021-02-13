@@ -440,14 +440,14 @@ public class MovServlet extends HttpServlet{
 					session.setAttribute("map",map1);
 					map = map1;
 				}
-	System.out.println("map.size()= " + map.size());
+				System.out.println("map.size()= " + map.size());
 
 			/***************************2.開始複合查詢***************************************/
 			MovService movSvc = new MovService();
 			List<MovVO> list  = movSvc.getAll(map);
 			
 			/***************************3.查詢完成,準備轉交(Send the Success view)************/
-			req.setAttribute("listEmps_ByCompositeQuery", list); // 資料庫取出的list物件,存入request
+			req.setAttribute("listMovies_ByCompositeQuery", list); // 資料庫取出的list物件,存入request
 			RequestDispatcher successView = req.getRequestDispatcher("/back-end/movie/listMovies_ByCompositeQuery.jsp"); // 成功轉交listEmps_ByCompositeQuery.jsp
 			successView.forward(req, res);
 			

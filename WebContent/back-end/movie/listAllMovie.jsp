@@ -100,7 +100,7 @@
 		<th>電影預告片</th>
 		<th>修改</th>
 	</tr>
-	<%@ include file="page1.file" %> 
+	<%@ include file="pages/page1.file" %> 
 	<c:forEach var="movVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 	<tr>
 		<td>${movVO.getMovno()}</td>
@@ -127,7 +127,7 @@
 	</tr>
 	</c:forEach>
 </table>
-<%@ include file="page2.file" %>
+<%@ include file="pages/page2.file" %>
 
 </body>
 </html>
