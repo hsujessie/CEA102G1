@@ -424,7 +424,7 @@ public class MovServlet extends HttpServlet{
 					HttpSession session = req.getSession();
 					Map<String, String[]> map = (Map<String, String[]>)session.getAttribute("map");
 					List<MovVO> list  = movSvc.getAll(map);
-					req.setAttribute("listEmps_ByCompositeQuery",list); //  複合查詢, 資料庫取出的list物件,存入request
+					req.setAttribute("listMovies_ByCompositeQuery",list); //  複合查詢, 資料庫取出的list物件,存入request
 				}
 				String url = requestURL;
 				

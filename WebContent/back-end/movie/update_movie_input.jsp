@@ -180,7 +180,7 @@
 <input type="hidden" name="movno" value="${movVO.movno}">
 <input type="hidden" name="requestURL" value="<%=request.getParameter("requestURL")%>">
 <input type="hidden" name="whichPage"  value="<%=request.getParameter("whichPage")%>">
-<input type="submit" value="送出修改" id="btn">
+<input type="submit" value="送出修改">
 </FORM>
 
 <br>送出修改的來源網頁路徑:<br><b>
