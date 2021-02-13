@@ -454,7 +454,7 @@ public class MovJDBCDAO implements MovDAO_interface{
 		
 		// н╫зя movpos
 		MovVO movVO4 = new MovVO();
-		String filePath_Pos = "/Users/j9686/Desktop/Kingsman.jpg";
+		String filePath_Pos = "/Users/j9686/Desktop/Project/Kingsman.jpg";
 		byte[] buff_Pos = null;
 		try {
 			InputStream is = new FileInputStream(filePath_Pos);

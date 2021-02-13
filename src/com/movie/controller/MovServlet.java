@@ -102,11 +102,8 @@ public class MovServlet extends HttpServlet{
 			try {
 				/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
 				String movname = req.getParameter("movname").trim();
-				String movnameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{1,30}$";
 				if(movname == null || movname.length() == 0) {
 					errorMsgs.add("電影名稱: 請勿空白");
-				}else if(!movname.trim().matches(movnameReg)) {
-					errorMsgs.add("電影名稱: 只能是中、英文字母、數字和_ , 且長度必需在1到30之間");
 				}
 				
 				//多選checkbox
@@ -168,7 +165,7 @@ public class MovServlet extends HttpServlet{
 				}
 				
 				String movdes = req.getParameter("movdes").trim();
-				if(movdes == null || movname.length() == 0) {
+				if(movdes == null || movdes.length() == 0) {
 					errorMsgs.add("電影簡介: 請勿空白");
 				}
 
@@ -289,13 +286,9 @@ public class MovServlet extends HttpServlet{
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 				Integer movno = new Integer(req.getParameter("movno").trim());
 				
-				String movname = req.getParameter("movname").trim();
-	            
-				String movnameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{1,30}$";
+				String movname = req.getParameter("movname").trim();            
 				if(movname == null || movname.length() == 0) {
 					errorMsgs.add("電影名稱: 請勿空白");
-				}else if(!movname.trim().matches(movnameReg)) {
-					errorMsgs.add("電影名稱: 只能是中、英文字母、數字和_ , 且長度必需在1到30之間");
 				}
 				
 				//多選checkbox
@@ -357,7 +350,7 @@ public class MovServlet extends HttpServlet{
 				}
 				
 				String movdes = req.getParameter("movdes").trim();
-				if(movdes == null || movname.length() == 0) {
+				if(movdes == null || movdes.length() == 0) {
 					errorMsgs.add("電影簡介: 請勿空白");
 				}
 											
