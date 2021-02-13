@@ -65,6 +65,7 @@
 			<b style="color:teal;font-size:20px;">複合查詢</b>
 			<br><b>選擇電影:</b>
 				<select name="mov_no">
+					<option value= ""></option>
 					<c:forEach var="movVO" items="${movSvc.all}" > 
 						<option value="${movVO.movno}">${movVO.movname}
 					</c:forEach>
