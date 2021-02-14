@@ -137,17 +137,24 @@ public class MovServlet extends HttpServlet{
 				try {
 					movondate = java.sql.Date.valueOf(req.getParameter("movondate").trim());
 				} catch (IllegalArgumentException e) {
-					movondate = new java.sql.Date(System.currentTimeMillis());
+					//movondate = new java.sql.Date(System.currentTimeMillis());
 					errorMsgs.put("movondate"," 請輸入上映日期!");
 				}
-				
+
 				java.sql.Date movoffdate = null;
 				try {
 					movoffdate = java.sql.Date.valueOf(req.getParameter("movondate").trim());
+					
 				} catch (IllegalArgumentException e) {
-					movoffdate = new java.sql.Date(System.currentTimeMillis());
+					//movoffdate = new java.sql.Date(System.currentTimeMillis());
 					errorMsgs.put("movoffdate"," 請輸入下檔日期!");
+				}	
+				
+				if (movondate.getTime() == movoffdate.getTime()) {
+					errorMsgs.put("movondate","日期不正確，請重新輸入!		* 註:1.上映日期與下檔日期不可相等、2.上映日期不可於下檔日期之後、3.下檔日期不可於上映日期之前");
 				}
+			
+				
 				Integer movdurat = null;
 				try {
 					movdurat = new Integer(req.getParameter("movdurat").trim());
@@ -389,6 +396,21 @@ public class MovServlet extends HttpServlet{
 						req.setAttribute("movlanToken", movlanToken); 	
 					}
 				}
+				
+				if (movondate.getTime() == movoffdate.getTime()) {
+					errorMsgs.put("movondate","日期不正確，請重新輸入!		* 註:1.上映日期與下檔日期不可相等、2.上映日期不可於下檔日期之後、3.下檔日期不可於上映日期之前");
+
+					//先split字串，再把值送到update_movie_input.jsp
+			        if (movverStr != null) {  
+						movverToken = token(movverStrs, movverToken);
+						req.setAttribute("movverToken", movverToken);	
+					}
+					if (movlanStr != null ) {
+						movlanToken = token(movlanStrs, movlanToken);	  
+						req.setAttribute("movlanToken", movlanToken); 	
+					} 
+				}
+				
 				Integer movdurat = null;
 				try {
 					movdurat = new Integer(req.getParameter("movdurat").trim());
