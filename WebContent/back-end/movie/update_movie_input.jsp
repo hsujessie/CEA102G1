@@ -30,29 +30,21 @@
 
 <style>
   table {
-	table-layout: fixed;
-	width: 450px;
 	background-color: white;
-	margin-top: 5px;
-	margin-bottom: 5px;
+	margin-top: 1px;
+	margin-bottom: 1px;
   }
   table, th, td {
-    border: 1px solid #CCCCFF;
+    border: 0px solid #CCCCFF;
   }
-  th,td{
-  	padding: 5px;
-  	box-sizing:border-box;white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-  }
-  th{
-  	width:150px;
-  }
-  td{
-  	width:300px;
+  th, td {
+    padding: 1px;
   }
   img{
   	width:50px;
+  }
+  .errColor{
+   	color:red;
   }
 </style>
 
@@ -68,21 +60,12 @@
 
 <h3>電影資訊修改:</h3>
 
-<%-- 錯誤表列 --%>
-<c:if test="${not empty errorMsgs}">
-	<font style="color:red">請修正以下錯誤:</font>
-	<ul>
-		<c:forEach var="message" items="${errorMsgs}">
-			<li style="color:red">${message}</li>
-		</c:forEach>
-	</ul>
-</c:if>
-
 <FORM method="post" action="<%=request.getContextPath()%>/movie/mov.do" name="form_updateMovie" enctype="multipart/form-data">
 <table>
 	<tr>
 		<td>電影名稱:</td>
 		<td><input type="text" name="movname" value="${movVO.movname}" /></td>
+		<td class="errColor">${errorMsgs.movname}</td>
 	</tr>
 
 	<jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService" />
@@ -91,9 +74,10 @@
 		<td>
 			<!-- 多選checkbox -->
 				<input type="checkbox" name="movver" value="2D"      <c:forEach var="i" begin="0" end="2"> <c:if test="${movverToken[i].contains('2D')}">      checked </c:if></c:forEach> >2D<br/>
-				<input type="checkbox" name="movver" value="3D"      <c:forEach var="i" begin="0" end="2"> <c:if test="${movverToken[i].contains('2D')}">      checked </c:if></c:forEach> >3D<br/>
+				<input type="checkbox" name="movver" value="3D"      <c:forEach var="i" begin="0" end="2"> <c:if test="${movverToken[i].contains('3D')}">      checked </c:if></c:forEach> >3D<br/>
 				<input type="checkbox" name="movver" value="IMAX"    <c:forEach var="i" begin="0" end="2"> <c:if test="${movverToken[i].contains('IMAX')}">    checked </c:if></c:forEach> >IMAX<br/>
 		</td>
+		<td class="errColor">${errorMsgs.movver}</td>
 	</tr>
 	<tr>
 		<td>電影類型:</td>
@@ -107,6 +91,7 @@
 				<option value= "恐怖片" <c:forEach var="movVO" items="${movSvc.all}">  <c:if test="${movVO.movtype.contains('恐怖片')}"> selected </c:if></c:forEach> >恐怖片</option>
 			</select>
 		</td>
+		<td class="errColor">${errorMsgs.movtype}</td>
 	</tr>
 	<tr>
 		<td>電影語言:</td>
@@ -116,6 +101,8 @@
 			<input type="checkbox" name="movlan" value="中文" <c:forEach var="i" begin="0" end="1"> <c:if test="${movlanToken[i].contains('中文')}"> checked </c:if></c:forEach> >中文<br/>
 			<input type="checkbox" name="movlan" value="日文" <c:forEach var="i" begin="0" end="1"> <c:if test="${movlanToken[i].contains('日文')}"> checked </c:if></c:forEach> >日文<br/>
 		</td>
+		<td class="errColor">${errorMsgs.movlan}</td>
+		<td class="errColor">${errorMsgs.movondate}</td>
 	</tr>
 	<tr>
 		<td>上映日期:</td>
@@ -128,6 +115,7 @@
 	<tr>
 		<td>片長:</td>
 		<td><input type="text" name="movdurat" value="${ empty movVO.movdurat ? '2' : movVO.movdurat}" />小時</td>
+		<td class="errColor">${errorMsgs.movdurat}</td>
 	</tr>
 	<tr>
 		<td>電影級數:</td>
@@ -143,10 +131,12 @@
 	<tr>
 		<td>導演:</td>
 		<td><input type="text" name="movditor" value="${movVO.movditor}" /></td>
+		<td class="errColor">${errorMsgs.movditor}</td>
 	</tr>
 	<tr>
 		<td>演員:</td>
 		<td><input type="text" name="movcast" value="${movVO.movcast}" /></td>
+		<td class="errColor">${errorMsgs.movcast}</td>
 	</tr>
 	<tr>
 		<td>電影簡介:</td>
@@ -163,6 +153,7 @@
 				<img src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movpos&action=get_One_MovPic">
 			</c:if>
 		</td>
+		<td class="errColor">${errorMsgs.movcast}</td>
 	</tr>
 	<tr>
 		<td>電影預告片:</td>	
@@ -180,10 +171,6 @@
 <input type="hidden" name="whichPage"  value="<%=request.getParameter("whichPage")%>">
 <input type="submit" value="送出修改">
 </FORM>
-
-<br>送出修改的來源網頁路徑:<br><b>
-   <font color=blue>request.getParameter("requestURL"):</font> <%=request.getParameter("requestURL")%><br>
-   <font color=blue>request.getParameter("whichPage"): </font> <%=request.getParameter("whichPage")%> 
 </body>
 </body>
 

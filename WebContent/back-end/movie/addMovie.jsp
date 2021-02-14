@@ -70,7 +70,7 @@
 		<td>電影種類:</td>
 		<td>
 			<!-- 多選checkbox -->
-			<input type="checkbox" name="movver" value="2D">2D<br>
+			<input type="checkbox" name="movver" value="2D" ${movver == null? "checked":""} >2D<br>
 			<input type="checkbox" name="movver" value="3D">3D<br>
 			<input type="checkbox" name="movver" value="IMAX">IMAX<br>
 		</td>
@@ -93,8 +93,9 @@
 		<td>電影語言:</td>
 		<td>
 			<!-- 多選checkbox -->
-			<input type="checkbox" name="movlan" value="英文">英文<br>
+			<input type="checkbox" name="movlan" value="英文" ${movlan == null? "checked":""} >英文<br>
 			<input type="checkbox" name="movlan" value="中文">中文<br>
+			<input type="checkbox" name="movlan" value="日文">日文<br>
 		</td>
 		<td class="errColor">${errorMsgs.movlan}</td>
 	</tr>
