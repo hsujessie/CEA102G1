@@ -102,15 +102,16 @@
 			<input type="checkbox" name="movlan" value="日文" <c:forEach var="i" begin="0" end="1"> <c:if test="${movlanToken[i].contains('日文')}"> checked </c:if></c:forEach> >日文<br/>
 		</td>
 		<td class="errColor">${errorMsgs.movlan}</td>
-		<td class="errColor">${errorMsgs.movondate}</td>
 	</tr>
 	<tr>
 		<td>上映日期:</td>
 		<td><input name="movondate" id="mov_ondate" type="text"></td>
+		<td class="errColor">${errorMsgs.movondate}</td>
 	</tr>
 	<tr>
 		<td>下檔日期:</td>
 		<td><input name="movoffdate" id="mov_offdate" type="text"></td>
+		<td class="errColor">${errorMsgs.movoffdate}</td>
 	</tr>
 	<tr>
 		<td>片長:</td>
@@ -141,10 +142,9 @@
 	<tr>
 		<td>電影簡介:</td>
 		<td>
-			<textarea name="movdes" maxlength="500">
-				${movVO.movdes}
-			</textarea>
+			<textarea name="movdes" maxlength="500">${movVO.movdes}</textarea>
 		</td>
+		<td class="errColor">${errorMsgs.movdes}</td>
 	</tr>
 	<tr>
 		<td>電影海報:</td>
@@ -153,7 +153,6 @@
 				<img src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movpos&action=get_One_MovPic">
 			</c:if>
 		</td>
-		<td class="errColor">${errorMsgs.movcast}</td>
 	</tr>
 	<tr>
 		<td>電影預告片:</td>	

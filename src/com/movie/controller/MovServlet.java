@@ -171,7 +171,7 @@ public class MovServlet extends HttpServlet{
 				}
 				
 				String movdes = req.getParameter("movdes").trim();
-				if(movdes == null || movdes.length() == 0) {
+				if(movdes == null || movdes.equals("")) {
 					errorMsgs.put("movdes"," 電影簡介: 請勿空白");
 				}
 
@@ -250,26 +250,18 @@ public class MovServlet extends HttpServlet{
 			
 				//先split電影種類字串，再把值送到update_movie_input.jsp
 				String movverStrs = movVO.getMovver();
-				String[] movverToken = {"2D"};
-				if(movverStrs != null) {
-					movverToken = movverStrs.split(",");
-				}else {
-					errorMsgs.put("movver"," 請選擇電影種類");
-				}
+	            String[] movverToken = null;
+	            movverToken = token(movverStrs, movverToken);
 								
 				//先split電影語言字串，再把值送到update_movie_input.jsp
 				String movlanStrs = movVO.getMovlan();
-				String[] movlanToken = {""};
-				if(movlanStrs != null) {
-					movlanToken = movlanStrs.split(",");
-				}else {
-					errorMsgs.put("movlan"," 請選擇電影語言");
-				}
+	            String[] movlanToken = null;
+	            movlanToken = token(movlanStrs, movlanToken);
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
-				req.setAttribute("movVO", movVO); 
+				req.setAttribute("movVO", movVO);     
 				req.setAttribute("movverToken", movverToken);    
-				req.setAttribute("movlanToken", movlanToken);         
+				req.setAttribute("movlanToken", movlanToken);
 				
 				String url = "/back-end/movie/update_movie_input.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
@@ -294,50 +286,108 @@ public class MovServlet extends HttpServlet{
 			try {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 				Integer movno = new Integer(req.getParameter("movno").trim());
+
+				MovService movSvc = new MovService();
+				MovVO movVO = movSvc.getOneMov(movno);
 				
-				String movname = req.getParameter("movname").trim();            
-				if(movname == null || movname.length() == 0) {
-					errorMsgs.put("movname"," 電影名稱: 請勿空白");
-				}
-				
+				//先split字串，再把值送到update_movie_input.jsp
+				String movverStrs = movVO.getMovver();
+				String[] movverToken = null;
+				String movlanStrs = movVO.getMovlan();
+		        String[] movlanToken = null;
+
 				//多選checkbox
 				String[] movverStr = req.getParameterValues("movver");
 		        String movver = "";
+		        //多選checkbox
+				String[] movlanStr = req.getParameterValues("movlan");
+		        String movlan = "";
 		        if (movverStr == null || movverStr.length == 0) {
 					errorMsgs.put("movver"," 請選擇電影種類");
+
+					//先split字串，再把值送到update_movie_input.jsp
+					//若沒有再setToken，jsp會抓不到movverToken或movlanToken，會無法保留原始被勾選狀態。
+			        if (movverStr != null) {  
+						movverToken = token(movverStrs, movverToken);
+						req.setAttribute("movverToken", movverToken);	
+					}
+					if (movlanStr != null ) {
+						movlanToken = token(movlanStrs, movlanToken);	  
+						req.setAttribute("movlanToken", movlanToken); 	
+					}
 		        }else {
 					movver = appendStr(movverStr);
 		        }
-				
-				//單選下拉選單
-				String movtype = req.getParameter("movtype");
-				if(movtype == null || movtype.trim().length() == 0) {
-					errorMsgs.put("movtype"," 請選擇電影類型");
-				}
-				
-				//多選checkbox
-				String[] movlanStr = req.getParameterValues("movlan");
-		        String movlan = "";
+		        
 		        if (movlanStr == null || movlanStr.length == 0) {
-					errorMsgs.put("movlan"," 請選擇電影語言");
+					errorMsgs.put("movlan"," 請選擇電影語言"); 
+
+					//先split字串，再把值送到update_movie_input.jsp
+			        if (movverStr != null) {  
+						movverToken = token(movverStrs, movverToken);
+						req.setAttribute("movverToken", movverToken);	
+					}
+					if (movlanStr != null ) {
+						movlanToken = token(movlanStrs, movlanToken);	  
+						req.setAttribute("movlanToken", movlanToken); 	
+					} 
 		        }else {
 		        	movlan = appendStr(movlanStr);
 		        }				
 
+		        
+				String movname = req.getParameter("movname").trim();            
+				if(movname == null || movname.length() == 0) {
+					errorMsgs.put("movname"," 電影名稱: 請勿空白");
+					
+					//先split字串，再把值送到update_movie_input.jsp 
+			        if (movverStr != null) {  
+						movverToken = token(movverStrs, movverToken);
+						req.setAttribute("movverToken", movverToken);	
+					}
+					if (movlanStr != null ) {
+						movlanToken = token(movlanStrs, movlanToken);	  
+						req.setAttribute("movlanToken", movlanToken); 	
+					}
+				}
+							
+				
+				//單選下拉選單
+				String movtype = req.getParameter("movtype");
+				
+				
 				java.sql.Date movondate = null;
 				try {
 					movondate = java.sql.Date.valueOf(req.getParameter("movondate").trim());
 				} catch (IllegalArgumentException e) {
-					movondate = new java.sql.Date(System.currentTimeMillis());
 					errorMsgs.put("movondate"," 請輸入上映日期!");
+					
+					//先split字串，再把值送到update_movie_input.jsp
+			        if (movverStr != null) {  
+						movverToken = token(movverStrs, movverToken);
+						req.setAttribute("movverToken", movverToken);	
+					}
+					if (movlanStr != null ) {
+						movlanToken = token(movlanStrs, movlanToken);	  
+						req.setAttribute("movlanToken", movlanToken); 	
+					}
 				}
 				
 				java.sql.Date movoffdate = null;
 				try {
-					movoffdate = java.sql.Date.valueOf(req.getParameter("movondate").trim());
+					movoffdate = java.sql.Date.valueOf(req.getParameter("movoffdate").trim());
 				} catch (IllegalArgumentException e) {
-					movoffdate = new java.sql.Date(System.currentTimeMillis());
 					errorMsgs.put("movoffdate"," 請輸入下檔日期!");
+					
+					//先split字串，再把值送到update_movie_input.jsp
+			        if (movverStr != null) {  
+						movverToken = token(movverStrs, movverToken);
+						req.setAttribute("movverToken", movverToken);	
+					}
+					if (movlanStr != null ) {
+						movlanToken = token(movlanStrs, movlanToken);	  
+						req.setAttribute("movlanToken", movlanToken); 	
+					}
 				}
 				Integer movdurat = null;
 				try {
@@ -345,6 +395,16 @@ public class MovServlet extends HttpServlet{
 				}catch(NumberFormatException e) {
 					movdurat = 0;
 					errorMsgs.put("movdurat"," 片長請填數字!");
+					
+					//先split字串，再把值送到update_movie_input.jsp
+			        if (movverStr != null) {  
+						movverToken = token(movverStrs, movverToken);
+						req.setAttribute("movverToken", movverToken);	
+					}
+					if (movlanStr != null ) {
+						movlanToken = token(movlanStrs, movlanToken);	  
+						req.setAttribute("movlanToken", movlanToken); 	
+					}
 				}
 				
 				//單選下拉選單
@@ -354,20 +414,47 @@ public class MovServlet extends HttpServlet{
 				String movditor = req.getParameter("movditor").trim();
 				if(movditor == null || movditor.length() == 0) {
 					errorMsgs.put("movditor"," 導演資料: 請勿空白");
+					
+					//先split字串，再把值送到update_movie_input.jsp
+			        if (movverStr != null) {  
+						movverToken = token(movverStrs, movverToken);
+						req.setAttribute("movverToken", movverToken);	
+					}
+					if (movlanStr != null ) {
+						movlanToken = token(movlanStrs, movlanToken);	  
+						req.setAttribute("movlanToken", movlanToken); 	
+					}
 				}
 				
 				String movcast = req.getParameter("movcast").trim();
 				if(movcast == null || movcast.length() == 0) {
 					errorMsgs.put("movcast"," 演員資料: 請勿空白");
+					
+					//先split字串，再把值送到update_movie_input.jsp
+			        if (movverStr != null) {  
+						movverToken = token(movverStrs, movverToken);
+						req.setAttribute("movverToken", movverToken);	
+					}
+					if (movlanStr != null ) {
+						movlanToken = token(movlanStrs, movlanToken);	  
+						req.setAttribute("movlanToken", movlanToken); 	
+					}
 				}
 				
 				String movdes = req.getParameter("movdes").trim();
-				if(movdes == null || movdes.length() == 0) {
+				if(movdes == null || movdes.equals("")) {
 					errorMsgs.put("movdes"," 電影簡介: 請勿空白");
+					
+					//先split字串，再把值送到update_movie_input.jsp
+			        if (movverStr != null) {  
+						movverToken = token(movverStrs, movverToken);
+						req.setAttribute("movverToken", movverToken);	
+					}
+					if (movlanStr != null ) {
+						movlanToken = token(movlanStrs, movlanToken);	  
+						req.setAttribute("movlanToken", movlanToken); 	
+					}
 				}
-											
-				MovService movSvc = new MovService();
-				MovVO movVO = movSvc.getOneMov(movno);
 				
 				Part movposPart = req.getPart("movpos");	
 				byte[] movpos = movVO.getMovpos();
@@ -472,6 +559,13 @@ public class MovServlet extends HttpServlet{
 			}
 		}
 	} 
+	
+	public static String[] token(String str, String[] token){
+		if(str != null) {
+			token = str.split(",");
+		}
+		return token;
+	}
 	
 	public static String appendStr(String[] str) {	
 		String resultStr = null;
