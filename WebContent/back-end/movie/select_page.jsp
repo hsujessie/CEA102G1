@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 <head>
@@ -80,8 +81,21 @@
 					<option value= "科幻片">科幻片</option>
 					<option value= "恐怖片">恐怖片</option>
 				</select>
-			<br><b>上映日期:</b>
-			<input name="mov_ondate" id="movie_date" type="text" >
+			<br><b>日期:</b>
+			
+			<select name="mov_ondate_year">
+				<option value= ""></option>
+			    <c:forEach var="year" begin="1970" end="<%= (int) (java.util.Calendar.getInstance().get(java.util.Calendar.YEAR))+1%>">		    
+					<option value= "year">${year}年</option>
+				</c:forEach>
+			</select>
+			<select name="mov_ondate_month">
+				<option value= ""></option>
+			    <c:forEach var="month" begin="1" end="12">
+					<option value= "month">${month}月</option>
+				</c:forEach>
+			</select>
+			<!-- <input name="mov_ondate" id="movie_date" type="text" > -->
 			
 			<input type="hidden" name="action" value="listMovies_ByCompositeQuery">
 			<input type="submit" value="送出">
@@ -112,7 +126,7 @@ $.datetimepicker.setLocale('zh');
 $('#movie_date').datetimepicker({
    theme: 'dark',
    timepicker: false, 
-   format: 'Y-m-d',
+   format: 'Y-m',
    value: new Date()
 });
 </script>

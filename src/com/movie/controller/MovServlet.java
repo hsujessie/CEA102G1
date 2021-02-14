@@ -470,8 +470,7 @@ public class MovServlet extends HttpServlet{
 		}
 	} 
 	
-	
-	public static String appendStr(String[] str) {
+	public static String appendStr(String[] str) {	
 		String resultStr = null;
         StringBuilder strSb = new StringBuilder();
         
