@@ -66,37 +66,34 @@
 			<b style="color:teal;font-size:20px;">複合查詢</b>
 			<br><b>選擇電影:</b>
 				<select name="mov_no">
-					<option value= ""></option>
+					<option value=""></option>
 					<c:forEach var="movVO" items="${movSvc.all}" > 
 						<option value="${movVO.movno}">${movVO.movname}
 					</c:forEach>
 				</select>
 			<br><b>電影類型:</b>
 				<select name="mov_type">
-					<option value= ""></option>
-					<option value= "劇情片">劇情片</option>
-					<option value= "動畫片">動畫片</option>
-					<option value= "喜劇片">喜劇片</option>
-					<option value= "愛情片">愛情片</option>
-					<option value= "科幻片">科幻片</option>
-					<option value= "恐怖片">恐怖片</option>
-				</select>
+					<option value=""></option>
+					<option value="劇情片">劇情片</option>
+					<option value="動畫片">動畫片</option>
+					<option value="喜劇片">喜劇片</option>
+					<option value="愛情片">愛情片</option>
+					<option value="科幻片">科幻片</option>
+					<option value="恐怖片">恐怖片</option>
+				</select>				
 			<br><b>日期:</b>
-			
 			<select name="mov_ondate_year">
-				<option value= ""></option>
+				<option value=""></option>
 			    <c:forEach var="year" begin="1970" end="<%= (int) (java.util.Calendar.getInstance().get(java.util.Calendar.YEAR))+1%>">		    
-					<option value= "year">${year}年</option>
+					<option value="year">${year}年</option>
 				</c:forEach>
 			</select>
 			<select name="mov_ondate_month">
-				<option value= ""></option>
+				<option value=""></option>
 			    <c:forEach var="month" begin="1" end="12">
-					<option value= "month">${month}月</option>
+					<option value="month">${month}月</option>
 				</c:forEach>
-			</select>
-			<!-- <input name="mov_ondate" id="movie_date" type="text" > -->
-			
+			</select>		
 			<input type="hidden" name="action" value="listMovies_ByCompositeQuery">
 			<input type="submit" value="送出">
 		</FORM>
