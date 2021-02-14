@@ -13,7 +13,6 @@
 <html>
 <head>
 <title>所有電影資訊 - listAllMovie.jsp</title>
-
 <style>
   #table-1 {
 	width: 450px;
@@ -103,7 +102,7 @@
 	<%@ include file="pages/page1.file" %> 
 	<c:forEach var="movVO" items="${list}" varStatus="no" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 	<tr${(movVO.movno==param.movno) ? 'bgcolor=#CCCCFF':''}>
-		<td>${no.count}</td>
+		<td>${no.index+1}</td>
 		<td>${movVO.getMovname()}</td>
 		<td>${movVO.getMovver()}</td>
 		<td>${movVO.getMovtype()}</td>

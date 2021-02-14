@@ -376,9 +376,7 @@ public class MovServlet extends HttpServlet{
 				Part movtraPart = req.getPart("movtra");
 				byte[] movtra = movVO.getMovtra();
 				System.out.println("~enter else movtra~ " + movtra);
-				if(movtraPart.getContentType() != null && movtraPart.getContentType().indexOf("video") >= 0) {
-				//if(movtraPart != null) {	//這樣判斷是不對的，因為即便沒東西，會回傳這個 application/octet-stream	
-					
+				if(movtraPart.getContentType() != null && movtraPart.getContentType().indexOf("video") >= 0) {				
 					InputStream movtrais = movtraPart.getInputStream();
 					movtra = new byte[movtrais.available()];
 					movtrais.read(movtra);

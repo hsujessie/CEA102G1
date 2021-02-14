@@ -61,13 +61,12 @@
 <body bgcolor='white'>
 <table id="table-1">
 	<tr><td>
-		 <h3>所有電影資訊 - listAllMovie.jsp</h3>
+		 <h3>複合查詢 - listMovies_ByCompositeQuery.jsp</h3>
 		 <h4><a href="<%=request.getContextPath()%>/back-end/movie/select_page.jsp">回首頁</a></h4>
 	</td></tr>
 </table>
 
 <table>
-
 	<tr>
 		<th>編號</th>
 		<th>電影名稱</th>
@@ -88,7 +87,7 @@
 	<%@ include file="pages/page1_ByCompositeQuery.file" %> 
 	<c:forEach var="movVO" varStatus="no" items="${listMovies_ByCompositeQuery}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 	<tr align='center' valign='middle' ${(movVO.movno==param.movno) ? 'bgcolor=#CCCCFF':''}>
-		<td>${no.count}</td>
+		<td>${no.index+1}</td>
 		<td>${movVO.getMovname()}</td>
 		<td>${movVO.getMovver()}</td>
 		<td>${movVO.getMovtype()}</td>

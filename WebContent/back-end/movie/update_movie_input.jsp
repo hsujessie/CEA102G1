@@ -81,10 +81,6 @@
 <FORM method="post" action="<%=request.getContextPath()%>/movie/mov.do" name="form_updateMovie" enctype="multipart/form-data">
 <table>
 	<tr>
-		<td>電影編號:</td>
-		<td>${movVO.movno}</td>
-	</tr>
-	<tr>
 		<td>電影名稱:</td>
 		<td><input type="text" name="movname" value="${movVO.movname}" /></td>
 	</tr>
