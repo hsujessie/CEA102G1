@@ -209,12 +209,11 @@ public class MovServlet extends HttpServlet{
 					return;
 				}
 				
-				/***************************2.開始新增資料***************************************/
-				
+				/***************************2.開始新增資料***************************************/				
 				MovService movSvc = new MovService();
 				movSvc.addMov(movname, movver, movtype, movlan, movondate, movoffdate, movdurat, movrating, movditor, movcast, movdes, movpos, movtra);
 
-				/***************************3.新增完成,準備轉交(Send the Success view)***********/
+				/***************************3.新增完成,準備轉交(Send the Success view)***********/				
 				String url = "/back-end/movie/listAllMovie.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);	
@@ -233,7 +232,6 @@ public class MovServlet extends HttpServlet{
 			req.setAttribute("errorMsgs", errorMsgs);
 			
 			String requestURL = req.getParameter("requestURL");
-			System.out.println("getOne_For_Update requestURL= " + requestURL);
 			
 			try {
 				/***************************1.接收請求參數****************************************/
@@ -249,8 +247,7 @@ public class MovServlet extends HttpServlet{
 				if(movverStrs != null) {
 					movverToken = movverStrs.split(",");
 				}
-				
-				
+								
 				//先split電影語言字串，再把值送到update_movie_input.jsp
 				String movlanStrs = movVO.getMovlan();
 				String[] movlanToken = {""};
@@ -282,7 +279,6 @@ public class MovServlet extends HttpServlet{
 			req.setAttribute("errorMsgs", errorMsgs);
 			
 			String requestURL = req.getParameter("requestURL");
-			System.out.println("update requestURL= " + requestURL);
 			
 			try {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
@@ -410,9 +406,6 @@ public class MovServlet extends HttpServlet{
 				movVO = movSvc.updateMov(movname, movver, movtype, movlan, movondate, movoffdate, movdurat, movrating, movditor, movcast, movdes, movno);
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
-				//修改我  ///back-end/movie/listMovies_ByCompositeQuery.jsp
-//				req.setAttribute("movVO", movVO);
-//				String url = "/back-end/movie/listOneMovie.jsp";
 				if(requestURL.equals("/back-end/movie/listMovies_ByCompositeQuery.jsp")){
 					HttpSession session = req.getSession();
 					Map<String, String[]> map = (Map<String, String[]>)session.getAttribute("map");

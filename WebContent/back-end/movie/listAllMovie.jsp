@@ -101,7 +101,7 @@
 	</tr>
 	<%@ include file="pages/page1.file" %> 
 	<c:forEach var="movVO" items="${list}" varStatus="no" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-	<tr${(movVO.movno==param.movno) ? 'bgcolor=#CCCCFF':''}>
+	<tr align='center' valign='middle' ${(movVO.movno==param.movno) ? 'bgcolor=#CCCCFF':''}>
 		<td>${no.index+1}</td>
 		<td>${movVO.getMovname()}</td>
 		<td>${movVO.getMovver()}</td>
@@ -119,9 +119,9 @@
 		<td>
 		  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" style="margin-bottom: 0px; text-align:center;">
 		     <input type="submit" value="修改">
-		     <input type="hidden" name="movno"  value="${movVO.movno}">
-			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
-			     <input type="hidden" name="whichPage"	value="<%=whichPage%>">
+		     <input type="hidden" name="movno" value="${movVO.movno}">
+			 <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
+			 <input type="hidden" name="whichPage"	value="<%=whichPage%>">
 		     <input type="hidden" name="action"	value="getOne_For_Update">
 		   </FORM>
 		</td>
