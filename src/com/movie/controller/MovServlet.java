@@ -212,8 +212,11 @@ public class MovServlet extends HttpServlet{
 				/***************************2.開始新增資料***************************************/				
 				MovService movSvc = new MovService();
 				movSvc.addMov(movname, movver, movtype, movlan, movondate, movoffdate, movdurat, movrating, movditor, movcast, movdes, movpos, movtra);
-
+					
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/				
+				String addSuccess = "【  " + movname + " 】 " + "新增成功!";
+				req.setAttribute("addSuccess", addSuccess);	
+				
 				String url = "/back-end/movie/listAllMovie.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);	
@@ -357,7 +360,6 @@ public class MovServlet extends HttpServlet{
 				
 				Part movposPart = req.getPart("movpos");	
 				byte[] movpos = movVO.getMovpos();
-				System.out.println("~enter else movpos~ " + movpos);
 				if(movposPart.getContentType() != null && movposPart.getContentType().indexOf("image") >= 0) {	
 				//if(movposPart != null) {	//這樣判斷是不對的，因為即便沒東西，會回傳這個 application/octet-stream	 			
 					
@@ -371,7 +373,6 @@ public class MovServlet extends HttpServlet{
 
 				Part movtraPart = req.getPart("movtra");
 				byte[] movtra = movVO.getMovtra();
-				System.out.println("~enter else movtra~ " + movtra);
 				if(movtraPart.getContentType() != null && movtraPart.getContentType().indexOf("video") >= 0) {				
 					InputStream movtrais = movtraPart.getInputStream();
 					movtra = new byte[movtrais.available()];

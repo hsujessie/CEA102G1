@@ -92,7 +92,7 @@
 			<!-- 多選checkbox -->
 				<input type="checkbox" name="movver" value="2D"      <c:forEach var="i" begin="0" end="2"> <c:if test="${movverToken[i].contains('2D')}">      checked </c:if></c:forEach> >2D<br/>
 				<input type="checkbox" name="movver" value="3D"      <c:forEach var="i" begin="0" end="2"> <c:if test="${movverToken[i].contains('2D')}">      checked </c:if></c:forEach> >3D<br/>
-				<input type="checkbox" name="movver" value="IMAX 3D" <c:forEach var="i" begin="0" end="2"> <c:if test="${movverToken[i].contains('IMAX 3D')}"> checked </c:if></c:forEach> >IMAX 3D<br/>
+				<input type="checkbox" name="movver" value="IMAX"    <c:forEach var="i" begin="0" end="2"> <c:if test="${movverToken[i].contains('IMAX')}">    checked </c:if></c:forEach> >IMAX<br/>
 		</td>
 	</tr>
 	<tr>

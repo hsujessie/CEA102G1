@@ -89,7 +89,7 @@
 			<!-- 多選checkbox -->
 			<input type="checkbox" name="movver" value="2D">2D<br>
 			<input type="checkbox" name="movver" value="3D">3D<br>
-			<input type="checkbox" name="movver" value="IMAX 3D">IMAX 3D<br>
+			<input type="checkbox" name="movver" value="IMAX">IMAX<br>
 		</td>
 	</tr>
 	<tr>

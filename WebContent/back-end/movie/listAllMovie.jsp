@@ -8,8 +8,6 @@
     List<MovVO> list = movSvc.getAll();
     pageContext.setAttribute("list",list);
 %>
-
-
 <html>
 <head>
 <title>所有電影資訊 - listAllMovie.jsp</title>
@@ -100,6 +98,11 @@
 		<th>修改</th>
 	</tr>
 	<%@ include file="pages/page1.file" %> 
+	<c:if test="${addSuccess != null}">
+		<h2 style="color:red">  
+			${addSuccess}
+		</h2>
+	</c:if>
 	<c:forEach var="movVO" items="${list}" varStatus="no" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 	<tr align='center' valign='middle' ${(movVO.movno==param.movno) ? 'bgcolor=#CCCCFF':''}>
 		<td>${no.index+1}</td>
