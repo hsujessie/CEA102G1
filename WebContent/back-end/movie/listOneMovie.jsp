@@ -66,10 +66,6 @@ MovVO movVO = (MovVO) request.getAttribute("movVO");
 
 <table>
 	<tr>
-		<th>電影編號</th>
-		<td><%=movVO.getMovno()%></td>
-	</tr>
-	<tr>
 		<th>電影名稱</th>
 		<td><%=movVO.getMovname()%></td>
 	</tr>

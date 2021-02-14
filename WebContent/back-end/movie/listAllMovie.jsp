@@ -84,7 +84,7 @@
 
 <table>
 	<tr>
-		<th>電影編號</th>
+		<th>編號</th>
 		<th>電影名稱</th>
 		<th>電影種類</th>
 		<th>電影類型</th>
@@ -101,9 +101,9 @@
 		<th>修改</th>
 	</tr>
 	<%@ include file="pages/page1.file" %> 
-	<c:forEach var="movVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+	<c:forEach var="movVO" items="${list}" varStatus="no" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 	<tr${(movVO.movno==param.movno) ? 'bgcolor=#CCCCFF':''}>
-		<td>${movVO.getMovno()}</td>
+		<td>${no.count}</td>
 		<td>${movVO.getMovname()}</td>
 		<td>${movVO.getMovver()}</td>
 		<td>${movVO.getMovtype()}</td>
