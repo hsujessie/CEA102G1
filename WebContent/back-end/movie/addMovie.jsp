@@ -32,26 +32,18 @@
 
 <style>
   table {
-	table-layout: fixed;
-	width: 450px;
 	background-color: white;
-	margin-top: 5px;
-	margin-bottom: 5px;
+	margin-top: 1px;
+	margin-bottom: 1px;
   }
   table, th, td {
-    border: 1px solid #CCCCFF;
+    border: 0px solid #CCCCFF;
   }
-  th,td{
-  	padding: 5px;
-  	box-sizing:border-box;white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+  th, td {
+    padding: 1px;
   }
-  th{
-  	width:150px;
-  }
-  td{
-  	width:300px;
+  .errColor{
+   	color:red;
   }
 </style>
 
@@ -67,21 +59,12 @@
 
 <h3>新增電影資訊:</h3>
 
-<%-- 錯誤表列 --%>
-<c:if test="${not empty errorMsgs}">
-	<font style="color:red">請修正以下錯誤:</font>
-	<ul>
-		<c:forEach var="message" items="${errorMsgs}">
-			<li style="color:red">${message}</li>
-		</c:forEach>
-	</ul>
-</c:if>
-
 <FORM method="post" action="<%=request.getContextPath()%>/movie/mov.do" name="form_addMovie" enctype="multipart/form-data">
 <table>
 	<tr>
 		<td>電影名稱:</td>
 		<td><input type="text" name="movname" value="<%= (movVO==null)? "金牌特務" : movVO.getMovname()%>" /></td>
+		<td class="errColor">${errorMsgs.movname}</td>
 	</tr>
 	<tr>
 		<td>電影種類:</td>
@@ -91,6 +74,7 @@
 			<input type="checkbox" name="movver" value="3D">3D<br>
 			<input type="checkbox" name="movver" value="IMAX">IMAX<br>
 		</td>
+		<td class="errColor">${errorMsgs.movver}</td>
 	</tr>
 	<tr>
 		<td>電影類型:</td>
@@ -103,6 +87,7 @@
 				<option value= "恐怖片">恐怖片</option>
 			</select>
 		</td>
+		<td class="errColor">${errorMsgs.movtype}</td>
 	</tr>
 	<tr>
 		<td>電影語言:</td>
@@ -111,18 +96,22 @@
 			<input type="checkbox" name="movlan" value="英文">英文<br>
 			<input type="checkbox" name="movlan" value="中文">中文<br>
 		</td>
+		<td class="errColor">${errorMsgs.movlan}</td>
 	</tr>
 	<tr>
 		<td>上映日期:</td>
 		<td><input name="movondate" id="mov_ondate" type="text"></td>
+		<td class="errColor">${errorMsgs.movondate}</td>
 	</tr>
 	<tr>
 		<td>下檔日期:</td>
 		<td><input name="movoffdate" id="mov_offdate" type="text"></td>
+		<td class="errColor">${errorMsgs.movoffdate}</td>
 	</tr>
 	<tr>
 		<td>片長:</td>
 		<td><input type="text" name="movdurat" value="<%= (movVO==null)? "2" : movVO.getMovdurat()%>" />小時</td>
+		<td class="errColor">${errorMsgs.movdurat}</td>
 	</tr>
 	<tr>
 		<td>電影級數:</td>
@@ -137,17 +126,20 @@
 	</tr>
 	<tr>
 		<td>導演:</td>
-		<td><input type="text" name="movditor" value="<%= (movVO==null)? "dicrector" : movVO.getMovditor()%>" /></td>
+		<td><input type="text" name="movditor" value="<%= (movVO==null)? "dicrector" : movVO.getMovditor()%>" /></td>	
+		<td class="errColor">${errorMsgs.movditor}</td>
 	</tr>
 	<tr>
 		<td>演員:</td>
 		<td><input type="text" name="movcast" value="<%= (movVO==null)? "actors" : movVO.getMovcast()%>" /></td>
+		<td class="errColor">${errorMsgs.movcast}</td>
 	</tr>
 	<tr>
 		<td>電影簡介:</td>
 		<td><textarea name="movdes">
 			<%= (movVO==null)? "description" : movVO.getMovdes()%></textarea>
 		</td>
+		<td class="errColor">${errorMsgs.movcast}</td>
 	</tr>
 	<tr>
 		<td>電影海報:</td>
