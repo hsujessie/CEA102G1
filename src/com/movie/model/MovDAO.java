@@ -274,9 +274,9 @@ public class MovDAO implements MovDAO_interface{
 		try {
 			con = ds.getConnection();
 			
-			String finalSQL = "select * from movie "
+			String finalSQL = "select * from movie"
 			          		   + jdbcUtil_CompositeQuery_Movie.get_WhereCondition(map)
-			          		   + "order by mov_no";
+			          		   + "order by mov_ondate";
 			pstmt = con.prepareStatement(finalSQL);
 			System.out.println("¡´¡´finalSQL(by MovDAO) = "+finalSQL);
 			

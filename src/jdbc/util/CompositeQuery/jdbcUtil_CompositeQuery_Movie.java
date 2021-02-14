@@ -13,10 +13,18 @@ public class jdbcUtil_CompositeQuery_Movie {
 		if("mov_no".equals(columnName)) {
 			aCondition = columnName + "=" + value;
 		}
-		else if("mov_type".equals(columnName) || "mov_ondate".equals(columnName)) {
+		else if("mov_type".equals(columnName)) {
 			aCondition = columnName + "=" + "'" + value + "'";
-		}
-		
+		}else if( "mov_ondate_year".equals(columnName)) {
+			columnName = "mov_ondate";
+			aCondition = "YEAR(" + columnName + ") " + "=" + "'" + value + "'";
+			System.out.println("aCondition= " + aCondition);
+		}else if( "mov_ondate_month".equals(columnName)) {
+			columnName = "mov_ondate";
+			aCondition = "MONTH(" + columnName + ") " + "=" + "'" + value + "'";
+			System.out.println("aCondition= " + aCondition);
+		}	
+
 		return aCondition + " ";
 	}
 	

@@ -85,13 +85,13 @@
 			<select name="mov_ondate_year">
 				<option value=""></option>
 			    <c:forEach var="year" begin="1970" end="<%= (int) (java.util.Calendar.getInstance().get(java.util.Calendar.YEAR))+1%>">		    
-					<option value="year">${year}年</option>
+					<option value="${year}">${year}年</option>
 				</c:forEach>
 			</select>
 			<select name="mov_ondate_month">
 				<option value=""></option>
 			    <c:forEach var="month" begin="1" end="12">
-					<option value="month">${month}月</option>
+					<option value="${month}">${month}月</option>
 				</c:forEach>
 			</select>		
 			<input type="hidden" name="action" value="listMovies_ByCompositeQuery">
