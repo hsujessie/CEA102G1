@@ -18,7 +18,7 @@
 	width: 80%;
     margin: 2% 0 0 2%;
     color: white;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.3);
     box-sizing: border-box;
     padding: 2%;
 }
@@ -157,10 +157,6 @@ body.barber_version .sidebar-nav li a:hover {
 /*------------------------------------------------------------------
     BUTTON
 -------------------------------------------------------------------*/
-#btlink:hover{
-	color:white;
-}
-
 body.barber_version .grd1 {
 	color: #ffffff;
     background: #111111;

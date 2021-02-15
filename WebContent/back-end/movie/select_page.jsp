@@ -45,7 +45,6 @@
             </li>
             </ul>
 
-            <hr>
             <h3>複合查詢</h3>
             <ul>
                 <li>
@@ -58,7 +57,7 @@
                                 </c:forEach>
                             </select>
                         <br><b>電影類型:</b>
-                            <select name="mov_type">
+                            <select name="mov_type" style="color:black;">
                                 <option value=""></option>
                                 <option value="劇情片">劇情片</option>
                                 <option value="動畫片">動畫片</option>
@@ -67,13 +66,14 @@
                                 <option value="科幻片">科幻片</option>
                                 <option value="恐怖片">恐怖片</option>
                             </select>
-                        <br><b>日期:</b>
+                        <br><b>選擇年份:</b>
                         <select name="mov_ondate_year">
                             <option value=""></option>
                             <c:forEach var="year" begin="1970" end="<%= (int) (java.util.Calendar.getInstance().get(java.util.Calendar.YEAR))+1%>">
                                 <option value="${year}">${year}年</option>
                             </c:forEach>
                         </select>
+                        <br><b>選擇月份:</b>
                         <select name="mov_ondate_month">
                             <option value=""></option>
                             <c:forEach var="month" begin="1" end="12">
@@ -88,7 +88,6 @@
                 </li>
             </ul>
 
-            <hr>
             <h3>電影管理</h3>
             <ul>
             <li><a href='<%=request.getContextPath()%>/back-end/movie/addMovie.jsp'>Add</a> a new Movie.</li>

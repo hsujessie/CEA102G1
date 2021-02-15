@@ -1,0 +1,10 @@
+select{
+	text-decoration: none;    
+	border-color: transparent;
+    background-color: transparent;
+    width: 150px;
+    border-bottom: 2px dashed #bb9d52;
+    margin-left: 10px;
+    box-sizing: border-box;
+    padding-bottom: 3px;
+}
