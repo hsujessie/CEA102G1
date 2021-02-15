@@ -23,9 +23,9 @@
 
         <!-- Start Section2-->
         <div id="section2">
-            <h3>查詢電影:</h3>
+            <h3>查詢電影</h3>
             <ul>
-            <li><a href="<%=request.getContextPath()%>/back-end/movie/listAllMovie.jsp">List</a> all Movies.  <br><br></li>
+            <li><a class="goldhover" href="<%=request.getContextPath()%>/back-end/movie/listAllMovie.jsp">List</a> all Movies.  <br><br></li>
 
             <jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService" />
 
@@ -38,16 +38,18 @@
                     </c:forEach>
                     </select>
                     <input type="hidden" name="action" value="getOne_For_Display">
-                    <input type="submit" value="送出">
+        			<a class="btn btn-light btn-radius btn-brd grd1 effect-1" style="color:white;">
+						<input type="submit" value="送出" style="text-decoration: none; background-color:transparent; border:0px;">
+        			</a>
                 </FORM>
             </li>
             </ul>
 
             <hr>
+            <h3>複合查詢</h3>
             <ul>
                 <li>
                     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" >
-                        <b style="color:teal;font-size:20px;">複合查詢</b>
                         <br><b>選擇電影:</b>
                             <select name="mov_no">
                                 <option value=""></option>
@@ -79,7 +81,9 @@
                             </c:forEach>
                         </select>
                         <input type="hidden" name="action" value="listMovies_ByCompositeQuery">
-                        <input type="submit" value="送出">
+	        			<a class="btn btn-light btn-radius btn-brd grd1 effect-1" style="color:white;">
+							<input type="submit" value="送出" style="text-decoration: none; background-color:transparent; border:0px;">
+	        			</a>
                     </FORM>
                 </li>
             </ul>
