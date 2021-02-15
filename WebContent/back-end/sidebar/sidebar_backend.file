@@ -1,0 +1,41 @@
+<!-- Start Sidebar-wrapper -->
+<div id="wrapper" >
+    <div id="sidebar-wrapper">
+        <div class="side-top">
+            <div class="logo-sidebar">
+                <img src="../../sources/images/logos/logo_B.png" alt="image">
+            </div>
+            <ul class="sidebar-nav">
+                <li><a class="active" href="">後台管理員管理</a></li>
+                <li><a href="">會員管理</a></li>
+                <li><a href="">訂單管理</a></li>
+                <li><a href="">場次排程管理</a></li>
+                <li><a href="/CEA102G1/back-end/movie/select_page.jsp">電影資訊管理</a></li>
+                <li><a href="">即時客服管理</a></li>
+                <li><a href="">檢舉管理</a></li>
+                <li><a href="">影廳管理</a></li>
+                <li><a href="">餐點管理</a></li>
+                <li><a href="">公告管理</a></li>
+                <li><a href="">FAQ管理</a></li>
+            </ul>
+        </div>
+    </div>
+</div><!-- End Sidebar-wrapper -->
+
+<script>
+(function($) {
+    "use strict";
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    smoothScroll.init({
+        selector: '[data-scroll]', // Selector for links (must be a class, ID, data attribute, or element tag)
+        selectorHeader: null, // Selector for fixed headers (must be a valid CSS selector) [optional]
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 0, // Integer. How far to offset the scrolling anchor location in pixels
+        callback: function ( anchor, toggle ) {} // Function to run after scrolling
+    });
+})(jQuery);
+</script>
