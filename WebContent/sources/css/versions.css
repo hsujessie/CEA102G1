@@ -154,6 +154,7 @@ body.barber_version #sidebar-wrapper {
     left: 280px;
     width: 0;
     height: 100%;
+    background-color: white;
     margin-left: -280px;
     overflow-y: auto;
     -webkit-transition: all 0.5s ease;
