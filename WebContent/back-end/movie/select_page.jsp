@@ -23,17 +23,15 @@
 
         <!-- Start Section2-->
         <div id="section2">
-	        <div>
-	        	<div>
-		        	<h3>查詢電影</h3>
+	        <div class="row mr-tp-thirty">
+	        	<div class="col-lg-1 col-md-1 col-sm-1">
+		        	<h3>電影列表</h3>
 		        </div>
 	            
-	            <div>
-	           		<a class="goldhover" href="<%=request.getContextPath()%>/back-end/movie/listAllMovie.jsp">List</a> all Movies.  <br><br>
-	            
+	            <div class="mr-lf mr-tp-twenty">
+	           		<a class="font-weight-seven" href="<%=request.getContextPath()%>/back-end/movie/listAllMovie.jsp">LIST</a> all Movies.<br>  
 	            	<jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService" />
-	
-	                <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" >
+	                <%-- <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" >
 	                    <b>選擇電影:</b>
 	                    <select name="movno">
 	                    <c:forEach var="movVO" items="${movSvc.all}" >
@@ -44,24 +42,24 @@
 	        			<a class="btn btn-light btn-radius btn-brd grd1 effect-1" style="color:white;">
 							<input type="submit" value="送出" style="text-decoration: none; background-color:transparent; border:0px;">
 	        			</a>
-	                </FORM>
+	                </FORM> --%>
 	            </div>
 	        </div>
 	        
-			<div>
-				<div>
-					<h3>複合查詢</h3>
+			<div class="row mr-tp-thirty">
+	        	<div class="col-lg-1 col-md-1 col-sm-1">
+					<h3>電影查詢</h3>
 				</div>
-				<div>
+				<div class="mr-lf">
 					<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" >
-                        <br><b>選擇電影:</b>
+                        <br><b>電影名稱</b>
                             <select name="mov_no">
                                 <option value=""></option>
                                 <c:forEach var="movVO" items="${movSvc.all}" >
                                     <option value="${movVO.movno}">${movVO.movname}
                                 </c:forEach>
                             </select>
-                        <br><b>電影類型:</b>
+                        <br><b>電影類型</b>
                             <select name="mov_type">
                                 <option value=""></option>
                                 <option value="劇情片">劇情片</option>
@@ -71,14 +69,14 @@
                                 <option value="科幻片">科幻片</option>
                                 <option value="恐怖片">恐怖片</option>
                             </select>
-                        <br><b>選擇年份:</b>
+                        <br><b>選擇年份</b>
                         <select name="mov_ondate_year">
                             <option value=""></option>
                             <c:forEach var="year" begin="1970" end="<%= (int) (java.util.Calendar.getInstance().get(java.util.Calendar.YEAR))+1%>">
                                 <option value="${year}">${year}年</option>
                             </c:forEach>
                         </select>
-                        <br><b>選擇月份:</b>
+                        <br><b>選擇月份</b>
                         <select name="mov_ondate_month">
                             <option value=""></option>
                             <c:forEach var="month" begin="1" end="12">
@@ -93,12 +91,12 @@
 				</div>
 			</div>
 			
-			<div>
-				<div>
-            		<h3>電影管理</h3>
+			<div class="row mr-tp-thirty">
+	        	<div class="col-lg-1 col-md-1 col-sm-1">
+            		<h3>電影新增</h3>
 				</div>
-				<div>
-					<a href='<%=request.getContextPath()%>/back-end/movie/addMovie.jsp'>Add</a> a new Movie.
+				<div class="mr-lf mr-tp-twenty">
+					<a class="font-weight-seven" href='<%=request.getContextPath()%>/back-end/movie/addMovie.jsp'>ADD</a> an new Movie.
 				</div>
 			</div>
         </div><!-- end Section2 -->
