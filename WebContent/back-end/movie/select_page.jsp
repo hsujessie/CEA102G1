@@ -4,65 +4,25 @@
 
 <html>
 <head>
-	<!-- Mobile Metas -->
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <!-- Site Icons -->
     <link rel="shortcut icon" href="../../sources/images/logos/seenema_W.ico" type="image/x-icon" />
-
-    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../sources/css/style.css">
     <link rel="stylesheet" href="../../sources/css/bootstrap.min.css">
-    <!-- Site CSS -->
-    <link rel="stylesheet" href="../../sources/css/sideBar_backEnd.css">
-    <!-- ALL VERSION CSS -->
-    <link rel="stylesheet" href="../../sources/css/versions.css">
-    <!-- Responsive CSS -->
-    <link rel="stylesheet" href="../../sources/css/responsive.css">
     
-<title>Movie Home</title>
-   
-<style>
-  table#table-1 {
-	width: 450px;
-	background-color: #CCCCFF;
-	margin-top: 5px;
-	margin-bottom: 10px;
-    border: 3px ridge Gray;
-    height: 80px;
-    text-align: center;
-  }
-  #table-1 h3{
-  	padding-top:20px;
-  }
-</style>
-
+<title>Movie Info Management</title>
+  
 </head>
 <body class="barber_version">
     <!-- Start Container-->
-    <div id="container" style="display: flex; width: 1420px; overflow: hidden;">
+    <div id="container">
         <!-- Start Section1-->
-        <div id="section1" style="width: 20%;">
+        <div id="section1">
             <!-- ＊＊＊引入Side Bar＊＊＊-->
 			<%@ include file="../sidebar/sidebar_backend.file"%>
         </div><!-- end Section1 -->
 
         <!-- Start Section2-->
-        <div id="section2" style="width: 80%;">
-            <table id="table-1">
-                <tr><td><h3>Movie Home</h3></td></tr>
-            </table>
-
+        <div id="section2">
             <h3>查詢電影:</h3>
-
-            <%-- 錯誤表列 --%>
-            <c:if test="${not empty errorMsgs}">
-                <font style="color:red">請修正以下錯誤:</font>
-                <ul>
-                    <c:forEach var="message" items="${errorMsgs}">
-                        <li style="color:red">${message}</li>
-                    </c:forEach>
-                </ul>
-            </c:if>
-
             <ul>
             <li><a href="<%=request.getContextPath()%>/back-end/movie/listAllMovie.jsp">List</a> all Movies.  <br><br></li>
 

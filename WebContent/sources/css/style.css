@@ -1,0 +1,166 @@
+/*------------------------------------------------------------------
+    IMPORT FONTS
+-------------------------------------------------------------------*/
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700|Noto+Serif:400,700');
+
+#container{
+	display: flex;
+	width: 1420px;
+	overflow: hidden;
+}
+
+#section1{
+	width: 20%;
+}
+
+#section2{
+	width: 80%;
+    margin: 2% 0 0 2%;
+}
+
+body {
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.80857;
+    background-image: url('../images/bgCinema.png');
+}
+
+/*------------------------------------------------------------------
+    SIDEBAR
+-------------------------------------------------------------------*/
+ul, li, ol{
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+.navbar-nav > li > a {
+    border-radius: 0;
+    color: #ffffff !important;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    background-color: transparent;
+}
+
+.navbar-nav > li a {
+    background-color: transparent !important;
+}
+
+body.barber_version .sidebar-nav li a.active{
+	background: #bb9d52;
+	color: #ffffff;
+}
+
+.side-top{
+	position: absolute;
+	top: 12%;
+	width: 280px;
+	text-align: center;
+	margin: -20px auto;
+	padding: 0 30px;
+	list-style: none;
+}
+
+body.barber_version .navbar-nav span {
+    color: #424145 !important;
+}
+
+body.barber_version .sidebar-nav li:hover a {
+    background: #bb9d52;
+	color: #ffffff;
+}
+body.barber_version a:hover,
+body.barber_version a:focus {
+    color: #893d00;
+}
+
+body.barber_version li.active > a,
+body.barber_version li.active > a:focus,
+body.barber_version li.active > a:hover,
+body.barber_version :hover i{
+    color: #ffffff;
+    background: #bb9d52;
+}
+
+body.barber_version {
+    overflow-x: hidden;
+}
+
+body.barber_version #wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+body.barber_version #sidebar-wrapper {
+    z-index: 1000;
+    border-right: 1px dashed rgba(255, 255, 255, 0.1);
+    position: fixed;
+    left: 280px;
+    width: 0;
+    height: 100%;
+    background-color: white;
+    margin-left: -280px;
+    overflow-y: auto;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+body.barber_version #sidebar-wrapper {
+    width: 280px;
+}
+
+/* Sidebar Styles */
+body.barber_version .logo-sidebar {
+    display: block;
+    margin: 0 0 2em;
+}
+
+body.barber_version .sidebar-nav li {
+    line-height: 45px;
+	margin-bottom: 15px;
+}
+
+body.barber_version .sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #999999;
+	background-color: transparent;
+	font-weight: 600;
+	padding: 7px 17px 7px;
+	-webkit-border-radius: 10px;
+	-ms-border-radius: 10px;
+	border-radius: 10px;
+	line-height: 21px;
+}
+
+body.barber_version .sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+body.barber_version .sidebar-nav li a:active,
+body.barber_version .sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+@media(min-width:768px) {
+    body.barber_version #wrapper {
+        padding-left: 285px;
+    }
+    body.barber_version #sidebar-wrapper {
+        width: 285px;
+    }
+    body.barber_version #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+    body.barber_version #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
