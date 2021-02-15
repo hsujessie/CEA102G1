@@ -24,8 +24,13 @@
 	letter-spacing: 1px;
 }
 
+#section2 a{
+	color: #bb9d52;
+}
+
 #section2 a:hover{
-	color:#bb9d52;
+	color: rgba(8, 8, 8, 0.9);
+	text-shadow: 2px 2px 2px #999999;
 }
 
 body {
