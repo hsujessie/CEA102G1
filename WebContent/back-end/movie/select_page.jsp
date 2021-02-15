@@ -23,32 +23,37 @@
 
         <!-- Start Section2-->
         <div id="section2">
-            <h3>查詢電影</h3>
-            <ul>
-            <li><a class="goldhover" href="<%=request.getContextPath()%>/back-end/movie/listAllMovie.jsp">List</a> all Movies.  <br><br></li>
-
-            <jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService" />
-
-            <li>
-                <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" >
-                    <b>選擇電影:</b>
-                    <select name="movno">
-                    <c:forEach var="movVO" items="${movSvc.all}" >
-                    <option value="${movVO.movno}">${movVO.movname}
-                    </c:forEach>
-                    </select>
-                    <input type="hidden" name="action" value="getOne_For_Display">
-        			<a class="btn btn-light btn-radius btn-brd grd1 effect-1" style="color:white;">
-						<input type="submit" value="送出" style="text-decoration: none; background-color:transparent; border:0px;">
-        			</a>
-                </FORM>
-            </li>
-            </ul>
-
-            <h3>複合查詢</h3>
-            <ul>
-                <li>
-                    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" >
+	        <div>
+	        	<div>
+		        	<h3>查詢電影</h3>
+		        </div>
+	            
+	            <div>
+	           		<a class="goldhover" href="<%=request.getContextPath()%>/back-end/movie/listAllMovie.jsp">List</a> all Movies.  <br><br>
+	            
+	            	<jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService" />
+	
+	                <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" >
+	                    <b>選擇電影:</b>
+	                    <select name="movno">
+	                    <c:forEach var="movVO" items="${movSvc.all}" >
+	                    <option value="${movVO.movno}">${movVO.movname}
+	                    </c:forEach>
+	                    </select>
+	                    <input type="hidden" name="action" value="getOne_For_Display">
+	        			<a class="btn btn-light btn-radius btn-brd grd1 effect-1" style="color:white;">
+							<input type="submit" value="送出" style="text-decoration: none; background-color:transparent; border:0px;">
+	        			</a>
+	                </FORM>
+	            </div>
+	        </div>
+	        
+			<div>
+				<div>
+					<h3>複合查詢</h3>
+				</div>
+				<div>
+					<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" >
                         <br><b>選擇電影:</b>
                             <select name="mov_no">
                                 <option value=""></option>
@@ -85,13 +90,17 @@
 							<input type="submit" value="送出" style="text-decoration: none; background-color:transparent; border:0px;">
 	        			</a>
                     </FORM>
-                </li>
-            </ul>
-
-            <h3>電影管理</h3>
-            <ul>
-            <li><a href='<%=request.getContextPath()%>/back-end/movie/addMovie.jsp'>Add</a> a new Movie.</li>
-            </ul>
+				</div>
+			</div>
+			
+			<div>
+				<div>
+            		<h3>電影管理</h3>
+				</div>
+				<div>
+					<a href='<%=request.getContextPath()%>/back-end/movie/addMovie.jsp'>Add</a> a new Movie.
+				</div>
+			</div>
         </div><!-- end Section2 -->
     </div><!-- end Container-->
 </body>

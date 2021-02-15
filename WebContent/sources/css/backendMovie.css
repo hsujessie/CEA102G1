@@ -15,8 +15,8 @@ select{
 }
 
 h3{
-	color: rgb(64,64,64);
-    border-right: 1px double black;
+	color: rgb(48,48,48);
+    border-right: 2px solid #bb9d52;
     width: 88px;
     box-sizing: border-box;
     padding: 8px;
