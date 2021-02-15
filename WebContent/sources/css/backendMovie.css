@@ -7,4 +7,14 @@ select{
     margin-left: 10px;
     box-sizing: border-box;
     padding-bottom: 3px;
+    color: #bb9d52;
+}
+
+h3{
+	color: #080808;
+	text-shadow: 2px 2px 2px #bb9d52;
+}
+
+b{
+	font-size:16px;
 }

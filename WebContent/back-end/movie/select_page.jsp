@@ -57,7 +57,7 @@
                                 </c:forEach>
                             </select>
                         <br><b>電影類型:</b>
-                            <select name="mov_type" style="color:black;">
+                            <select name="mov_type">
                                 <option value=""></option>
                                 <option value="劇情片">劇情片</option>
                                 <option value="動畫片">動畫片</option>
