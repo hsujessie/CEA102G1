@@ -5,8 +5,9 @@
 <html>
 <head>
     <link rel="shortcut icon" href="../../sources/images/logos/seenema_W.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="../../sources/css/style.css">
     <link rel="stylesheet" href="../../sources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../sources/css/style.css">
+    <link rel="stylesheet" href="../../sources/css/backendMovie.css">
     
 <title>Movie Info Management</title>
   

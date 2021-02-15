@@ -17,6 +17,14 @@
 #section2{
 	width: 80%;
     margin: 2% 0 0 2%;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-sizing: border-box;
+    padding: 2%;
+}
+
+#section2 a:hover{
+	color:#bb9d52;
 }
 
 body {
@@ -24,6 +32,10 @@ body {
     font-family: 'Montserrat', sans-serif;
     line-height: 1.80857;
     background-image: url('../images/bgCinema.png');
+}
+
+body a:hover,a:focus{
+    text-decoration: none;
 }
 
 /*------------------------------------------------------------------
@@ -115,7 +127,6 @@ body.barber_version #sidebar-wrapper {
     width: 280px;
 }
 
-/* Sidebar Styles */
 body.barber_version .logo-sidebar {
     display: block;
     margin: 0 0 2em;
@@ -128,7 +139,6 @@ body.barber_version .sidebar-nav li {
 
 body.barber_version .sidebar-nav li a {
     display: block;
-    text-decoration: none;
     color: #999999;
 	background-color: transparent;
 	font-weight: 600;
@@ -140,13 +150,7 @@ body.barber_version .sidebar-nav li a {
 }
 
 body.barber_version .sidebar-nav li a:hover {
-    text-decoration: none;
     color: #fff;
-}
-
-body.barber_version .sidebar-nav li a:active,
-body.barber_version .sidebar-nav li a:focus {
-    text-decoration: none;
 }
 
 @media(min-width:768px) {
