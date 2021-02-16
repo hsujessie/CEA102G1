@@ -7,39 +7,31 @@
 /*------------------------------------------------------------------
     GENERAL
 -------------------------------------------------------------------*/
-#section{
-	letter-spacing: 1px;
-}
-
-#section a{
-	color: #bb9d52;
-}
-
-#section a:hover{
-	color: rgba(8, 8, 8, 0.9);
-	text-shadow: 2px 2px 2px #999999;
-}
-
-#section h3{
-	color: rgb(51,51,51);
-    text-shadow: #bb9d52 0.1em 0.1em 0.2em;
-}
-
 body {
     font-size: 15px;
     font-family: 'Montserrat', sans-serif;
     line-height: 1.8;
+	overflow: scroll;
+	letter-spacing: 1px;
 }
 
 body a:hover,a:focus{
     text-decoration: none;
 }
 
-.sections-com{
-	height: 100vh;
-	margin: 0;
-	padding: 0;
-	overflow: scroll;
+
+.h3-style{  /* #section h3 */
+	color: rgb(51,51,51);
+    text-shadow: #bb9d52 0.1em 0.1em 0.2em;
+}
+
+.a-color{/* #section a */
+	color: #bb9d52;
+}
+
+.a-color:hover{ /*#section a:hover*/
+	color: rgba(8, 8, 8, 0.9);
+	text-shadow: 2px 2px 2px #999999;
 }
 
 /*------------------------------------------------------------------
@@ -120,7 +112,12 @@ body.barber_version #sidebar-wrapper {
 
 body.barber_version .logo-sidebar {
     display: block;
-    margin: 0 0 2em;
+    margin: 5% 0 15% 0%;
+    width: 100%;
+}
+
+.logo-sidebar img{
+	width:100%;
 }
 
 body.barber_version .sidebar-nav li {
@@ -226,7 +223,7 @@ body.barber_version .effect-1:after {
     position: absolute;
     width: 100%;
     height: 100%;
-    border-radius: 10px;
+    border-radius: 2%;
     content: '';
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;

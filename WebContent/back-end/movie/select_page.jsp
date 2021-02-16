@@ -7,29 +7,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="../../sources/images/logos/seenema_W.ico" type="image/x-icon" />
     <link rel="stylesheet" href="../../sources/css/cssReset.css">
-    <link rel="stylesheet" href="../../sources/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../sources/css/style.css">
     <link rel="stylesheet" href="../../sources/css/backendMovie.css">
     
+<!-- ========================================= IMPORT要按順序 ========================================== -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- ========================================= IMPORT要按順序 ========================================== -->
+
 <title>Movie Info Management</title>
 
 </head>
 <body class="barber_version container-fluid">
     <div class="row">
         <!-- Start Side Bar-->
-        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 sections-com" style="background-color: rgb(232,232,232);">
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 red" style="background-color: rgb(232,232,232);">
 			<%@ include file="../sidebar/sidebar_backend.file"%><!-- ＊＊＊引入Side Bar＊＊＊-->
         </div><!-- end Side Bar-->
 
         <!-- Start Section-->
-        <div id="section" class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+        <div id="section" class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 green">
         	
-	        <div class="row center-box"><!-- Start Center-box-->
-	        	<div class="center-content"><!-- Start Center-content-->
-		        	<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2n">
-			        	<h3>電影列表</h3>
+	        <div class="center-box purple"><!-- Start Center-box-->
+	        	<div class="row center-content blue"><!-- Start Center-content-->
+		        	<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2n h3-sty-line orange">
+			        	<h3>電影</h3>
+			        	<h3>列表</h3>
 			        </div>
-		            <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 box-sizing pd-left-five pd-top-five">
+		            <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 box-sizing pd-left-five pd-top-five deeppink">
 		           		<a class="font-weight-seven" href="<%=request.getContextPath()%>/back-end/movie/listAllMovie.jsp">LIST</a> all Movies.<br>  
 		            	<jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService" />
 		                <%-- <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" >
@@ -48,12 +54,13 @@
 		         </div><!-- end Center-content-->
 			</div><!-- end Center-box-->
 	        
-	        <div class="row center-box"><!-- Start Center-box-->
-	        	<div class="center-content"><!-- Start Center-content-->
-		        	<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2n">
-						<h3>電影查詢</h3>
+	        <div class="center-box purple"><!-- Start Center-box-->
+	        	<div class="row center-content blue"><!-- Start Center-content-->
+		        	<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2n h3-sty-line orange">
+						<h3>電影</h3>
+						<h3>查詢</h3>
 					</div>
-					<div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 box-sizing box-sizing pd-left-five">
+					<div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 box-sizing box-sizing pd-left-five deeppink">
 						<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do">
 	                        <b>電影名稱</b>
 	                            <select name="mov_no">
@@ -95,19 +102,47 @@
 		         </div><!-- end Center-content-->
 			</div><!-- end Center-box-->
 			
-	        <div class="row center-box"><!-- Start Center-box-->
-	        	<div class="center-content"><!-- Start Center-content-->
-		        	<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2n">
-	            		<h3>電影新增</h3>
+	        <div class="center-box purple"><!-- Start Center-box-->
+	        	<div class="row center-content blue"><!-- Start Center-content-->
+		        	<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2n h3-sty-line orange">
+	            		<h3>電影</h3>
+	            		<h3>新增</h3>
 					</div>
-		            <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 box-sizing pd-left-five pd-top-five">
-						<a class="font-weight-seven" href='<%=request.getContextPath()%>/back-end/movie/addMovie.jsp'>ADD</a> an new Movie.
+		            <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 box-sizing pd-left-five pd-top-five deeppink">
+						<a class="font-weight-seven" data-toggle="modal" data-target="#basicModal">ADD</a> an new Movie.
+						<%-- <a class="font-weight-seven" href='<%=request.getContextPath()%>/back-end/movie/addMovie.jsp'>ADD</a> an new Movie. --%>
 					</div>
 		         </div><!-- end Center-content-->
 			</div><!-- end Center-box-->
 				
         </div><!-- end Section-->
     </div>
+    
+<!-- Start Modal-->  
+<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+				
+			<div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title" id="myModalLabel">The Bootstrap modal-header</h3>
+            </div>
+			
+			<div class="modal-body">
+<!-- ========================================= 引入jsp ========================================== -->
+               <jsp:include page="addMovie.jsp"/>
+<!-- ========================================= 引入jsp ========================================== -->
+			</div>
+			
+			<div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+		
+		</div>
+	</div>
+</div><!-- end Modal--> 
+
 </body>
 <link   rel="stylesheet" type="text/css" href="/CEA102G1/sources/datetimepicker/jquery.datetimepicker.css"/>
 <script src="/CEA102G1/sources/datetimepicker/jquery.js"></script>

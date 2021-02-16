@@ -3,7 +3,7 @@
 -------------------------------------------------------------------*/
 /* *{
 	outline:1px solid red;	
-}  */
+}   */
 
 .red{
 	border:3px solid red;
@@ -17,16 +17,13 @@
 .green{
 	border:3px solid green;
 }
-.blue{
-	border:3px solid blue;
-}
 .orange{
 	border:3px solid orange;
 	box-sizing:border-box;
 	padding-left: 2%;
 }
-.yellow{
-	border:3px solid yellow;
+.deeppink{
+	border:3px solid deeppink;
 }
 
 
@@ -35,13 +32,14 @@
     Flex + margin 垂直置中方式
 -------------------------------------------------------------------*/
 .center-box {
-  margin: auto;
-  display: flex;
+  	margin: auto;
+	box-sizing: border-box;
+	padding-left: 10%;
 }
 
 .center-box .center-content{
   margin: auto;
-  width: 800px;
+  vertical-align: middle;
 }
 
 
@@ -65,10 +63,8 @@ select{
 	line-hight: 5px;
 }
 
-h3{
+.h3-sty-line{
     width: 88px;
-    box-sizing: border-box;
-    padding: 8px;
     text-align: center;
     line-height: 30px;
     border-right: 2px solid #bb9d52;
