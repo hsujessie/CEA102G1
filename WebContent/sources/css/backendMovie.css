@@ -23,6 +23,8 @@
 }
 .orange{
 	border:3px solid orange;
+	box-sizing:border-box;
+	padding-left: 2%;
 }
 .yellow{
 	border:3px solid yellow;
@@ -47,6 +49,10 @@
 /*------------------------------------------------------------------
     OTHERS
 -------------------------------------------------------------------*/
+.center-box {
+	margin-bottom: 5%;
+}
+	
 select{
 	text-decoration: none;    
 	border-color: transparent;
@@ -67,7 +73,7 @@ h3{
     box-sizing: border-box;
     padding: 8px;
     text-align: center;
-    line-height: 28px;
+    line-height: 30px;
     text-shadow: #bb9d52 0.1em 0.1em 0.2em;
 }
 
@@ -76,6 +82,22 @@ b{
 	color: rgb(88,88,88);
 }
 
+
+/*------------------------------------------------------------------
+    FOR AJUSTMENT
+-------------------------------------------------------------------*/
 .font-weight-seven{
 	 font-weight: 700;
+}
+
+.box-sizing{
+	box-sizing: border-box;
+}
+
+.pd-left-five{
+    padding-left: 5%;
+}
+
+.pd-top-five{
+    padding-top: 5%;
 }

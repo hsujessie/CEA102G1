@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <html>
 <head>
@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../../sources/css/backendMovie.css">
     
 <title>Movie Info Management</title>
-  
+
 </head>
 <body class="barber_version container-fluid">
     <div class="row">
@@ -22,14 +22,14 @@
         </div><!-- end Side Bar-->
 
         <!-- Start Section-->
-        <div id="section" class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 red">
+        <div id="section" class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
         	
-	        <div class="row center-box"><!-- Start center-box-->
-	        	<div class="center-content blue"><!-- Start center-content-->
-		        	<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2n green">
+	        <div class="row center-box"><!-- Start Center-box-->
+	        	<div class="center-content"><!-- Start Center-content-->
+		        	<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2n">
 			        	<h3>電影列表</h3>
 			        </div>
-		            <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 orange">
+		            <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 box-sizing pd-left-five pd-top-five">
 		           		<a class="font-weight-seven" href="<%=request.getContextPath()%>/back-end/movie/listAllMovie.jsp">LIST</a> all Movies.<br>  
 		            	<jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService" />
 		                <%-- <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" >
@@ -45,15 +45,15 @@
 		        			</a>
 		                </FORM> --%>
 		            </div>
-		         </div><!-- End center-content-->
-			</div><!-- End center-boxå-->
+		         </div><!-- end Center-content-->
+			</div><!-- end Center-box-->
 	        
-	        <div class="row center-box"><!-- Start center-box-->
-	        	<div class="center-content"><!-- Start center-content-->
-		        	<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+	        <div class="row center-box"><!-- Start Center-box-->
+	        	<div class="center-content"><!-- Start Center-content-->
+		        	<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2n">
 						<h3>電影查詢</h3>
 					</div>
-					<div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+					<div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 box-sizing box-sizing pd-left-five">
 						<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do">
 	                        <b>電影名稱</b>
 	                            <select name="mov_no">
@@ -92,19 +92,19 @@
 		        			</a>
 	                    </FORM>
 					</div>
-		         </div><!-- End center-content-->
-			</div><!-- End center-boxå-->
+		         </div><!-- end Center-content-->
+			</div><!-- end Center-box-->
 			
-	        <div class="row center-box"><!-- Start center-box-->
-	        	<div class="center-content"><!-- Start center-content-->
-		        	<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+	        <div class="row center-box"><!-- Start Center-box-->
+	        	<div class="center-content"><!-- Start Center-content-->
+		        	<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2n">
 	            		<h3>電影新增</h3>
 					</div>
-					<div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+		            <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 box-sizing pd-left-five pd-top-five">
 						<a class="font-weight-seven" href='<%=request.getContextPath()%>/back-end/movie/addMovie.jsp'>ADD</a> an new Movie.
 					</div>
-		         </div><!-- End center-content-->
-			</div><!-- End center-box-->
+		         </div><!-- end Center-content-->
+			</div><!-- end Center-box-->
 				
         </div><!-- end Section-->
     </div>
