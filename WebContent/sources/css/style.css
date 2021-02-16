@@ -8,7 +8,8 @@
     GENERAL
 -------------------------------------------------------------------*/
 #section{
-    background-color: rgba(255, 255, 255, 0.3);
+    /* background-color: rgba(255, 255, 255, 0.3); */
+    background-color: rgba(0, 0, 0, 0.4);
 	letter-spacing: 1px;
 }
 
@@ -36,6 +37,11 @@ body a:hover,a:focus{
     text-decoration: none;
 }
 
+.sections-com{
+	height: 100%;
+	overflow:hidden;
+}
+
 /*------------------------------------------------------------------
     SIDEBAR
 -------------------------------------------------------------------*/
@@ -44,6 +50,7 @@ ul, li, ol{
 	margin: 0px;
 	padding: 0px;
 }
+
 .navbar-nav > li > a {
     border-radius: 0;
     color: #ffffff !important;
@@ -77,6 +84,7 @@ body.barber_version .sidebar-nav li:hover a {
     background: #bb9d52;
 	color: #ffffff;
 }
+
 body.barber_version a:hover,
 body.barber_version a:focus {
     color: #893d00;

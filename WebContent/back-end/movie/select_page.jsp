@@ -18,13 +18,13 @@
     <!-- Start Container-->
     <div class="row">
         <!-- Start Side Bar-->
-        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" style="background-color: #ffffff;">
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 sections-com" style="background-color: #ffffff;">
             <!-- ＊＊＊引入Side Bar＊＊＊-->
 			<%@ include file="../sidebar/sidebar_backend.file"%>
         </div><!-- end Side Bar-->
 
         <!-- Start Section-->
-        <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10" style="border:5px solid green;">
+        <div id="section" class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 sections-com" style="border:5px solid green;">
 	        <div class="row">
 	        	<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
 		        	<h3>電影列表</h3>
