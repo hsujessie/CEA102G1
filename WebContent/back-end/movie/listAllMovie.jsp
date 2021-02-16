@@ -22,6 +22,12 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <title>電影列表 - listAllMovie.jsp</title>
+
+<style>
+/*  thead > tr > th{
+ 	width: 85px;
+ } */
+</style>
 </head>
 <body class="barber_version container-fluid">
     <div class="row">
@@ -32,67 +38,69 @@
 
         <!-- Start Section-->
         <div id="section" class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-        	<h3>電影列表</h3>
-            <table class="table table-responsive table-striped table-condensed">
-				<thead class="thead-dark">
-					<tr>
-						<th>編號</th>
-						<th>名稱</th>
-						<th>種類</th>
-						<th>類型</th>
-						<th>語言</th>
-						<th>上映日期</th>
-						<th>下檔日期</th>
-						<th>片長</th>
-						<th>級數</th>
-						<th>導演</th>
-						<th>演員</th>
-						<th>簡介</th>
-						<th>海報</th>
-						<th>預告片</th>
-						<th>修改</th>
-					</tr>				
-				</thead>
-						
-				<tbody>
-				<%@ include file="pages/page1.file" %> 
-				<c:if test="${addSuccess != null}">
-					<h2 style="color:red">  
-						${addSuccess}
-					</h2>
-				</c:if>		
-					<c:forEach var="movVO" items="${list}" varStatus="no" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-					<tr align='center' valign='middle' ${(movVO.movno==param.movno) ? 'bgcolor=#CCCCFF':''}>
-						<td>${no.index+1}</td>
-						<td>${movVO.getMovname()}</td>
-						<td>${movVO.getMovver()}</td>
-						<td>${movVO.getMovtype()}</td>
-						<td>${movVO.getMovlan()}</td>
-						<td>${movVO.getMovondate()}</td>
-						<td>${movVO.getMovoffdate()}</td>
-						<td>${movVO.getMovdurat()}小時</td>
-						<td>${movVO.getMovrating()}</td>
-						<td>${movVO.getMovditor()}</td>
-						<td>${movVO.getMovcast()}</td>
-						<td>${movVO.getMovdes()}</td>
-						<td><img src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovPos"></td>
-						<td><video controls width="150"><source src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovTra" type="video/mp4"></video></td>
-						<td>
-						  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" style="margin-bottom: 0px; text-align:center;">					 
-				             <a class="btn btn-light btn-radius btn-brd grd1 effect-1" style="color:white;"><!-- ＊＊＊按鈕＊＊＊-->
-				                <input type="submit" value="修改" style="text-decoration: none; background-color:transparent; border:0px;">
-				             </a>
-						     <input type="hidden" name="movno" value="${movVO.movno}">
-							 <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
-							 <input type="hidden" name="whichPage"	value="<%=whichPage%>">
-						     <input type="hidden" name="action"	value="getOne_For_Update">
-						   </FORM>
-						</td>
-					</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-			<%@ include file="pages/page2.file" %>
+        	<div style="margin-top:1%;">
+	        	<h3>電影列表</h3>
+	            <table class="table table-responsive table-hover">
+					<thead>
+						<tr style="border-bottom: 3px solid #bb9d52;">
+							<th>編號</th>
+							<th>名稱</th>
+							<th>種類</th>
+							<th>類型</th>
+							<th>語言</th>
+							<th>上映日期</th>
+							<th>下檔日期</th>
+							<th>片長</th>
+							<th>級數</th>
+							<th>導演</th>
+							<th>演員</th>
+							<th>簡介</th>
+							<th>海報</th>
+							<th>預告片</th>
+							<th>修改</th>
+						</tr>				
+					</thead>
+							
+					<tbody>
+					<%@ include file="pages/page1.file" %> 
+					<c:if test="${addSuccess != null}">
+						<h2 style="color:red">  
+							${addSuccess}
+						</h2>
+					</c:if>		
+						<c:forEach var="movVO" items="${list}" varStatus="no" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+						<tr align='center' valign='middle' ${(movVO.movno==param.movno) ? 'bgcolor=#CCCCFF':''}>
+							<td>${no.index+1}</td>
+							<td>${movVO.getMovname()}</td>
+							<td>${movVO.getMovver()}</td>
+							<td>${movVO.getMovtype()}</td>
+							<td>${movVO.getMovlan()}</td>
+							<td>${movVO.getMovondate()}</td>
+							<td>${movVO.getMovoffdate()}</td>
+							<td>${movVO.getMovdurat()}小時</td>
+							<td>${movVO.getMovrating()}</td>
+							<td>${movVO.getMovditor()}</td>
+							<td>${movVO.getMovcast()}</td>
+							<td>${movVO.getMovdes()}</td>
+							<td><img src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovPos"></td>
+							<td><video controls width="150"><source src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovTra" type="video/mp4"></video></td>
+							<td>
+							  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" style="margin-bottom: 0px; text-align:center;">					 
+					             <a class="btn btn-light btn-radius btn-brd grd1 effect-1" style="color:white;"><!-- ＊＊＊按鈕＊＊＊-->
+					                <input type="submit" value="修改" style="text-decoration: none; background-color:transparent; border:0px;">
+					             </a>
+							     <input type="hidden" name="movno" value="${movVO.movno}">
+								 <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
+								 <input type="hidden" name="whichPage"	value="<%=whichPage%>">
+							     <input type="hidden" name="action"	value="getOne_For_Update">
+							   </FORM>
+							</td>
+						</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+				<%@ include file="pages/page2.file" %>
+			</div>
         </div><!-- end Section-->
     </div>
     
