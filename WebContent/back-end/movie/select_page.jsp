@@ -22,14 +22,14 @@
         </div><!-- end Side Bar-->
 
         <!-- Start Section-->
-        <div id="section" class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+        <div id="section" class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 red">
         	
 	        <div class="row center-box"><!-- Start center-box-->
-	        	<div class="center-content"><!-- Start center-content-->
-		        	<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2n">
+	        	<div class="center-content blue"><!-- Start center-content-->
+		        	<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2n green">
 			        	<h3>電影列表</h3>
 			        </div>
-		            <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+		            <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 orange">
 		           		<a class="font-weight-seven" href="<%=request.getContextPath()%>/back-end/movie/listAllMovie.jsp">LIST</a> all Movies.<br>  
 		            	<jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService" />
 		                <%-- <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" >
@@ -54,7 +54,7 @@
 						<h3>電影查詢</h3>
 					</div>
 					<div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-						<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" class="red">
+						<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do">
 	                        <b>電影名稱</b>
 	                            <select name="mov_no">
 	                                <option value=""></option>
