@@ -10,132 +10,84 @@
 %>
 <html>
 <head>
-<title>所有電影資訊 - listAllMovie.jsp</title>
-<style>
-  #table-1 {
-	width: 450px;
-	background-color: #CCCCFF;
-	margin-top: 5px;
-	margin-bottom: 10px;
-    border: 3px ridge Gray;
-    height: 80px;
-    text-align: center;
-  }
-  #table-1 h4 {
-    color: red;
-    display: block;
-    margin-bottom: 1px;
-  }
-  h4 {
-    color: blue;
-    display: inline;
-  }
-</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="../../sources/images/logos/seenema_W.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../../sources/css/cssReset.css">
+    <link rel="stylesheet" href="../../sources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../sources/css/style.css">
 
-<style>
-  table {
-	table-layout: fixed;
-	width: 450px;
-	background-color: white;
-	margin-top: 5px;
-	margin-bottom: 5px;
-  }
-  table, th, td {
-    border: 1px solid #CCCCFF;
-  }
-  th,td{
-  	padding: 5px;
-  	box-sizing:border-box;white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-  }
-  th{
-  	width:150px;
-  }
-  td{
-  	width:300px;
-  }
-  img{
-  	width:50px;
-  }
-</style>
+<title>電影列表 - listAllMovie.jsp</title>
 
 </head>
-<body bgcolor='white'>
-<table id="table-1">
-	<tr><td>
-		 <h3>所有電影資訊 - listAllMovie.jsp</h3>
-		 <h4><a href="<%=request.getContextPath()%>/back-end/movie/select_page.jsp">回首頁</a></h4>
-	</td></tr>
-</table>
+<body class="barber_version container-fluid">
+    <div class="row">
+        <!-- Start Side Bar-->
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 sections-com" style="background-color: rgb(232,232,232);">
+			<%@ include file="../sidebar/sidebar_backend.file"%><!-- ＊＊＊引入Side Bar＊＊＊-->
+        </div><!-- end Side Bar-->
 
-<%-- 錯誤表列 --%>
-<c:if test="${not empty errorMsgs}">
-	<font style="color:red">請修正以下錯誤:</font>
-	<ul>
-		<c:forEach var="message" items="${errorMsgs}">
-			<li style="color:red">${message}</li>
-		</c:forEach>
-	</ul>
-</c:if>
-
-<table>
-	<tr>
-		<th>編號</th>
-		<th>電影名稱</th>
-		<th>電影種類</th>
-		<th>電影類型</th>
-		<th>電影語言</th>
-		<th>上映日期</th>
-		<th>下檔日期</th>
-		<th>片長</th>
-		<th>電影級數</th>
-		<th>導演</th>
-		<th>演員</th>
-		<th>電影簡介</th>
-		<th>電影海報</th>
-		<th>電影預告片</th>
-		<th>修改</th>
-	</tr>
-	<%@ include file="pages/page1.file" %> 
-	<c:if test="${addSuccess != null}">
-		<h2 style="color:red">  
-			${addSuccess}
-		</h2>
-	</c:if>
-	<c:forEach var="movVO" items="${list}" varStatus="no" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-	<tr align='center' valign='middle' ${(movVO.movno==param.movno) ? 'bgcolor=#CCCCFF':''}>
-		<td>${no.index+1}</td>
-		<td>${movVO.getMovname()}</td>
-		<td>${movVO.getMovver()}</td>
-		<td>${movVO.getMovtype()}</td>
-		<td>${movVO.getMovlan()}</td>
-		<td>${movVO.getMovondate()}</td>
-		<td>${movVO.getMovoffdate()}</td>
-		<td>${movVO.getMovdurat()}小時</td>
-		<td>${movVO.getMovrating()}</td>
-		<td>${movVO.getMovditor()}</td>
-		<td>${movVO.getMovcast()}</td>
-		<td>${movVO.getMovdes()}</td>
-		<td><img src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovPos"></td>
-		<td><video controls width="150"><source src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovTra" type="video/mp4"></video></td>
-		<td>
-		  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" style="margin-bottom: 0px; text-align:center;">
-		     <input type="submit" value="修改">
-		     <input type="hidden" name="movno" value="${movVO.movno}">
-			 <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
-			 <input type="hidden" name="whichPage"	value="<%=whichPage%>">
-		     <input type="hidden" name="action"	value="getOne_For_Update">
-		   </FORM>
-		</td>
-	</tr>
-	</c:forEach>
-</table>
-<%@ include file="pages/page2.file" %>
-
-<br>本網頁的路徑:<br><b>
+        <!-- Start Section-->
+        <div id="section" class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+            <table class="table">
+				<tr>
+					<th>編號</th>
+					<th>電影名稱</th>
+					<th>電影種類</th>
+					<th>電影類型</th>
+					<th>電影語言</th>
+					<th>上映日期</th>
+					<th>下檔日期</th>
+					<th>片長</th>
+					<th>電影級數</th>
+					<th>導演</th>
+					<th>演員</th>
+					<th>電影簡介</th>
+					<th>電影海報</th>
+					<th>電影預告片</th>
+					<th>修改</th>
+				</tr>
+				<%@ include file="pages/page1.file" %> 
+				<c:if test="${addSuccess != null}">
+					<h2 style="color:red">  
+						${addSuccess}
+					</h2>
+				</c:if>
+				<c:forEach var="movVO" items="${list}" varStatus="no" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+				<tr align='center' valign='middle' ${(movVO.movno==param.movno) ? 'bgcolor=#CCCCFF':''}>
+					<td>${no.index+1}</td>
+					<td>${movVO.getMovname()}</td>
+					<td>${movVO.getMovver()}</td>
+					<td>${movVO.getMovtype()}</td>
+					<td>${movVO.getMovlan()}</td>
+					<td>${movVO.getMovondate()}</td>
+					<td>${movVO.getMovoffdate()}</td>
+					<td>${movVO.getMovdurat()}小時</td>
+					<td>${movVO.getMovrating()}</td>
+					<td>${movVO.getMovditor()}</td>
+					<td>${movVO.getMovcast()}</td>
+					<td>${movVO.getMovdes()}</td>
+					<td><img src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovPos"></td>
+					<td><video controls width="150"><source src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovTra" type="video/mp4"></video></td>
+					<td>
+					  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" style="margin-bottom: 0px; text-align:center;">					 
+			             <a class="btn btn-light btn-radius btn-brd grd1 effect-1" style="color:white;"><!-- ＊＊＊按鈕＊＊＊-->
+			                <input type="submit" value="修改" style="text-decoration: none; background-color:transparent; border:0px;">
+			             </a>
+					     <input type="hidden" name="movno" value="${movVO.movno}">
+						 <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
+						 <input type="hidden" name="whichPage"	value="<%=whichPage%>">
+					     <input type="hidden" name="action"	value="getOne_For_Update">
+					   </FORM>
+					</td>
+				</tr>
+				</c:forEach>
+			</table>
+			<%@ include file="pages/page2.file" %>
+        </div><!-- end Section-->
+    </div>
+    
+<%--     <br>本網頁的路徑:<br><b>
    <font color=blue>request.getServletPath():</font> <%=request.getServletPath()%><br>
-   <font color=blue>request.getRequestURI(): </font> <%=request.getRequestURI()%> </b>
-
+   <font color=blue>request.getRequestURI(): </font> <%=request.getRequestURI()%> </b> --%>
 </body>
 </html>
