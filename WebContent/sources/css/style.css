@@ -8,7 +8,6 @@
     GENERAL
 -------------------------------------------------------------------*/
 #section{
-background-color: rgba(255, 255, 255, 0.3);
 	letter-spacing: 1px;
 }
 
@@ -25,11 +24,6 @@ body {
     font-size: 15px;
     font-family: 'Montserrat', sans-serif;
     line-height: 1.8;
-    background-image: url('../images/bgCinema.png');
-  	height: 100%;
-  	background-position: center;
-  	background-repeat: no-repeat;
-  	background-size: cover;
 }
 
 body a:hover,a:focus{
