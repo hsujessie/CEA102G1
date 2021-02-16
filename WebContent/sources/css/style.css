@@ -1,34 +1,25 @@
 /*------------------------------------------------------------------
     IMPORT FONTS
 -------------------------------------------------------------------*/
-
 @import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700|Noto+Serif:400,700');
 
-#container{
-	display: flex;
-	width: 1420px;
-	overflow: hidden;
-}
 
-#section1{
-	width: 20%;
-}
-
-#section2{
-	width: 80%;
-    margin: 2% 0 0 2%;
-    color: white;
+/*------------------------------------------------------------------
+    GENERAL
+-------------------------------------------------------------------*/
+#section{
     background-color: rgba(255, 255, 255, 0.3);
     box-sizing: border-box;
     padding: 2%;
 	letter-spacing: 1px;
+	height: 90vh;
 }
 
-#section2 a{
+#section a{
 	color: #bb9d52;
 }
 
-#section2 a:hover{
+#section a:hover{
 	color: rgba(8, 8, 8, 0.9);
 	text-shadow: 2px 2px 2px #999999;
 }

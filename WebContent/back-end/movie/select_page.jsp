@@ -13,19 +13,19 @@
 <title>Movie Info Management</title>
   
 </head>
-<body class="barber_version">
+<body class="barber_version container-fluid">
     <!-- Start Container-->
-    <div id="container">
-        <!-- Start Section1-->
-        <div id="section1">
+    <div class="row">
+        <!-- Start Side Bar-->
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
             <!-- ＊＊＊引入Side Bar＊＊＊-->
 			<%@ include file="../sidebar/sidebar_backend.file"%>
-        </div><!-- end Section1 -->
+        </div><!-- end Side Bar-->
 
-        <!-- Start Section2-->
-        <div id="section2">
+        <!-- Start Section-->
+        <div id="section" class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
 	        <div class="row mr-tp-thirty">
-	        	<div class="col-lg-1 col-md-1 col-sm-1">
+	        	<div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
 		        	<h3>電影列表</h3>
 		        </div>
 	            
@@ -48,7 +48,7 @@
 	        </div>
 	        
 			<div class="row mr-tp-thirty">
-	        	<div class="col-lg-1 col-md-1 col-sm-1">
+	        	<div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
 					<h3>電影查詢</h3>
 				</div>
 				<div class="mr-lf">
@@ -93,14 +93,14 @@
 			</div>
 			
 			<div class="row mr-tp-thirty">
-	        	<div class="col-lg-1 col-md-1 col-sm-1">
+	        	<div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
             		<h3>電影新增</h3>
 				</div>
 				<div class="mr-lf mr-tp-twenty">
 					<a class="font-weight-seven" href='<%=request.getContextPath()%>/back-end/movie/addMovie.jsp'>ADD</a> an new Movie.
 				</div>
 			</div>
-        </div><!-- end Section2 -->
+        </div><!-- end Section -->
     </div><!-- end Container-->
 </body>
 <link   rel="stylesheet" type="text/css" href="/CEA102G1/sources/datetimepicker/jquery.datetimepicker.css"/>
