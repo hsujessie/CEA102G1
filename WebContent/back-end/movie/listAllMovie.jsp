@@ -29,7 +29,10 @@
 } */ 
 thead > tr{
  	text-align: center;
-} 
+}
+.effect-1:after {
+    border-radius: 2%;
+}
 </style>
 </head>
 <body class="barber_version container-fluid">
@@ -72,7 +75,7 @@ thead > tr{
 						</h2>
 					</c:if>		
 						<c:forEach var="movVO" items="${list}" varStatus="no" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-						<tr align='center' valign='middle' ${(movVO.movno==param.movno) ? 'bgcolor=#CCCCFF':''}>
+						<tr valign='middle' ${(movVO.movno==param.movno) ? 'bgcolor=#CCCCFF':''}>
 							<td>${no.index+1}</td>
 							<td>${movVO.getMovname()}</td>
 							<td>${movVO.getMovver()}</td>
@@ -85,8 +88,8 @@ thead > tr{
 							<td>${movVO.getMovditor()}</td>
 							<td>${movVO.getMovcast()}</td>
 							<td>${movVO.getMovdes()}</td>
-							<td><img src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovPos"></td>
-							<td><video controls width="150"><source src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovTra" type="video/mp4"></video></td>
+							<td><img width="150px" src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovPos"></td>
+							<td><video controls width="150px"><source src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovTra" type="video/mp4"></video></td>
 							<td>
 							  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" style="margin-bottom: 0px; text-align:center;">					 				             
 			       				 <a class="btn btn-light btn-radius btn-brd grd1 effect-1" style="color:white;">
