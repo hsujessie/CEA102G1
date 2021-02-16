@@ -24,9 +24,12 @@
 <title>電影列表 - listAllMovie.jsp</title>
 
 <style>
-/*  thead > tr > th{
+/* thead > tr > th{
  	width: 85px;
- } */
+} */ 
+thead > tr{
+ 	text-align: center;
+} 
 </style>
 </head>
 <body class="barber_version container-fluid">
@@ -38,7 +41,7 @@
 
         <!-- Start Section-->
         <div id="section" class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-        	<div style="margin-top:1%;">
+        	<div style="margin-top:2%;">
 	        	<h3>電影列表</h3>
 	            <table class="table table-responsive table-hover">
 					<thead>
@@ -99,7 +102,7 @@
 						</c:forEach>
 					</tbody>
 				</table>
-				<%@ include file="pages/page2.file" %>
+			    <%@ include file="pages/page2.file" %>
 			</div>
         </div><!-- end Section-->
     </div>
