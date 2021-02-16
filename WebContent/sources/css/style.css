@@ -20,6 +20,11 @@
 	text-shadow: 2px 2px 2px #999999;
 }
 
+#section h3{
+	color: rgb(51,51,51);
+    text-shadow: #bb9d52 0.1em 0.1em 0.2em;
+}
+
 body {
     font-size: 15px;
     font-family: 'Montserrat', sans-serif;
