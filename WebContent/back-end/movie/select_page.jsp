@@ -18,88 +18,89 @@
     <div class="row">
         <!-- Start Side Bar-->
         <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 sections-com" style="background-color: rgb(232,232,232);">
-            <!-- ＊＊＊引入Side Bar＊＊＊-->
-			<%@ include file="../sidebar/sidebar_backend.file"%>
+			<%@ include file="../sidebar/sidebar_backend.file"%><!-- ＊＊＊引入Side Bar＊＊＊-->
         </div><!-- end Side Bar-->
 
         <!-- Start Section-->
         <div id="section" class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 sections-com">
-	        <div class="row">
-	        	<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-		        	<h3>電影列表</h3>
+        	<div class="container"><!-- Start Container-->
+		        <div class="row">
+		        	<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+			        	<h3>電影列表</h3>
+			        </div>
+		            
+		            <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+		           		<a class="font-weight-seven" href="<%=request.getContextPath()%>/back-end/movie/listAllMovie.jsp">LIST</a> all Movies.<br>  
+		            	<jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService" />
+		                <%-- <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" >
+		                    <b>選擇電影:</b>
+		                    <select name="movno">
+		                    <c:forEach var="movVO" items="${movSvc.all}" >
+		                    <option value="${movVO.movno}">${movVO.movname}
+		                    </c:forEach>
+		                    </select>
+		                    <input type="hidden" name="action" value="getOne_For_Display">
+		        			<a class="btn btn-light btn-radius btn-brd grd1 effect-1" style="color:white;">
+								<input type="submit" value="送出" style="text-decoration: none; background-color:transparent; border:0px;">
+		        			</a>
+		                </FORM> --%>
+		            </div>
 		        </div>
-	            
-	            <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-	           		<a class="font-weight-seven" href="<%=request.getContextPath()%>/back-end/movie/listAllMovie.jsp">LIST</a> all Movies.<br>  
-	            	<jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService" />
-	                <%-- <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" >
-	                    <b>選擇電影:</b>
-	                    <select name="movno">
-	                    <c:forEach var="movVO" items="${movSvc.all}" >
-	                    <option value="${movVO.movno}">${movVO.movname}
-	                    </c:forEach>
-	                    </select>
-	                    <input type="hidden" name="action" value="getOne_For_Display">
-	        			<a class="btn btn-light btn-radius btn-brd grd1 effect-1" style="color:white;">
-							<input type="submit" value="送出" style="text-decoration: none; background-color:transparent; border:0px;">
-	        			</a>
-	                </FORM> --%>
-	            </div>
-	        </div>
-	        
-			<div class="row">
-	        	<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-					<h3>電影查詢</h3>
+		        
+				<div class="row">
+		        	<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+						<h3>電影查詢</h3>
+					</div>
+					<div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+						<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" >
+	                        <br><b>電影名稱</b>
+	                            <select name="mov_no">
+	                                <option value=""></option>
+	                                <c:forEach var="movVO" items="${movSvc.all}" >
+	                                    <option value="${movVO.movno}">${movVO.movname}
+	                                </c:forEach>
+	                            </select>
+	                        <br><b>電影類型</b>
+	                            <select name="mov_type">
+	                                <option value=""></option>
+	                                <option value="劇情片">劇情片</option>
+	                                <option value="動畫片">動畫片</option>
+	                                <option value="喜劇片">喜劇片</option>
+	                                <option value="愛情片">愛情片</option>
+	                                <option value="科幻片">科幻片</option>
+	                                <option value="恐怖片">恐怖片</option>
+	                            </select>
+	                        <br><b>選擇年份</b>
+	                        <select name="mov_ondate_year">
+	                            <option value=""></option>
+	                            <c:forEach var="year" begin="1970" end="<%= (int) (java.util.Calendar.getInstance().get(java.util.Calendar.YEAR))+1%>">
+	                                <option value="${year}">${year}年</option>
+	                            </c:forEach>
+	                        </select>
+	                        <br><b>選擇月份</b>
+	                        <select name="mov_ondate_month">
+	                            <option value=""></option>
+	                            <c:forEach var="month" begin="1" end="12">
+	                                <option value="${month}">${month}月</option>
+	                            </c:forEach>
+	                        </select>
+	                        <input type="hidden" name="action" value="listMovies_ByCompositeQuery">
+		        			<a class="btn btn-light btn-radius btn-brd grd1 effect-1" style="color:white;">
+								<input type="submit" value="送出" style="text-decoration: none; background-color:transparent; border:0px;">
+		        			</a>
+	                    </FORM>
+					</div>
 				</div>
-				<div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-					<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" >
-                        <br><b>電影名稱</b>
-                            <select name="mov_no">
-                                <option value=""></option>
-                                <c:forEach var="movVO" items="${movSvc.all}" >
-                                    <option value="${movVO.movno}">${movVO.movname}
-                                </c:forEach>
-                            </select>
-                        <br><b>電影類型</b>
-                            <select name="mov_type">
-                                <option value=""></option>
-                                <option value="劇情片">劇情片</option>
-                                <option value="動畫片">動畫片</option>
-                                <option value="喜劇片">喜劇片</option>
-                                <option value="愛情片">愛情片</option>
-                                <option value="科幻片">科幻片</option>
-                                <option value="恐怖片">恐怖片</option>
-                            </select>
-                        <br><b>選擇年份</b>
-                        <select name="mov_ondate_year">
-                            <option value=""></option>
-                            <c:forEach var="year" begin="1970" end="<%= (int) (java.util.Calendar.getInstance().get(java.util.Calendar.YEAR))+1%>">
-                                <option value="${year}">${year}年</option>
-                            </c:forEach>
-                        </select>
-                        <br><b>選擇月份</b>
-                        <select name="mov_ondate_month">
-                            <option value=""></option>
-                            <c:forEach var="month" begin="1" end="12">
-                                <option value="${month}">${month}月</option>
-                            </c:forEach>
-                        </select>
-                        <input type="hidden" name="action" value="listMovies_ByCompositeQuery">
-	        			<a class="btn btn-light btn-radius btn-brd grd1 effect-1" style="color:white;">
-							<input type="submit" value="送出" style="text-decoration: none; background-color:transparent; border:0px;">
-	        			</a>
-                    </FORM>
+				
+				<div class="row">
+		        	<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+	            		<h3>電影新增</h3>
+					</div>
+					<div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+						<a class="font-weight-seven" href='<%=request.getContextPath()%>/back-end/movie/addMovie.jsp'>ADD</a> an new Movie.
+					</div>
 				</div>
-			</div>
-			
-			<div class="row">
-	        	<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-            		<h3>電影新增</h3>
-				</div>
-				<div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-					<a class="font-weight-seven" href='<%=request.getContextPath()%>/back-end/movie/addMovie.jsp'>ADD</a> an new Movie.
-				</div>
-			</div>
+        	</div><!-- end Container-->
         </div><!-- end Section-->
     </div>
 </body>
