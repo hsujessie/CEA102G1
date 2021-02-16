@@ -6,6 +6,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="../../sources/images/logos/seenema_W.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../../sources/css/cssReset.css">
     <link rel="stylesheet" href="../../sources/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../sources/css/style.css">
     <link rel="stylesheet" href="../../sources/css/backendMovie.css">
@@ -17,19 +18,19 @@
     <!-- Start Container-->
     <div class="row">
         <!-- Start Side Bar-->
-        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" style="background-color: #ffffff;">
             <!-- ＊＊＊引入Side Bar＊＊＊-->
 			<%@ include file="../sidebar/sidebar_backend.file"%>
         </div><!-- end Side Bar-->
 
         <!-- Start Section-->
-        <div id="section" class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-	        <div class="row mr-tp-thirty">
-	        	<div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+        <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10" style="border:5px solid green;">
+	        <div class="row">
+	        	<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
 		        	<h3>電影列表</h3>
 		        </div>
 	            
-	            <div class="mr-lf mr-tp-twenty">
+	            <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
 	           		<a class="font-weight-seven" href="<%=request.getContextPath()%>/back-end/movie/listAllMovie.jsp">LIST</a> all Movies.<br>  
 	            	<jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService" />
 	                <%-- <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" >
@@ -47,11 +48,11 @@
 	            </div>
 	        </div>
 	        
-			<div class="row mr-tp-thirty">
-	        	<div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+			<div class="row">
+	        	<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
 					<h3>電影查詢</h3>
 				</div>
-				<div class="mr-lf">
+				<div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
 					<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" >
                         <br><b>電影名稱</b>
                             <select name="mov_no">
@@ -92,11 +93,11 @@
 				</div>
 			</div>
 			
-			<div class="row mr-tp-thirty">
-	        	<div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+			<div class="row">
+	        	<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
             		<h3>電影新增</h3>
 				</div>
-				<div class="mr-lf mr-tp-twenty">
+				<div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
 					<a class="font-weight-seven" href='<%=request.getContextPath()%>/back-end/movie/addMovie.jsp'>ADD</a> an new Movie.
 				</div>
 			</div>

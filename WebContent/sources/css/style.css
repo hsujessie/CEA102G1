@@ -9,10 +9,7 @@
 -------------------------------------------------------------------*/
 #section{
     background-color: rgba(255, 255, 255, 0.3);
-    box-sizing: border-box;
-    padding: 2%;
 	letter-spacing: 1px;
-	height: 90vh;
 }
 
 #section a{
@@ -62,12 +59,9 @@ body.barber_version .sidebar-nav li a.active{
 }
 
 .side-top{
-	position: absolute;
-	top: 12%;
-	width: 280px;
+	margin-top: 10%; 
+	padding: 0px; 
 	text-align: center;
-	margin: -20px auto;
-	padding: 0 30px;
 	list-style: none;
 }
 
@@ -105,23 +99,11 @@ body.barber_version #wrapper {
 }
 
 body.barber_version #sidebar-wrapper {
-    z-index: 1000;
-    border-right: 1px dashed rgba(255, 255, 255, 0.1);
-    position: fixed;
-    left: 280px;
-    width: 0;
-    height: 100%;
-    background-color: white;
-    margin-left: -280px;
     overflow-y: auto;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
-}
-
-body.barber_version #sidebar-wrapper {
-    width: 280px;
 }
 
 body.barber_version .logo-sidebar {
@@ -147,7 +129,7 @@ body.barber_version .sidebar-nav li a {
 }
 
 body.barber_version .sidebar-nav li a:hover {
-    color: #fff;
+    color: #ffffff;
 }
 
 
