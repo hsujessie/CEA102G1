@@ -48,7 +48,7 @@ thead > tr{
 
         <!-- Start Section-->
         <div id="section" class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 sections-com">
-        	<div style="width: 1200px; box-sizing: border-box; padding: 2% 0 2% 0;">
+        	<div style="width: 1200px; box-sizing: border-box; padding: 2% 2% 2% 0;">
 	        	<h3 class="h3-style">電影列表</h3>
 	            <table class="table table-responsive table-hover">
 					<thead>
