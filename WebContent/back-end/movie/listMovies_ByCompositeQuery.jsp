@@ -8,25 +8,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="../../sources/images/logos/seenema_W.ico" type="image/x-icon" />
     <link rel="stylesheet" href="../../sources/css/cssReset.css">
-    <link rel="stylesheet" href="../../sources/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../sources/css/style.css">
-	     
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	    
+<!-- ========================================= 以下 IMPORT要按順序 ========================================== -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- ========================================= 以上 IMPORT要按順序 ========================================== -->
 
 <title>電影查詢 - listMovies_ByCompositeQuery.jsp</title>
 
 <style>
-/* thead > tr > th{
- 	width: 85px;
-} */ 
 thead > tr{
  	text-align: center;
 }
+
 .effect-1:after {
     border-radius: 2%;
+}
+ 
+.w-brk {
+    word-break: break-all;
+    min-width: 800px;
+    max-width: 1000px;
 }
 </style>
 </head>
@@ -38,8 +42,8 @@ thead > tr{
         </div><!-- end Side Bar-->
 
         <!-- Start Section-->
-        <div id="section" class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 sections-com">
-        	<div style="box-sizing: border-box; padding: 2% 0 2% 0;">
+        <div id="section" class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+        	<div style="width: 1200px; box-sizing: border-box; padding: 2% 2% 2% 0;">
 	        	<h3>電影查詢</h3>
 	            <table class="table table-responsive table-hover">
 					<thead>
@@ -77,14 +81,14 @@ thead > tr{
 							<td>${movVO.getMovrating()}</td>
 							<td>${movVO.getMovditor()}</td>
 							<td>${movVO.getMovcast()}</td>
-							<td>${movVO.getMovdes()}</td>
+							<td class="w-brk">${movVO.getMovdes()}</td>
 							<td><img width="150px" src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovPos"></td>
 							<td><video controls width="150px"><source src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovTra" type="video/mp4"></video></td>
 							<td>
 							   <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" style="margin-bottom: 0px; text-align:center;">
-							     <a class="btn btn-light btn-radius btn-brd grd1 effect-1" style="color:white;">
-					                <input type="submit" value="修改" style="text-decoration: none; background-color:transparent; border:0px;">
-					             </a>	
+							     <a class="btn btn-light btn-radius btn-brd grd1 effect-1">
+									<input type="submit" value="修改" class="input-pos">
+			        			 </a>			
 							     <input type="hidden" name="movno" value="${movVO.movno}">
 							     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
 							     <input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller-->
