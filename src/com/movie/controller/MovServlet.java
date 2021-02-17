@@ -106,7 +106,7 @@ public class MovServlet extends HttpServlet{
 				/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
 				String movname = req.getParameter("movname").trim();
 				if(movname == null || movname.length() == 0) {
-					errorMsgs.put("movname"," 電影名稱: 請勿空白");
+					errorMsgs.put("movname"," 電影名稱 請勿空白");
 				}
 				
 				//多選checkbox
@@ -164,17 +164,17 @@ public class MovServlet extends HttpServlet{
 				
 				String movditor = req.getParameter("movditor").trim();
 				if(movditor == null || movditor.length() == 0) {
-					errorMsgs.put("movditor"," 導演資料: 請勿空白");
+					errorMsgs.put("movditor"," 導演資料 請勿空白");
 				}
 				
 				String movcast = req.getParameter("movcast").trim();
 				if(movcast == null || movcast.length() == 0) {
-					errorMsgs.put("movcast"," 演員資料: 請勿空白");
+					errorMsgs.put("movcast"," 演員資料 請勿空白");
 				}
 				
 				String movdes = req.getParameter("movdes").trim();
 				if(movdes == null || movdes.equals("")) {
-					errorMsgs.put("movdes"," 電影簡介: 請勿空白");
+					errorMsgs.put("movdes"," 電影簡介 請勿空白");
 				}
 
 				byte[] movpos = null;
@@ -346,7 +346,7 @@ public class MovServlet extends HttpServlet{
 		        
 				String movname = req.getParameter("movname").trim();            
 				if(movname == null || movname.length() == 0) {
-					errorMsgs.put("movname"," 電影名稱: 請勿空白");
+					errorMsgs.put("movname"," 電影名稱 請勿空白");
 					
 					//先split字串，再把值送到update_movie_input.jsp 
 			        if (movverStr != null) {  
@@ -436,7 +436,7 @@ public class MovServlet extends HttpServlet{
 				
 				String movditor = req.getParameter("movditor").trim();
 				if(movditor == null || movditor.length() == 0) {
-					errorMsgs.put("movditor"," 導演資料: 請勿空白");
+					errorMsgs.put("movditor"," 導演資料 請勿空白");
 					
 					//先split字串，再把值送到update_movie_input.jsp
 			        if (movverStr != null) {  
@@ -451,7 +451,7 @@ public class MovServlet extends HttpServlet{
 				
 				String movcast = req.getParameter("movcast").trim();
 				if(movcast == null || movcast.length() == 0) {
-					errorMsgs.put("movcast"," 演員資料: 請勿空白");
+					errorMsgs.put("movcast"," 演員資料 請勿空白");
 					
 					//先split字串，再把值送到update_movie_input.jsp
 			        if (movverStr != null) {  
@@ -466,7 +466,7 @@ public class MovServlet extends HttpServlet{
 				
 				String movdes = req.getParameter("movdes").trim();
 				if(movdes == null || movdes.equals("")) {
-					errorMsgs.put("movdes"," 電影簡介: 請勿空白");
+					errorMsgs.put("movdes"," 電影簡介 請勿空白");
 					
 					//先split字串，再把值送到update_movie_input.jsp
 			        if (movverStr != null) {  

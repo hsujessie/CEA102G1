@@ -19,8 +19,13 @@
 <title>電影新增 - addMov.jsp</title>
 
 <style>
-  .errColor{
-   	color:red;
+  .err-color{
+    font-size: 12px;
+    text-shadow: 0 0 0.2em #f87, 0 0 0.2em #f87;
+  }
+  .errmsg-pos{
+  	padding-left: 15%;
+  	width: 290px;
   }
   .sty-input{
 	text-decoration: none;    
@@ -45,7 +50,7 @@
    	content: "小時";
     color: #bb9d52;
     position: absolute;
-    top: 41%;
+    top: 47%;
     left: 67%;
     right: 0;
     bottom: 0;
@@ -71,8 +76,13 @@
 <table class="add-mov-table">
 	<tr>
 		<td><b>名稱</b></td>
-		<td><input class="sty-input mr-left mr-btm-normal" type="text" name="movname" value="<%= (movVO==null)? "金牌特務" : movVO.getMovname()%>" /></td>
-		<td class="errColor">${errorMsgs.movname}</td>
+		<td><input class="sty-input mr-left mr-btm-normal" type="text" name="movname" value="<%= (movVO==null)? "金牌特務" : movVO.getMovname()%>" /></td>		
+		<c:if test="${not empty errorMsgs.movname}">
+			<td class="errmsg-pos">		
+				<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
+				<label class="err-color">${errorMsgs.movname}</label>
+			</td>
+		</c:if>
 	</tr>
 	<tr>
 		<td><b>種類</b></td>
@@ -82,7 +92,12 @@
 			<input class="mr-left mr-btm-sm" type="checkbox" name="movver" value="3D"><span>3D</span><br>
 			<input class="mr-left mr-btm-sm" type="checkbox" name="movver" value="IMAX"><span>IMAX</span><br>
 		</td>
-		<td class="errColor">${errorMsgs.movver}</td>
+		<c:if test="${not empty errorMsgs.movver}">
+			<td class="errmsg-pos">		
+				<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
+				<label class="err-color">${errorMsgs.movver}</label>
+			</td>
+		</c:if>
 	</tr>
 	<tr>
 		<td><b>類型</b></td>
@@ -95,7 +110,12 @@
 				<option value="恐怖片">恐怖片</option>
 			</select>
 		</td>
-		<td class="errColor">${errorMsgs.movtype}</td>
+		<c:if test="${not empty errorMsgs.movtype}">
+			<td class="errmsg-pos">		
+				<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
+				<label class="err-color">${errorMsgs.movtype}</label>
+			</td>
+		</c:if>
 	</tr>
 	<tr>
 		<td><b>語言</b></td>
@@ -105,22 +125,42 @@
 			<input class="mr-left mr-btm-sm" type="checkbox" name="movlan" value="中文"><span>中文</span><br>
 			<input class="mr-left mr-btm-sm" type="checkbox" name="movlan" value="日文"><span>日文</span><br>
 		</td>
-		<td class="errColor">${errorMsgs.movlan}</td>
+		<c:if test="${not empty errorMsgs.movlan}">
+			<td class="errmsg-pos">		
+				<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
+				<label class="err-color">${errorMsgs.movlan}</label>
+			</td>
+		</c:if>
 	</tr>
 	<tr>
 		<td><b>上映日期</b></td>
 		<td><input class="sty-input mr-left mr-btm-normal" name="movondate" id="mov_ondate" type="text"></td>
-		<td class="errColor">${errorMsgs.movondate}</td>
+		<c:if test="${not empty errorMsgs.movondate}">
+			<td class="errmsg-pos">		
+				<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
+				<label class="err-color">${errorMsgs.movondate}</label>
+			</td>
+		</c:if>
 	</tr>
 	<tr>
 		<td><b>下檔日期</b></td>
 		<td><input class="sty-input mr-left mr-btm-normal" name="movoffdate" id="mov_offdate" type="text"></td>
-		<td class="errColor">${errorMsgs.movoffdate}</td>
+		<c:if test="${not empty errorMsgs.movoffdate}">
+			<td class="errmsg-pos">		
+				<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
+				<label class="err-color">${errorMsgs.movoffdate}</label>
+			</td>
+		</c:if>
 	</tr>
 	<tr>
 		<td style="position:relative;"><b>片長</b></td>
 		<td class="fake-txt"><input class="sty-input mr-left mr-btm-normal" type="text" name="movdurat" value="<%= (movVO==null)? "2" : movVO.getMovdurat()%>"/></td>
-		<td class="errColor">${errorMsgs.movdurat}</td>
+		<c:if test="${not empty errorMsgs.movdurat}">
+			<td class="errmsg-pos" style="padding-left: 25%;">		
+				<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
+				<label class="err-color">${errorMsgs.movdurat}</label>
+			</td>
+		</c:if>
 	</tr>
 	<tr>
 		<td><b>級數</b></td>
@@ -135,20 +175,35 @@
 	</tr>
 	<tr>
 		<td><b>導演</b></td>
-		<td><input class="sty-input mr-left mr-btm-normal" type="text" name="movditor" value="<%= (movVO==null)? "dicrector" : movVO.getMovditor()%>" /></td>	
-		<td class="errColor">${errorMsgs.movditor}</td>
+		<td><input class="sty-input mr-left mr-btm-normal" type="text" name="movditor" value="<%= (movVO==null)? "dicrector" : movVO.getMovditor()%>" /></td>
+		<c:if test="${not empty errorMsgs.movditor}">
+			<td class="errmsg-pos">		
+				<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
+				<label class="err-color">${errorMsgs.movditor}</label>
+			</td>
+		</c:if>
 	</tr>
 	<tr>
 		<td><b>演員</b></td>
 		<td><input class="sty-input mr-left mr-btm-normal" type="text" name="movcast" value="<%= (movVO==null)? "actors" : movVO.getMovcast()%>" /></td>
-		<td class="errColor">${errorMsgs.movcast}</td>
+		<c:if test="${not empty errorMsgs.movcast}">
+			<td class="errmsg-pos">		
+				<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
+				<label class="err-color">${errorMsgs.movcast}</label>
+			</td>
+		</c:if>
 	</tr>
 	<tr>
 		<td><b>簡介</b></td>
 		<td><textarea name="movdes" class="sty-input mr-left">
 			<%= (movVO==null)? "description" : movVO.getMovdes()%></textarea>
 		</td>
-		<td class="errColor">${errorMsgs.movcast}</td>
+		<c:if test="${not empty errorMsgs.movdes}">
+			<td class="errmsg-pos">		
+				<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
+				<label class="err-color">${errorMsgs.movdes}</label>
+			</td>
+		</c:if>
 	</tr>
 	<tr></tr>
 	<tr>
