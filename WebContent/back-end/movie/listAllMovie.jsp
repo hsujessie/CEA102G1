@@ -27,13 +27,9 @@
 thead > tr{
  	text-align: center;
 }
+
 .effect-1:after {
     border-radius: 2%;
-}
-
-.table-responsive {
-	table-layout:fixed;
-    width: 1190px;
 }
  
 .w-brk {
