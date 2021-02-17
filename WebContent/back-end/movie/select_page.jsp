@@ -134,14 +134,14 @@
 <!-- Start Modal-->  
 <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
+		<div class="modal-content" style="background-color: rgba(119,136,153,.9);">
 				
-			<div class="modal-header">
-                <h3 style="margin-left: 40%;" class="modal-title h3-style" id="myModalLabel" style="text-align:center;">電影新增</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<div class="modal-header" style="border: 1px solid rgba(119,136,153,.9);">
+                <h3 style="margin-left: 40%; margin-top: 3%;" class="modal-title h3-style" id="myModalLabel" style="text-align:center; position:relative;">電影新增</h3>
+                <button type="button" class="close sty-close-btn" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close"></i></button>
             </div>
 			
-			<div class="modal-body center-linehigh-box" style="width:500px;">
+			<div class="modal-body center-linehigh-box sty-lightbox">
                <jsp:include page="addMovie.jsp"/><!-- 引入jsp-->
 			</div>		
 		</div>

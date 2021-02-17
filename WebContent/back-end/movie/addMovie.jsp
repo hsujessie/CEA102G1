@@ -29,7 +29,7 @@
 	line-hight: 5px;
   }
   .mr-left{
-    margin-left: 40%;
+    margin-left: 45%;
   }
   .mr-btm-normal{
     margin-bottom: 10%;
@@ -41,8 +41,8 @@
    	content: "小時";
     color: #bb9d52;
     position: absolute;
-    top: 39%;
-    left: 78%;
+    top: 41%;
+    left: 67%;
     right: 0;
     bottom: 0;
   }
@@ -52,17 +52,18 @@
   .add-mov-table span{
   	box-sizing: border-box;
   	padding-left: 3%;
+  	color: #bb9d52;
   }
   .btn-pos{
-  	margin-left: -40%;
-    margin-top: 10%;
+  	margin-left: -46%;
+    margin-top: 5%;
+    margin-bottom: 1%;
   }
-  
 </style>
 
 </head>
 <body>
-<FORM class="center-linehigh-content" style="width:100%; margin-left:15%;" method="post" action="<%=request.getContextPath()%>/movie/mov.do" name="form_addMovie" enctype="multipart/form-data">
+<FORM class="center-linehigh-content" style="width:100%; margin: 6% 0 0 23%;" method="post" action="<%=request.getContextPath()%>/movie/mov.do" name="form_addMovie" enctype="multipart/form-data">
 <table class="add-mov-table">
 	<tr>
 		<td><b>名稱</b></td>
@@ -149,7 +150,7 @@
 	<tr>
 		<td><b>海報</b></td>	
 		<td>	
-			<label class="btn" style="margin-left: 30%;">
+			<label class="btn" style="margin-left: 35%;">
 			<input style="display:none;" type="file" name="movpos" value="<%= (movVO==null)? "poster" : movVO.getMovpos()%>"/>
 				<i class="fa fa-photo"></i>
 			</label>
@@ -158,7 +159,7 @@
 	<tr>
 		<td><b>預告片</b></td>
 		<td>
-			<label class="btn" style="margin-left: 30%;">
+			<label class="btn" style="margin-left: 35%;">
 			<input style="display:none;" type="file" name="movtra" value="<%=  (movVO==null)? "trailer" : movVO.getMovtra()%>"/>
 				<i class="fa fa-film"></i>
 			</label>
