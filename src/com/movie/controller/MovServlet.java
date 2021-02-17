@@ -220,7 +220,7 @@ public class MovServlet extends HttpServlet{
 				movSvc.addMov(movname, movver, movtype, movlan, movondate, movoffdate, movdurat, movrating, movditor, movcast, movdes, movpos, movtra);
 					
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/				
-				String addSuccess = "【  " + movname + " 】 " + "新增成功!";
+				String addSuccess = "【  " + movname + " 】" + "新增成功";
 				req.setAttribute("addSuccess", addSuccess);	
 				
 				String url = "/back-end/movie/listAllMovie.jsp";

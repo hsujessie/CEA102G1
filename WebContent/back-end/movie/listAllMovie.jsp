@@ -15,6 +15,7 @@
     <link rel="shortcut icon" href="<%=request.getContextPath()%>/sources/images/logos/seenema_W.ico" type="image/x-icon" />
     <link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/cssReset.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/style.css">
+	<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'></link>
 	    
 <!-- ========================================= 以下 IMPORT要按順序 ========================================== -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -50,7 +51,13 @@ thead > tr{
         <!-- Start Section-->
         <div id="section" class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
         	<div style="width: 1200px; box-sizing: border-box; padding: 2% 2% 2% 0;">
-	        	<h3 class="h3-style">電影列表</h3>
+	        	<h3 class="h3-style" style="display: inline-block;">電影列表&ensp;</h3>
+				<c:if test="${addSuccess != null}">
+					<span style="color: #bb9d52">  
+						${addSuccess}
+						<i class="fa fa-hand-peace-o"></i>
+					</span>
+				</c:if>	
 	            <table class="table table-responsive table-hover">
 					<thead>
 						<tr style="border-bottom: 3px solid #bb9d52;">
@@ -73,12 +80,7 @@ thead > tr{
 					</thead>
 							
 					<tbody>
-					<%@ include file="pages/page1.file" %> 
-					<c:if test="${addSuccess != null}">
-						<h2 style="color:red">  
-							${addSuccess}
-						</h2>
-					</c:if>		
+					<%@ include file="pages/page1.file" %> 	
 						<c:forEach var="movVO" items="${list}" varStatus="no" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 						<tr style="line-height:25px;" valign='middle' ${(movVO.movno==param.movno) ? 'bgcolor=#CCCCFF':''}>
 							<td>${no.index+1}</td>
