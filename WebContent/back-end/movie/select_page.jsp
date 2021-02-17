@@ -12,8 +12,9 @@
     <link rel="stylesheet" href="../../sources/css/backendMovie.css">
     
 <!-- ========================================= 以下 IMPORT要按順序 ========================================== -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<!-- 出現錯誤 $(...).modal is not a function，因Bootstrap的js文件，依賴於jQuery的js文件，要注意引入的顺序。-->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <!-- ========================================= 以上 IMPORT要按順序 ========================================== -->
 
@@ -146,8 +147,7 @@
 			</div>		
 		</div>
 	</div>
-</div><!-- end Modal--> 
-	 
+</div><!-- end Modal-->  
 </body>
 
 <!-- =========================================================================================== 
