@@ -44,7 +44,11 @@ ul, li, ol{
 	padding: 0px;
 }
 
-.navbar-nav > li > a {
+.sidebar-bgcolor{
+	background-color: rgb(187,157,82,0.2);
+}
+.nav
+bar-nav > li > a {
     border-radius: 0;
     color: #ffffff !important;
     font-size: 15px;

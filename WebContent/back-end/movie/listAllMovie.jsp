@@ -43,7 +43,7 @@ thead > tr{
 <body class="barber_version container-fluid">
     <div class="row">
         <!-- Start Side Bar-->
-        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 sections-com" style="background-color: rgb(232,232,232);">
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 sidebar-bgcolor">
 			<%@ include file="../sidebar/sidebar_backend.file"%><!-- ＊＊＊引入Side Bar＊＊＊-->
         </div><!-- end Side Bar-->
 
