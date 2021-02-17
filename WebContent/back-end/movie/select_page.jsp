@@ -141,7 +141,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
 			
-			<div class="modal-body center-linehigh-box red">
+			<div class="modal-body center-linehigh-box red" style="width:500px;">
                <jsp:include page="addMovie.jsp"/><!-- 引入jsp-->
 			</div>		
 		</div>

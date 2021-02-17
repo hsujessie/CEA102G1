@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="../../sources/css/cssReset.css">
 	<link rel="stylesheet" href="../../sources/css/style.css">
 	<link rel="stylesheet" href="../../sources/css/backendMovie.css">
-	
+	<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'></link>
 <title>電影新增 - addMov.jsp</title>
 
 <style>
@@ -23,11 +23,19 @@
 	border-color: transparent;
     width: 150px;
     border-bottom: 2px dashed #bb9d52;
-    margin-left: 10px;
     box-sizing: border-box;
     padding-bottom: 3px;
     color: #bb9d52;
 	line-hight: 5px;
+  }
+  .mr-left{
+    margin-left: 20%;
+  }
+  .mr-btm-normal{
+    margin-bottom: 10%;
+  }
+  .mr-btm-sm{
+    margin-bottom: 5%;
   }
 </style>
 
@@ -37,28 +45,28 @@
 <table>
 	<tr>
 		<td><b>名稱</b></td>
-		<td><input class="sty-input" type="text" name="movname" value="<%= (movVO==null)? "金牌特務" : movVO.getMovname()%>" /></td>
+		<td><input class="sty-input mr-left mr-btm-normal" type="text" name="movname" value="<%= (movVO==null)? "金牌特務" : movVO.getMovname()%>" /></td>
 		<td class="errColor">${errorMsgs.movname}</td>
 	</tr>
 	<tr>
 		<td><b>種類</b></td>
 		<td>
 			<!-- 多選checkbox -->
-			<input type="checkbox" name="movver" value="2D" ${movver == null? "checked":""} >2D<br>
-			<input type="checkbox" name="movver" value="3D">3D<br>
-			<input type="checkbox" name="movver" value="IMAX">IMAX<br>
+			<input class="mr-left mr-btm-sm" type="checkbox" name="movver" value="2D" ${movver == null? "checked":""} >2D<br>
+			<input class="mr-left mr-btm-sm" type="checkbox" name="movver" value="3D">3D<br>
+			<input class="mr-left mr-btm-sm" type="checkbox" name="movver" value="IMAX">IMAX<br>
 		</td>
 		<td class="errColor">${errorMsgs.movver}</td>
 	</tr>
 	<tr>
 		<td><b>類型</b></td>
 		<td>
-			<select name="movtype">
-				<option value= "動畫片">動畫片</option>
-				<option value= "喜劇片">喜劇片</option>
-				<option value= "愛情片">愛情片</option>
-				<option value= "科幻片">科幻片</option>
-				<option value= "恐怖片">恐怖片</option>
+			<select class="mr-left mr-btm-normal" name="movtype">
+				<option value="動畫片">動畫片</option>
+				<option value="喜劇片">喜劇片</option>
+				<option value="愛情片">愛情片</option>
+				<option value="科幻片">科幻片</option>
+				<option value="恐怖片">恐怖片</option>
 			</select>
 		</td>
 		<td class="errColor">${errorMsgs.movtype}</td>
@@ -67,31 +75,31 @@
 		<td><b>語言</b></td>
 		<td>
 			<!-- 多選checkbox -->
-			<input type="checkbox" name="movlan" value="英文" ${movlan == null? "checked":""} >英文<br>
-			<input type="checkbox" name="movlan" value="中文">中文<br>
-			<input type="checkbox" name="movlan" value="日文">日文<br>
+			<input class="mr-left mr-btm-sm" type="checkbox" name="movlan" value="英文" ${movlan == null? "checked":""} >英文<br>
+			<input class="mr-left mr-btm-sm" type="checkbox" name="movlan" value="中文">中文<br>
+			<input class="mr-left mr-btm-sm" type="checkbox" name="movlan" value="日文">日文<br>
 		</td>
 		<td class="errColor">${errorMsgs.movlan}</td>
 	</tr>
 	<tr>
 		<td><b>上映日期</b></td>
-		<td><input class="sty-input" name="movondate" id="mov_ondate" type="text"></td>
+		<td><input class="sty-input mr-left mr-btm-normal" name="movondate" id="mov_ondate" type="text"></td>
 		<td class="errColor">${errorMsgs.movondate}</td>
 	</tr>
 	<tr>
 		<td><b>下檔日期</b></td>
-		<td><input class="sty-input" name="movoffdate" id="mov_offdate" type="text"></td>
+		<td><input class="sty-input mr-left mr-btm-normal" name="movoffdate" id="mov_offdate" type="text"></td>
 		<td class="errColor">${errorMsgs.movoffdate}</td>
 	</tr>
 	<tr>
 		<td><b>片長</b></td>
-		<td><input class="sty-input" type="text" name="movdurat" value="<%= (movVO==null)? "2" : movVO.getMovdurat()%>" />小時</td>
+		<td><input class="sty-input mr-left mr-btm-normal" type="text" name="movdurat" value="<%= (movVO==null)? "2" : movVO.getMovdurat()%>"/>小時</td>
 		<td class="errColor">${errorMsgs.movdurat}</td>
 	</tr>
 	<tr>
 		<td><b>級數</b></td>
 		<td>
-			<select name="movrating">
+			<select class="mr-left mr-btm-normal" name="movrating">
 				<option value="普遍級">普遍級</option>
 				<option value="保護級">保護級</option>
 				<option value="輔導級">輔導級</option>
@@ -101,28 +109,38 @@
 	</tr>
 	<tr>
 		<td><b>導演</b></td>
-		<td><input class="sty-input" type="text" name="movditor" value="<%= (movVO==null)? "dicrector" : movVO.getMovditor()%>" /></td>	
+		<td><input class="sty-input mr-left mr-btm-normal" type="text" name="movditor" value="<%= (movVO==null)? "dicrector" : movVO.getMovditor()%>" /></td>	
 		<td class="errColor">${errorMsgs.movditor}</td>
 	</tr>
 	<tr>
 		<td><b>演員</b></td>
-		<td><input class="sty-input" type="text" name="movcast" value="<%= (movVO==null)? "actors" : movVO.getMovcast()%>" /></td>
+		<td><input class="sty-input mr-left mr-btm-normal" type="text" name="movcast" value="<%= (movVO==null)? "actors" : movVO.getMovcast()%>" /></td>
 		<td class="errColor">${errorMsgs.movcast}</td>
 	</tr>
 	<tr>
 		<td><b>簡介</b></td>
-		<td><textarea name="movdes" class="sty-input">
+		<td><textarea name="movdes" class="sty-input mr-left mr-btm-normal">
 			<%= (movVO==null)? "description" : movVO.getMovdes()%></textarea>
 		</td>
 		<td class="errColor">${errorMsgs.movcast}</td>
 	</tr>
 	<tr>
-		<td><b>海報</b></td>
-		<td><input type="file" name="movpos" value="<%= (movVO==null)? "poster" : movVO.getMovpos()%>" /></td>
+		<td><b>海報</b></td>	
+		<td>	
+			<label class="btn" style="margin-left:10%;">
+			<input style="display:none;" type="file" name="movpos" value="<%= (movVO==null)? "poster" : movVO.getMovpos()%>"/>
+				<i class="fa fa-photo"></i>
+			</label>
+		</td>
 	</tr>
 	<tr>
 		<td><b>預告片</b></td>
-		<td><input type="file" name="movtra" value="<%=  (movVO==null)? "trailer" : movVO.getMovtra()%>" /></td>
+		<td>
+			<label class="btn" style="margin-left:10%;">
+			<input style="display:none;" type="file" name="movtra" value="<%=  (movVO==null)? "trailer" : movVO.getMovtra()%>"/>
+				<i class="fa fa-film"></i>
+			</label>
+		</td>
 	</tr>
 </table>
 <br>
