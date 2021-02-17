@@ -6,10 +6,10 @@
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="../../sources/images/logos/seenema_W.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="../../sources/css/cssReset.css">
-    <link rel="stylesheet" href="../../sources/css/style.css">
-    <link rel="stylesheet" href="../../sources/css/backendMovie.css">
+    <link rel="shortcut icon" href="<%=request.getContextPath()%>/sources/images/logos/seenema_W.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/cssReset.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/style.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/backendMovie.css">
     
 <!-- ========================================= 以下 IMPORT要按順序 ========================================== -->
 	<!-- 出現錯誤 $(...).modal is not a function，因Bootstrap的js文件，依賴於jQuery的js文件，要注意引入的顺序。-->

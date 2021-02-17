@@ -7,9 +7,9 @@
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="../../sources/images/logos/seenema_W.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="../../sources/css/cssReset.css">
-    <link rel="stylesheet" href="../../sources/css/style.css">
+    <link rel="shortcut icon" href="<%=request.getContextPath()%>/sources/images/logos/seenema_W.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/cssReset.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/style.css">
 	    
 <!-- ========================================= 以下 IMPORT要按順序 ========================================== -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -45,7 +45,7 @@ thead > tr{
         <!-- Start Section-->
         <div id="section" class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
         	<div style="width: 1200px; box-sizing: border-box; padding: 2% 2% 2% 0;">
-	        	<h3>電影查詢</h3>
+	        	<h3 class="h3-style">電影查詢</h3>
 	            <table class="table table-responsive table-hover">
 					<thead>
 						<tr style="border-bottom: 3px solid #bb9d52;">

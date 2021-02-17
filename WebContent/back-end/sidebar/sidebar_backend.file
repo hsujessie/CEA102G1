@@ -4,7 +4,7 @@
     <div id="sidebar-wrapper">
         <div class="side-top">
             <div class="logo-sidebar">
-                <img src="../../sources/images/logos/logo_B.png" alt="image">
+                <img src="<%=request.getContextPath()%>/sources/images/logos/logo_B.png" alt="image">
             </div>
             <ul class="sidebar-nav">
                 <li><a href="">後台管理員管理</a></li>
