@@ -30,6 +30,12 @@ thead > tr{
 .effect-1:after {
     border-radius: 2%;
 }
+
+.w-brk {
+    word-break: break-all;
+    min-width: 800px;
+    max-width: 1000px;
+}
 </style>
 </head>
 <body class="barber_version container-fluid">
@@ -43,7 +49,7 @@ thead > tr{
         <div id="section" class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 sections-com">
         	<div style="width: 1200px; box-sizing: border-box; padding: 2% 0 2% 0;">
 	        	<h3 class="h3-style">電影列表</h3>
-	            <table class="table table-responsive table-hover" style="word-break:break-all; word-wrap:break-all;" >
+	            <table class="table table-responsive table-hover">
 					<thead>
 						<tr style="border-bottom: 3px solid #bb9d52;">
 							<th>編號</th>
@@ -84,7 +90,7 @@ thead > tr{
 							<td>${movVO.getMovrating()}</td>
 							<td>${movVO.getMovditor()}</td>
 							<td>${movVO.getMovcast()}</td>
-							<td>${movVO.getMovdes()}</td>
+							<td class="w-brk">${movVO.getMovdes()}</td>
 							<td><img width="150px" src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovPos"></td>
 							<td><video controls width="150px"><source src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovTra" type="video/mp4"></video></td>
 							<td>
