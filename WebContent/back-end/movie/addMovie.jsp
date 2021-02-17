@@ -8,10 +8,14 @@
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" href="../../sources/css/cssReset.css">
-	<link rel="stylesheet" href="../../sources/css/style.css">
-	<link rel="stylesheet" href="../../sources/css/backendMovie.css">
-	<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'></link>
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/cssReset.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/style.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/backendMovie.css">
+	<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'></link>   
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <title>電影新增 - addMov.jsp</title>
 
 <style>
@@ -188,9 +192,9 @@
 	   movoffdate = new java.sql.Date(System.currentTimeMillis());
    }
 %>
-<link   rel="stylesheet" type="text/css" href="/CEA102G1/sources/datetimepicker/jquery.datetimepicker.css"/>
-<script src="/CEA102G1/sources/datetimepicker/jquery.js"></script>
-<script src="/CEA102G1/sources/datetimepicker/jquery.datetimepicker.full.js"></script>
+<link   rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/sources/datetimepicker/jquery.datetimepicker.css"/>
+<script src="<%=request.getContextPath()%>/sources/datetimepicker/jquery.js"></script>
+<script src="<%=request.getContextPath()%>/sources/datetimepicker/jquery.datetimepicker.full.js"></script>
 <style>
   .xdsoft_datetimepicker .xdsoft_datepicker {
            width:  300px;

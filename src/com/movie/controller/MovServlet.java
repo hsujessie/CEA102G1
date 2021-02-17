@@ -210,7 +210,10 @@ public class MovServlet extends HttpServlet{
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("movVO", movVO);
-					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/movie/addMovie.jsp");
+					Boolean openLightbox = true;
+					req.setAttribute("openLightbox", openLightbox);
+					String url = "/back-end/movie/select_page.jsp";
+					RequestDispatcher failureView = req.getRequestDispatcher(url);
 					failureView.forward(req, res);
 					return;
 				}
@@ -230,7 +233,10 @@ public class MovServlet extends HttpServlet{
 				/***************************其他可能的錯誤處理**********************************/
 			}catch (Exception e) {
 				errorMsgs.put("Exception",e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/movie/addMovie.jsp");
+				Boolean openLightbox = true;
+				req.setAttribute("openLightbox", openLightbox);
+				String url = "/back-end/movie/select_page.jsp";
+				RequestDispatcher failureView = req.getRequestDispatcher(url);
 				failureView.forward(req, res);
 			}
 		} 

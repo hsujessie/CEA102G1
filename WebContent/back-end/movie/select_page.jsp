@@ -147,7 +147,15 @@
 			</div>		
 		</div>
 	</div>
-</div><!-- end Modal-->  
+</div><!-- end Modal-->
+<c:if test="${openLightbox}">
+	<!-- 要再引入一次，不然會出現錯誤 $(...).modal is not a function -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<script>	    	
+		$("#basicModal").modal();
+	</script>
+</c:if>
 </body>
 
 <!-- =========================================================================================== 

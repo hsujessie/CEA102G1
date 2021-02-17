@@ -173,9 +173,9 @@
 </body>
 </body>
 
-<link   rel="stylesheet" type="text/css" href="/CEA102G1/sources/datetimepicker/jquery.datetimepicker.css"/>
-<script src="/CEA102G1/sources/datetimepicker/jquery.js"></script>
-<script src="/CEA102G1/sources/datetimepicker/jquery.datetimepicker.full.js"></script>
+<link   rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/sources/datetimepicker/jquery.datetimepicker.css"/>
+<script src="<%=request.getContextPath()%>/sources/datetimepicker/jquery.js"></script>
+<script src="<%=request.getContextPath()%>/sources/datetimepicker/jquery.datetimepicker.full.js"></script>
 <style>
   .xdsoft_datetimepicker .xdsoft_datepicker {
            width:  300px;
