@@ -20,16 +20,17 @@ body a:hover,a:focus{
 }
 
 
-.h3-style{  /* #section h3 */
+.h3-style{
 	color: rgb(51,51,51);
     text-shadow: #bb9d52 0.1em 0.1em 0.2em;
+    font-size: 26px;
 }
 
-.a-color{/* #section a */
+#a-color{
 	color: #bb9d52;
 }
 
-.a-color:hover{ /*#section a:hover*/
+#a-color:hover{ 
 	color: rgba(8, 8, 8, 0.9);
 	text-shadow: 2px 2px 2px #999999;
 }
@@ -145,6 +146,26 @@ body.barber_version .sidebar-nav li a:hover {
 /*------------------------------------------------------------------
     BUTTON
 -------------------------------------------------------------------*/
+.btn {
+    border: 0 !important;
+    width: 60px;
+    height: 28px;
+    position: relative;
+}
+
+.input-pos{	
+    position: absolute;
+    top: 0%;
+    right: 0;
+    left: 15%;
+    bottom: 0;
+    font-size: 14px;
+    text-decoration: none; 
+    background-color:transparent; 
+    border:0px; 
+    color:#fff;"
+}
+
 body.barber_version .grd1 {
 	color: #ffffff;
     background: rgb(16,16,16);
@@ -157,7 +178,7 @@ body.barber_version .grd1:focus {
     background: #bb9d52;
 }
 
-.effect-1:after, .global-radius, .btn-brd {
+.effect-1:after, .btn-brd {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
@@ -165,10 +186,6 @@ body.barber_version .grd1:focus {
 
 body.barber_version .effect-1:after {
     box-shadow: 0 0 0 2px #bb9d52;
-}
-
-.btn {
-    border: 0 !important;
 }
 
 .btn-light {

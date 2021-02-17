@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="../../sources/css/style.css">
     <link rel="stylesheet" href="../../sources/css/backendMovie.css">
     
-<!-- ========================================= IMPORT要按順序 ========================================== -->
+<!-- ========================================= 以下 IMPORT要按順序 ========================================== -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<!-- ========================================= IMPORT要按順序 ========================================== -->
+<!-- ========================================= 以上 IMPORT要按順序 ========================================== -->
 
 <title>Movie Info Management</title>
 
@@ -22,22 +22,24 @@
 <body class="barber_version container-fluid">
     <div class="row">
         <!-- Start Side Bar-->
-        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 red" style="background-color: rgb(232,232,232);">
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" style="background-color: rgb(232,232,232);">
 			<%@ include file="../sidebar/sidebar_backend.file"%><!-- ＊＊＊引入Side Bar＊＊＊-->
         </div><!-- end Side Bar-->
 
         <!-- Start Section-->
-        <div id="section" class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 green">
+        <div id="section" class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
         	
-	        <div class="center-box purple"><!-- Start Center-box-->
-	        	<div class="row center-content blue"><!-- Start Center-content-->
-		        	<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2n h3-sty-line orange">
-			        	<h3>電影</h3>
-			        	<h3>列表</h3>
+	        <div class="center-box"><!-- Start Center-box-->
+	        	<div class="row center-content"><!-- Start Center-content-->
+		        	<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2n titile-pos sty-line">
+			        	<h3 class="h3-style">電影</h3>
+			        	<h3 class="h3-style">列表</h3>
 			        </div>
-		            <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 box-sizing pd-left-five pd-top-five deeppink">
-		           		<a class="font-weight-seven" href="<%=request.getContextPath()%>/back-end/movie/listAllMovie.jsp">LIST</a> all Movies.<br>  
-		            	<jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService" />
+		            <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 content-pos">
+		           		<a class="font-weight-seven pd-left" id="a-color" href="<%=request.getContextPath()%>/back-end/movie/listAllMovie.jsp">LIST</a> all Movies.<br>  
+		            	
+		            	<jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService"/>
+<!-- ========================================= 以下 單一查詢 "getOne_For_Display" ========================================== -->
 		                <%-- <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" >
 		                    <b>選擇電影:</b>
 		                    <select name="movno">
@@ -46,22 +48,27 @@
 		                    </c:forEach>
 		                    </select>
 		                    <input type="hidden" name="action" value="getOne_For_Display">
-		        			<a class="btn btn-light btn-radius btn-brd grd1 effect-1" style="color:white;">
-								<input type="submit" value="送出" style="text-decoration: none; background-color:transparent; border:0px;">
+		        			<a class="btn btn-light btn-radius btn-brd grd1 effect-1">
+								<input type="submit" value="送出" class="input-pos">
 		        			</a>
 		                </FORM> --%>
+<!-- ========================================= 以上 單一查詢 "getOne_For_Display" ========================================== -->
+		           
 		            </div>
 		         </div><!-- end Center-content-->
 			</div><!-- end Center-box-->
 	        
-	        <div class="center-box purple"><!-- Start Center-box-->
-	        	<div class="row center-content blue"><!-- Start Center-content-->
-		        	<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2n h3-sty-line orange">
-						<h3>電影</h3>
-						<h3>查詢</h3>
+	        <div class="center-box"><!-- Start Center-box-->
+	        	<div class="row center-content"><!-- Start Center-content-->
+		        	<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2n titile-pos sty-line">
+			        	<h3 class="h3-style">電影</h3>
+						<h3 class="h3-style">查詢</h3>
 					</div>
-					<div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 box-sizing box-sizing pd-left-five deeppink">
-						<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do">
+		            <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+		            
+<!-- ========================================= 以下 複合查詢 "listMovies_ByCompositeQuery" ========================================== -->
+						<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" class="sty-form pd-left">
+						
 	                        <b>電影名稱</b>
 	                            <select name="mov_no">
 	                                <option value=""></option>
@@ -94,30 +101,35 @@
 	                            </c:forEach>
 	                        </select>
 	                        <input type="hidden" name="action" value="listMovies_ByCompositeQuery">
-		        			<a class="btn btn-light btn-radius btn-brd grd1 effect-1" style="color:white;">
-								<input type="submit" value="送出" style="text-decoration: none; background-color:transparent; border:0px;">
+		        			<a class="btn btn-light btn-radius btn-brd grd1 effect-1">
+								<input type="submit" value="送出" class="input-pos">
 		        			</a>
 	                    </FORM>
+<!-- ========================================= 以上 複合查詢 "listMovies_ByCompositeQuery" ========================================== -->
+
 					</div>
 		         </div><!-- end Center-content-->
 			</div><!-- end Center-box-->
 			
-	        <div class="center-box purple"><!-- Start Center-box-->
-	        	<div class="row center-content blue"><!-- Start Center-content-->
-		        	<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2n h3-sty-line orange">
-	            		<h3>電影</h3>
-	            		<h3>新增</h3>
+	        <div class="center-box"><!-- Start Center-box-->
+	        	<div class="row center-content"><!-- Start Center-content-->
+		        	<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2n titile-pos sty-line">
+			        	<h3 class="h3-style">電影</h3>
+	            		<h3 class="h3-style">新增</h3>
 					</div>
-		            <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 box-sizing pd-left-five pd-top-five deeppink">
-						<a class="font-weight-seven" data-toggle="modal" data-target="#basicModal">ADD</a> an new Movie.
-						<%-- <a class="font-weight-seven" href='<%=request.getContextPath()%>/back-end/movie/addMovie.jsp'>ADD</a> an new Movie. --%>
+		            <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 content-pos">
+						<a id="a-color" class="font-weight-seven pd-left" data-toggle="modal" data-target="#basicModal" href="">ADD</a> an new Movie.
 					</div>
 		         </div><!-- end Center-content-->
 			</div><!-- end Center-box-->
 				
         </div><!-- end Section-->
     </div>
-    
+
+
+<!-- =========================================================================================== 
+    										以下 MODAL
+	 ===========================================================================================  -->
 <!-- Start Modal-->  
 <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 	<div class="modal-dialog modal-lg">
@@ -129,9 +141,7 @@
             </div>
 			
 			<div class="modal-body">
-<!-- ========================================= 引入jsp ========================================== -->
-               <jsp:include page="addMovie.jsp"/>
-<!-- ========================================= 引入jsp ========================================== -->
+               <jsp:include page="addMovie.jsp"/><!-- 引入jsp-->
 			</div>
 			
 			<div class="modal-footer">
@@ -142,8 +152,12 @@
 		</div>
 	</div>
 </div><!-- end Modal--> 
-
+	 
 </body>
+
+<!-- =========================================================================================== 
+    								以下 DATETIME PICKER
+	 ===========================================================================================  -->
 <link   rel="stylesheet" type="text/css" href="/CEA102G1/sources/datetimepicker/jquery.datetimepicker.css"/>
 <script src="/CEA102G1/sources/datetimepicker/jquery.js"></script>
 <script src="/CEA102G1/sources/datetimepicker/jquery.datetimepicker.full.js"></script>

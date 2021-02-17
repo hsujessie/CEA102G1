@@ -18,23 +18,23 @@
 	border:3px solid green;
 }
 .orange{
-	border:3px solid orange;
+	border-left:3px solid orange;
 	box-sizing:border-box;
-	padding-left: 2%;
+	padding-left: -2%;
 }
 .deeppink{
 	border:3px solid deeppink;
 }
 
 
-
 /*------------------------------------------------------------------
-    Flex + margin 垂直置中方式
+    FOR AJUSTMENT
 -------------------------------------------------------------------*/
 .center-box {
-  	margin: auto;
+  	margin-top: 3%;
 	box-sizing: border-box;
 	padding-left: 10%;
+	margin-bottom: 5%;
 }
 
 .center-box .center-content{
@@ -42,14 +42,34 @@
   vertical-align: middle;
 }
 
-
-/*------------------------------------------------------------------
-    OTHERS
--------------------------------------------------------------------*/
-.center-box {
-	margin-bottom: 5%;
+.titile-pos{
+	text-align: center;
+    vertical-align: middle;
+    padding: 3%;
 }
-	
+
+.content-pos{
+	box-sizing: border-box;
+    padding-top: 5%;
+	position: relative;
+}
+.content-pos::after{
+	content: '';
+    width: 400px;
+    height: 139px;
+    background-color: rgb(255,255,255);
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 3%;
+    right: 0;
+    bottom: 0;
+    z-index: -1;  
+	-webkit-box-shadow: 0px 3px 5px rgb(8,8,8, 0.3);
+	-moz-box-shadow: 0px 3px 5px rgb(8,8,8, 0.3);
+	box-shadow: 0px 3px 5px rgb(8,8,8, 0.3);
+}	
+
 select{
 	text-decoration: none;    
 	border-color: transparent;
@@ -63,34 +83,24 @@ select{
 	line-hight: 5px;
 }
 
-.h3-sty-line{
-    width: 88px;
-    text-align: center;
-    line-height: 30px;
-    border-right: 2px solid #bb9d52;
-}
-
 b{
 	font-size:16px;
 	color: rgb(88,88,88);
 }
 
-
-/*------------------------------------------------------------------
-    FOR AJUSTMENT
--------------------------------------------------------------------*/
 .font-weight-seven{
 	 font-weight: 700;
 }
 
-.box-sizing{
+.sty-line{    
+    border-right: 3px solid #bb9d52;
+}
+
+.sty-form{
 	box-sizing: border-box;
+    padding: 1% 0 0 0;
 }
 
-.pd-left-five{
-    padding-left: 5%;
-}
-
-.pd-top-five{
-    padding-top: 5%;
+.pd-left{
+	padding-left: 10%;
 }
