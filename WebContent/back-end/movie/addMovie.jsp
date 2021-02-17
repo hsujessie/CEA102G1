@@ -29,7 +29,7 @@
 	line-hight: 5px;
   }
   .mr-left{
-    margin-left: 20%;
+    margin-left: 40%;
   }
   .mr-btm-normal{
     margin-bottom: 10%;
@@ -37,12 +37,33 @@
   .mr-btm-sm{
     margin-bottom: 5%;
   }
+  .fake-txt::after{
+   	content: "小時";
+    color: #bb9d52;
+    position: absolute;
+    top: 39%;
+    left: 78%;
+    right: 0;
+    bottom: 0;
+  }
+  .add-mov-table tr{
+  	height: 30px;
+  }
+  .add-mov-table span{
+  	box-sizing: border-box;
+  	padding-left: 3%;
+  }
+  .btn-pos{
+  	margin-left: -40%;
+    margin-top: 10%;
+  }
+  
 </style>
 
 </head>
 <body>
-<FORM class="center-linehigh-content" method="post" action="<%=request.getContextPath()%>/movie/mov.do" name="form_addMovie" enctype="multipart/form-data">
-<table>
+<FORM class="center-linehigh-content" style="width:100%; margin-left:15%;" method="post" action="<%=request.getContextPath()%>/movie/mov.do" name="form_addMovie" enctype="multipart/form-data">
+<table class="add-mov-table">
 	<tr>
 		<td><b>名稱</b></td>
 		<td><input class="sty-input mr-left mr-btm-normal" type="text" name="movname" value="<%= (movVO==null)? "金牌特務" : movVO.getMovname()%>" /></td>
@@ -52,9 +73,9 @@
 		<td><b>種類</b></td>
 		<td>
 			<!-- 多選checkbox -->
-			<input class="mr-left mr-btm-sm" type="checkbox" name="movver" value="2D" ${movver == null? "checked":""} >2D<br>
-			<input class="mr-left mr-btm-sm" type="checkbox" name="movver" value="3D">3D<br>
-			<input class="mr-left mr-btm-sm" type="checkbox" name="movver" value="IMAX">IMAX<br>
+			<input class="mr-left mr-btm-sm" type="checkbox" name="movver" value="2D" ${movver == null? "checked":""} ><span>2D</span><br>
+			<input class="mr-left mr-btm-sm" type="checkbox" name="movver" value="3D"><span>3D</span><br>
+			<input class="mr-left mr-btm-sm" type="checkbox" name="movver" value="IMAX"><span>IMAX</span><br>
 		</td>
 		<td class="errColor">${errorMsgs.movver}</td>
 	</tr>
@@ -75,9 +96,9 @@
 		<td><b>語言</b></td>
 		<td>
 			<!-- 多選checkbox -->
-			<input class="mr-left mr-btm-sm" type="checkbox" name="movlan" value="英文" ${movlan == null? "checked":""} >英文<br>
-			<input class="mr-left mr-btm-sm" type="checkbox" name="movlan" value="中文">中文<br>
-			<input class="mr-left mr-btm-sm" type="checkbox" name="movlan" value="日文">日文<br>
+			<input class="mr-left mr-btm-sm" type="checkbox" name="movlan" value="英文" ${movlan == null? "checked":""} ><span>英文</span><br>
+			<input class="mr-left mr-btm-sm" type="checkbox" name="movlan" value="中文"><span>中文</span><br>
+			<input class="mr-left mr-btm-sm" type="checkbox" name="movlan" value="日文"><span>日文</span><br>
 		</td>
 		<td class="errColor">${errorMsgs.movlan}</td>
 	</tr>
@@ -92,8 +113,8 @@
 		<td class="errColor">${errorMsgs.movoffdate}</td>
 	</tr>
 	<tr>
-		<td><b>片長</b></td>
-		<td><input class="sty-input mr-left mr-btm-normal" type="text" name="movdurat" value="<%= (movVO==null)? "2" : movVO.getMovdurat()%>"/>小時</td>
+		<td style="position:relative;"><b>片長</b></td>
+		<td class="fake-txt"><input class="sty-input mr-left mr-btm-normal" type="text" name="movdurat" value="<%= (movVO==null)? "2" : movVO.getMovdurat()%>"/></td>
 		<td class="errColor">${errorMsgs.movdurat}</td>
 	</tr>
 	<tr>
@@ -119,15 +140,16 @@
 	</tr>
 	<tr>
 		<td><b>簡介</b></td>
-		<td><textarea name="movdes" class="sty-input mr-left mr-btm-normal">
+		<td><textarea name="movdes" class="sty-input mr-left">
 			<%= (movVO==null)? "description" : movVO.getMovdes()%></textarea>
 		</td>
 		<td class="errColor">${errorMsgs.movcast}</td>
 	</tr>
+	<tr></tr>
 	<tr>
 		<td><b>海報</b></td>	
 		<td>	
-			<label class="btn" style="margin-left:10%;">
+			<label class="btn" style="margin-left: 30%;">
 			<input style="display:none;" type="file" name="movpos" value="<%= (movVO==null)? "poster" : movVO.getMovpos()%>"/>
 				<i class="fa fa-photo"></i>
 			</label>
@@ -136,7 +158,7 @@
 	<tr>
 		<td><b>預告片</b></td>
 		<td>
-			<label class="btn" style="margin-left:10%;">
+			<label class="btn" style="margin-left: 30%;">
 			<input style="display:none;" type="file" name="movtra" value="<%=  (movVO==null)? "trailer" : movVO.getMovtra()%>"/>
 				<i class="fa fa-film"></i>
 			</label>
@@ -145,7 +167,7 @@
 </table>
 <br>
 <input type="hidden" name="action" value="insert">
-<a class="btn btn-light btn-radius btn-brd grd1 effect-1">
+<a class="btn btn-light btn-radius btn-brd grd1 effect-1 btn-pos">
 	<input type="submit" value="新增" class="input-pos">
 </a>
 </FORM>

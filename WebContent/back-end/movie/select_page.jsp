@@ -137,11 +137,11 @@
 		<div class="modal-content">
 				
 			<div class="modal-header">
-                <h3 class="modal-title h3-style" id="myModalLabel" style="text-align:center;">電影新增</h3>
+                <h3 style="margin-left: 40%;" class="modal-title h3-style" id="myModalLabel" style="text-align:center;">電影新增</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
 			
-			<div class="modal-body center-linehigh-box red" style="width:500px;">
+			<div class="modal-body center-linehigh-box" style="width:500px;">
                <jsp:include page="addMovie.jsp"/><!-- 引入jsp-->
 			</div>		
 		</div>
