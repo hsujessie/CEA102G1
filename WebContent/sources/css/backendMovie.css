@@ -28,6 +28,22 @@
 
 
 /*------------------------------------------------------------------
+    Line-height + inline-block 多物件的垂直置中
+-------------------------------------------------------------------*/
+  .center-linehigh-box{
+  	margin: auto; 
+  	text-align: center; 
+  	line-height: 200px; 
+  }
+  .center-linehigh-content{
+	display: inline-block;
+	height: auto;
+	line-height:1;
+	vertical-align: middle;
+  }
+  
+
+/*------------------------------------------------------------------
     FOR AJUSTMENT
 -------------------------------------------------------------------*/
 .center-box {
@@ -84,7 +100,7 @@ select{
 }
 
 b{
-	font-size:16px;
+	font-size:18px;
 	color: rgb(88,88,88);
 }
 

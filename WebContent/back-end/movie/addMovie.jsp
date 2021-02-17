@@ -6,68 +6,42 @@
 
 <html>
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-<title>新增電影資訊 - addMov.jsp</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="../../sources/css/cssReset.css">
+	<link rel="stylesheet" href="../../sources/css/style.css">
+	<link rel="stylesheet" href="../../sources/css/backendMovie.css">
+	
+<title>電影新增 - addMov.jsp</title>
 
 <style>
-  #table-1 {
-	width: 450px;
-	background-color: #CCCCFF;
-	margin-top: 5px;
-	margin-bottom: 10px;
-    border: 3px ridge Gray;
-    height: 80px;
-    text-align: center;
-  }
-  #table-1 h4 {
-    color: red;
-    display: block;
-    margin-bottom: 1px;
-  }
-  h4 {
-    color: blue;
-    display: inline;
-  }
-</style>
-
-<style>
-  table {
-	background-color: white;
-	margin-top: 1px;
-	margin-bottom: 1px;
-  }
-  table, th, td {
-    border: 0px solid #CCCCFF;
-  }
-  th, td {
-    padding: 1px;
-  }
   .errColor{
    	color:red;
+  }
+  .sty-input{
+	text-decoration: none;    
+	border-color: transparent;
+    width: 150px;
+    border-bottom: 2px dashed #bb9d52;
+    margin-left: 10px;
+    box-sizing: border-box;
+    padding-bottom: 3px;
+    color: #bb9d52;
+	line-hight: 5px;
   }
 </style>
 
 </head>
-<body bgcolor='white'>
-
-<table id="table-1">
-	<tr><td>
-		 <h3>新增電影資訊 - addMov.jsp</h3></td><td>
-		 <h4><a href="<%=request.getContextPath()%>/back-end/movie/select_page.jsp">回首頁</a></h4>
-	</td></tr>
-</table>
-
-<h3>新增電影資訊:</h3>
-
-<FORM method="post" action="<%=request.getContextPath()%>/movie/mov.do" name="form_addMovie" enctype="multipart/form-data">
+<body>
+<FORM class="center-linehigh-content" method="post" action="<%=request.getContextPath()%>/movie/mov.do" name="form_addMovie" enctype="multipart/form-data">
 <table>
 	<tr>
-		<td>電影名稱:</td>
-		<td><input type="text" name="movname" value="<%= (movVO==null)? "金牌特務" : movVO.getMovname()%>" /></td>
+		<td><b>名稱</b></td>
+		<td><input class="sty-input" type="text" name="movname" value="<%= (movVO==null)? "金牌特務" : movVO.getMovname()%>" /></td>
 		<td class="errColor">${errorMsgs.movname}</td>
 	</tr>
 	<tr>
-		<td>電影種類:</td>
+		<td><b>種類</b></td>
 		<td>
 			<!-- 多選checkbox -->
 			<input type="checkbox" name="movver" value="2D" ${movver == null? "checked":""} >2D<br>
@@ -77,7 +51,7 @@
 		<td class="errColor">${errorMsgs.movver}</td>
 	</tr>
 	<tr>
-		<td>電影類型:</td>
+		<td><b>類型</b></td>
 		<td>
 			<select name="movtype">
 				<option value= "動畫片">動畫片</option>
@@ -90,7 +64,7 @@
 		<td class="errColor">${errorMsgs.movtype}</td>
 	</tr>
 	<tr>
-		<td>電影語言:</td>
+		<td><b>語言</b></td>
 		<td>
 			<!-- 多選checkbox -->
 			<input type="checkbox" name="movlan" value="英文" ${movlan == null? "checked":""} >英文<br>
@@ -100,22 +74,22 @@
 		<td class="errColor">${errorMsgs.movlan}</td>
 	</tr>
 	<tr>
-		<td>上映日期:</td>
-		<td><input name="movondate" id="mov_ondate" type="text"></td>
+		<td><b>上映日期</b></td>
+		<td><input class="sty-input" name="movondate" id="mov_ondate" type="text"></td>
 		<td class="errColor">${errorMsgs.movondate}</td>
 	</tr>
 	<tr>
-		<td>下檔日期:</td>
-		<td><input name="movoffdate" id="mov_offdate" type="text"></td>
+		<td><b>下檔日期</b></td>
+		<td><input class="sty-input" name="movoffdate" id="mov_offdate" type="text"></td>
 		<td class="errColor">${errorMsgs.movoffdate}</td>
 	</tr>
 	<tr>
-		<td>片長:</td>
-		<td><input type="text" name="movdurat" value="<%= (movVO==null)? "2" : movVO.getMovdurat()%>" />小時</td>
+		<td><b>片長</b></td>
+		<td><input class="sty-input" type="text" name="movdurat" value="<%= (movVO==null)? "2" : movVO.getMovdurat()%>" />小時</td>
 		<td class="errColor">${errorMsgs.movdurat}</td>
 	</tr>
 	<tr>
-		<td>電影級數:</td>
+		<td><b>級數</b></td>
 		<td>
 			<select name="movrating">
 				<option value="普遍級">普遍級</option>
@@ -126,36 +100,42 @@
 		</td>
 	</tr>
 	<tr>
-		<td>導演:</td>
-		<td><input type="text" name="movditor" value="<%= (movVO==null)? "dicrector" : movVO.getMovditor()%>" /></td>	
+		<td><b>導演</b></td>
+		<td><input class="sty-input" type="text" name="movditor" value="<%= (movVO==null)? "dicrector" : movVO.getMovditor()%>" /></td>	
 		<td class="errColor">${errorMsgs.movditor}</td>
 	</tr>
 	<tr>
-		<td>演員:</td>
-		<td><input type="text" name="movcast" value="<%= (movVO==null)? "actors" : movVO.getMovcast()%>" /></td>
+		<td><b>演員</b></td>
+		<td><input class="sty-input" type="text" name="movcast" value="<%= (movVO==null)? "actors" : movVO.getMovcast()%>" /></td>
 		<td class="errColor">${errorMsgs.movcast}</td>
 	</tr>
 	<tr>
-		<td>電影簡介:</td>
-		<td><textarea name="movdes">
+		<td><b>簡介</b></td>
+		<td><textarea name="movdes" class="sty-input">
 			<%= (movVO==null)? "description" : movVO.getMovdes()%></textarea>
 		</td>
 		<td class="errColor">${errorMsgs.movcast}</td>
 	</tr>
 	<tr>
-		<td>電影海報:</td>
+		<td><b>海報</b></td>
 		<td><input type="file" name="movpos" value="<%= (movVO==null)? "poster" : movVO.getMovpos()%>" /></td>
 	</tr>
 	<tr>
-		<td>電影預告片:</td>
+		<td><b>預告片</b></td>
 		<td><input type="file" name="movtra" value="<%=  (movVO==null)? "trailer" : movVO.getMovtra()%>" /></td>
 	</tr>
 </table>
 <br>
 <input type="hidden" name="action" value="insert">
-<input type="submit" value="送出新增">
+<a class="btn btn-light btn-radius btn-brd grd1 effect-1">
+	<input type="submit" value="新增" class="input-pos">
+</a>
 </FORM>
 </body>
+
+<!-- =========================================================================================== 
+    								以下 DATETIME PICKER
+	 ===========================================================================================  -->
 <%
   java.sql.Date movondate = null;
   java.sql.Date movoffdate = null;
@@ -167,7 +147,6 @@
 	   movoffdate = new java.sql.Date(System.currentTimeMillis());
    }
 %>
-
 <link   rel="stylesheet" type="text/css" href="/CEA102G1/sources/datetimepicker/jquery.datetimepicker.css"/>
 <script src="/CEA102G1/sources/datetimepicker/jquery.js"></script>
 <script src="/CEA102G1/sources/datetimepicker/jquery.datetimepicker.full.js"></script>

@@ -4,6 +4,7 @@
 
 <html>
 <head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="../../sources/images/logos/seenema_W.ico" type="image/x-icon" />
     <link rel="stylesheet" href="../../sources/css/cssReset.css">
@@ -136,19 +137,13 @@
 		<div class="modal-content">
 				
 			<div class="modal-header">
+                <h3 class="modal-title h3-style" id="myModalLabel" style="text-align:center;">電影新增</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3 class="modal-title" id="myModalLabel">The Bootstrap modal-header</h3>
             </div>
 			
-			<div class="modal-body">
+			<div class="modal-body center-linehigh-box red">
                <jsp:include page="addMovie.jsp"/><!-- 引入jsp-->
-			</div>
-			
-			<div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-		
+			</div>		
 		</div>
 	</div>
 </div><!-- end Modal--> 
