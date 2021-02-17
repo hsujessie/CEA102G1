@@ -31,6 +31,11 @@ thead > tr{
     border-radius: 2%;
 }
 
+.table-responsive {
+	table-layout:fixed;
+    width: 1190px;
+}
+ 
 .w-brk {
     word-break: break-all;
     min-width: 800px;
