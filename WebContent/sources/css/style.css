@@ -47,19 +47,6 @@ ul, li, ol{
 .sidebar-bgcolor{
 	background-color: rgb(187,157,82,0.2);
 }
-.nav
-bar-nav > li > a {
-    border-radius: 0;
-    color: #ffffff !important;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 400;
-    background-color: transparent;
-}
-
-.navbar-nav > li a {
-    background-color: transparent !important;
-}
 
 body.barber_version .sidebar-nav li a.active{
 	background: #bb9d52;
@@ -71,10 +58,6 @@ body.barber_version .sidebar-nav li a.active{
 	padding: 0px; 
 	text-align: center;
 	list-style: none;
-}
-
-body.barber_version .navbar-nav span {
-    color: #424145 !important;
 }
 
 body.barber_version .sidebar-nav li:hover a {
@@ -140,6 +123,7 @@ body.barber_version .sidebar-nav li a {
 	-ms-border-radius: 10px;
 	border-radius: 10px;
 	line-height: 21px;
+	font-size: 15px;
 }
 
 body.barber_version .sidebar-nav li a:hover {

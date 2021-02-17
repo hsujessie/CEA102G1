@@ -149,7 +149,8 @@
 	</div>
 </div><!-- end Modal-->
 <c:if test="${openLightbox}">
-	<!-- 要再引入一次，不然會出現錯誤 $(...).modal is not a function -->
+	<!-- open modal要引入js，不然會出現錯誤 $(...).modal is not a function -->
+	<!-- 因為會先讀JSTL，依據讀取順序，讀不到上面引入的js，所以出現錯誤，故在JSTL標籤內要引入js-->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 	<script>	    	
