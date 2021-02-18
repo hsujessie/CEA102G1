@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-<title>電影資訊修改 - Update Movie input.jsp</title>
+<title>電影修改 - Update Movie input.jsp</title>
 <style>
   #table-1 {
 	width: 450px;

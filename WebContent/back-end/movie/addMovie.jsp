@@ -11,11 +11,7 @@
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/cssReset.css">
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/style.css">
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/backendMovie.css">
-	<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'></link>   
-
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'></link> 
 <title>電影新增 - addMov.jsp</title>
 
 <style>
