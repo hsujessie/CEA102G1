@@ -237,6 +237,8 @@
 	<input type="submit" value="修改" class="input-pos">
 </a>
 </FORM>
+
+${not empty movVO.movondate}
 </body>
 
 <!-- =========================================================================================== 
@@ -245,37 +247,37 @@
 <link   rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/sources/datetimepicker/jquery.datetimepicker.css"/>
 <script src="<%=request.getContextPath()%>/sources/datetimepicker/jquery.js"></script>
 <script src="<%=request.getContextPath()%>/sources/datetimepicker/jquery.datetimepicker.full.js"></script>
-<style>
-  .xdsoft_datetimepicker .xdsoft_datepicker {
-           width:  300px;
-  }
-  .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box {
-           height: 151px;
-  }
-</style>
-<script>
-$.datetimepicker.setLocale('zh');
-jQuery(function(){
-    jQuery('#mov_ondate').datetimepicker({
-        format:'Y-m-d',
-        value:'${movVO.movondate}',
-        onShow:function( ct ){
-        this.setOptions({
-            maxDate:jQuery('#mov_offdate').val()?jQuery('#mov_offdate').val():false
-        })
-        },
-        timepicker:false
- });
-jQuery('#mov_offdate').datetimepicker({
-    format:'Y-m-d',
-    value:'${movVO.movoffdate}',
-    onShow:function( ct ){
-    this.setOptions({
-        minDate:jQuery('#mov_ondate').val()?jQuery('#mov_ondate').val():false
-    })
-    },
-    timepicker:false
-    });
-});
-</script>
+	<style>
+	  .xdsoft_datetimepicker .xdsoft_datepicker {
+	           width:  300px;
+	  }
+	  .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box {
+	           height: 151px;
+	  }
+	</style>
+	<script>
+	$.datetimepicker.setLocale('zh');
+	jQuery(function(){
+	    jQuery('#mov_ondate').datetimepicker({
+	        format:'Y-m-d',
+	        value:'${movVO.movondate}',
+	        onShow:function( ct ){
+	        this.setOptions({
+	            maxDate:jQuery('#mov_offdate').val()?jQuery('#mov_offdate').val():false
+	        })
+	        },
+	        timepicker:false
+	 });
+	jQuery('#mov_offdate').datetimepicker({
+	    format:'Y-m-d',
+	    value:'${movVO.movoffdate}',
+	    onShow:function( ct ){
+	    this.setOptions({
+	        minDate:jQuery('#mov_ondate').val()?jQuery('#mov_ondate').val():false
+	    })
+	    },
+	    timepicker:false
+	    });
+	});
+	</script>
 </html>
