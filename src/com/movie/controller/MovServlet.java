@@ -270,8 +270,11 @@ public class MovServlet extends HttpServlet{
 				req.setAttribute("movVO", movVO);     
 				req.setAttribute("movverToken", movverToken);    
 				req.setAttribute("movlanToken", movlanToken);
-				
-				String url = "/back-end/movie/update_movie_input.jsp";
+
+				Boolean openLightbox = true;
+				req.setAttribute("openLightbox", openLightbox);
+				//String url = "/back-end/movie/update_movie_input.jsp";
+				String url = "/back-end/movie/listAllMovie.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 
@@ -518,8 +521,11 @@ public class MovServlet extends HttpServlet{
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("movVO", movVO);             
-					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/movie/update_movie_input.jsp");
+					req.setAttribute("movVO", movVO);        
+					Boolean openLightbox = true;
+					req.setAttribute("openLightbox", openLightbox);
+					String url = "/back-end/movie/listAllMovie.jsp";
+					RequestDispatcher failureView = req.getRequestDispatcher(url);
 					failureView.forward(req, res);
 					return;
 				}
@@ -534,16 +540,23 @@ public class MovServlet extends HttpServlet{
 					List<MovVO> list  = movSvc.getAll(map);
 					req.setAttribute("listMovies_ByCompositeQuery",list); //  複合查詢, 資料庫取出的list物件,存入request
 				}
-				String url = requestURL;
 				
+				String updateSuccess = "【  " + movname + " 】" + "修改成功";
+				req.setAttribute("updateSuccess", updateSuccess);
+				Boolean openLightbox = false;
+				req.setAttribute("openLightbox", openLightbox); //update success不要跳出燈箱
+				
+				String url = "/back-end/movie/listAllMovie.jsp"; //update success	
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 
 				/***************************其他可能的錯誤處理*************************************/
-			} catch (Exception e) {
+			}catch (Exception e) {
 				errorMsgs.put("Exception","修改資料失敗:"+e.getMessage());
-
-				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/movie/update_movie_input.jsp");
+				Boolean openLightbox = true;
+				req.setAttribute("openLightbox", openLightbox);
+				String url = "/back-end/movie/listAllMovie.jsp";				
+				RequestDispatcher failureView = req.getRequestDispatcher(url);
 				failureView.forward(req, res);
 			}
 		}

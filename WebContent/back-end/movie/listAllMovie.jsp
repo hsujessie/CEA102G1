@@ -39,6 +39,10 @@ thead > tr{
     min-width: 800px;
     max-width: 1000px;
 }
+
+.sty-height{
+	line-height:25px;
+}
 </style>
 </head>
 <body class="barber_version container-fluid">
@@ -57,7 +61,13 @@ thead > tr{
 						${addSuccess}
 						<i class="fa fa-hand-peace-o"></i>
 					</span>
-				</c:if>	
+				</c:if>
+				<c:if test="${updateSuccess != null }">
+					<span style="color: #bb9d52">  
+						${updateSuccess}
+						<i class="fa fa-hand-peace-o"></i>
+					</span>
+				</c:if>
 	            <table class="table table-responsive table-hover">
 					<thead>
 						<tr style="border-bottom: 3px solid #bb9d52;">
@@ -82,7 +92,7 @@ thead > tr{
 					<tbody>
 					<%@ include file="pages/page1.file" %> 	
 						<c:forEach var="movVO" items="${list}" varStatus="no" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-						<tr style="line-height:25px;" valign='middle' ${(movVO.movno==param.movno) ? 'bgcolor=#CCCCFF':''}>
+						<tr class="sty-height" valign='middle' ${(movVO.movno==param.movno) ? 'style="background-color:#bb9d52; color:#fff;"':''}>
 							<td>${no.index+1}</td>
 							<td>${movVO.getMovname()}</td>
 							<td>${movVO.getMovver()}</td>
@@ -116,6 +126,37 @@ thead > tr{
 			</div>
         </div><!-- end Section-->
     </div>
+
+
+<!-- =========================================================================================== 
+    										以下 MODAL
+	 ===========================================================================================  -->
+<!-- Start Modal-->  
+<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content" style="background-color: rgba(119,136,153,.9);">
+				
+			<div class="modal-header" style="border: 1px solid rgba(119,136,153,.9);">
+                <h3 style="margin-left: 40%; margin-top: 3%;" class="modal-title h3-style" id="myModalLabel" style="text-align:center; position:relative;">電影修改</h3>
+                <button type="button" class="close sty-close-btn" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close"></i></button>
+            </div>
+			
+			<div class="modal-body center-linehigh-box sty-lightbox">
+               <jsp:include page="update_movie_input.jsp"/><!-- 引入jsp-->
+			</div>		
+		</div>
+	</div>
+</div><!-- end Modal-->
+${openLightbox}
+<c:if test="${openLightbox}">
+	<!-- open modal要引入js，不然會出現錯誤 $(...).modal is not a function -->
+	<!-- 因為會先讀JSTL，依據讀取順序，讀不到上面引入的js，所以出現錯誤，故在JSTL標籤內要引入js-->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<script>	    	
+		$("#basicModal").modal();
+	</script>
+</c:if>
     
 <%--     <br>本網頁的路徑:<br><b>
    <font color=blue>request.getServletPath():</font> <%=request.getServletPath()%><br>

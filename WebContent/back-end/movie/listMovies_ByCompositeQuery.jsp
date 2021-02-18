@@ -33,6 +33,10 @@ thead > tr{
     min-width: 800px;
     max-width: 1000px;
 }
+
+.sty-height{
+	line-height:25px;
+}
 </style>
 </head>
 <body class="barber_version container-fluid">
@@ -70,7 +74,7 @@ thead > tr{
 					<tbody>
 						<%@ include file="pages/page1_ByCompositeQuery.file"%> 
 						<c:forEach var="movVO" varStatus="no" items="${listMovies_ByCompositeQuery}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-						<tr valign='middle' ${(movVO.movno==param.movno) ? 'bgcolor=#CCCCFF':''}>
+						<tr class="sty-height" valign='middle' ${(movVO.movno==param.movno) ? 'style="background-color:#bb9d52; color:#fff;"':''}>
 							<td>${no.index+1}</td>
 							<td>${movVO.getMovname()}</td>
 							<td>${movVO.getMovver()}</td>

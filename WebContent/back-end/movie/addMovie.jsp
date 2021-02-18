@@ -191,8 +191,10 @@
 	</tr>
 	<tr>
 		<td><b>簡介</b></td>
-		<td><textarea name="movdes" class="sty-input mr-left">
-			<%= (movVO==null)? "description" : movVO.getMovdes()%></textarea>
+		<td>
+			<textarea name="movdes" class="sty-input mr-left">
+				<%= (movVO==null)? "description" : movVO.getMovdes()%>
+			</textarea>
 		</td>
 		<c:if test="${not empty errorMsgs.movdes}">
 			<td class="errmsg-pos">		

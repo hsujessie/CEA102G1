@@ -5,84 +5,101 @@
 
 <html>
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/cssReset.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/style.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/backendMovie.css">
+	<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'></link> 
 <title>電影修改 - Update Movie input.jsp</title>
-<style>
-  #table-1 {
-	width: 450px;
-	background-color: #CCCCFF;
-	margin-top: 5px;
-	margin-bottom: 10px;
-    border: 3px ridge Gray;
-    height: 80px;
-    text-align: center;
-  }
-  #table-1 h4 {
-    color: red;
-    display: block;
-    margin-bottom: 1px;
-  }
-  h4 {
-    color: blue;
-    display: inline;
-  }
-</style>
 
 <style>
-  table {
-	background-color: white;
-	margin-top: 1px;
-	margin-bottom: 1px;
+  .err-color{
+    font-size: 12px;
+    text-shadow: 0 0 0.2em #f87, 0 0 0.2em #f87;
   }
-  table, th, td {
-    border: 0px solid #CCCCFF;
+  .errmsg-pos{
+  	padding-left: 15%;
+  	width: 290px;
   }
-  th, td {
-    padding: 1px;
+  .sty-input{
+	text-decoration: none;    
+	border-color: transparent;
+    width: 150px;
+    border-bottom: 2px dashed #bb9d52;
+    box-sizing: border-box;
+    padding-bottom: 3px;
+    color: #bb9d52;
+	line-hight: 5px;
   }
-  img{
-  	width:50px;
+  .mr-left{
+    margin-left: 45%;
   }
-  .errColor{
-   	color:red;
+  .mr-btm-normal{
+    margin-bottom: 10%;
+  }
+  .mr-btm-sm{
+    margin-bottom: 5%;
+  }
+  .fake-txt::after{
+   	content: "小時";
+    color: #bb9d52;
+    position: absolute;
+    top: 47%;
+    left: 67%;
+    right: 0;
+    bottom: 0;
+  }
+  .add-mov-table tr{
+  	height: 30px;
+  }
+  .add-mov-table span{
+  	box-sizing: border-box;
+  	padding-left: 3%;
+  	color: #bb9d52;
+  }
+  .btn-pos{
+  	margin-left: -46%;
+    margin-top: 5%;
+    margin-bottom: 1%;
   }
 </style>
 
 </head>
-<body bgcolor='white'>
-
-<table id="table-1">
-	<tr><td>
-		 <h3>電影資訊修改 - Update Movie input.jsp</h3></td><td>
-		 <h4><a href="<%=request.getContextPath()%>/back-end/movie/select_page.jsp">回首頁</a></h4>
-	</td></tr>
-</table>
-
-<h3>電影資訊修改:</h3>
-
-<FORM method="post" action="<%=request.getContextPath()%>/movie/mov.do" name="form_updateMovie" enctype="multipart/form-data">
-<table>
+<body>
+<FORM  class="center-linehigh-content" style="width:100%; margin: 6% 0 0 23%;" method="post" action="<%=request.getContextPath()%>/movie/mov.do" name="form_updateMovie" enctype="multipart/form-data">	
+<table class="add-mov-table">
 	<tr>
-		<td>電影名稱:</td>
-		<td><input type="text" name="movname" value="${movVO.movname}" /></td>
-		<td class="errColor">${errorMsgs.movname}</td>
+		<td><b>名稱</b></td>
+		<td><input class="sty-input mr-left mr-btm-normal" type="text" name="movname" value="${movVO.movname}" /></td>
+		<c:if test="${not empty errorMsgs.movname}">
+			<td class="errmsg-pos">		
+				<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
+				<label class="err-color">${errorMsgs.movname}</label>
+			</td>
+		</c:if>
 	</tr>
 
 	<jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService" />
 	<tr>
-		<td>電影種類:</td>
+		<td><b>種類</b></td>
 		<td>
 			<!-- 多選checkbox -->
-				<input type="checkbox" name="movver" value="2D"      <c:forEach var="i" begin="0" end="2"> <c:if test="${movverToken[i].contains('2D')}">      checked </c:if></c:forEach> >2D<br/>
-				<input type="checkbox" name="movver" value="3D"      <c:forEach var="i" begin="0" end="2"> <c:if test="${movverToken[i].contains('3D')}">      checked </c:if></c:forEach> >3D<br/>
-				<input type="checkbox" name="movver" value="IMAX"    <c:forEach var="i" begin="0" end="2"> <c:if test="${movverToken[i].contains('IMAX')}">    checked </c:if></c:forEach> >IMAX<br/>
+				<input class="mr-left mr-btm-sm" type="checkbox" name="movver" value="2D"      <c:forEach var="i" begin="0" end="2"> <c:if test="${movverToken[i].contains('2D')}">      checked </c:if></c:forEach> >2D<br/>
+				<input class="mr-left mr-btm-sm" type="checkbox" name="movver" value="3D"      <c:forEach var="i" begin="0" end="2"> <c:if test="${movverToken[i].contains('3D')}">      checked </c:if></c:forEach> >3D<br/>
+				<input class="mr-left mr-btm-sm" type="checkbox" name="movver" value="IMAX"    <c:forEach var="i" begin="0" end="2"> <c:if test="${movverToken[i].contains('IMAX')}">    checked </c:if></c:forEach> >IMAX<br/>
 		</td>
-		<td class="errColor">${errorMsgs.movver}</td>
+		<c:if test="${not empty errorMsgs.movver}">
+			<td class="errmsg-pos">		
+				<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
+				<label class="err-color">${errorMsgs.movver}</label>
+			</td>
+		</c:if>
 	</tr>
 	<tr>
-		<td>電影類型:</td>
+		<td><b>類型</b></td>
 		<td>
-			<select name="movtype">
+			<select class="mr-left mr-btm-normal" name="movtype">
 				<option value= "劇情片" <c:forEach var="movVO" items="${movSvc.all}">  <c:if test="${movVO.movtype.contains('劇情片')}"> selected </c:if></c:forEach> >劇情片</option>
 				<option value= "動畫片" <c:forEach var="movVO" items="${movSvc.all}">  <c:if test="${movVO.movtype.contains('動畫片')}"> selected </c:if></c:forEach> >動畫片</option>
 				<option value= "喜劇片" <c:forEach var="movVO" items="${movSvc.all}">  <c:if test="${movVO.movtype.contains('喜劇片')}"> selected </c:if></c:forEach> >喜劇片</option>
@@ -91,37 +108,62 @@
 				<option value= "恐怖片" <c:forEach var="movVO" items="${movSvc.all}">  <c:if test="${movVO.movtype.contains('恐怖片')}"> selected </c:if></c:forEach> >恐怖片</option>
 			</select>
 		</td>
-		<td class="errColor">${errorMsgs.movtype}</td>
+		<c:if test="${not empty errorMsgs.movtype}">
+			<td class="errmsg-pos">		
+				<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
+				<label class="err-color">${errorMsgs.movtype}</label>
+			</td>
+		</c:if>
 	</tr>
 	<tr>
-		<td>電影語言:</td>
+		<td><b>語言</b></td>
 		<td>
 			<!-- 多選checkbox -->
-			<input type="checkbox" name="movlan" value="英文" <c:forEach var="i" begin="0" end="1"> <c:if test="${movlanToken[i].contains('英文')}"> checked </c:if></c:forEach> >英文<br/>
-			<input type="checkbox" name="movlan" value="中文" <c:forEach var="i" begin="0" end="1"> <c:if test="${movlanToken[i].contains('中文')}"> checked </c:if></c:forEach> >中文<br/>
-			<input type="checkbox" name="movlan" value="日文" <c:forEach var="i" begin="0" end="1"> <c:if test="${movlanToken[i].contains('日文')}"> checked </c:if></c:forEach> >日文<br/>
+			<input class="mr-left mr-btm-sm" type="checkbox" name="movlan" value="英文" <c:forEach var="i" begin="0" end="1"> <c:if test="${movlanToken[i].contains('英文')}"> checked </c:if></c:forEach> >英文<br/>
+			<input class="mr-left mr-btm-sm" type="checkbox" name="movlan" value="中文" <c:forEach var="i" begin="0" end="1"> <c:if test="${movlanToken[i].contains('中文')}"> checked </c:if></c:forEach> >中文<br/>
+			<input class="mr-left mr-btm-sm" type="checkbox" name="movlan" value="日文" <c:forEach var="i" begin="0" end="1"> <c:if test="${movlanToken[i].contains('日文')}"> checked </c:if></c:forEach> >日文<br/>
 		</td>
-		<td class="errColor">${errorMsgs.movlan}</td>
+		<c:if test="${not empty errorMsgs.movlan}">
+			<td class="errmsg-pos">		
+				<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
+				<label class="err-color">${errorMsgs.movlan}</label>
+			</td>
+		</c:if>
 	</tr>
 	<tr>
-		<td>上映日期:</td>
-		<td><input name="movondate" id="mov_ondate" type="text"></td>
-		<td class="errColor">${errorMsgs.movondate}</td>
+		<td><b>上映日期</b></td>
+		<td><input class="sty-input mr-left mr-btm-normal" name="movondate" id="mov_ondate" type="text"></td>
+		<c:if test="${not empty errorMsgs.movondate}">
+			<td class="errmsg-pos">		
+				<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
+				<label class="err-color">${errorMsgs.movondate}</label>
+			</td>
+		</c:if>
 	</tr>
 	<tr>
-		<td>下檔日期:</td>
-		<td><input name="movoffdate" id="mov_offdate" type="text"></td>
-		<td class="errColor">${errorMsgs.movoffdate}</td>
+		<td><b>下檔日期</b></td>
+		<td><input class="sty-input mr-left mr-btm-normal" name="movoffdate" id="mov_offdate" type="text"></td>
+		<c:if test="${not empty errorMsgs.movoffdate}">
+			<td class="errmsg-pos">		
+				<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
+				<label class="err-color">${errorMsgs.movoffdate}</label>
+			</td>
+		</c:if>
 	</tr>
 	<tr>
-		<td>片長:</td>
-		<td><input type="text" name="movdurat" value="${ empty movVO.movdurat ? '2' : movVO.movdurat}" />小時</td>
-		<td class="errColor">${errorMsgs.movdurat}</td>
+		<td style="position:relative;"><b>片長</b></td>
+		<td class="fake-txt"><input class="sty-input mr-left mr-btm-normal" type="text" name="movdurat" value="${ empty movVO.movdurat ? '2' : movVO.movdurat}"/></td>
+		<c:if test="${not empty errorMsgs.movdurat}">
+			<td class="errmsg-pos" style="padding-left: 25%;">		
+				<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
+				<label class="err-color">${errorMsgs.movdurat}</label>
+			</td>
+		</c:if>
 	</tr>
 	<tr>
-		<td>電影級數:</td>
+		<td><b>級數</b></td>
 		<td>
-			<select name="movrating">
+			<select class="mr-left mr-btm-normal" name="movrating">
 				<option value="普遍級" <c:forEach var="movVO" items="${movSvc.all}"><c:if test="${movVO.movrating.contains('普遍級')}"> selected </c:if></c:forEach> >普遍級</option>
 				<option value="保護級" <c:forEach var="movVO" items="${movSvc.all}"><c:if test="${movVO.movrating.contains('保護級')}"> selected </c:if></c:forEach> >保護級</option>
 				<option value="輔導級" <c:forEach var="movVO" items="${movSvc.all}"><c:if test="${movVO.movrating.contains('輔導級')}"> selected </c:if></c:forEach> >輔導級</option>
@@ -130,33 +172,56 @@
 		</td>
 	</tr>
 	<tr>
-		<td>導演:</td>
-		<td><input type="text" name="movditor" value="${movVO.movditor}" /></td>
-		<td class="errColor">${errorMsgs.movditor}</td>
+		<td><b>導演</b></td>
+		<td><input class="sty-input mr-left mr-btm-normal" type="text" name="movditor" value="${movVO.movditor}" /></td>
+		<c:if test="${not empty errorMsgs.movditor}">
+			<td class="errmsg-pos">		
+				<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
+				<label class="err-color">${errorMsgs.movditor}</label>
+			</td>
+		</c:if>
 	</tr>
 	<tr>
-		<td>演員:</td>
-		<td><input type="text" name="movcast" value="${movVO.movcast}" /></td>
-		<td class="errColor">${errorMsgs.movcast}</td>
+		<td><b>演員</b></td>
+		<td><input class="sty-input mr-left mr-btm-normal" type="text" name="movcast" value="${movVO.movcast}" /></td>
+		<c:if test="${not empty errorMsgs.movcast}">
+			<td class="errmsg-pos">		
+				<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
+				<label class="err-color">${errorMsgs.movcast}</label>
+			</td>
+		</c:if>
 	</tr>
 	<tr>
-		<td>電影簡介:</td>
+		<td><b>簡介</b></td>
 		<td>
-			<textarea name="movdes" maxlength="500">${movVO.movdes}</textarea>
+			<textarea name="movdes" class="sty-input mr-left">${movVO.movdes}</textarea>
 		</td>
-		<td class="errColor">${errorMsgs.movdes}</td>
+		<c:if test="${not empty errorMsgs.movdes}">
+			<td class="errmsg-pos">		
+				<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
+				<label class="err-color">${errorMsgs.movdes}</label>
+			</td>
+		</c:if>
 	</tr>
 	<tr>
-		<td>電影海報:</td>
-		<td><input type="file" name="movpos" value="${movVO.movpos}" />
+		<td><b>海報</b></td>	
+		<td>
+			<label class="btn" style="margin-left: 35%;">
+			<input style="display:none;" type="file" name="movpos" value="${movVO.movpos}"/>
+				<i class="fa fa-photo"></i>
+			</label>
 			<c:if test="${not empty movVO.movpos}">
 				<img src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movpos&action=get_One_MovPic">
 			</c:if>
 		</td>
 	</tr>
 	<tr>
-		<td>電影預告片:</td>	
-		<td><input type="file" name="movtra" value="${movVO.movtra}" />
+		<td><b>預告片</b></td>
+		<td>			
+			<label class="btn" style="margin-left: 35%;">
+			<input style="display:none;" type="file" name="movtra" value="${movVO.movtra}"/>
+				<i class="fa fa-film"></i>
+			</label>
 			<c:if test="${not empty movVO.movtra}">
 				<img src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movtra&action=get_One_MovPic">
 			</c:if>
@@ -168,11 +233,15 @@
 <input type="hidden" name="movno" value="${movVO.movno}">
 <input type="hidden" name="requestURL" value="<%=request.getParameter("requestURL")%>">
 <input type="hidden" name="whichPage"  value="<%=request.getParameter("whichPage")%>">
-<input type="submit" value="送出修改">
+<a class="btn btn-light btn-radius btn-brd grd1 effect-1 btn-pos">
+	<input type="submit" value="修改" class="input-pos">
+</a>
 </FORM>
 </body>
-</body>
 
+<!-- =========================================================================================== 
+    								以下 DATETIME PICKER
+	 ===========================================================================================  -->
 <link   rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/sources/datetimepicker/jquery.datetimepicker.css"/>
 <script src="<%=request.getContextPath()%>/sources/datetimepicker/jquery.js"></script>
 <script src="<%=request.getContextPath()%>/sources/datetimepicker/jquery.datetimepicker.full.js"></script>
