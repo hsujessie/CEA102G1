@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page import="com.movie.model.*"%>
 
 <html>
@@ -237,8 +236,6 @@
 	<input type="submit" value="修改" class="input-pos">
 </a>
 </FORM>
-
-${not empty movVO.movondate}
 </body>
 
 <!-- =========================================================================================== 
