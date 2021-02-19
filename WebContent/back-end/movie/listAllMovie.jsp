@@ -54,7 +54,7 @@ thead > tr{
 
         <!-- Start Section-->
         <div id="section" class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-        	<div style="width: 1200px; box-sizing: border-box; padding: 2% 2% 2% 0;">
+        	<div style="width: 1050px; box-sizing: border-box; padding: 2% 2% 2% 0;">
 	        	<h3 class="h3-style" style="display: inline-block;">電影列表&ensp;</h3>
 				<c:if test="${addSuccess != null}">
 					<span style="color: #bb9d52">  
