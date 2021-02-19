@@ -348,8 +348,9 @@ public class MovDAO implements MovDAO_interface{
 			
 			pstmt.executeUpdate();
 			
-		}catch(SQLException se) {
-			throw new RuntimeException("MovDAO updateMovpos A database error occured. " + se.getMessage());
+		}catch(SQLException se) { 
+			/*==== !!ＷARING!! 有同學寫se.printStackTrace()，而不是RuntimeException，將SQL指令的欄位名稱故意打錯，不會出現錯誤訊息，會讓你誤以為資料到資料庫。 ===*/
+			throw new RuntimeException("MovDAO updateMovpos A database error occured. " + se.getMessage()); //RuntimeException(無繼承限制)
 		} finally {
 			if(pstmt != null) {
 				try {

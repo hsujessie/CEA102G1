@@ -482,6 +482,7 @@ public class MovServlet extends HttpServlet{
 					}
 				}
 				
+				/* 修改時，把原本有上傳的圖片留住 */
 				Part movposPart = req.getPart("movpos");	
 				byte[] movpos = movVO.getMovpos();
 				if(movposPart.getContentType() != null && movposPart.getContentType().indexOf("image") >= 0) {	
@@ -494,7 +495,7 @@ public class MovServlet extends HttpServlet{
 					
 					movSvc.updateMovpos(movpos, movno);
 				}
-
+				/* 修改時，把原本有上傳的影片留住 */
 				Part movtraPart = req.getPart("movtra");
 				byte[] movtra = movVO.getMovtra();
 				if(movtraPart.getContentType() != null && movtraPart.getContentType().indexOf("video") >= 0) {				
