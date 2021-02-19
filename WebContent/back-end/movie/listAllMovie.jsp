@@ -142,13 +142,14 @@ thead > tr{
             </div>
 			
 			<div class="modal-body center-linehigh-box sty-lightbox">
-               <jsp:include page="update_movie_input.jsp"/><!-- 引入jsp-->
+               <%-- <jsp:include page="update_movie_input.jsp"/> --%><!-- 引入jsp-->
+               <iframe src="<%=request.getContextPath()%>/back-end/movie/update_movie_input.jsp"></iframe>
+               <%-- 因用<jsp:include>，會接收前一個網頁的任何參數(課本p.191)，造成js會互相干擾，讓datetimepicker吃不到js，所以前台改用<iframe></iframe>的方式引入jsp，MovServlet.java要getSession()，讓jsp的EL抓得到值。 --%>               
 			</div>		
 		</div>
 	</div>
 </div><!-- end Modal-->
-${openLightbox}
-<c:if test="${openLightbox}">
+<c:if test="${openUpdateLightbox}">
 	<!-- open modal要引入js，不然會出現錯誤 $(...).modal is not a function -->
 	<!-- 因為會先讀JSTL，依據讀取順序，讀不到上面引入的js，所以出現錯誤，故在JSTL標籤內要引入js-->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

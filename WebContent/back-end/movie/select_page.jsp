@@ -152,7 +152,7 @@
 		</div>
 	</div>
 </div><!-- end Modal-->
-<c:if test="${openLightbox}">
+<c:if test="${openAddLightbox}">
 	<!-- open modal要引入js，不然會出現錯誤 $(...).modal is not a function -->
 	<!-- 因為會先讀JSTL，依據讀取順序，讀不到上面引入的js，所以出現錯誤，故在JSTL標籤內要引入js-->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -166,9 +166,9 @@
 <!-- =========================================================================================== 
     								以下 DATETIME PICKER
 	 ===========================================================================================  -->
-<link   rel="stylesheet" type="text/css" href="/CEA102G1/sources/datetimepicker/jquery.datetimepicker.css"/>
-<script src="/CEA102G1/sources/datetimepicker/jquery.js"></script>
-<script src="/CEA102G1/sources/datetimepicker/jquery.datetimepicker.full.js"></script>
+<link   rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/sources/datetimepicker/jquery.datetimepicker.css"/>
+<script src="<%=request.getContextPath()%>/sources/datetimepicker/jquery.js"></script>
+<script src="<%=request.getContextPath()%>/sources/datetimepicker/jquery.datetimepicker.full.js"></script>
 <style>
   .xdsoft_datetimepicker .xdsoft_datepicker {
            width:  300px;

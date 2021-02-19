@@ -210,8 +210,8 @@ public class MovServlet extends HttpServlet{
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("movVO", movVO);
-					Boolean openLightbox = true;
-					req.setAttribute("openLightbox", openLightbox);
+					Boolean openAddLightbox = true;
+					req.setAttribute("openAddLightbox", openAddLightbox);
 					String url = "/back-end/movie/select_page.jsp";
 					RequestDispatcher failureView = req.getRequestDispatcher(url);
 					failureView.forward(req, res);
@@ -233,8 +233,8 @@ public class MovServlet extends HttpServlet{
 				/***************************其他可能的錯誤處理**********************************/
 			}catch (Exception e) {
 				errorMsgs.put("Exception",e.getMessage());
-				Boolean openLightbox = true;
-				req.setAttribute("openLightbox", openLightbox);
+				Boolean openAddLightbox = true;
+				req.setAttribute("openAddLightbox", openAddLightbox);
 				String url = "/back-end/movie/select_page.jsp";
 				RequestDispatcher failureView = req.getRequestDispatcher(url);
 				failureView.forward(req, res);
@@ -267,13 +267,13 @@ public class MovServlet extends HttpServlet{
 	            movlanToken = token(movlanStrs, movlanToken);
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
-				req.setAttribute("movVO", movVO);     
-				req.setAttribute("movverToken", movverToken);    
-				req.setAttribute("movlanToken", movlanToken);
-
-				Boolean openLightbox = true;
-				req.setAttribute("openLightbox", openLightbox);
-				//String url = "/back-end/movie/update_movie_input.jsp";
+	            //因前台listAllMovie.jsp用<jsp:include>，會接收前一個網頁的任何參數(課本p.191)，造成js會互相干擾，讓datetimepicker吃不到js，所以前台改用<iframe></iframe>的方式引入jsp，所以這邊要getSession()，讓jsp的EL抓得到值。
+				req.getSession().setAttribute("movVO", movVO);  
+				req.getSession().setAttribute("movverToken", movverToken);    
+				req.getSession().setAttribute("movlanToken", movlanToken);
+				Boolean openUpdateLightbox = true;
+				req.getSession().setAttribute("openUpdateLightbox", openUpdateLightbox);
+				
 				String url = "/back-end/movie/listAllMovie.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
@@ -523,8 +523,8 @@ public class MovServlet extends HttpServlet{
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("movVO", movVO);        
-					Boolean openLightbox = true;
-					req.setAttribute("openLightbox", openLightbox);
+					Boolean openAddLightbox = true;
+					req.setAttribute("openAddLightbox", openAddLightbox);
 					String url = "/back-end/movie/listAllMovie.jsp";
 					RequestDispatcher failureView = req.getRequestDispatcher(url);
 					failureView.forward(req, res);
@@ -544,8 +544,8 @@ public class MovServlet extends HttpServlet{
 				
 				String updateSuccess = "【  " + movname + " 】" + "修改成功";
 				req.setAttribute("updateSuccess", updateSuccess);
-				Boolean openLightbox = false;
-				req.setAttribute("openLightbox", openLightbox); //update success不要跳出燈箱
+				Boolean openAddLightbox = false;
+				req.setAttribute("openAddLightbox", openAddLightbox); //update success不要跳出燈箱
 				
 				String url = "/back-end/movie/listAllMovie.jsp"; //update success	
 				RequestDispatcher successView = req.getRequestDispatcher(url);
@@ -554,8 +554,8 @@ public class MovServlet extends HttpServlet{
 				/***************************其他可能的錯誤處理*************************************/
 			}catch (Exception e) {
 				errorMsgs.put("Exception","修改資料失敗:"+e.getMessage());
-				Boolean openLightbox = true;
-				req.setAttribute("openLightbox", openLightbox);
+				Boolean openAddLightbox = true;
+				req.setAttribute("openAddLightbox", openAddLightbox);
 				String url = "/back-end/movie/listAllMovie.jsp";				
 				RequestDispatcher failureView = req.getRequestDispatcher(url);
 				failureView.forward(req, res);
