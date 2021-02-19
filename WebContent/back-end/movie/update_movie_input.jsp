@@ -57,11 +57,11 @@
   	padding-left: 3%;
   	color: #bb9d52;
   }
-  .btn-pos{
+  /* .btn-pos{
   	margin-left: -46%;
     margin-top: 5%;
     margin-bottom: 1%;
-  }
+  } */
 </style>
 
 </head>

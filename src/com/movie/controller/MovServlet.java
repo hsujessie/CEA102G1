@@ -271,8 +271,9 @@ public class MovServlet extends HttpServlet{
 				req.getSession().setAttribute("movVO", movVO);  
 				req.getSession().setAttribute("movverToken", movverToken);    
 				req.getSession().setAttribute("movlanToken", movlanToken);
+
 				Boolean openUpdateLightbox = true;
-				req.getSession().setAttribute("openUpdateLightbox", openUpdateLightbox);
+				req.setAttribute("openUpdateLightbox", openUpdateLightbox);
 				
 				String url = "/back-end/movie/listAllMovie.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
@@ -485,7 +486,7 @@ public class MovServlet extends HttpServlet{
 				/* 修改時，把原本有上傳的圖片留住 */
 				Part movposPart = req.getPart("movpos");	
 				byte[] movpos = movVO.getMovpos();
-				if(movposPart.getContentType() != null && movposPart.getContentType().indexOf("image") >= 0) {	
+				if(movposPart.getContentType() != null && movposPart.getContentType().indexOf("image") >= 0) {  // movposPart.getContentType() 印出image/jpeg
 				//if(movposPart != null) {	//這樣判斷是不對的，因為即便沒東西，會回傳這個 application/octet-stream	 			
 					
 					InputStream movposis = movposPart.getInputStream();
@@ -495,10 +496,11 @@ public class MovServlet extends HttpServlet{
 					
 					movSvc.updateMovpos(movpos, movno);
 				}
+				
 				/* 修改時，把原本有上傳的影片留住 */
 				Part movtraPart = req.getPart("movtra");
 				byte[] movtra = movVO.getMovtra();
-				if(movtraPart.getContentType() != null && movtraPart.getContentType().indexOf("video") >= 0) {				
+				if(movtraPart.getContentType() != null && movtraPart.getContentType().indexOf("video") >= 0) {	// movtraPart.getContentType() 印出video/mp4			
 					InputStream movtrais = movtraPart.getInputStream();
 					movtra = new byte[movtrais.available()];
 					movtrais.read(movtra);
@@ -506,6 +508,7 @@ public class MovServlet extends HttpServlet{
 					
 					movSvc.updateMovtra(movtra, movno);
 				}
+				System.out.println("movtraPart.getContentType(): " + movtraPart.getContentType());
 
 				movVO.setMovno(movno);
 				movVO.setMovname(movname);
@@ -522,12 +525,16 @@ public class MovServlet extends HttpServlet{
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("movVO", movVO);        
-					Boolean openAddLightbox = true;
-					req.setAttribute("openAddLightbox", openAddLightbox);
-					String url = "/back-end/movie/listAllMovie.jsp";
-					RequestDispatcher failureView = req.getRequestDispatcher(url);
-					failureView.forward(req, res);
+					/* 在前台驗證錯誤，因這邊跳轉，前台頁面變得很詭異。 */
+//					req.getSession().setAttribute("movVO", movVO);        
+//					Boolean openUpdateLightbox = true;
+//					req.setAttribute("openUpdateLightbox", openUpdateLightbox);
+//					
+//					String url = "/back-end/movie/listAllMovie.jsp";
+//					RequestDispatcher failureView = req.getRequestDispatcher(url);
+//					failureView.forward(req, res);
+					
+					System.out.println("Update error message: " + errorMsgs);
 					return;
 				}
 				
@@ -544,8 +551,8 @@ public class MovServlet extends HttpServlet{
 				
 				String updateSuccess = "【  " + movname + " 】" + "修改成功";
 				req.setAttribute("updateSuccess", updateSuccess);
-				Boolean openAddLightbox = false;
-				req.setAttribute("openAddLightbox", openAddLightbox); //update success不要跳出燈箱
+				Boolean openUpdateLightbox = false;
+				req.setAttribute("openUpdateLightbox", openUpdateLightbox); //update success不要跳出燈箱
 				
 				String url = "/back-end/movie/listAllMovie.jsp"; //update success	
 				RequestDispatcher successView = req.getRequestDispatcher(url);
@@ -554,8 +561,8 @@ public class MovServlet extends HttpServlet{
 				/***************************其他可能的錯誤處理*************************************/
 			}catch (Exception e) {
 				errorMsgs.put("Exception","修改資料失敗:"+e.getMessage());
-				Boolean openAddLightbox = true;
-				req.setAttribute("openAddLightbox", openAddLightbox);
+				Boolean openUpdateLightbox = true;
+				req.setAttribute("openUpdateLightbox", openUpdateLightbox);
 				String url = "/back-end/movie/listAllMovie.jsp";				
 				RequestDispatcher failureView = req.getRequestDispatcher(url);
 				failureView.forward(req, res);

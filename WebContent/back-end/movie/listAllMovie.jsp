@@ -149,6 +149,9 @@ thead > tr{
 		</div>
 	</div>
 </div><!-- end Modal-->
+<%-- <%
+  request.getSession().removeAttribute("openUpdateLightbox");
+%> --%>
 <c:if test="${openUpdateLightbox}">
 	<!-- open modal要引入js，不然會出現錯誤 $(...).modal is not a function -->
 	<!-- 因為會先讀JSTL，依據讀取順序，讀不到上面引入的js，所以出現錯誤，故在JSTL標籤內要引入js-->
@@ -156,6 +159,7 @@ thead > tr{
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 	<script>	    	
 		$("#basicModal").modal();
+		console.log("openUpdateLightbox: "+${openUpdateLightbox});
 	</script>
 </c:if>
     
