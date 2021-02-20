@@ -6,11 +6,14 @@
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  	<!-- Font Awesome -->
+	<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'></link> 
+	<!-- Your custom styles (optional) -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/cssReset.css">
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/style.css">
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/backendMovie.css">
-	<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'></link> 
 <title>電影修改 - Update Movie input.jsp</title>
+
 
 <style>
   .err-color{
@@ -57,16 +60,14 @@
   	padding-left: 3%;
   	color: #bb9d52;
   }
-  /* .btn-pos{
-  	margin-left: -46%;
-    margin-top: 5%;
-    margin-bottom: 1%;
-  } */
+  .btn-pos{
+  	margin-left: 20%;
+  }
 </style>
 
 </head>
 <body>
-<FORM  class="center-linehigh-content" style="width:100%; margin: 6% 0 0 23%;" method="post" action="<%=request.getContextPath()%>/movie/mov.do" name="form_updateMovie" enctype="multipart/form-data">	
+<FORM  class="center-linehigh-content" style="width:100%; margin-top: 10%;" method="post" action="<%=request.getContextPath()%>/movie/mov.do" name="form_updateMovie" enctype="multipart/form-data">	
 <table class="add-mov-table">
 	<tr>
 		<td><b>名稱</b></td>
@@ -233,7 +234,7 @@
 <input type="hidden" name="requestURL" value="<%=request.getParameter("requestURL")%>">
 <input type="hidden" name="whichPage"  value="<%=request.getParameter("whichPage")%>">
 <a class="btn btn-light btn-radius btn-brd grd1 effect-1 btn-pos">
-	<input type="submit" value="修改" class="input-pos">
+	<input type="submit" value="修改" class="input-pos" style="color: red;">
 </a>
 </FORM>
 </body>

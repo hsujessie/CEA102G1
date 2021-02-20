@@ -12,26 +12,26 @@
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="<%=request.getContextPath()%>/sources/images/logos/seenema_W.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/cssReset.css">
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/style.css">
-	<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'></link>
-	    
+  	<!-- Font Awesome -->
+	<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'></link> 
+	   
 <!-- ========================================= 以下 IMPORT要按順序 ========================================== -->
+	<!-- 出現錯誤 $(...).modal is not a function，因Bootstrap的js文件，依賴於jQuery的js文件，要注意引入的顺序。-->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <!-- ========================================= 以上 IMPORT要按順序 ========================================== -->
+
+	<!-- Your custom styles (optional) -->
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/cssReset.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/style.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/backendMovie.css">
 
 <title>電影列表 - listAllMovie.jsp</title>
 
 <style>
 thead > tr{
  	text-align: center;
-}
-
-.effect-1:after {
-    border-radius: 2%;
 }
  
 .w-brk {
@@ -143,7 +143,7 @@ thead > tr{
 			
 			<div class="modal-body center-linehigh-box sty-lightbox">
                <%-- <jsp:include page="update_movie_input.jsp"/> --%><!-- 引入jsp-->
-               <iframe src="<%=request.getContextPath()%>/back-end/movie/update_movie_input.jsp"></iframe>
+               <iframe style="height: 700px;" src="<%=request.getContextPath()%>/back-end/movie/update_movie_input.jsp"></iframe>
                <%-- 因用<jsp:include>，會接收前一個網頁的任何參數(課本p.191)，造成js會互相干擾，讓datetimepicker吃不到js，所以前台改用<iframe></iframe>的方式引入jsp，MovServlet.java要getSession()，讓jsp的EL抓得到值。 --%>               
 			</div>		
 		</div>
