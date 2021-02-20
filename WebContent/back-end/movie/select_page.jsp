@@ -28,8 +28,9 @@
 <body class="barber_version container-fluid">
     <div class="row">
         <!-- Start Side Bar-->
-        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 sidebar-bgcolor">
-			<%@ include file="../sidebar/sidebar_backend.file"%><!-- ＊＊＊引入Side Bar＊＊＊-->
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 sidebar-bgcolor">     
+			<c:set value="${pageContext.request.requestURI}" var="urlRecog"></c:set> <!-- 給sidebar_backend.file的參數-Home -->
+			<%@ include file="../sidebar/sidebar_backend.file"%> <!-- ＊＊＊引入Side Bar＊＊＊ -->
         </div><!-- end Side Bar-->
 
         <!-- Start Section-->

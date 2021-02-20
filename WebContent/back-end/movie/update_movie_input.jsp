@@ -85,9 +85,9 @@
 		<td><b>種類</b></td>
 		<td>
 			<!-- 多選checkbox -->
-				<input class="mr-left mr-btm-sm" type="checkbox" name="movver" value="2D"      <c:forEach var="i" begin="0" end="2"> <c:if test="${movverToken[i].contains('2D')}">      checked </c:if></c:forEach> >2D<br/>
-				<input class="mr-left mr-btm-sm" type="checkbox" name="movver" value="3D"      <c:forEach var="i" begin="0" end="2"> <c:if test="${movverToken[i].contains('3D')}">      checked </c:if></c:forEach> >3D<br/>
-				<input class="mr-left mr-btm-sm" type="checkbox" name="movver" value="IMAX"    <c:forEach var="i" begin="0" end="2"> <c:if test="${movverToken[i].contains('IMAX')}">    checked </c:if></c:forEach> >IMAX<br/>
+				<input class="mr-left mr-btm-sm" type="checkbox" name="movver" value="2D"      <c:forEach var="i" begin="0" end="2"> <c:if test="${movverToken[i].contains('2D')}">      checked </c:if></c:forEach> ><span>2D</span><br/>
+				<input class="mr-left mr-btm-sm" type="checkbox" name="movver" value="3D"      <c:forEach var="i" begin="0" end="2"> <c:if test="${movverToken[i].contains('3D')}">      checked </c:if></c:forEach> ><span>3D</span><br/>
+				<input class="mr-left mr-btm-sm" type="checkbox" name="movver" value="IMAX"    <c:forEach var="i" begin="0" end="2"> <c:if test="${movverToken[i].contains('IMAX')}">    checked </c:if></c:forEach> ><span>IMAX</span><br/>
 		</td>
 		<c:if test="${not empty errorMsgs.movver}">
 			<td class="errmsg-pos">		
@@ -119,9 +119,9 @@
 		<td><b>語言</b></td>
 		<td>
 			<!-- 多選checkbox -->
-			<input class="mr-left mr-btm-sm" type="checkbox" name="movlan" value="英文" <c:forEach var="i" begin="0" end="1"> <c:if test="${movlanToken[i].contains('英文')}"> checked </c:if></c:forEach> >英文<br/>
-			<input class="mr-left mr-btm-sm" type="checkbox" name="movlan" value="中文" <c:forEach var="i" begin="0" end="1"> <c:if test="${movlanToken[i].contains('中文')}"> checked </c:if></c:forEach> >中文<br/>
-			<input class="mr-left mr-btm-sm" type="checkbox" name="movlan" value="日文" <c:forEach var="i" begin="0" end="1"> <c:if test="${movlanToken[i].contains('日文')}"> checked </c:if></c:forEach> >日文<br/>
+			<input class="mr-left mr-btm-sm" type="checkbox" name="movlan" value="英文" <c:forEach var="i" begin="0" end="1"> <c:if test="${movlanToken[i].contains('英文')}"> checked </c:if></c:forEach> ><span>英文</span><br/>
+			<input class="mr-left mr-btm-sm" type="checkbox" name="movlan" value="中文" <c:forEach var="i" begin="0" end="1"> <c:if test="${movlanToken[i].contains('中文')}"> checked </c:if></c:forEach> ><span>中文</span><br/>
+			<input class="mr-left mr-btm-sm" type="checkbox" name="movlan" value="日文" <c:forEach var="i" begin="0" end="1"> <c:if test="${movlanToken[i].contains('日文')}"> checked </c:if></c:forEach> ><span>日文</span><br/>
 		</td>
 		<c:if test="${not empty errorMsgs.movlan}">
 			<td class="errmsg-pos">		
@@ -203,6 +203,7 @@
 			</td>
 		</c:if>
 	</tr>
+	<tr></tr>
 	<tr>
 		<td><b>海報</b></td>	
 		<td>
@@ -233,8 +234,9 @@
 <input type="hidden" name="movno" value="${movVO.movno}">
 <input type="hidden" name="requestURL" value="<%=request.getParameter("requestURL")%>">
 <input type="hidden" name="whichPage"  value="<%=request.getParameter("whichPage")%>">
-<a class="btn btn-light btn-radius btn-brd grd1 effect-1 btn-pos">
-	<input type="submit" value="修改" class="input-pos" style="color: red;">
+<!-- <a class="btn btn-light btn-radius btn-brd grd1 effect-1 btn-pos" style="background-color:#bb9d52;"> -->
+<a class="btn btn-light btn-radius btn-brd grd1 effect-1 btn-pos" style="background-color: black;">
+	<input type="submit" value="修改" class="input-pos" style="color: #fff;">
 </a>
 </FORM>
 </body>

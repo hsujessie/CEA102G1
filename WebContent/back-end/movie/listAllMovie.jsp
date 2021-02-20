@@ -48,10 +48,11 @@ thead > tr{
 <body class="barber_version container-fluid">
     <div class="row">
         <!-- Start Side Bar-->
-        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 sidebar-bgcolor">
-			<%@ include file="../sidebar/sidebar_backend.file"%><!-- ＊＊＊引入Side Bar＊＊＊-->
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 sidebar-bgcolor">       
+			<c:set value="movieSub" var="urlRecog"></c:set>        <!-- 給sidebar_backend.file的參數-Sub -->
+			<%@ include file="../sidebar/sidebar_backend.file"%>   <!-- ＊＊＊引入Side Bar＊＊＊ -->
         </div><!-- end Side Bar-->
-
+ 
         <!-- Start Section-->
         <div id="section" class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
         	<div style="width: 1050px; box-sizing: border-box; padding: 2% 2% 2% 0;">
