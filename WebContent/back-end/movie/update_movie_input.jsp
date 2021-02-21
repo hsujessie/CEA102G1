@@ -60,9 +60,125 @@
   	padding-left: 3%;
   	color: #bb9d52;
   }
-  .btn-pos{
-  	margin-left: 20%;
-  }
+  
+  
+ /* ============= 
+ 	   BUTTON
+ ================ */
+.btn-pos{
+	margin-left: -46%;
+}
+.btn{
+	width: 30px;
+	height: 20px;
+	font-size: 14px;
+}
+.input-pos{	
+  left: 14%;
+}
+  
+.grd1 {
+	color: #ffffff;
+    background: rgb(16,16,16);
+}
+
+.grd1:hover,
+.grd1:focus {
+	color: #ffffff;
+    background: #bb9d52;
+}
+.effect-1 {
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+    text-decoration: none;
+    z-index: 1;
+}
+
+.effect-1 {
+    -webkit-transition: background 0.2s, color 0.2s;
+    -moz-transition: background 0.2s, color 0.2s;
+    transition: background 0.2s, color 0.2s;
+}
+
+.effect-1:after {
+    top: -2px;
+    left: -2px;
+    padding: 2px;
+    box-shadow: 0 0 0 2px #2750ff;
+    -webkit-transition: -webkit-transform 0.2s, opacity 0.2s;
+    -webkit-transform: scale(.8);
+    -moz-transition: -moz-transform 0.2s, opacity 0.2s;
+    -moz-transform: scale(.8);
+    -ms-transform: scale(.8);
+    transition: transform 0.2s, opacity 0.2s;
+    transform: scale(.8);
+    opacity: 0;
+}
+
+.effect-1:after {
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    content: '';
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+.effect-1:hover:after {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+}
+
+.effect-1:after {
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+}
+
+.effect-1:hover:after {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+}
+
+
+.effect-1:after, .btn-brd {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.effect-1:after {
+    box-shadow: 0 0 0 2px #bb9d52;
+}
+
+.btn-light {
+    padding: 0 20px;
+    margin-left: 15px;
+    padding: 2px 14px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: transparent;
+	font-weight: 500;
+    border: 2px solid transparent !important;
+}
+
+.btn-light:hover,
+.btn-light:focus {
+    color: rgba(255, 255, 255, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.9) !important;
+}
 </style>
 
 </head>
@@ -235,8 +351,8 @@
 <input type="hidden" name="requestURL" value="<%=request.getParameter("requestURL")%>">
 <input type="hidden" name="whichPage"  value="<%=request.getParameter("whichPage")%>">
 <!-- <a class="btn btn-light btn-radius btn-brd grd1 effect-1 btn-pos" style="background-color:#bb9d52;"> -->
-<a class="btn btn-light btn-radius btn-brd grd1 effect-1 btn-pos" style="background-color: black;">
-	<input type="submit" value="修改" class="input-pos" style="color: #fff;">
+<a class="btn btn-light btn-radius btn-brd grd1 effect-1 btn-pos grd1" style="background-color: black;">
+	<input type="submit" value="修改" class="input-pos" style="color: #fff; font-size: 15px;">
 </a>
 </FORM>
 </body>
