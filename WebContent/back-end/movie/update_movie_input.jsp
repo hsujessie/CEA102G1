@@ -68,25 +68,18 @@
 .btn-pos{
 	margin-left: -46%;
 }
-.btn{
+
+.btn-update{
 	width: 30px;
 	height: 20px;
 	font-size: 14px;
 }
+
 .input-pos{	
   left: 14%;
-}
-  
-.grd1 {
-	color: #ffffff;
-    background: rgb(16,16,16);
+  cursor: pointer;
 }
 
-.grd1:hover,
-.grd1:focus {
-	color: #ffffff;
-    background: #bb9d52;
-}
 .effect-1 {
     display: inline-block;
     cursor: pointer;
@@ -169,7 +162,7 @@
     padding: 2px 14px;
     font-size: 16px;
     color: #ffffff;
-    background-color: transparent;
+    background: black;
 	font-weight: 500;
     border: 2px solid transparent !important;
 }
@@ -177,6 +170,7 @@
 .btn-light:hover,
 .btn-light:focus {
     color: rgba(255, 255, 255, 0.6);
+    background: #bb9d52;
     border: 2px solid rgba(255, 255, 255, 0.9) !important;
 }
 </style>
@@ -351,7 +345,7 @@
 <input type="hidden" name="requestURL" value="<%=request.getParameter("requestURL")%>">
 <input type="hidden" name="whichPage"  value="<%=request.getParameter("whichPage")%>">
 <!-- <a class="btn btn-light btn-radius btn-brd grd1 effect-1 btn-pos" style="background-color:#bb9d52;"> -->
-<a class="btn btn-light btn-radius btn-brd grd1 effect-1 btn-pos grd1" style="background-color: black;">
+<a class="btn-update btn-light btn-radius btn-brd effect-1 btn-pos">
 	<input type="submit" value="修改" class="input-pos" style="color: #fff; font-size: 15px;">
 </a>
 </FORM>

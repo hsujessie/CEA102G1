@@ -78,10 +78,6 @@ body.barber_version :hover i{
     background: #bb9d52;
 }
 
-body.barber_version {
-    overflow-x: hidden;
-}
-
 body.barber_version #wrapper {
     padding-left: 0;
     -webkit-transition: all 0.5s ease;
