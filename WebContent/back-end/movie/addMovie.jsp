@@ -63,9 +63,40 @@
   }
   .btn-pos{
   	margin-left: -46%;
-    margin-top: 5%;
+    margin-top: 10%;
     margin-bottom: 1%;
   }
+  
+  
+  /* UPLOAD IMAGES */
+   #uploadFile, #uploadTrailer{
+       width: 75px;
+       font-size: 18px;
+   }
+   #show-poster, #show-trailer{
+   	   position: relative; 
+   }
+   #fileImg .img, #trailerVdo .vdo{
+       height: 100px;
+       width: auto;
+	   position: absolute;
+	   top: -85%;
+	   left: 260%;
+	   right: 0;
+	   bottom: 0;
+   }
+   /* #fileImg .img{
+	   top: -85%;
+	   left: 260%;
+	   right: 0;
+	   bottom: 0;
+   }
+   #trailerVdo .vdo{
+	   top: -85%;
+	   left: 260%;
+	   right: 0;
+	   bottom: 0;
+   } */
 </style>
 
 </head>
@@ -210,18 +241,31 @@
 		<td><b>海報</b></td>	
 		<td>	
 			<label class="btn" style="margin-left: 35%;">
-			<input style="display:none;" type="file" name="movpos" value="<%= (movVO==null)? "poster" : movVO.getMovpos()%>"/>
-				<i class="fa fa-photo"></i>
+			<i class="fa fa-photo"></i>
+			<input id="uploadFile" style="display:none;" type="file" name="movpos" value="<%= (movVO==null)? "poster" : movVO.getMovpos()%>"/>			
 			</label>
 		</td>
+	</tr>
+	<tr>
+		<td id="show-poster">
+			<span id="fileImg"></span>
+		</td>
+	</tr>
+	<tr>
+		<td style="height: 50px;"></td>
 	</tr>
 	<tr>
 		<td><b>預告片</b></td>
 		<td>
 			<label class="btn" style="margin-left: 35%;">
-			<input style="display:none;" type="file" name="movtra" value="<%=  (movVO==null)? "trailer" : movVO.getMovtra()%>"/>
-				<i class="fa fa-film"></i>
+			<i class="fa fa-film"></i>
+			<input id="uploadTrailer" style="display:none;" type="file" name="movtra" value="<%=  (movVO==null)? "trailer" : movVO.getMovtra()%>"/>	
 			</label>
+		</td>
+	</tr>
+	<tr>
+		<td id="show-trailer">
+			<span id="trailerVdo"></span>
 		</td>
 	</tr>
 </table>
@@ -282,5 +326,60 @@ jQuery('#mov_offdate').datetimepicker({
     timepicker:false
     });
 });
+
+
+	/* =========================================================================================== */
+    								/* 以下 SHOW a UPLOADED IMAGE & VIDEO */
+	/* =========================================================================================== */
+function init(){
+    let uploadFile = document.getElementById('uploadFile');
+    let fileImg = document.getElementById('fileImg');
+    let uploadTrailer = document.getElementById('uploadTrailer');
+    let trailerVdo = document.getElementById('trailerVdo');
+    
+    uploadFile.addEventListener('change',function(e){
+        let files = e.target.files;
+        if(files){
+            for(let i = 0; i<files.length; i++){
+                let file = files[i];
+                if(file.type.indexOf('image') != -1){
+                    let reader = new FileReader();
+                    reader.addEventListener('load',function(e){
+                        let result = e.target.result;
+                        let img = document.createElement('img');
+                        img.classList.add('img');
+                        img.src = result;
+                        fileImg.append(img);
+                    });
+
+                    reader.readAsDataURL(file);
+                }
+            }
+        }
+    });
+    
+
+    uploadTrailer.addEventListener('change',function(e){
+        let files = e.target.files;
+        if(files){
+            for(let i = 0; i<files.length; i++){
+                let file = files[i];
+                if(file.type.indexOf('video') != -1 ){
+                    let reader = new FileReader();
+                    reader.addEventListener('load',function(e){
+                        let result = e.target.result;
+                        let video = document.createElement('video');
+                        video.classList.add('vdo');
+                        video.src = result;
+                        trailerVdo.append(video);
+                    });
+
+                    reader.readAsDataURL(file);    	
+    			}
+            }
+        }
+    });
+}
+window.onload = init;
 </script>
 </html>
