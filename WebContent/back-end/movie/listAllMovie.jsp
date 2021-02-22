@@ -144,7 +144,7 @@ thead > tr{
 			
 			<div class="modal-body center-linehigh-box sty-lightbox">
                <%-- <jsp:include page="update_movie_input.jsp"/> --%><!-- 引入jsp-->
-               <iframe style="height: 700px;" src="<%=request.getContextPath()%>/back-end/movie/update_movie_input.jsp"></iframe>
+               <iframe style="height:850px; width: 400px;" src="<%=request.getContextPath()%>/back-end/movie/update_movie_input.jsp"></iframe>
                <%-- 因用<jsp:include>，會接收前一個網頁的任何參數(課本p.191)，造成js會互相干擾，讓datetimepicker吃不到js，所以前台改用<iframe></iframe>的方式引入jsp，MovServlet.java要getSession()，讓jsp的EL抓得到值。 --%>               
 			</div>		
 		</div>
@@ -160,7 +160,6 @@ thead > tr{
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 	<script>	    	
 		$("#basicModal").modal();
-		console.log("openUpdateLightbox: "+${openUpdateLightbox});
 	</script>
 </c:if>
     

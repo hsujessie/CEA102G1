@@ -65,10 +65,6 @@
  /* ============= 
  	   BUTTON
  ================ */
-.btn-pos{
-	margin-left: -46%;
-}
-
 .btn-update{
 	width: 30px;
 	height: 20px;
@@ -325,10 +321,15 @@
 	</tr>
 	<tr>
 		<td id="show-poster">
-			<span id="fileImg">				
-				<img class="img" src="<c:if test="${not empty movVO.movpos}"><%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movpos&action=get_One_MovPic</c:if>">	
+			<span id="fileImg">	
+			<c:if test="${not empty movVO.movpos}">
+				<img class="img" src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movpos&action=get_One_MovPos">
+			</c:if>
 			</span>
 		</td>
+	</tr>
+	<tr>
+		<td style="height: 50px;"></td>
 	</tr>
 	<tr>
 		<td><b>預告片</b></td>
@@ -341,8 +342,10 @@
 	</tr>
 	<tr>
 		<td id="show-trailer">
-			<span id="trailerVdo">				
-				<video class="vdo" src="<c:if test="${not empty movVO.movtra}"><%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movtra&action=get_One_MovPic</c:if>" ></video>			
+			<span id="trailerVdo">		
+			<c:if test="${not empty movVO.movtra}">		
+				<video class="vdo" src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovTra"></video>
+			</c:if>
 			</span>
 		</td>
 	</tr>
@@ -352,8 +355,7 @@
 <input type="hidden" name="movno" value="${movVO.movno}">
 <input type="hidden" name="requestURL" value="<%=request.getParameter("requestURL")%>">
 <input type="hidden" name="whichPage"  value="<%=request.getParameter("whichPage")%>">
-<!-- <a class="btn btn-light btn-radius btn-brd grd1 effect-1 btn-pos" style="background-color:#bb9d52;"> -->
-<a class="btn-update btn-light btn-radius btn-brd effect-1 btn-pos">
+<a class="btn-update btn-light btn-radius btn-brd effect-1" style="position: absolute; top: 95%; left: 35%; right: 0; bottom: 0;">
 	<input type="submit" value="修改" class="input-pos" style="color: #fff; font-size: 15px;">
 </a>
 </FORM>
@@ -417,7 +419,17 @@ function init(){
                     let reader = new FileReader();
                     reader.addEventListener('load',function(e){
                         let result = e.target.result;
-                        let img = document.getElementsByClassName('img')[0];
+                        
+                        <c:choose>
+	                        <c:when test="${not empty movVO.movpos}">
+	                        	let img = document.getElementsByClassName('img')[0];
+	                        </c:when>
+	                        <c:otherwise>
+	                    		let img = document.createElement('img');
+	                    		video.classList.add('img');
+                        	</c:otherwise>
+                    	</c:choose>
+                    	                   	
                         img.src = result;
                         fileImg.append(img);
                     });
@@ -437,8 +449,18 @@ function init(){
                 if(file.type.indexOf('video') != -1 ){
                     let reader = new FileReader();
                     reader.addEventListener('load',function(e){
-                        let result = e.target.result;
-                        let video = document.getElementsByClassName('vod')[0];
+                        let result = e.target.result;   
+                        
+                        <c:choose>
+	                        <c:when test="${not empty movVO.movtra}">
+	                    		let video = document.getElementsByClassName('vdo')[0];
+	                        </c:when>
+	                        <c:otherwise>
+	                    		let video = document.createElement('video');
+	                    		video.classList.add('vdo');
+                        	</c:otherwise>
+                    	</c:choose>
+                    
                         video.src = result;
                         trailerVdo.append(video);
                     });
