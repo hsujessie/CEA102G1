@@ -405,71 +405,81 @@
     								/* 以下 SHOW a UPLOADED IMAGE & VIDEO */
 	/* =========================================================================================== */
 function init(){
-    let posterBtn = document.getElementById('posterBtn');
+    let uploadFile = document.getElementById('uploadFile');
     let fileImg = document.getElementById('fileImg');
-    let trailerBtn = document.getElementById('trailerBtn');
+    let uploadTrailer = document.getElementById('uploadTrailer');
     let trailerVdo = document.getElementById('trailerVdo');
-
-    posterBtn.addEventListener('click',function(e){
-        let files = e.target.files;
-        if(files){
-            for(let i = 0; i<files.length; i++){
-                let file = files[i];
-                if(file.type.indexOf('image') != -1){
-                    let reader = new FileReader();
-                    reader.addEventListener('load',function(e){
-                        let result = e.target.result;
-                        
-                        <c:choose>
-	                        <c:when test="${not empty movVO.movpos}">
-	                        	let img = document.getElementsByClassName('img')[0];
-	                        </c:when>
-	                        <c:otherwise>
-	                    		let img = document.createElement('img');
-	                    		video.classList.add('img');
-                        	</c:otherwise>
-                    	</c:choose>
-                    	                   	
-                        img.src = result;
-                        fileImg.append(img);
-                    });
-
-                    reader.readAsDataURL(file);
-                }
-            }
-        }
-    });
+    let posterBtn = document.getElementById('posterBtn');
+    let trailerBtn = document.getElementById('trailerBtn');
     
+    /* IMAGE */
+    let changeImg = function (e) {
+    	 let files = e.target.files;
+         if(files){
+             for(let i = 0; i<files.length; i++){
+                 let file = files[i];
+                 if(file.type.indexOf('image') != -1){
+                     let reader = new FileReader();
+                     reader.addEventListener('load',function(e){
+                         let result = e.target.result;
+                         
+                         <c:choose>
+ 	                        <c:when test="${not empty movVO.movpos}">
+ 	                        	let img = document.getElementsByClassName('img')[0];
+ 	                        </c:when>
+ 	                        <c:otherwise>
+ 	                    		let img = document.createElement('img');
+ 	                    		img.classList.add('img');
+                         	</c:otherwise>
+                     	</c:choose>
+                     	                   	
+                         img.src = result;
+                         fileImg.append(img);
+                     });
 
-    trailerBtn.addEventListener('click',function(e){
-        let files = e.target.files;
-        if(files){
-            for(let i = 0; i<files.length; i++){
-                let file = files[i];
-                if(file.type.indexOf('video') != -1 ){
-                    let reader = new FileReader();
-                    reader.addEventListener('load',function(e){
-                        let result = e.target.result;   
-                        
-                        <c:choose>
-	                        <c:when test="${not empty movVO.movtra}">
-	                    		let video = document.getElementsByClassName('vdo')[0];
-	                        </c:when>
-	                        <c:otherwise>
-	                    		let video = document.createElement('video');
-	                    		video.classList.add('vdo');
-                        	</c:otherwise>
-                    	</c:choose>
-                    
-                        video.src = result;
-                        trailerVdo.append(video);
-                    });
+                     reader.readAsDataURL(file);
+                 }
+             }
+         }
+   	};
 
-                    reader.readAsDataURL(file);    	
-    			}
-            }
-        }
-    });
+   	/* VIDEO */
+    let changeVdo = function (e) {
+    	 let files = e.target.files;
+         if(files){
+             for(let i = 0; i<files.length; i++){
+                 let file = files[i];
+                 if(file.type.indexOf('video') != -1 ){
+                     let reader = new FileReader();
+                     reader.addEventListener('load',function(e){
+                         let result = e.target.result;   
+                         
+                         <c:choose>
+ 	                        <c:when test="${not empty movVO.movtra}">
+ 	                    		let video = document.getElementsByClassName('vdo')[0];
+ 	                        </c:when>
+ 	                        <c:otherwise>
+ 	                    		let video = document.createElement('video');
+ 	                    		video.classList.add('vdo');
+                         	</c:otherwise>
+                     	</c:choose>
+                     
+                         video.src = result;
+                         trailerVdo.append(video);
+                     });
+
+                     reader.readAsDataURL(file);
+                 }
+             }
+         }
+   	};
+   	
+   	/*======= two js events for changing a img & video immediately ======*/
+   	posterBtn.addEventListener('click', changeImg, false);
+   	window.addEventListener('change', changeImg, false);
+    
+   	trailerBtn.addEventListener('click', changeVdo, false);
+   	window.addEventListener('change', changeVdo, false);
 }
 window.onload = init;
 </script>

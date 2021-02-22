@@ -483,7 +483,7 @@ public class MovServlet extends HttpServlet{
 					}
 				}
 				
-				/* 修改時，把原本有上傳的圖片留住 */
+				/* 修改時，contentType有找到image時，才update，原本既有的圖才不會不見。 */
 				Part movposPart = req.getPart("movpos");	
 				byte[] movpos = movVO.getMovpos();
 				if(movposPart.getContentType() != null && movposPart.getContentType().indexOf("image") >= 0) {  // movposPart.getContentType() 印出image/jpeg
@@ -497,7 +497,7 @@ public class MovServlet extends HttpServlet{
 					movSvc.updateMovpos(movpos, movno);
 				}
 				
-				/* 修改時，把原本有上傳的影片留住 */
+				/* 修改時，contentType有找到video時，才update，原本既有的影片才不會不見。 */
 				Part movtraPart = req.getPart("movtra");
 				byte[] movtra = movVO.getMovtra();
 				if(movtraPart.getContentType() != null && movtraPart.getContentType().indexOf("video") >= 0) {	// movtraPart.getContentType() 印出video/mp4			
@@ -525,7 +525,7 @@ public class MovServlet extends HttpServlet{
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					/* 在前台驗證錯誤，因這邊跳轉，前台頁面變得很詭異。 */
+					/* 在前台驗證錯誤，因這邊跳轉，前台頁面變得很詭異 ( <iframe>裡面會有一個新頁面 )。 */
 //					req.getSession().setAttribute("movVO", movVO);        
 //					Boolean openUpdateLightbox = true;
 //					req.setAttribute("openUpdateLightbox", openUpdateLightbox);
@@ -554,9 +554,11 @@ public class MovServlet extends HttpServlet{
 				Boolean openUpdateLightbox = false;
 				req.setAttribute("openUpdateLightbox", openUpdateLightbox); //update success不要跳出燈箱
 				
-				String url = "/back-end/movie/listAllMovie.jsp"; //update success	
-				RequestDispatcher successView = req.getRequestDispatcher(url);
-				successView.forward(req, res);
+				System.out.println("Update success");
+				/* 這邊跳轉，前台頁面變得很詭異 ( <iframe>裡面會有一個新頁面 )。 */
+//				String url = "/back-end/movie/listAllMovie.jsp"; //update success	
+//				RequestDispatcher successView = req.getRequestDispatcher(url);
+//				successView.forward(req, res);
 
 				/***************************其他可能的錯誤處理*************************************/
 			}catch (Exception e) {
