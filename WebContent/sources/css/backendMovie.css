@@ -136,3 +136,23 @@ b{
 .sty-close-btn:hover{
 	color: #bb9d52;
 }
+
+/*------------------------------------------------------------------
+    UPLOAD IMG & VIDEO
+-------------------------------------------------------------------*/  
+ #uploadFile, #uploadTrailer{
+	width: 75px;
+	font-size: 18px;
+ }
+ #show-poster, #show-trailer{
+	position: relative; 
+ }
+ #fileImg .img, #trailerVdo .vdo{
+	height: 100px;
+	width: auto;
+	position: absolute;
+	top: -85%;
+	left: 260%;
+	right: 0;
+	bottom: 0;
+ }

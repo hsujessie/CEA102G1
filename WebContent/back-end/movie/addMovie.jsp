@@ -66,37 +66,6 @@
     margin-top: 10%;
     margin-bottom: 1%;
   }
-  
-  
-  /* UPLOAD IMAGES */
-   #uploadFile, #uploadTrailer{
-       width: 75px;
-       font-size: 18px;
-   }
-   #show-poster, #show-trailer{
-   	   position: relative; 
-   }
-   #fileImg .img, #trailerVdo .vdo{
-       height: 100px;
-       width: auto;
-	   position: absolute;
-	   top: -85%;
-	   left: 260%;
-	   right: 0;
-	   bottom: 0;
-   }
-   /* #fileImg .img{
-	   top: -85%;
-	   left: 260%;
-	   right: 0;
-	   bottom: 0;
-   }
-   #trailerVdo .vdo{
-	   top: -85%;
-	   left: 260%;
-	   right: 0;
-	   bottom: 0;
-   } */
 </style>
 
 </head>

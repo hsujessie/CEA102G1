@@ -317,25 +317,33 @@
 	<tr>
 		<td><b>海報</b></td>	
 		<td>
-			<label class="btn" style="margin-left: 35%;">
+			<label id="posterBtn" class="btn" style="margin-left: 35%;">
 			<input style="display:none;" type="file" name="movpos" value="${movVO.movpos}"/>
 				<i class="fa fa-photo"></i>
 			</label>
-			<c:if test="${not empty movVO.movpos}">
-				<img src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movpos&action=get_One_MovPic">
-			</c:if>
+		</td>
+	</tr>
+	<tr>
+		<td id="show-poster">
+			<span id="fileImg">				
+				<img class="img" src="<c:if test="${not empty movVO.movpos}"><%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movpos&action=get_One_MovPic</c:if>">	
+			</span>
 		</td>
 	</tr>
 	<tr>
 		<td><b>預告片</b></td>
 		<td>			
-			<label class="btn" style="margin-left: 35%;">
+			<label id="trailerBtn" class="btn" style="margin-left: 35%;">
 			<input style="display:none;" type="file" name="movtra" value="${movVO.movtra}"/>
 				<i class="fa fa-film"></i>
 			</label>
-			<c:if test="${not empty movVO.movtra}">
-				<img src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movtra&action=get_One_MovPic">
-			</c:if>
+		</td>
+	</tr>
+	<tr>
+		<td id="show-trailer">
+			<span id="trailerVdo">				
+				<video class="vdo" src="<c:if test="${not empty movVO.movtra}"><%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movtra&action=get_One_MovPic</c:if>" ></video>			
+			</span>
 		</td>
 	</tr>
 </table>
@@ -389,5 +397,58 @@
 	    timepicker:false
 	    });
 	});
-	</script>
+
+
+	/* =========================================================================================== */
+    								/* 以下 SHOW a UPLOADED IMAGE & VIDEO */
+	/* =========================================================================================== */
+function init(){
+    let posterBtn = document.getElementById('posterBtn');
+    let fileImg = document.getElementById('fileImg');
+    let trailerBtn = document.getElementById('trailerBtn');
+    let trailerVdo = document.getElementById('trailerVdo');
+
+    posterBtn.addEventListener('click',function(e){
+        let files = e.target.files;
+        if(files){
+            for(let i = 0; i<files.length; i++){
+                let file = files[i];
+                if(file.type.indexOf('image') != -1){
+                    let reader = new FileReader();
+                    reader.addEventListener('load',function(e){
+                        let result = e.target.result;
+                        let img = document.getElementsByClassName('img')[0];
+                        img.src = result;
+                        fileImg.append(img);
+                    });
+
+                    reader.readAsDataURL(file);
+                }
+            }
+        }
+    });
+    
+
+    trailerBtn.addEventListener('click',function(e){
+        let files = e.target.files;
+        if(files){
+            for(let i = 0; i<files.length; i++){
+                let file = files[i];
+                if(file.type.indexOf('video') != -1 ){
+                    let reader = new FileReader();
+                    reader.addEventListener('load',function(e){
+                        let result = e.target.result;
+                        let video = document.getElementsByClassName('vod')[0];
+                        video.src = result;
+                        trailerVdo.append(video);
+                    });
+
+                    reader.readAsDataURL(file);    	
+    			}
+            }
+        }
+    });
+}
+window.onload = init;
+</script>
 </html>
