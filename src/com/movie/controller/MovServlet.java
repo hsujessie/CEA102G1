@@ -555,6 +555,7 @@ public class MovServlet extends HttpServlet{
 				req.setAttribute("openUpdateLightbox", openUpdateLightbox); //update success¤£­n¸õ¥X¿O½c
 
 				String url = requestURL;
+
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 

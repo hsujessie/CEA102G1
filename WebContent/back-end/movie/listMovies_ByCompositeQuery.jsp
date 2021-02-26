@@ -44,7 +44,7 @@ thead > tr{
         <!-- Start Side Bar-->
         <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 sidebar-bgcolor">
 			<c:set value="movieSub" var="urlRecog"></c:set>        <!-- 給sidebar_backend.file的參數-Sub -->
-			<%@ include file="../sidebar/sidebar_backend.file"%><!-- ＊＊＊引入Side Bar＊＊＊-->
+			<%@ include file="files/sidebar_backend.file"%> <!-- ＊＊＊引入Side Bar＊＊＊ -->
         </div><!-- end Side Bar-->
 
         <!-- Start Section-->
@@ -109,7 +109,34 @@ thead > tr{
 			</div>
         </div><!-- end Section-->
     </div>
-    
+ 
+<!-- =========================================================================================== 
+    										以下 MODAL
+	 ===========================================================================================  -->
+<!-- Start Modal-->  
+<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content" style="background-color: rgba(119,136,153,.9);">
+				
+			<div class="modal-header" style="border: 1px solid rgba(119,136,153,.9);">
+                <h3 style="margin-left: 40%; margin-top: 3%;" class="modal-title h3-style" id="myModalLabel" style="text-align:center; position:relative;">電影修改</h3>
+                <button type="button" class="close sty-close-btn" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close"></i></button>
+            </div>
+			
+			<div class="modal-body center-linehigh-box sty-lightbox">
+              <%--  <jsp:include page="update_movie_input.jsp"/><!-- 引入jsp-->  --%>           
+			</div>		
+		</div>
+	</div>
+</div><!-- end Modal-->
+	<script>
+		 <c:if test="${openUpdateLightbox}">
+			$("#basicModal").modal();
+		</c:if> 
+		 <c:if test="${openUpdateLightbox == false}">
+	   	   	$("#basicModal").modal("hide"); 
+		</c:if> 
+	</script>
 <%--     <br>本網頁的路徑:<br><b>
    <font color=blue>request.getServletPath():</font> <%=request.getServletPath()%><br>
    <font color=blue>request.getRequestURI(): </font> <%=request.getRequestURI()%> </b> --%>

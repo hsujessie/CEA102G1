@@ -50,7 +50,7 @@ thead > tr{
         <!-- Start Side Bar-->
         <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 sidebar-bgcolor">       
 			<c:set value="movieSub" var="urlRecog"></c:set>        <!-- 給sidebar_backend.file的參數-Sub -->
-			<%@ include file="../sidebar/sidebar_backend.file"%>   <!-- ＊＊＊引入Side Bar＊＊＊ -->
+			<%@ include file="files/sidebar_backend.file"%> <!-- ＊＊＊引入Side Bar＊＊＊ -->
         </div><!-- end Side Bar-->
  
         <!-- Start Section-->
@@ -119,7 +119,7 @@ thead > tr{
 							<td>
 							  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" style="margin-bottom: 0px; text-align:center;">	
 			        			 <a class="btn btn-light btn-radius btn-brd grd1 effect-1">
-									<input type="submit" value="修改" class="input-pos" id="showBtn">
+									<input type="submit" value="修改" class="input-pos">
 			        			 </a>				            					             
 							     <input type="hidden" name="movno" value="${movVO.movno}">
 								 <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
