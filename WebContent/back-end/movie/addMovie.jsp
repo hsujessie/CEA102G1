@@ -258,30 +258,7 @@
     								以下 CALCULATE mov_ondate & mov_offdate
 	 ===========================================================================================  -->
 	<script>
-		function changeMovOffDate() {
-			let monthDuration = 5;
-			let mov_ondate_val = mov_ondate.value.replace(/-/g,"/");  // replace all "-" to "/"
-			let cal_mov_ondate = new Date(mov_ondate_val);  // 將取到的「上映日期」格式改為 "YYYY/MM/DD"，才可 getMonth()    //格式錯誤則無法getMonth()
-			
-			let mov_offdate_y = cal_mov_ondate.getFullYear();			
-			let mov_offdate_m = cal_mov_ondate.setMonth(cal_mov_ondate.getMonth() + monthDuration); // 下檔月份 = 上映月份 + monthDuration
-			mov_offdate_m = getMonth(cal_mov_ondate);		
-			let mov_offdate_d = getDay(cal_mov_ondate);
-			let new_offdate = mov_offdate_y + "-" + mov_offdate_m + "-" + mov_offdate_d;
-			
-			document.getElementById('mov_offdate').value = new_offdate;  // 將日期格式改為 "YYYY-MM-DD"，才可更換「下檔日期」的value    //格式錯誤則無法更換input的value
-		};
-
-		function getMonth(mon) {
-		  var month = mon.getMonth() + 1;
-		  return month < 10 ? '0' + month : '' + month;
-		}  
-		
-		function getDay(day) {
-		  var date = day.getDate();
-		  return date < 10 ? '0' + date : '' + date;
-		} 
-		
+	<%@ include file="files/changeMovOffDate.file"%>
 		let mov_ondate = document.getElementById('mov_ondate');
 		let mov_offdate_val = document.getElementById('mov_offdate').value;
 		if(mov_offdate_val.length == 0){
