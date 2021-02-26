@@ -44,7 +44,7 @@ thead > tr{
         <!-- Start Side Bar-->
         <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 sidebar-bgcolor">
 			<c:set value="movieSub" var="urlRecog"></c:set>        <!-- 給sidebar_backend.file的參數-Sub -->
-			<%@ include file="files/sidebar_backend.file"%> <!-- ＊＊＊引入Side Bar＊＊＊ -->
+			<%@ include file="../files/sidebar_backend.file"%> <!-- ＊＊＊引入Side Bar＊＊＊ -->
         </div><!-- end Side Bar-->
 
         <!-- Start Section-->
@@ -124,7 +124,8 @@ thead > tr{
             </div>
 			
 			<div class="modal-body center-linehigh-box sty-lightbox">
-              <%--  <jsp:include page="update_movie_input.jsp"/><!-- 引入jsp-->  --%>           
+			  <!-- An error is here. -->
+              <jsp:include page="update_movie_input.jsp"/> <!-- 引入jsp -->
 			</div>		
 		</div>
 	</div>

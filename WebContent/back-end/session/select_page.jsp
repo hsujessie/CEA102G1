@@ -22,7 +22,7 @@
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/backendMovie.css">
  
 
-<title>Movie Info Management</title>
+<title>Session Management</title>
 
 </head>
 <body class="barber_version container-fluid">
@@ -148,7 +148,7 @@
             </div>
 			
 			<div class="modal-body center-linehigh-box sty-lightbox">
-               <jsp:include page="addMovie.jsp"/><!-- 引入jsp-->
+               <jsp:include page="addSession.jsp"/><!-- 引入jsp-->
 			</div>		
 		</div>
 	</div>

@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!-- 各個頁面的jsp連結 -->
-<c:set var="movie" value="/CEA102G1/back-end/movie/select_page.jsp"/>    <!-- Home -->
-<c:set var="movieSub" value="movieSub"/>                                 <!-- Sub - listAllMovie.jsp | listAllMovies_ByCompositeQuery.jsp-->
+<c:set var="movie" value="/CEA102G1/back-end/movie/select_page.jsp"/>       <!-- Home -->
+<c:set var="movieSub" value="movieSub"/>                                    <!-- Sub - listAllMovie.jsp | listAllMovies_ByCompositeQuery.jsp-->
+<c:set var="session" value="/CEA102G1/back-end/session/select_page.jsp"/>   <!-- Home -->
 
 <c:set var="admin" value=""/>     <!-- Home -->
 <c:set var="member" value=""/>    <!-- Home -->
-<c:set var="order" value=""/>     <!-- Home -->
-<c:set var="session" value=""/>   <!-- Home -->
+<c:set var="order" value=""/>     <!-- Home --
 <c:set var="client" value=""/>    <!-- Home -->
 <c:set var="report" value=""/>    <!-- Home -->
 <c:set var="theater" value=""/>   <!-- Home -->
