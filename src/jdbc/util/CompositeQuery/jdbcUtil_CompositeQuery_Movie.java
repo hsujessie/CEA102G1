@@ -61,7 +61,7 @@ public class jdbcUtil_CompositeQuery_Movie {
 
 		String finalSQL = "select * from movie "
 			       		   + jdbcUtil_CompositeQuery_Movie.get_WhereCondition(map)
-			       		   + "order by movno";
-		System.out.println("¡´¡´finalSQL = " + finalSQL);
+			       		   + " order by movno";
+		System.out.println("¡´¡´finalSQL (main) = " + finalSQL);
 	}
 }

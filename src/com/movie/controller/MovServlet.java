@@ -572,7 +572,7 @@ public class MovServlet extends HttpServlet{
 			try {
 				HttpSession session = req.getSession();
 				Map<String, String[]> map = (Map<String,String[]>)session.getAttribute("map");
-				
+				System.out.println("map?? " + map);
 				if(req.getParameter("whichPage") == null) {
 					HashMap<String, String[]> map1 = new HashMap<String, String[]>(req.getParameterMap());
 					
