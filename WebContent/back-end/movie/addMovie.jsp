@@ -130,9 +130,17 @@
 			</td>
 		</c:if>
 	</tr>
+<%
+  java.sql.Date movondate = null;
+  try {
+	  movondate = movVO.getMovondate();
+   } catch (Exception e) {
+	   movondate = new java.sql.Date(System.currentTimeMillis());
+   }
+%>
 	<tr>
 		<td><b>上映日期</b></td>
-		<td><input class="sty-input mr-left mr-btm-normal" name="movondate" id="mov_ondate" type="text"></td>
+		<td><input class="sty-input mr-left mr-btm-normal" name="movondate" id="mov_ondate" type="date" value="<%=movondate%>"></td>
 		<c:if test="${not empty errorMsgs.movondate}">
 			<td class="errmsg-pos">		
 				<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
@@ -142,7 +150,7 @@
 	</tr>
 	<tr>
 		<td><b>下檔日期</b></td>
-		<td><input class="sty-input mr-left mr-btm-normal" name="movoffdate" id="mov_offdate" type="text"></td>
+		<td><input class="sty-input mr-left mr-btm-normal" name="movoffdate" id="mov_offdate" type="date" value=""></td>
 		<c:if test="${not empty errorMsgs.movoffdate}">
 			<td class="errmsg-pos">		
 				<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
@@ -247,55 +255,43 @@
 </body>
 
 <!-- =========================================================================================== 
-    								以下 DATETIME PICKER
+    								以下 CALCULATE mov_ondate & mov_offdate
 	 ===========================================================================================  -->
-<%
-  java.sql.Date movondate = null;
-  java.sql.Date movoffdate = null;
-  try {
-	  movondate = movVO.getMovondate();
-	  movoffdate = movVO.getMovoffdate();
-   } catch (Exception e) {
-	   movondate = new java.sql.Date(System.currentTimeMillis());
-	   movoffdate = new java.sql.Date(System.currentTimeMillis());
-   }
-%>
-<link   rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/sources/datetimepicker/jquery.datetimepicker.css"/>
-<script src="<%=request.getContextPath()%>/sources/datetimepicker/jquery.js"></script>
-<script src="<%=request.getContextPath()%>/sources/datetimepicker/jquery.datetimepicker.full.js"></script>
-<style>
-  .xdsoft_datetimepicker .xdsoft_datepicker {
-           width:  300px;
-  }
-  .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box {
-           height: 151px;
-  }
-</style>
-<script>
-$.datetimepicker.setLocale('zh');
-jQuery(function(){
-    jQuery('#mov_ondate').datetimepicker({
-        format:'Y-m-d',
-        value: '<%=movondate%>',
-        onShow:function( ct ){
-        this.setOptions({
-            maxDate:jQuery('#mov_offdate').val()?jQuery('#mov_offdate').val():false
-        })
-        },
-        timepicker:false
- });
-jQuery('#mov_offdate').datetimepicker({
-    format:'Y-m-d',
-    value: '<%=movoffdate%>',
-    onShow:function( ct ){
-    this.setOptions({
-        minDate:jQuery('#mov_ondate').val()?jQuery('#mov_ondate').val():false
-    })
-    },
-    timepicker:false
-    });
-});
+	<script>
+		function changeMovOffDate() {
+			let monthDuration = 5;
+			let mov_ondate_val = mov_ondate.value.replace(/-/g,"/");  // replace all "-" to "/"
+			let cal_mov_ondate = new Date(mov_ondate_val);  // 將取到的「上映日期」格式改為 "YYYY/MM/DD"，才可 getMonth()    //格式錯誤則無法getMonth()
+			
+			let mov_offdate_y = cal_mov_ondate.getFullYear();			
+			let mov_offdate_m = cal_mov_ondate.setMonth(cal_mov_ondate.getMonth() + monthDuration); // 下檔月份 = 上映月份 + monthDuration
+			mov_offdate_m = getMonth(cal_mov_ondate);		
+			let mov_offdate_d = getDay(cal_mov_ondate);
+			let new_offdate = mov_offdate_y + "-" + mov_offdate_m + "-" + mov_offdate_d;
+			
+			document.getElementById('mov_offdate').value = new_offdate;  // 將日期格式改為 "YYYY-MM-DD"，才可更換「下檔日期」的value    //格式錯誤則無法更換input的value
+		};
 
+		function getMonth(mon) {
+		  var month = mon.getMonth() + 1;
+		  return month < 10 ? '0' + month : '' + month;
+		}  
+		
+		function getDay(day) {
+		  var date = day.getDate();
+		  return date < 10 ? '0' + date : '' + date;
+		} 
+		
+		let mov_ondate = document.getElementById('mov_ondate');
+		let mov_offdate_val = document.getElementById('mov_offdate').value;
+		if(mov_offdate_val.length == 0){
+			changeMovOffDate();
+		}
+		mov_ondate.addEventListener('change',function(){
+			changeMovOffDate();
+		});
+		
+		
 
 	/* =========================================================================================== */
     								/* 以下 SHOW a UPLOADED IMAGE & VIDEO */
