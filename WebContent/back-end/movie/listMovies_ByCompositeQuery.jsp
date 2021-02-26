@@ -133,7 +133,8 @@ thead > tr{
 			
 			<div class="modal-body center-linehigh-box sty-lightbox">
 			  <!-- An error is here. -->
-              <%-- <jsp:include page="update_movie_input.jsp"/> --%> <!-- 引入jsp -->
+             <%-- <jsp:include page="update_movie_input.jsp"/> --%> <!-- 引入jsp -->
+			  <%-- <jsp:include page="test.jsp"/> --%>
 			</div>		
 		</div>
 	</div>
