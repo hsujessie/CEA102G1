@@ -87,9 +87,17 @@ thead > tr{
 							<td>${movVO.getMovrating()}</td>
 							<td>${movVO.getMovditor()}</td>
 							<td>${movVO.getMovcast()}</td>
-							<td class="w-brk">${movVO.getMovdes()}</td>
-							<td><img width="150px" src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovPos"></td>
-							<td><video controls width="150px"><source src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovTra" type="video/mp4"></video></td>
+							<td class="w-brk">${movVO.getMovdes()}</td>			
+							<td>
+								<c:if test="${not empty movVO.movpos}">
+									<img width="150px" src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovPos">
+								</c:if>
+							</td>
+							<td>
+								<c:if test="${not empty movVO.movtra}">		
+									<video controls width="150px"><source src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovTra" type="video/mp4"></video>
+								</c:if>
+							</td>
 							<td>
 							   <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" style="margin-bottom: 0px; text-align:center;">
 							     <a class="btn btn-light btn-radius btn-brd grd1 effect-1">
@@ -125,7 +133,7 @@ thead > tr{
 			
 			<div class="modal-body center-linehigh-box sty-lightbox">
 			  <!-- An error is here. -->
-              <jsp:include page="update_movie_input.jsp"/> <!-- 引入jsp -->
+              <%-- <jsp:include page="update_movie_input.jsp"/> --%> <!-- 引入jsp -->
 			</div>		
 		</div>
 	</div>
