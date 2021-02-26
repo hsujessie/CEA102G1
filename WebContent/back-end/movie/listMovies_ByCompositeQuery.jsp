@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="<%=request.getContextPath()%>/sources/images/logos/seenema_W.ico" type="image/x-icon" />
     <link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/cssReset.css">
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/style.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/backendStyle.css">
 	    
 <!-- ========================================= 以下 IMPORT要按順序 ========================================== -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

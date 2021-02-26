@@ -18,7 +18,7 @@
 
 	<!-- Your custom styles (optional) -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/cssReset.css">
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/style.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/backendStyle.css">
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/backendMovie.css">
  
 

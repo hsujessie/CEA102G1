@@ -12,7 +12,7 @@
 	<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'></link> 
 	<!-- Your custom styles (optional) -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/cssReset.css">
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/style.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/backendStyle.css">
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/backendMovie.css">
 <title>電影新增 - addMov.jsp</title>
 
