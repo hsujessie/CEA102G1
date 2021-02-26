@@ -119,7 +119,7 @@ thead > tr{
 							<td>
 							  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" style="margin-bottom: 0px; text-align:center;">	
 			        			 <a class="btn btn-light btn-radius btn-brd grd1 effect-1">
-									<input type="submit" value="修改" class="input-pos">
+									<input type="submit" value="修改" class="input-pos" id="showBtn">
 			        			 </a>				            					             
 							     <input type="hidden" name="movno" value="${movVO.movno}">
 								 <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
@@ -151,25 +151,21 @@ thead > tr{
             </div>
 			
 			<div class="modal-body center-linehigh-box sty-lightbox">
-               <%-- <jsp:include page="update_movie_input.jsp"/> --%><!-- 引入jsp-->
-               <iframe style="height:850px; width: 400px;" src="<%=request.getContextPath()%>/back-end/movie/update_movie_input.jsp"></iframe>
-               <%-- 因用<jsp:include>，會接收前一個網頁的任何參數(課本p.191)，造成js會互相干擾，讓datetimepicker吃不到js，所以前台改用<iframe></iframe>的方式引入jsp，MovServlet.java要getSession()，讓jsp的EL抓得到值。 --%>               
+               <jsp:include page="update_movie_input.jsp"/><!-- 引入jsp-->            
 			</div>		
 		</div>
 	</div>
 </div><!-- end Modal-->
-<%-- <%
-  request.getSession().removeAttribute("openUpdateLightbox");
-%> --%>
-<c:if test="${openUpdateLightbox}">
-	<!-- open modal要引入js，不然會出現錯誤 $(...).modal is not a function -->
-	<!-- 因為會先讀JSTL，依據讀取順序，讀不到上面引入的js，所以出現錯誤，故在JSTL標籤內要引入js-->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-	<script>	    	
-		$("#basicModal").modal();
+	<script>
+		 <c:if test="${openUpdateLightbox}">
+			$("#basicModal").modal();
+		</c:if> 
+		 <c:if test="${openUpdateLightbox == false}">
+	   	   	$("#basicModal").modal("hide"); 
+		</c:if> 
 	</script>
-</c:if>
     
 <%--     <br>本網頁的路徑:<br><b>
    <font color=blue>request.getServletPath():</font> <%=request.getServletPath()%><br>

@@ -47,7 +47,7 @@
    	content: "小時";
     color: #bb9d52;
     position: absolute;
-    top: 47%;
+    top: 45%;
     left: 67%;
     right: 0;
     bottom: 0;
@@ -60,120 +60,16 @@
   	padding-left: 3%;
   	color: #bb9d52;
   }
-  
-  
- /* ============= 
- 	   BUTTON
- ================ */
-.btn-update{
-	width: 30px;
-	height: 20px;
-	font-size: 14px;
-}
-
-.input-pos{	
-  left: 14%;
-  cursor: pointer;
-}
-
-.effect-1 {
-    display: inline-block;
-    cursor: pointer;
-    text-align: center;
-    position: relative;
-    text-decoration: none;
-    z-index: 1;
-}
-
-.effect-1 {
-    -webkit-transition: background 0.2s, color 0.2s;
-    -moz-transition: background 0.2s, color 0.2s;
-    transition: background 0.2s, color 0.2s;
-}
-
-.effect-1:after {
-    top: -2px;
-    left: -2px;
-    padding: 2px;
-    box-shadow: 0 0 0 2px #2750ff;
-    -webkit-transition: -webkit-transform 0.2s, opacity 0.2s;
-    -webkit-transform: scale(.8);
-    -moz-transition: -moz-transform 0.2s, opacity 0.2s;
-    -moz-transform: scale(.8);
-    -ms-transform: scale(.8);
-    transition: transform 0.2s, opacity 0.2s;
-    transform: scale(.8);
-    opacity: 0;
-}
-
-.effect-1:after {
-    pointer-events: none;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    content: '';
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-}
-
-.effect-1:hover:after {
-    -webkit-transform: scale(1);
-    -moz-transform: scale(1);
-    -ms-transform: scale(1);
-    transform: scale(1);
-    opacity: 1;
-}
-
-.effect-1:after {
-    -webkit-transform: scale(1.2);
-    -moz-transform: scale(1.2);
-    -ms-transform: scale(1.2);
-    transform: scale(1.2);
-}
-
-.effect-1:hover:after {
-    -webkit-transform: scale(1);
-    -moz-transform: scale(1);
-    -ms-transform: scale(1);
-    transform: scale(1);
-    opacity: 1;
-}
-
-
-.effect-1:after, .btn-brd {
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-}
-
-.effect-1:after {
-    box-shadow: 0 0 0 2px #bb9d52;
-}
-
-.btn-light {
-    padding: 0 20px;
-    margin-left: 15px;
-    padding: 2px 14px;
-    font-size: 16px;
-    color: #ffffff;
-    background: black;
-	font-weight: 500;
-    border: 2px solid transparent !important;
-}
-
-.btn-light:hover,
-.btn-light:focus {
-    color: rgba(255, 255, 255, 0.6);
-    background: #bb9d52;
-    border: 2px solid rgba(255, 255, 255, 0.9) !important;
-}
+  .btn-pos{
+  	margin-left: -46%;
+    margin-top: 10%;
+    margin-bottom: 1%;
+  }
 </style>
 
 </head>
 <body>
-<FORM  class="center-linehigh-content" style="width:100%; margin-top: 10%;" method="post" action="<%=request.getContextPath()%>/movie/mov.do" name="form_updateMovie" enctype="multipart/form-data">	
+<FORM  class="center-linehigh-content" style="width:100%; margin: 6% 0 0 23%;" method="post" action="<%=request.getContextPath()%>/movie/mov.do" name="form_updateMovie" enctype="multipart/form-data">	
 <table class="add-mov-table">
 	<tr>
 		<td><b>名稱</b></td>
@@ -238,7 +134,7 @@
 	</tr>
 	<tr>
 		<td><b>上映日期</b></td>
-		<td><input class="sty-input mr-left mr-btm-normal" name="movondate" id="mov_ondate" type="text"></td>
+		<td><input class="sty-input mr-left mr-btm-normal" name="movondate" id="mov_ondate" type="date"></td>
 		<c:if test="${not empty errorMsgs.movondate}">
 			<td class="errmsg-pos">		
 				<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
@@ -248,7 +144,7 @@
 	</tr>
 	<tr>
 		<td><b>下檔日期</b></td>
-		<td><input class="sty-input mr-left mr-btm-normal" name="movoffdate" id="mov_offdate" type="text"></td>
+		<td><input class="sty-input mr-left mr-btm-normal" name="movoffdate" id="mov_offdate" type="date"></td>
 		<c:if test="${not empty errorMsgs.movoffdate}">
 			<td class="errmsg-pos">		
 				<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
@@ -355,8 +251,8 @@
 <input type="hidden" name="movno" value="${movVO.movno}">
 <input type="hidden" name="requestURL" value="<%=request.getParameter("requestURL")%>">
 <input type="hidden" name="whichPage"  value="<%=request.getParameter("whichPage")%>">
-<a class="btn-update btn-light btn-radius btn-brd effect-1" style="position: absolute; top: 95%; left: 35%; right: 0; bottom: 0;">
-	<input type="submit" value="修改" class="input-pos" style="color: #fff; font-size: 15px;">
+<a class="btn btn-light btn-radius btn-brd grd1 effect-1 btn-pos">
+	<input type="submit" value="修改" class="input-pos">
 </a>
 </FORM>
 </body>
@@ -364,7 +260,7 @@
 <!-- =========================================================================================== 
     								以下 DATETIME PICKER
 	 ===========================================================================================  -->
-<link   rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/sources/datetimepicker/jquery.datetimepicker.css"/>
+<%-- <link   rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/sources/datetimepicker/jquery.datetimepicker.css"/>
 <script src="<%=request.getContextPath()%>/sources/datetimepicker/jquery.js"></script>
 <script src="<%=request.getContextPath()%>/sources/datetimepicker/jquery.datetimepicker.full.js"></script>
 	<style>
@@ -374,9 +270,10 @@
 	  .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box {
 	           height: 151px;
 	  }
-	</style>
+	</style> --%>
+	
 	<script>
-	$.datetimepicker.setLocale('zh');
+	/* $.datetimepicker.setLocale('zh');
 	jQuery(function(){
 	    jQuery('#mov_ondate').datetimepicker({
 	        format:'Y-m-d',
@@ -398,7 +295,7 @@
 	    },
 	    timepicker:false
 	    });
-	});
+	}); */
 
 
 	/* =========================================================================================== */

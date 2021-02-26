@@ -267,10 +267,9 @@ public class MovServlet extends HttpServlet{
 	            movlanToken = token(movlanStrs, movlanToken);
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
-	            //因前台listAllMovie.jsp用<jsp:include>，會接收前一個網頁的任何參數(課本p.191)，造成js會互相干擾，讓datetimepicker吃不到js，所以前台改用<iframe></iframe>的方式引入jsp，所以這邊要getSession()，讓jsp的EL抓得到值。
-				req.getSession().setAttribute("movVO", movVO);  
-				req.getSession().setAttribute("movverToken", movverToken);    
-				req.getSession().setAttribute("movlanToken", movlanToken);
+				req.setAttribute("movVO", movVO);  
+				req.setAttribute("movverToken", movverToken);    
+				req.setAttribute("movlanToken", movlanToken);
 
 				Boolean openUpdateLightbox = true;
 				req.setAttribute("openUpdateLightbox", openUpdateLightbox);
@@ -348,7 +347,7 @@ public class MovServlet extends HttpServlet{
 		        }				
 
 		        
-				String movname = req.getParameter("movname").trim();            
+				String movname = req.getParameter("movname").trim();   
 				if(movname == null || movname.length() == 0) {
 					errorMsgs.put("movname"," 電影名稱 請勿空白");
 					
@@ -361,13 +360,11 @@ public class MovServlet extends HttpServlet{
 						movlanToken = token(movlanStrs, movlanToken);	  
 						req.setAttribute("movlanToken", movlanToken); 	
 					}
-				}
-							
+				}				
 				
 				//單選下拉選單
 				String movtype = req.getParameter("movtype");
-				
-				
+
 				java.sql.Date movondate = null;
 				try {
 					movondate = java.sql.Date.valueOf(req.getParameter("movondate").trim());
@@ -384,7 +381,7 @@ public class MovServlet extends HttpServlet{
 						req.setAttribute("movlanToken", movlanToken); 	
 					}
 				}
-				
+
 				java.sql.Date movoffdate = null;
 				try {
 					movoffdate = java.sql.Date.valueOf(req.getParameter("movoffdate").trim());
@@ -401,21 +398,22 @@ public class MovServlet extends HttpServlet{
 						req.setAttribute("movlanToken", movlanToken); 	
 					}
 				}
-				
-				if (movondate.getTime() == movoffdate.getTime()) {
-					errorMsgs.put("movondate","日期不正確，請重新輸入!		* 註:1.上映日期與下檔日期不可相等、2.上映日期不可於下檔日期之後、3.下檔日期不可於上映日期之前");
 
-					//先split字串，再把值送到update_movie_input.jsp
-			        if (movverStr != null) {  
-						movverToken = token(movverStrs, movverToken);
-						req.setAttribute("movverToken", movverToken);	
-					}
-					if (movlanStr != null ) {
-						movlanToken = token(movlanStrs, movlanToken);	  
-						req.setAttribute("movlanToken", movlanToken); 	
-					} 
-				}
-				
+                /* 以下有問題，傻眼，解開註解，前台就抓不到值??? */
+//				if (movondate.getTime() == movoffdate.getTime()) {
+//					errorMsgs.put("movondate","日期不正確，請重新輸入!		* 註:1.上映日期與下檔日期不可相等、2.上映日期不可於下檔日期之後、3.下檔日期不可於上映日期之前");
+//
+//					//先split字串，再把值送到update_movie_input.jsp
+//			        if (movverStr != null) {  
+//						movverToken = token(movverStrs, movverToken);
+//						req.setAttribute("movverToken", movverToken);	
+//					}
+//					if (movlanStr != null ) {
+//						movlanToken = token(movlanStrs, movlanToken);	  
+//						req.setAttribute("movlanToken", movlanToken); 	
+//					} 
+//				}
+
 				Integer movdurat = null;
 				try {
 					movdurat = new Integer(req.getParameter("movdurat").trim());
@@ -436,7 +434,6 @@ public class MovServlet extends HttpServlet{
 				
 				//單選下拉選單
 				String movrating = req.getParameter("movrating").trim();
-				
 				
 				String movditor = req.getParameter("movditor").trim();
 				if(movditor == null || movditor.length() == 0) {
@@ -467,7 +464,7 @@ public class MovServlet extends HttpServlet{
 						req.setAttribute("movlanToken", movlanToken); 	
 					}
 				}
-				
+
 				String movdes = req.getParameter("movdes").trim();
 				if(movdes == null || movdes.equals("")) {
 					errorMsgs.put("movdes"," 電影簡介 請勿空白");
@@ -482,6 +479,7 @@ public class MovServlet extends HttpServlet{
 						req.setAttribute("movlanToken", movlanToken); 	
 					}
 				}
+
 				
 				/* 修改時，contentType有找到image時，才update，原本既有的圖才不會不見。 */
 				Part movposPart = req.getPart("movpos");	
@@ -508,8 +506,7 @@ public class MovServlet extends HttpServlet{
 					
 					movSvc.updateMovtra(movtra, movno);
 				}
-				System.out.println("movtraPart.getContentType(): " + movtraPart.getContentType());
-
+				
 				movVO.setMovno(movno);
 				movVO.setMovname(movname);
 				movVO.setMovver(movver);
@@ -522,19 +519,16 @@ public class MovServlet extends HttpServlet{
 				movVO.setMovditor(movditor);
 				movVO.setMovcast(movcast);
 				movVO.setMovdes(movdes);
-
+				
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					/* 在前台驗證錯誤，因這邊跳轉，前台頁面變得很詭異 ( <iframe>裡面會有一個新頁面 )。 */
-//					req.getSession().setAttribute("movVO", movVO);        
-//					Boolean openUpdateLightbox = true;
-//					req.setAttribute("openUpdateLightbox", openUpdateLightbox);
-//					
-//					String url = "/back-end/movie/listAllMovie.jsp";
-//					RequestDispatcher failureView = req.getRequestDispatcher(url);
-//					failureView.forward(req, res);
+					req.setAttribute("movVO", movVO);        
+					Boolean openUpdateLightbox = true;
+					req.setAttribute("openUpdateLightbox", openUpdateLightbox);
 					
-					System.out.println("Update error message: " + errorMsgs);
+					String url = "/back-end/movie/listAllMovie.jsp";
+					RequestDispatcher failureView = req.getRequestDispatcher(url);
+					failureView.forward(req, res);
 					return;
 				}
 				
@@ -554,17 +548,16 @@ public class MovServlet extends HttpServlet{
 				Boolean openUpdateLightbox = false;
 				req.setAttribute("openUpdateLightbox", openUpdateLightbox); //update success不要跳出燈箱
 				
-				System.out.println("Update success");
-				/* 這邊跳轉，前台頁面變得很詭異 ( <iframe>裡面會有一個新頁面 )。 */
-//				String url = "/back-end/movie/listAllMovie.jsp"; //update success	
-//				RequestDispatcher successView = req.getRequestDispatcher(url);
-//				successView.forward(req, res);
+				String url = "/back-end/movie/listAllMovie.jsp"; //update success	
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, res);
 
 				/***************************其他可能的錯誤處理*************************************/
 			}catch (Exception e) {
 				errorMsgs.put("Exception","修改資料失敗:"+e.getMessage());
 				Boolean openUpdateLightbox = true;
 				req.setAttribute("openUpdateLightbox", openUpdateLightbox);
+				
 				String url = "/back-end/movie/listAllMovie.jsp";				
 				RequestDispatcher failureView = req.getRequestDispatcher(url);
 				failureView.forward(req, res);

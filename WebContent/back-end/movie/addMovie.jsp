@@ -48,7 +48,7 @@
    	content: "小時";
     color: #bb9d52;
     position: absolute;
-    top: 47%;
+    top: 45%;
     left: 67%;
     right: 0;
     bottom: 0;
