@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<c:set var="home" value="/CEA102G1/front-end/index.jsp"/><!-- HomePage -->
+<c:set var="movies" value="/CEA102G1/front-end/movies.jsp"/>
+<c:set var="movies" value="/CEA102G1/front-end/movies.jsp"/>
+<c:set var="movies" value="/CEA102G1/front-end/movies.jsp"/>
+<c:set var="movies" value="/CEA102G1/front-end/movies.jsp"/>
+<c:set var="movies" value="/CEA102G1/front-end/movies.jsp"/>
+<c:set var="movies" value="/CEA102G1/front-end/movies.jsp"/>
+
+
 <div class="nav-bar">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
@@ -18,7 +27,7 @@
 
                 <div class="navbar-nav mr-auto">
 
-                    <a href="index.html" class="nav-item nav-link active"><i class="fa fa-home iconPos"></i>首頁</a>
+                    <a href="${home}" class="nav-item nav-link <c:if test="${urlRecog == home}">active</c:if>"><i class="fa fa-home iconPos"></i>首頁</a>
 
                     <div class="nav-item dropdown">
                         <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fas fa-ticket-alt iconPos"></i>訂票</a>

@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +11,7 @@
 <body>
         <div class="wrapper">
             <!-- Nav Bar Start -->
+			<c:set value="${pageContext.request.requestURI}" var="urlRecog"></c:set>
             <%@ include file="files/navbar_frontend.file"%>
             <!-- Nav Bar End -->
 

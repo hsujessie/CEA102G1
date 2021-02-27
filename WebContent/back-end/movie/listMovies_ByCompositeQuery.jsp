@@ -5,15 +5,11 @@
 <jsp:useBean id="listMovies_ByCompositeQuery" scope="request" type="java.util.List<MovVO>"/>
 <html>
 <head>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  	<!-- Bootstrap CDN -->	
-	<%@ include file="../files/bootstrapCDN.file"%>
+	<title>電影查詢 - listMovies_ByCompositeQuery.jsp</title>
 	<!-- Common CSS -->
 	<%@ include file="../files/comCssLinks.file"%> 
-
-<title>電影查詢 - listMovies_ByCompositeQuery.jsp</title>
-
+  	<!-- Bootstrap CDN -->	
+	<%@ include file="../files/bootstrapCDN.file"%>
 <style>
 thead > tr{
  	text-align: center;

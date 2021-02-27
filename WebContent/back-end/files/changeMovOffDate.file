@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 function changeMovOffDate() {
 			let monthDuration = 5;
 			let mov_ondate_val = mov_ondate.value.replace(/-/g,"/");  // replace all "-" to "/"

@@ -6,16 +6,11 @@
 
 <html>
 <head>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">	
-  	<!-- Font Awesome -->
-	<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'></link> 	
+	<title>電影新增 - addMov.jsp</title>	
 	<!-- Common CSS -->
 	<%@ include file="../files/comCssLinks.file"%>
 	<!-- Your custom styles (optional) -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/backendMovie.css">
-<title>電影新增 - addMov.jsp</title>
-
 <style>
   .err-color{
     font-size: 12px;

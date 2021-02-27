@@ -4,20 +4,13 @@
 
 <html>
 <head>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  	<!-- Font Awesome -->
-	<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'></link>  	
-  	<!-- Bootstrap CDN -->	
-	<%@ include file="../files/bootstrapCDN.file"%>
+	<title>Movie Info Management</title>
 	<!-- Common CSS -->
 	<%@ include file="../files/comCssLinks.file"%>
+	<!-- Bootstrap CDN -->	
+	<%@ include file="../files/bootstrapCDN.file"%>
 	<!-- Your custom styles (optional) -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/backendMovie.css">
- 
-
-<title>Movie Info Management</title>
-
 </head>
 <body class="barber_version container-fluid">
     <div class="row">
