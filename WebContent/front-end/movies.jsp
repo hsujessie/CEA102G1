@@ -31,6 +31,7 @@
 
 
             <!-- Movies Start -->
+            <jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService"/>
             <div class="movies">
                 <div class="container">
                     <div class="row">
@@ -43,66 +44,20 @@
                         </div>
                     </div>
                     <div class="row movies-container">
-                        <div class="col-lg-4 col-md-6 col-sm-12 movies-item first">
-                            <div class="movies-wrap" id="lightboxbtn" >
-                                <img src="img/portfolio-1.jpg" alt="Movies Image">
-                                <figure>
-                                    <p>Crime</p>
-                                    <a href="#">Murder Case</a>
-                                    <span>01-Jan-2045</span>
-                                </figure>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-12 movies-item second">
-                            <div class="movies-wrap">
-                                <img src="img/portfolio-2.jpg" alt="Movies Image">
-                                <figure>
-                                    <p>Politics</p>
-                                    <a href="#">Political Case</a>
-                                    <span>01-Jan-2045</span>
-                                </figure>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-12 movies-item third">
-                            <div class="movies-wrap">
-                                <img src="img/portfolio-3.jpg" alt="Movies Image">
-                                <figure>
-                                    <p>Family</p>
-                                    <a href="#">Divorce Case</a>
-                                    <span>01-Jan-2045</span>
-                                </figure>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-12 movies-item third">
-                            <div class="movies-wrap">
-                                <img src="img/portfolio-4.jpg" alt="Movies Image">
-                                <figure>
-                                    <p>Finance</p>
-                                    <a href="#">Money Laundering</a>
-                                    <span>01-Jan-2045</span>
-                                </figure>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-12 movies-item third">
-                            <div class="movies-wrap">
-                                <img src="img/portfolio-5.jpg" alt="Movies Image">
-                                <figure>
-                                    <p>Business</p>
-                                    <a href="#">Weber & Partners</a>
-                                    <span>01-Jan-2045</span>
-                                </figure>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-12 movies-item third">
-                            <div class="movies-wrap">
-                                <img src="img/portfolio-6.jpg" alt="Movies Image">
-                                <figure>
-                                    <p>Finance</p>
-                                    <a href="#">Property Sharing Case</a>
-                                    <span>01-Jan-2045</span>
-                                </figure>
-                            </div>
-                        </div>
+						<c:forEach var="movVO" items="${movSvc.all}" >
+							<c:if test="${not empty movVO.movpos}">						    
+		                        <div class="col-lg-4 col-md-6 col-sm-12 movies-item">
+		                            <div class="movies-wrap" id="lightboxbtn" onclick="showLightboxb(this)">
+		                                <img src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movpos&action=get_One_MovPos" alt="Movies Image">
+		                                <figure>
+		                                    <p><img style="width:100%; max-width: 40px;" src="<%=request.getContextPath()%>/sources/images/logos/seenema_W.ico" alt="Logo"></p>
+		                                    <a href="">${movVO.movname}</a>
+		                                    <span>${movVO.movondate}</span>
+		                                </figure>
+		                            </div>
+		                        </div>
+	                        </c:if>
+						</c:forEach>
                     </div>
                 </div>
             </div>
@@ -111,12 +66,9 @@
             <!-- Light Box Start -->
             <div class="movies-lightbox" id="movies-notice" style="display: none;">
                 <div class="movies-content">
-                    <div class="close">
-                    </div>
+                    <div class="close"></div>
                     <div class="movies-lightbox-inside">
-                  </div>
-                  <div class="movies-button">
-                   </div>
+                    </div>
                </div>
             </div>
             <!-- Light Box End -->
@@ -130,19 +82,20 @@
             <!-- Footer End -->
         </div>
         
-        <!-- LightBox Javascript -->
-        <script>
-            let lightbox = document.getElementsByClassName("movies-lightbox")[0];
-            let closeLightbox = document.getElementsByClassName("close")[0];
-            let moviescontent = document.getElementsByClassName("movies-content")[0];
-            let btn = document.getElementById("lightboxbtn");
-            btn.onclick=function(){
-                lightbox.style.display="block";
-            }
-            closeLightbox.onclick=function(){
-                lightbox.style.display="none";
-            }
-        </script>
-<%@ include file="files/comJsLinks.file"%>
+<%@ include file="files/comJsLinks.file"%>     
+<!-- LightBox Javascript -->
+<script>
+    let lightbox = document.getElementsByClassName("movies-lightbox")[0];
+    let closeLightbox = document.getElementsByClassName("close")[0];
+    let lightboxbtn = document.getElementById("lightboxbtn");
+    
+    function showLightboxb(e){
+        lightbox.style.display="block";
+    }
+    
+    closeLightbox.onclick=function(){
+        lightbox.style.display="none";
+    }
+</script>
 </body>
 </html>

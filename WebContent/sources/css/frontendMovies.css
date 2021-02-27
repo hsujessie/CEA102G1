@@ -103,6 +103,7 @@
     content: "";
     width: 50px;
     height: 2px;
+    top: 40px;
     left: 0;
     bottom: 0;
     background: #ffffff;
@@ -126,6 +127,7 @@
     position: relative;
     color: #999999;
     font-size: 16px;
+    margin-top: 10px;
 }
 
 
