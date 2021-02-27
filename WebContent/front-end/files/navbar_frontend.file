@@ -28,37 +28,22 @@
                 </div>
 
                 <div class="navbar-nav mr-auto">
-
                     <a href="${home}" class="nav-item nav-link <c:if test="${urlRecog == home}">active</c:if>"><i class="fa fa-home iconPos"></i>首頁</a>
 
                     <div class="nav-item dropdown">
-                        <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fas fa-ticket-alt iconPos"></i>訂票</a>
+                        <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown <c:if test="${(urlRecog == tickets) || (urlRecog == searchTickets) || (urlRecog == sessions) }">active</c:if>"><i class="fas fa-ticket-alt iconPos"></i>訂票</a>
                         <div class="dropdown-menu">
-                            <a href="${tickets}" class="dropdown-item <c:if test="${urlRecog == tickets}">active</c:if>">線上訂票</a>
-                            <a href="${searchTickets}" class="dropdown-item <c:if test="${urlRecog == searchTickets}">active</c:if>">查詢訂票</a>
-                            <a href="${sessions}" class="dropdown-item <c:if test="${urlRecog == sessions}">active</c:if>">查看場次</a>
+                            <a href="${tickets}" class="dropdown-item">線上訂票</a>
+                            <a href="${searchTickets}" class="dropdown-item">查詢訂票</a>
+                            <a href="${sessions}" class="dropdown-item">查看場次</a>
                         </div>
                     </div>
 
-                    <div>
-                        <a href="${movies}" class="nav-item nav-link <c:if test="${urlRecog == movies}">active</c:if>"><i class="fas fa-film iconPos"></i>電影</a>
-                    </div>
-
-                    <div>
-                        <a href="${forum}" class="nav-item nav-link <c:if test="${urlRecog == forum}">active</c:if>"><i class="fa fa-users iconPos"></i>討論區</a>
-                    </div>
-
-                    <div>
-                        <a href="${notices}" class="nav-item nav-link <c:if test="${urlRecog == notices}">active</c:if>"><i class="fa fa-bullhorn iconPos"></i>公告</a>
-                    </div>
-
-                    <div>
-                        <a href="${faqs}" class="nav-item nav-link <c:if test="${urlRecog == faqs}">active</c:if>"><i class="fas fa-question-circle iconPos"></i></i>FAQs</a>
-                    </div>
-
-                    <div>
-                        <a href="${members}" class="nav-item nav-link <c:if test="${urlRecog == members}">active</c:if>"><i class="fa fa-user iconPos"></i>會員</a>
-                    </div>
+                    <a href="${movies}" class="nav-item nav-link <c:if test="${urlRecog == movies}">active</c:if>"><i class="fas fa-film iconPos"></i>電影</a>
+                    <a href="${forum}" class="nav-item nav-link <c:if test="${urlRecog == forum}">active</c:if>"><i class="fa fa-users iconPos"></i>討論區</a>
+                    <a href="${notices}" class="nav-item nav-link <c:if test="${urlRecog == notices}">active</c:if>"><i class="fa fa-bullhorn iconPos"></i>公告</a>
+                    <a href="${faqs}" class="nav-item nav-link <c:if test="${urlRecog == faqs}">active</c:if>"><i class="fas fa-question-circle iconPos"></i></i>FAQs</a>
+                    <a href="${members}" class="nav-item nav-link <c:if test="${urlRecog == members}">active</c:if>"><i class="fa fa-user iconPos"></i>會員</a>
                 </div>
             </div>
         </nav>
