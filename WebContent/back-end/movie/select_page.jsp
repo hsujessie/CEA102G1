@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <html>
 <head>
-	<title>Movie Info Management</title>
+	<title>Movie Management</title>
 	<!-- Common CSS -->
 	<%@ include file="../files/comCssLinks.file"%>
 	<!-- Bootstrap CDN -->	
@@ -150,28 +149,4 @@
 	</script>
 </c:if>
 </body>
-
-<!-- =========================================================================================== 
-    								以下 DATETIME PICKER
-	 ===========================================================================================  -->
-<link   rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/sources/datetimepicker/jquery.datetimepicker.css"/>
-<script src="<%=request.getContextPath()%>/sources/datetimepicker/jquery.js"></script>
-<script src="<%=request.getContextPath()%>/sources/datetimepicker/jquery.datetimepicker.full.js"></script>
-<style>
-  .xdsoft_datetimepicker .xdsoft_datepicker {
-           width:  300px;
-  }
-  .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box {
-           height: 151px;
-  }
-</style>
-<script>
-$.datetimepicker.setLocale('zh');
-$('#movie_date').datetimepicker({
-   theme: 'dark',
-   timepicker: false, 
-   format: 'Y-m',
-   value: new Date()
-});
-</script>
 </html>
