@@ -61,6 +61,7 @@
             <!-- Carousel End -->
 
             <!-- Movie Start -->
+            <jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService"/>
             <div class="movie">
                 <div class="container">
                     <div class="section-header">
@@ -68,74 +69,24 @@
                     </div>
                     <div class="owl-carousel movie-carousel">
                         <!-- move content Start -->
-                        <div class="col-lg-10 col-md-12">
-                            <div class="movie-item">
-                                <div class="movie-img">
-                                    <img src="img/movie-1.jpg" alt="Movie Image">
-                                </div>
-                                <div class="movie-text">
-                                    <h2>Adam Phillips</h2>
-                                    <p>Consultant</p>
-                                    <div class="movie-social">
-                                        <a class="social-tw" href=""><i class="fab fa-twitter"></i></a>
-                                        <a class="social-fb" href=""><i class="fab fa-facebook-f"></i></a>
-                                        <a class="social-li" href=""><i class="fab fa-linkedin-in"></i></a>
-                                        <a class="social-in" href=""><i class="fab fa-instagram"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-10 col-md-12">
-                            <div class="movie-item">
-                                <div class="movie-img">
-                                    <img src="img/movie-2.jpg" alt="Movie Image">
-                                </div>
-                                <div class="movie-text">
-                                    <h2>Dylan Adams</h2>
-                                    <p>Consultant</p>
-                                    <div class="movie-social">
-                                        <a class="social-tw" href=""><i class="fab fa-twitter"></i></a>
-                                        <a class="social-fb" href=""><i class="fab fa-facebook-f"></i></a>
-                                        <a class="social-li" href=""><i class="fab fa-linkedin-in"></i></a>
-                                        <a class="social-in" href=""><i class="fab fa-instagram"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-10 col-md-12">
-                            <div class="movie-item">
-                                <div class="movie-img">
-                                    <img src="img/movie-3.jpg" alt="Movie Image">
-                                </div>
-                                <div class="movie-text">
-                                    <h2>Gloria Edwards</h2>
-                                    <p>Consultant</p>
-                                    <div class="movie-social">
-                                        <a class="social-tw" href=""><i class="fab fa-twitter"></i></a>
-                                        <a class="social-fb" href=""><i class="fab fa-facebook-f"></i></a>
-                                        <a class="social-li" href=""><i class="fab fa-linkedin-in"></i></a>
-                                        <a class="social-in" href=""><i class="fab fa-instagram"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-10 col-md-12">
-                            <div class="movie-item">
-                                <div class="movie-img">
-                                    <img src="img/movie-4.jpg" alt="Movie Image">
-                                </div>
-                                <div class="movie-text">
-                                    <h2>Josh Dunn</h2>
-                                    <p>Consultant</p>
-                                    <div class="movie-social">
-                                        <a class="social-tw" href=""><i class="fab fa-twitter"></i></a>
-                                        <a class="social-fb" href=""><i class="fab fa-facebook-f"></i></a>
-                                        <a class="social-li" href=""><i class="fab fa-linkedin-in"></i></a>
-                                        <a class="social-in" href=""><i class="fab fa-instagram"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+						<c:forEach var="movVO" items="${movSvc.all}" >
+							<c:if test="${not empty movVO.movpos}">	
+		                        <div class="col-lg-10 col-md-12">
+		                            <div class="movie-item">
+		                                <div class="movie-img">
+		                                <img src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movpos&action=get_One_MovPos" alt="Movie Image">
+		                                </div>
+		                                <div class="movie-text">
+		                                    <h2>${movVO.movrating}</h2>
+		                                    <p>${movVO.movondate}</p>
+		                                    <div class="movie-social">
+		                                        <a href="">${movVO.movname}</a>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </div>
+	                        </c:if>
+						</c:forEach>
                         <!-- move content End -->
                     </div>
                 </div>
@@ -156,15 +107,9 @@
                                 <h2>Seenema</h2>
                             </div>
                             <div class="about-text">
-                                <p>
-                                    到電影院看場電影，是現代人不可或缺的休閒娛樂之一。
-                                </p>
-                                <p>
-                                    SEENEMA影城，提供網路訂票功能，使用者不必到現場排隊購票，不只省時又便利，且使用者也能夠隨時隨地瀏覽近期有哪些上映或即將上映的電影。
-                                </p>
-                                <p>
-                                    除此之外，SEENEMA也提供了一個平台，讓使用者不需要再透過其他網站就能瀏覽或參與電影討論，或尋找志同道合的夥伴一同觀看電影。
-                                </p>
+                                <p>到電影院看場電影，是現代人不可或缺的休閒娛樂之一。</p>
+                                <p style="margin-top: 24px;">SEENEMA影城，提供網路訂票功能，使用者不必到現場排隊購票，不只省時又便利，且使用者也能夠隨時隨地瀏覽近期有哪些上映或即將上映的電影。</p>
+                                <p style="margin-top: 24px;">除此之外，SEENEMA也提供了一個平台，讓使用者不需要再透過其他網站就能瀏覽或參與電影討論，或尋找志同道合的夥伴一同觀看電影。</p>
                             </div>
                         </div>
                     </div>
@@ -367,8 +312,6 @@
             <!-- Footer Start -->
             <%@ include file="files/footer_frontend.file"%>
             <!-- Footer End -->
-
-            <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
         </div>
 <%@ include file="files/comJsLinks.file"%>
 </body>

@@ -160,6 +160,7 @@
 .movie .movie-text p {
     margin: 0;
     color: #999999;
+    margin-top: 5px;
 }
 
 .movie .movie-social {
@@ -189,11 +190,6 @@
     color: #121518;
     transition: .3s;
 }
-
-.movie .movie-social a:last-child {
-    margin-right: 0;
-}
-
 .movie .movie-social a:hover {
     color: #ffffff;
 }
@@ -246,6 +242,7 @@
 
 .about .about-text p {
     font-size: 16px;
+    line-height: 24px;
 }
 
 .about .about-text a.btn {
