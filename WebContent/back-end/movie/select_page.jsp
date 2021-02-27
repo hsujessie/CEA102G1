@@ -7,18 +7,12 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   	<!-- Font Awesome -->
-	<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'></link> 
-	   
-<!-- ========================================= 以下 IMPORT要按順序 ========================================== -->
-	<!-- 出現錯誤 $(...).modal is not a function，因Bootstrap的js文件，依賴於jQuery的js文件，要注意引入的顺序。-->
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<!-- ========================================= 以上 IMPORT要按順序 ========================================== -->
-
+	<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' rel='stylesheet'></link>  	
+  	<!-- Bootstrap CDN -->	
+	<%@ include file="../files/bootstrapCDN.file"%>
+	<!-- Common CSS -->
+	<%@ include file="../files/comCssLinks.file"%>
 	<!-- Your custom styles (optional) -->
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/cssReset.css">
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/backendStyle.css">
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/backendMovie.css">
  
 

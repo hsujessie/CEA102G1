@@ -7,15 +7,10 @@
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="<%=request.getContextPath()%>/sources/images/logos/seenema_W.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/cssReset.css">
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/backendStyle.css">
-	    
-<!-- ========================================= 以下 IMPORT要按順序 ========================================== -->
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<!-- ========================================= 以上 IMPORT要按順序 ========================================== -->
+  	<!-- Bootstrap CDN -->	
+	<%@ include file="../files/bootstrapCDN.file"%>
+	<!-- Common CSS -->
+	<%@ include file="../files/comCssLinks.file"%> 
 
 <title>電影查詢 - listMovies_ByCompositeQuery.jsp</title>
 
