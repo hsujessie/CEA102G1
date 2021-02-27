@@ -8,6 +8,22 @@
 <title>Movies</title>
 <%@ include file="files/comCssLinks.file"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/frontendMovies.css">
+<style>
+ .lightbox-content-pos{
+ 	margin-top: 20px;
+ }
+ .lightbox-container{
+ 	background-color: #fff;
+    padding: 50px;
+    box-sizing: border-box;
+ }
+.lightbox-container h2{
+	font-family: none;
+	font-style: normal;
+    font-weight: 600;
+    color: #121518;
+ }
+</style>
 </head>
 <body>
         <div class="wrapper">
@@ -67,8 +83,93 @@
             <div class="movies-lightbox" id="movies-notice" style="display: none;">
                 <div class="movies-content">
                     <div class="close"></div>
-                    <div class="movies-lightbox-inside">
-                    </div>
+	                <div class="container lightbox-container">
+	                    <div class="row">
+	                        <div class="offset-2 col-4">
+	                            <h2>名稱</h2>
+	                        </div>
+	                        <div class="col-6">
+	                            <p>movie name</p>
+	                        </div>
+	                    </div>
+	                    <div class="row lightbox-content-pos">
+	                        <div class="offset-2 col-4">
+	                            <h2>種類</h2>
+	                        </div>
+	                        <div class="col-6">
+	                            <p>movie name</p>
+	                        </div>
+	                    </div>
+	                    <div class="row lightbox-content-pos">
+	                        <div class="offset-2 col-4">
+	                            <h2>類型</h2>
+	                        </div>
+	                        <div class="col-6">
+	                            <p>movie name</p>
+	                        </div>
+	                    </div>
+	                    <div class="row lightbox-content-pos">
+	                        <div class="offset-2 col-4">
+	                            <h2>語言</h2>
+	                        </div>
+	                        <div class="col-6">
+	                            <p>movie name</p>
+	                        </div>
+	                    </div>
+	                    <div class="row lightbox-content-pos">
+	                        <div class="offset-2 col-4">
+	                            <h2>上映日期</h2>
+	                        </div>
+	                        <div class="col-6">
+	                            <p>movie name</p>
+	                        </div>
+	                    </div>
+	                    <div class="row lightbox-content-pos">
+	                        <div class="offset-2 col-4">
+	                            <h2>片長</h2>
+	                        </div>
+	                        <div class="col-6">
+	                            <p>movie name</p>
+	                        </div>
+	                    </div>
+	                    <div class="row lightbox-content-pos">
+	                        <div class="offset-2 col-4">
+	                            <h2>級數</h2>
+	                        </div>
+	                        <div class="col-6">
+	                            <p>movie name</p>
+	                        </div>
+	                    </div>
+	                    <div class="row lightbox-content-pos">
+	                        <div class="offset-2 col-4">
+	                            <h2>導演</h2>
+	                        </div>
+	                        <div class="col-6">
+	                            <p>movie name</p>
+	                        </div>
+	                    </div>
+	                    <div class="row lightbox-content-pos">
+	                        <div class="offset-2 col-4">
+	                            <h2>演員</h2>
+	                        </div>
+	                        <div class="col-6">
+	                            <p>movie name</p>
+	                        </div>
+	                    </div>
+	                    <div class="row lightbox-content-pos">
+	                        <div class="offset-2 col-4">
+	                            <h2>簡介</h2>
+	                        </div>
+	                        <div class="col-6">
+	                            <p>movie name</p>
+	                        </div>
+	                    </div>
+	                    <div class="row lightbox-content-pos">
+	                        <div class="offset-2 col-10">
+	                            <p>movie name</p>
+	                        </div>
+	                    </div>
+	                </div>
                </div>
             </div>
             <!-- Light Box End -->
