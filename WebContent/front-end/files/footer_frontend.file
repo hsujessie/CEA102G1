@@ -1,0 +1,29 @@
+<div class="footer">
+    <div class="container footer-menu">
+        <div class="f-menu">
+            <a href="">Home</a>
+            <a href="">Tickets</a>
+            <a href="">Movies</a>
+            <a href="">Forum</a>
+            <a href="">Notices</a>
+            <a href="">FAQs</a>
+            <a href="">Ｍembers</a>
+        </div>
+    </div>
+    <div class="container copyright">
+        <div class="row">
+            <div class="col-md-6">
+                <p>&copy; <a href="">SEENEMA</a>, All Right Reserved.</p>
+            </div>
+            <div class="col-md-6" style="padding-left: 34%;">
+                <div class="footer-social">
+                    <a href=""><i class="fab fa-twitter"></i></a>
+                    <a href=""><i class="fab fa-facebook-f"></i></a>
+                    <a href=""><i class="fab fa-youtube"></i></a>
+                    <a href=""><i class="fab fa-instagram"></i></a>
+                    <a href=""><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
