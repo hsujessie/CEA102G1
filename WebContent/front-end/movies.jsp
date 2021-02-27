@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Movies</title>
 <%@ include file="files/comCssLinks.file"%>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/frontendMovies.css">
 </head>
 <body>
         <div class="wrapper">

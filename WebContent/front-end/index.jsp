@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>SEENEMA</title>
 <%@ include file="files/comCssLinks.file"%>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/frontendIndex.css">
 </head>
 <body>
         <div class="wrapper">
