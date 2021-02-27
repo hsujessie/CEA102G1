@@ -105,7 +105,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Movies Start -->
+            <!-- Movies End -->
 
             <!-- Light Box Start -->
             <div class="movies-lightbox" id="movies-notice" style="display: none;">
