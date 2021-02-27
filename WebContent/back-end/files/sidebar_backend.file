@@ -1,19 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<!-- 各個頁面的jsp連結 -->
-<c:set var="movie" value="/CEA102G1/back-end/movie/select_page.jsp"/>       <!-- Home -->
-<c:set var="movieSub" value="movieSub"/>                                    <!-- Sub - listAllMovie.jsp | listAllMovies_ByCompositeQuery.jsp-->
-<c:set var="session" value="/CEA102G1/back-end/session/select_page.jsp"/>   <!-- Home -->
+<!-- Home - 大家的 select_page.jsp -->
+<c:set var="admin" value=""/> 
+<c:set var="member" value=""/> 
+<c:set var="order" value=""/>     		
+<c:set var="session" value="/CEA102G1/back-end/session/select_page.jsp"/>
+<c:set var="movie" value="/CEA102G1/back-end/movie/select_page.jsp"/>       
+<c:set var="client" value=""/>
+<c:set var="report" value=""/>                                
+<c:set var="theater" value=""/> 
+<c:set var="food" value=""/>
+<c:set var="board" value=""/> 
+<c:set var="faq" value=""/>
 
-<c:set var="admin" value=""/>     <!-- Home -->
-<c:set var="member" value=""/>    <!-- Home -->
-<c:set var="order" value=""/>     <!-- Home --
-<c:set var="client" value=""/>    <!-- Home -->
-<c:set var="report" value=""/>    <!-- Home -->
-<c:set var="theater" value=""/>   <!-- Home -->
-<c:set var="food" value=""/>      <!-- Home -->
-<c:set var="board" value=""/>     <!-- Home -->
-<c:set var="faq" value=""/>       <!-- Home -->
+<!-- Sub - 子頁面參數 -->    			
+<c:set var="adminSub" value="adminSub"/>
+<c:set var="memberSub" value="memberSub"/>
+<c:set var="orderSub" value="orderSub"/>
+<c:set var="sessionSub" value="sessionSub"/> 
+<c:set var="movieSub" value="movieSub"/>        <!-- Sub - listAllMovie.jsp | listAllMovies_ByCompositeQuery.jsp-->   			
+<c:set var="clientSub" value="clientSub"/>
+<c:set var="reportSub" value="reportSub"/>
+<c:set var="theaterSub" value="theaterSub"/>    		
+<c:set var="foodSub" value="foodSub"/>   	
+<c:set var="boardSub" value="boardSub"/>      		
+<c:set var="faqSub" value="faqSub"/>
 
 
 
@@ -25,17 +36,17 @@
                 <img src="<%=request.getContextPath()%>/sources/images/logos/logo_B.png" alt="image">
             </div>
             <ul class="sidebar-nav">
-                <li><a <c:if test="${urlRecog == admin}">   class="active" </c:if> href="${admin}"   >後台管理員管理</a></li>
-                <li><a <c:if test="${urlRecog == member}">  class="active" </c:if> href="${member}"  >會員管理</a></li>
-                <li><a <c:if test="${urlRecog == order}">   class="active" </c:if> href="${order}"   >訂單管理</a></li>
-                <li><a <c:if test="${urlRecog == session}"> class="active" </c:if> href="${session}" >場次排程管理</a></li>
-                <li><a <c:if test="${(urlRecog == movie) || (urlRecog == movieSub)}"> class="active" </c:if> href="${movie}">電影資訊管理</a></li>
-                <li><a <c:if test="${urlRecog == client}">  class="active" </c:if> href="${client}"  >即時客服管理</a></li>
-                <li><a <c:if test="${urlRecog == report}">  class="active" </c:if> href="${report}"  >檢舉管理</a></li>
-                <li><a <c:if test="${urlRecog == theater}"> class="active" </c:if> href="${theater}" >影廳管理</a></li>
-                <li><a <c:if test="${urlRecog == food}">    class="active" </c:if> href="${food}"    >餐點管理</a></li>
-                <li><a <c:if test="${urlRecog == board}">   class="active" </c:if> href="${board}"   >公告管理</a></li>
-                <li><a <c:if test="${urlRecog == faq}">     class="active" </c:if> href="${faq}"     >FAQ管理</a></li>
+                <li><a <c:if test="${(urlRecog == admin)   || (urlRecog == adminSub)}">   class="active" </c:if> href="${admin}"   >後台管理員管理</a></li>
+                <li><a <c:if test="${(urlRecog == member)  || (urlRecog == memberSub)}">  class="active" </c:if> href="${member}"  >會員管理</a></li>
+                <li><a <c:if test="${(urlRecog == order)   || (urlRecog == orderSub)}">   class="active" </c:if> href="${order}"   >訂單管理</a></li>
+                <li><a <c:if test="${(urlRecog == session) || (urlRecog == sessionSub)}"> class="active" </c:if> href="${session}" >場次排程管理</a></li>
+                <li><a <c:if test="${(urlRecog == movie)   || (urlRecog == movieSub)}">   class="active" </c:if> href="${movie}"   >電影資訊管理</a></li>
+                <li><a <c:if test="${(urlRecog == client)  || (urlRecog == clientSub)}">  class="active" </c:if> href="${client}"  >即時客服管理</a></li>
+                <li><a <c:if test="${(urlRecog == report)  || (urlRecog == reportSub)}">  class="active" </c:if> href="${report}"  >檢舉管理</a></li>
+                <li><a <c:if test="${(urlRecog == theater) || (urlRecog == theaterSub)}"> class="active" </c:if> href="${theater}" >影廳管理</a></li>
+                <li><a <c:if test="${(urlRecog == food)    || (urlRecog == foodSub)}">    class="active" </c:if> href="${food}"    >餐點管理</a></li>
+                <li><a <c:if test="${(urlRecog == board)   || (urlRecog == boardSub)}">   class="active" </c:if> href="${board}"   >公告管理</a></li>
+                <li><a <c:if test="${(urlRecog == faq)     || (urlRecog == faqSub)}">     class="active" </c:if> href="${faq}"     >FAQ管理</a></li>
             </ul>
         </div>
     </div>
