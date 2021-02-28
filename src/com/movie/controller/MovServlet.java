@@ -267,11 +267,15 @@ public class MovServlet extends HttpServlet{
 	            movlanToken = token(movlanStrs, movlanToken);
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
+				String url = requestURL;
 	            if(requestURL.equals("/back-end/movie/listMovies_ByCompositeQuery.jsp")){
 					HttpSession session = req.getSession();
 					Map<String, String[]> map = (Map<String, String[]>)session.getAttribute("map");
 					List<MovVO> list  = movSvc.getAll(map);
 					req.setAttribute("listMovies_ByCompositeQuery",list); //  複合查詢, 資料庫取出的list物件,存入
+					Boolean cssForListMoviesByCompositeQuery = true;
+					req.setAttribute("cssForListMoviesByCompositeQuery",cssForListMoviesByCompositeQuery);
+					url = "/back-end/movie/update_movie_input.jsp";
 				}
 	            
 	            req.setAttribute("movVO", movVO);  
@@ -281,7 +285,6 @@ public class MovServlet extends HttpServlet{
 				Boolean openUpdateLightbox = true;
 				req.setAttribute("openUpdateLightbox", openUpdateLightbox);
 
-				String url = requestURL;
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 

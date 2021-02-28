@@ -10,60 +10,184 @@
 	<!-- Your custom styles (optional) -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/backendMovie.css">
 <style>
-  .err-color{
-    font-size: 12px;
-    text-shadow: 0 0 0.2em #f87, 0 0 0.2em #f87;
-  }
-  .errmsg-pos{
-  	padding-left: 15%;
-  	width: 290px;
-  }
-  .sty-input{
-	text-decoration: none;    
-	border-color: transparent;
-    width: 150px;
-    border-bottom: 2px dashed #bb9d52;
-    box-sizing: border-box;
-    padding-bottom: 3px;
-    color: #bb9d52;
-	line-hight: 5px;
-  }
-  .mr-left{
-    margin-left: 45%;
-  }
-  .mr-btm-normal{
-    margin-bottom: 10%;
-  }
-  .mr-btm-sm{
-    margin-bottom: 5%;
-  }
-  .fake-txt::after{
-   	content: "小時";
-    color: #bb9d52;
-    position: absolute;
-    top: 40%;
-    left: 67%;
-    right: 0;
-    bottom: 0;
-  }
-  .add-mov-table tr{
-  	height: 30px;
-  }
-  .add-mov-table span{
-  	box-sizing: border-box;
-  	padding-left: 3%;
-  	color: #bb9d52;
-  }
-  .btn-pos{
-  	margin-left: -46%;
-    margin-top: 10%;
-    margin-bottom: 1%;
-  }
+	  .err-color{
+	    font-size: 12px;
+	    text-shadow: 0 0 0.2em #f87, 0 0 0.2em #f87;
+	  }
+	  .errmsg-pos{
+	  	padding-left: 15%;
+	  	width: 290px;
+	  }
+	  .sty-input{
+		text-decoration: none;    
+		border-color: transparent;
+	    width: 150px;
+	    border-bottom: 2px dashed #bb9d52;
+	    box-sizing: border-box;
+	    padding-bottom: 3px;
+	    color: #bb9d52;
+		line-hight: 5px;
+	  }
+	  .mr-left{
+	    margin-left: 45%;
+	  }
+	  .mr-btm-normal{
+	    margin-bottom: 10%;
+	  }
+	  .mr-btm-sm{
+	    margin-bottom: 5%;
+	  }
+	  .fake-txt::after{
+	   	content: "小時";
+	    color: #bb9d52;
+	    position: absolute;
+	  }
+	  .add-mov-table tr{
+	  	height: 30px;
+	  }
+	  .add-mov-table span{
+	  	box-sizing: border-box;
+	  	padding-left: 3%;
+	  	color: #bb9d52;
+	  }
+   	.form-sty{
+   		width:100%; 
+    	box-sizing: border-box;
+   	}
+<c:choose>
+    <c:when test="${cssForListMoviesByCompositeQuery}">
+      .form-sty{
+			padding: 6% 0 0 21%;
+       }   	
+	  .fake-txt::after{
+	    top: 46%;
+    	left: 67.5%;
+	    right: 0;
+	    bottom: 0;
+	  }
+	  .btn-pos{
+	  	margin-left: 30%;
+	    margin-top: 10%;
+	    margin-bottom: 1%;
+	  }
+	  .input-pos {
+	    position: absolute;
+	    top: 1%;
+	    right: 0;
+	    left: 15%;
+	    bottom: 0;
+	    font-size: 14px;
+	    text-decoration: none;
+	    background-color: transparent;
+	    border: 0px;
+	    cursor: pointer;
+      }
+      
+/*------------------------------------------------------------------
+    BUTTON
+-------------------------------------------------------------------*/      
+	.btn {
+	    width: 30px;
+	    height: 22px;
+    }
+	.grd1 {
+		color: #ffffff;
+	    background: rgb(16,16,16);
+	}
+	.grd1:hover,
+	.grd1:focus {
+		color: #ffffff;
+	    background: #bb9d52;
+	}
+	.effect-1:after, .btn-brd {
+	    -webkit-border-radius: 10px;
+	    -moz-border-radius: 10px;
+	    border-radius: 10px;
+	}	
+	.effect-1:after {
+	    box-shadow: 0 0 0 2px #bb9d52;
+	}
+	.effect-1 {
+	    display: inline-block;
+	    cursor: pointer;
+	    text-align: center;
+	    position: relative;
+	    text-decoration: none;
+	    z-index: 1;
+	}	
+	.effect-1 {
+	    -webkit-transition: background 0.2s, color 0.2s;
+	    -moz-transition: background 0.2s, color 0.2s;
+	    transition: background 0.2s, color 0.2s;
+	}	
+	.effect-1:after {
+	    top: -2px;
+	    left: -2px;
+	    padding: 2px;
+	    box-shadow: 0 0 0 2px #bb9d52;
+	    -webkit-transition: -webkit-transform 0.2s, opacity 0.2s;
+	    -webkit-transform: scale(.8);
+	    -moz-transition: -moz-transform 0.2s, opacity 0.2s;
+	    -moz-transform: scale(.8);
+	    -ms-transform: scale(.8);
+	    transition: transform 0.2s, opacity 0.2s;
+	    transform: scale(.8);
+	    opacity: 0;
+	}	
+	.effect-1:after {
+	    pointer-events: none;
+	    position: absolute;
+	    width: 100%;
+	    height: 100%;
+	    border-radius: 10px;
+	    content: '';
+	    -webkit-box-sizing: content-box;
+	    -moz-box-sizing: content-box;
+	    box-sizing: content-box;
+	}
+	.effect-1:hover:after {
+	    -webkit-transform: scale(1);
+	    -moz-transform: scale(1);
+	    -ms-transform: scale(1);
+	    transform: scale(1);
+	    opacity: 1;
+	}	
+	.effect-1:after {
+	    -webkit-transform: scale(1.2);
+	    -moz-transform: scale(1.2);
+	    -ms-transform: scale(1.2);
+	    transform: scale(1.2);
+	}	
+	.effect-1:hover:after {
+	    -webkit-transform: scale(1);
+	    -moz-transform: scale(1);
+	    -ms-transform: scale(1);
+	    transform: scale(1);
+	    opacity: 1;
+	}
+    </c:when>
+    <c:otherwise>
+    	.form-sty{
+			padding: 6% 0 0 23%;
+    	}  	
+	  .fake-txt::after{
+	    top: 40.5%;
+	    left: 67%;
+	    right: 0;
+	    bottom: 0;
+	  }
+	  .btn-pos{
+	  	margin-left: -46%;
+	    margin-top: 10%;
+	    margin-bottom: 1%;
+	  }
+    </c:otherwise>
+</c:choose>
 </style>
 
 </head>
 <body>
-<FORM  class="center-linehigh-content" style="width:100%; margin: 6% 0 0 23%;" method="post" action="<%=request.getContextPath()%>/movie/mov.do" name="form_updateMovie" enctype="multipart/form-data">	
+<FORM  class="center-linehigh-content form-sty" method="post" action="<%=request.getContextPath()%>/movie/mov.do" name="form_updateMovie" enctype="multipart/form-data">	
 <table class="add-mov-table">
 	<tr>
 		<td><b>名稱</b></td>
@@ -97,6 +221,7 @@
 		<td>
 			<select class="mr-left mr-btm-normal" name="movtype">
 				<option value= "劇情片" <c:forEach var="movVO" items="${movSvc.all}">  <c:if test="${movVO.movtype.contains('劇情片')}"> selected </c:if></c:forEach> >劇情片</option>
+				<option value= "動作片" <c:forEach var="movVO" items="${movSvc.all}">  <c:if test="${movVO.movtype.contains('動作片')}"> selected </c:if></c:forEach> >動作片</option>
 				<option value= "動畫片" <c:forEach var="movVO" items="${movSvc.all}">  <c:if test="${movVO.movtype.contains('動畫片')}"> selected </c:if></c:forEach> >動畫片</option>
 				<option value= "喜劇片" <c:forEach var="movVO" items="${movSvc.all}">  <c:if test="${movVO.movtype.contains('喜劇片')}"> selected </c:if></c:forEach> >喜劇片</option>
 				<option value= "愛情片" <c:forEach var="movVO" items="${movSvc.all}">  <c:if test="${movVO.movtype.contains('愛情片')}"> selected </c:if></c:forEach> >愛情片</option>
@@ -245,7 +370,7 @@
 <input type="hidden" name="movno" value="${movVO.movno}">
 <input type="hidden" name="requestURL" value="<%=request.getParameter("requestURL")%>">
 <input type="hidden" name="whichPage"  value="<%=request.getParameter("whichPage")%>">
-<a class="btn btn-light btn-radius btn-brd grd1 effect-1 btn-pos">
+<a class="btn btn-light btn-brd grd1 effect-1 btn-pos">
 	<input type="submit" value="修改" class="input-pos">
 </a>
 </FORM>

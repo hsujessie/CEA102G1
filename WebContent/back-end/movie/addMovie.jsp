@@ -96,6 +96,8 @@
 		<td><b>類型</b></td>
 		<td>
 			<select class="mr-left mr-btm-normal" name="movtype">
+				<option value="劇情片">劇情片</option>
+				<option value="動作片">動作片</option>
 				<option value="動畫片">動畫片</option>
 				<option value="喜劇片">喜劇片</option>
 				<option value="愛情片">愛情片</option>
@@ -243,7 +245,7 @@
 </table>
 <br>
 <input type="hidden" name="action" value="insert">
-<a class="btn btn-light btn-radius btn-brd grd1 effect-1 btn-pos">
+<a class="btn btn-light btn-brd grd1 effect-1 btn-pos">
 	<input type="submit" value="新增" class="input-pos">
 </a>
 </FORM>

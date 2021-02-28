@@ -106,7 +106,7 @@ thead > tr{
 							</td>
 							<td>
 							  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" style="margin-bottom: 0px; text-align:center;">	
-			        			 <a class="btn btn-light btn-radius btn-brd grd1 effect-1">
+			        			 <a class="btn btn-light btn-brd grd1 effect-1">
 									<input type="submit" value="修改" class="input-pos">
 			        			 </a>				            					             
 							     <input type="hidden" name="movno" value="${movVO.movno}">

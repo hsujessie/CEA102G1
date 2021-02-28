@@ -41,7 +41,7 @@
 		                    </c:forEach>
 		                    </select>
 		                    <input type="hidden" name="action" value="getOne_For_Display">
-		        			<a class="btn btn-light btn-radius btn-brd grd1 effect-1">
+		        			<a class="btn btn-light btn-brd grd1 effect-1">
 								<input type="submit" value="送出" class="input-pos">
 		        			</a>
 		                </FORM> --%>
@@ -72,12 +72,13 @@
 	                        <br><b>電影類型</b>
 	                            <select name="mov_type">
 	                                <option value=""></option>
-	                                <option value="劇情片">劇情片</option>
-	                                <option value="動畫片">動畫片</option>
-	                                <option value="喜劇片">喜劇片</option>
-	                                <option value="愛情片">愛情片</option>
-	                                <option value="科幻片">科幻片</option>
-	                                <option value="恐怖片">恐怖片</option>
+									<option value="劇情片">劇情片</option>
+									<option value="動作片">動作片</option>
+									<option value="動畫片">動畫片</option>
+									<option value="喜劇片">喜劇片</option>
+									<option value="愛情片">愛情片</option>
+									<option value="科幻片">科幻片</option>
+									<option value="恐怖片">恐怖片</option>
 	                            </select>
 	                        <br><b>選擇年份</b>
 	                        <select name="mov_ondate_year">
@@ -94,7 +95,7 @@
 	                            </c:forEach>
 	                        </select>
 	                        <input type="hidden" name="action" value="listMovies_ByCompositeQuery">
-		        			<a class="btn btn-light btn-radius btn-brd grd1 effect-1">
+		        			<a class="btn btn-light btn-brd grd1 effect-1">
 								<input type="submit" value="送出" class="input-pos">
 		        			</a>
 	                    </FORM>

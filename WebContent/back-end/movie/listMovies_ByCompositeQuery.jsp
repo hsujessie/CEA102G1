@@ -14,19 +14,27 @@
 thead > tr{
  	text-align: center;
 }
-
-.effect-1:after {
-    border-radius: 2%;
+.effect-1:after, .btn-brd {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
 }
- 
+.input-pos {
+    top: 0%;
+}   
 .w-brk {
     word-break: break-all;
     min-width: 800px;
     max-width: 1000px;
 }
-
 .sty-height{
 	line-height:25px;
+}
+.ifram-sty{
+	background-color: #fff;
+	height: 750px;
+	width: 650px;
+	margin-left: 7%;
 }
 </style>
 </head>
@@ -90,15 +98,9 @@ thead > tr{
 								</c:if>
 							</td>
 							<td>
-							   <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" style="margin-bottom: 0px; text-align:center;">
-							     <a class="btn btn-light btn-radius btn-brd grd1 effect-1">
-									<input type="submit" value="修改" class="input-pos">
-			        			 </a>			
-							     <input type="hidden" name="movno" value="${movVO.movno}">
-							     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
-							     <input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller-->
-							     <input type="hidden" name="action"	value="getOne_For_Update">
-							   </FORM>
+							   <a class="btn btn-light btn-brd grd1 effect-1">
+									<input type="button" value="修改" class="input-pos update-btn" data-movno="${movVO.movno}">
+			        			 </a>
 							</td>
 						</tr>
 						</c:forEach>
@@ -123,19 +125,28 @@ thead > tr{
             </div>
 			
 			<div class="modal-body center-linehigh-box sty-lightbox">
-			  <!-- An error is here. -->
-             <%-- <jsp:include page="update_movie_input.jsp"/> --%> <!-- 引入jsp -->
+             	<iframe class="ifram-sty" src=""></iframe>
 			</div>		
 		</div>
 	</div>
 </div><!-- end Modal-->
 	<script>
-		 <c:if test="${openUpdateLightbox}">
+		/*  <c:if test="${openUpdateLightbox}">
 			$("#basicModal").modal();
 		</c:if> 
 		 <c:if test="${openUpdateLightbox == false}">
 	   	   	$("#basicModal").modal("hide"); 
-		</c:if> 
+		</c:if>  */
+		
+	 	$(".update-btn").click(function(e){
+	 		e.preventDefault();
+	 		let movno = $(this).attr("data-movno");
+	 		let url = "<%=request.getContextPath()%>/movie/mov.do?action=getOne_For_Update&movno=" + movno + "&requestURL=<%=request.getServletPath()%>&openUpdateLightbox=false";
+	 		let iframe = document.getElementsByTagName("iframe")[0];
+	 		iframe.setAttribute("src",url);
+			$("#basicModal").modal();
+	 	});
+		console.log("${openUpdateLightbox}");
 	</script>
 <%--     <br>本網頁的路徑:<br><b>
    <font color=blue>request.getServletPath():</font> <%=request.getServletPath()%><br>
