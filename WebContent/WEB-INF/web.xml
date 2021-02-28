@@ -34,4 +34,13 @@
 		<servlet-name>ComServlet</servlet-name>
 		<url-pattern>/comment/com.do</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ExpServlet</servlet-name>
+		<servlet-class>com.expectation.controller.ExpServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ExpServlet</servlet-name>
+		<url-pattern>/expectation/exp.do</url-pattern>
+	</servlet-mapping>
 </web-app>
