@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<c:set var="home" value="/CEA102G1/front-end/index.jsp"/><!-- HomePage -->
+<!-- HomePage -->
+<c:set var="home" value="/CEA102G1/front-end/index.jsp"/>
 <c:set var="tickets" value="/CEA102G1/front-end/tickets.jsp"/>
 <c:set var="searchTickets" value="/CEA102G1/front-end/searchTickets.jsp"/>
 <c:set var="sessions" value="/CEA102G1/front-end/sessions.jsp"/>
@@ -9,6 +10,10 @@
 <c:set var="notices" value="/CEA102G1/front-end/notices.jsp"/>
 <c:set var="faqs" value="/CEA102G1/front-end/faqs.jsp"/>
 <c:set var="members" value="/CEA102G1/front-end/members.jsp"/>
+
+<!-- SubPage -->
+<c:set var="moviesSub" value="moviesSub"/>        <!-- Sub - movies_subpage.jsp -->  
+
 
 
 <div class="nav-bar">
@@ -39,7 +44,7 @@
                         </div>
                     </div>
 
-                    <a href="${movies}" class="nav-item nav-link <c:if test="${urlRecog == movies}">active</c:if>"><i class="fas fa-film iconPos"></i>電影</a>
+                    <a href="${movies}" class="nav-item nav-link <c:if test="${(urlRecog == movies)||(urlRecog == moviesSub)}">active</c:if>"><i class="fas fa-film iconPos"></i>電影</a>
                     <a href="${forum}" class="nav-item nav-link <c:if test="${urlRecog == forum}">active</c:if>"><i class="fa fa-users iconPos"></i>討論區</a>
                     <a href="${notices}" class="nav-item nav-link <c:if test="${urlRecog == notices}">active</c:if>"><i class="fa fa-bullhorn iconPos"></i>公告</a>
                     <a href="${faqs}" class="nav-item nav-link <c:if test="${urlRecog == faqs}">active</c:if>"><i class="fas fa-question-circle iconPos"></i></i>FAQs</a>

@@ -40,6 +40,7 @@ public class MovServlet extends HttpServlet{
 			try {
 				/***************************1.钡Μ叫―把计*****************************************/
 				Integer movno = new Integer(req.getParameter("movno"));
+				String requestURL = req.getParameter("requestURL");
 				
 				/***************************2.秨﹍琩高戈*****************************************/
 				MovService movSvc = new MovService();
@@ -58,6 +59,11 @@ public class MovServlet extends HttpServlet{
 				/***************************3.琩高ЧΘ,非称锣ユ(Send the Success view)*************/
 				req.setAttribute("movVO", movVO);
 				String url = "/back-end/movie/listOneMovie.jsp";
+				
+				if("/front-end/movies/movies.jsp".equals(requestURL)) {
+					url = "/front-end/movies/movies_subpage.jsp";
+				}
+				
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 				

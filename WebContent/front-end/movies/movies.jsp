@@ -76,7 +76,7 @@
 
 <script>
 	function sendData(e,movno){
-	    let url = "<%=request.getContextPath()%>/movie/mov.do?action=getOne_For_Display&movno="+movno;
+	    let url = "<%=request.getContextPath()%>/movie/mov.do?action=getOne_For_Display&requestURL=<%=request.getServletPath()%>&movno="+movno;
 	    console.log("url??" + url);
 	    window.location.href = url;
 	}

@@ -28,56 +28,154 @@
 <body>
         <div class="wrapper">
             <!-- Nav Bar Start -->
-			<c:set value="${pageContext.request.requestURI}" var="urlRecog"></c:set>
+			<c:set value="moviesSub" var="urlRecog"></c:set>        <!-- 給navbar_frontend.file的參數-Sub -->
             <%@ include file="../files/navbar_frontend.file"%>
             <!-- Nav Bar End -->
 
 
-            <!-- Page Header Start -->
-            <div class="page-header">
+            <!-- Information Start -->
+            <div class="movinfo">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <h2>Movies</h2>
+                    <div class="row align-items-center">
+                        <div class="col-lg-5 col-md-6">
+                            <div class="movinfo-img">
+                                <img src="img/about.jpg" alt="Image">
+                            </div>
+                        </div>
+                        <div class="col-lg-7 col-md-6">
+                            <div class="section-header">
+                                <h2>Information</h2>
+                            </div>
+                            <div class="movinfo-text">
+                                <p>上映日期 </p>
+                                <p>類   型 </p>
+                                <p>級   數 </p>
+                                <p>片   長 </p>
+                                <p>導   演 </p>
+                                <p>演   員 </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Page Header End -->
+            <!-- Information End -->
 
-
-            <!-- Movies Subpage Start -->
-            <jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService"/>
-            <div class="movies">
+            <!-- Synopsis Start -->
+            <div class="movinfo">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <ul id="movies-flters">
-                                <li data-filter="*" class="filter-active">All</li>
-                                <li data-filter=".first">Now Showing</li>
-                                <li data-filter=".second">Comming Soon</li>
-                            </ul>
+                    <div class="row align-items-center">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="section-header">
+                                <h2>Synopsis</h2>
+                            </div>
+                            <div class="movinfo-text">
+                                <p>電影簡介</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row movies-container">
-						<c:forEach var="movVO" items="${movSvc.all}" >
-							<c:if test="${not empty movVO.movpos}">						    
-		                        <div class="col-lg-4 col-md-6 col-sm-12 movies-item">
-		                            <div class="movies-wrap" id="imgbtn" onclick="sendData(this,${movVO.movno})">
-		                                <img src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movpos&action=get_One_MovPos" alt="Movies Image">
-		                                <figure>
-		                                    <p><img style="width:100%; max-width: 40px;" src="<%=request.getContextPath()%>/sources/images/logos/seenema_W.ico" alt="Logo"></p>
-		                                    <a href="">${movVO.movname}</a>
-		                                    <span>${movVO.movondate}</span>
-		                                </figure>
-		                            </div>
-		                        </div>
-	                        </c:if>
-						</c:forEach>
                     </div>
                 </div>
             </div>
-            <!-- Movies Subpage End -->
+            <!-- Synopsis End -->
+
+
+            <!-- Reviews Start -->
+            <div class="reviews">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Reviews</h2>
+                    </div>
+                    <div class="reviews-start">
+                        <div class="reviews-container left">
+                            <div class="reviews-content">
+                                <h2><span>Ratings</span><i class="fa fa-star" aria-hidden="true"></i></h2>
+                                <p>
+                                    Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="reviews-container right">
+                            <div class="reviews-content">
+                                <h2><span>Ratings</span><i class="fa fa-star" aria-hidden="true"></i></h2>
+                                <p>
+                                    Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="reviews-container left">
+                            <div class="reviews-content">
+                                <h2><span>Ratings</span><i class="fa fa-star" aria-hidden="true"></i></h2>
+                                <p>
+                                    Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="reviews-container right">
+                            <div class="reviews-content">
+                                <h2><span>Ratings</span><i class="fa fa-star" aria-hidden="true"></i></h2>
+                                <p>
+                                    Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="reviews-container left">
+                            <div class="reviews-content">
+                                <h2><span>Ratings</span><i class="fa fa-star" aria-hidden="true"></i></h2>
+                                <p>
+                                    Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="reviews-container right">
+                            <div class="reviews-content">
+                                <h2><span>Ratings</span><i class="fa fa-star" aria-hidden="true"></i></h2>
+                                <p>
+                                    Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Reviews End -->
+
+
+            <!-- Comment Start -->
+            <div class="movinfo">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="section-header">
+                                <h2>Comments</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-1 col-md-1">
+                            <p>評分</p>
+                        </div>
+                        <div class="col-lg-11 col-md-11">
+                            <form action="" style="display: inline-block;">
+                                <span class="star" data-star = "1"><i class="fa fa-star" aria-hidden="true"></i></span>
+                                <span class="star" data-star = "2"><i class="fa fa-star" aria-hidden="true"></i></span>
+                                <span class="star" data-star = "3"><i class="fa fa-star" aria-hidden="true"></i></span>
+                                <span class="star" data-star = "4"><i class="fa fa-star" aria-hidden="true"></i></span>
+                                <span class="star" data-star = "5"><i class="fa fa-star" aria-hidden="true"></i></span>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="row align-items-center">
+                        <div class="col-lg-12 col-md-12">
+                            <form action="">
+                                <textarea name="" id="" cols="30" rows="5" style="width: 100%;"> Wite something here...</textarea>
+                            </form>
+                            <input type="button" value="送出">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Comment End -->
             
             <!-- Book Tickets Start -->
             <%@ include file="../files/bookTicketsTamplate.file"%>
