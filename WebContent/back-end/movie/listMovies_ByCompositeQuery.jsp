@@ -130,14 +130,7 @@ thead > tr{
 		</div>
 	</div>
 </div><!-- end Modal-->
-	<script>
-		/*  <c:if test="${openUpdateLightbox}">
-			$("#basicModal").modal();
-		</c:if> 
-		 <c:if test="${openUpdateLightbox == false}">
-	   	   	$("#basicModal").modal("hide"); 
-		</c:if>  */
-		
+	<script> 
 	 	$(".update-btn").click(function(e){
 	 		e.preventDefault();
 	 		let movno = $(this).attr("data-movno");
@@ -146,7 +139,9 @@ thead > tr{
 	 		iframe.setAttribute("src",url);
 			$("#basicModal").modal();
 	 	});
-		console.log("${openUpdateLightbox}");
+		 <c:if test="${openUpdateLightbox == false}">
+			window.parent.location.reload();  
+		</c:if>
 	</script>
 <%--     <br>本網頁的路徑:<br><b>
    <font color=blue>request.getServletPath():</font> <%=request.getServletPath()%><br>
