@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.comment.model.ComService;
+import com.comment.model.ComVO;
 import com.expectation.model.ExpService;
 import com.expectation.model.ExpVO;
 import com.movie.model.MovService;
@@ -45,6 +47,10 @@ public class ExpServlet extends HttpServlet {
 				movNo = new Integer(req.getParameter("movNo").trim());
 				memNo = new Integer(req.getParameter("memNo").trim());
 				
+				System.out.println("expRating= " + expRating);
+				System.out.println("movNo= " + movNo);
+				System.out.println("memNo= " + memNo);
+				
 				ExpVO expVO = new ExpVO();
 				expVO.setExpRating(expRating);
 				expVO.setMovNo(movNo);
@@ -52,14 +58,18 @@ public class ExpServlet extends HttpServlet {
 				
 				/***************************2.開始新增資料***************************************/				
 				ExpService expSvc = new ExpService();
-				expSvc.addExp(expRating, movNo, memNo);
-					
+				expSvc.addExp(movNo, memNo, expRating);
+				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/	
 				req.setAttribute("expVO", expVO);
 				
 				MovService movSvc = new MovService();
 				MovVO movVO = movSvc.getOneMov(movNo);
 				req.setAttribute("movVO", movVO);
+				
+				ComService comSvc = new ComService();
+				ComVO comVO = comSvc.getOneCom(movNo);
+				req.setAttribute("comVO", comVO);
 				
 				String url = "/front-end/movies/movies_subpage.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);

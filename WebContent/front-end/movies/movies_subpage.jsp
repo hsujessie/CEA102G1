@@ -8,6 +8,11 @@
 <title>Movies</title>
 <%@ include file="../files/comCssLinks.file"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/frontendMovies.css">
+<style>
+	.ml{
+		margin-left: 2px;
+	}
+</style>
 </head>
 <body>
         <div class="wrapper">
@@ -38,8 +43,16 @@
                                 <p>片&emsp;&emsp;長 &emsp;|&emsp; ${movVO.movdurat}小時</p>
                                 <p>導&emsp;&emsp;演 &emsp;|&emsp; ${movVO.movditor}</p>
                                 <p>演&emsp;&emsp;員 &emsp;|&emsp; ${movVO.movcast}</p>
-                                <p>期待度&emsp; &emsp;|&emsp; </p>
-                                <p>滿意度&emsp; &emsp;|&emsp; </p>
+                                <p><span style="letter-spacing: 8px;">期待度</span><span style="margin-left: 12px;">|</span>&emsp;${expVO.expRating}
+                   					<%-- <c:set value="0" var="sum" />
+                   					<c:forEach var="expVO" items="${expSvc.all}">                   					
+                   						<c:if test="${(expVO.movNo == movVO.movno)}">
+								        	<c:set value="${sum + expVO.expRating}" var="sum" />
+                   						</c:if>
+								    </c:forEach>
+								    ${sum} --%>
+                    			</p>
+                                <p><span style="letter-spacing: 8px;">滿意度</span><span style="margin-left: 12px;">|</span>&emsp; </p>
                             </div>
                         </div>
                     </div>
@@ -50,8 +63,17 @@
                             <p style="color:#aa9166;">期待度</p>
                         </div>
                         <div class="col-lg-11 col-md-11">
-                            <input type="radio">&ensp;想看<i class="far fa-smile" style="color:#aa9166;"></i>&emsp;&emsp;
-                            <input type="radio">&ensp;不想看<i class="far fa-meh" style="color:#aa9166;"></i>
+                        
+                            <form method="post" action="<%=request.getContextPath()%>/expectation/exp.do">                                                       
+	                            <input type="radio" name="expRating" value="5"><span class="ml">想看</span><i class="far fa-smile ml" style="color:#aa9166;"></i>&emsp;&emsp;
+	                            <input type="radio" name="expRating" value="0"><span class="ml">不想看</span><i class="far fa-meh ml" style="color:#aa9166;"></i>
+
+  								<input type="hidden" name="movNo" value="${movVO.movno}" />
+  								<input type="hidden" name="memNo" value="1" /> <!-- 會員編號 外來鍵要配合db -->
+  								<%-- <input type="hidden" name="memNo" value="${memVO.memno}" />  --%>
+								<input type="hidden" name="action" value="insert">
+                            	<input class="combtn" type="submit" value="送出" style="margin-left: 5%;">
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -157,5 +179,7 @@
         </div>
         
 <%@ include file="../files/comJsLinks.file"%>
+<script>
+</script>
 </body>
 </html>
