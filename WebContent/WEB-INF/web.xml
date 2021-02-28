@@ -28,10 +28,10 @@
 
 	<servlet>
 		<servlet-name>ComServlet</servlet-name>
-		<servlet-class>com.movie.controller.ComServlet</servlet-class>
+		<servlet-class>com.comment.controller.ComServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ComServlet</servlet-name>
-		<url-pattern>/movie/com.do</url-pattern>
+		<url-pattern>/comment/com.do</url-pattern>
 	</servlet-mapping>
 </web-app>

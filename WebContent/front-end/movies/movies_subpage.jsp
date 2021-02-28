@@ -60,6 +60,7 @@
 
 <!-- ================================= 以下 電影--未上映：不顯示，已上映：顯示 ====================================== -->
             <!-- Synopsis Start -->
+            <jsp:useBean id="comSvc" scope="page" class="com.comment.model.ComService"/>
             <div class="movinfo">
                 <div class="container">
                     <div class="row align-items-center">
@@ -84,66 +85,18 @@
                         <h2>Reviews</h2>
                     </div>
                     <div class="reviews-start">
-                        <div class="reviews-container left">
-                            <div class="reviews-content">
-                                <h2><span>Ratings</span><i class="fa fa-star" aria-hidden="true"></i></h2>
-                                <p>
-                                    Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
-                                </p>
-                                <span>發表人</span>
-                                <span>發表時間</span>
-                            </div>
-                        </div>
-                        <div class="reviews-container right">
-                            <div class="reviews-content">
-                                <h2><span>Ratings</span><i class="fa fa-star" aria-hidden="true"></i></h2>
-                                <p>
-                                    Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
-                                </p>
-                                <span>發表人</span>
-                                <span>發表時間</span>
-                            </div>
-                        </div>
-                        <div class="reviews-container left">
-                            <div class="reviews-content">
-                                <h2><span>Ratings</span><i class="fa fa-star" aria-hidden="true"></i></h2>
-                                <p>
-                                    Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
-                                </p>
-                                <span>發表人</span>
-                                <span>發表時間</span>
-                            </div>
-                        </div>
-                        <div class="reviews-container right">
-                            <div class="reviews-content">
-                                <h2><span>Ratings</span><i class="fa fa-star" aria-hidden="true"></i></h2>
-                                <p>
-                                    Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
-                                </p>
-                                <span>發表人</span>
-                                <span>發表時間</span>
-                            </div>
-                        </div>
-                        <div class="reviews-container left">
-                            <div class="reviews-content">
-                                <h2><span>Ratings</span><i class="fa fa-star" aria-hidden="true"></i></h2>
-                                <p>
-                                    Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
-                                </p>
-                                <span>發表人</span>
-                                <span>發表時間</span>
-                            </div>
-                        </div>
-                        <div class="reviews-container right">
-                            <div class="reviews-content">
-                                <h2><span>Ratings</span><i class="fa fa-star" aria-hidden="true"></i></h2>
-                                <p>
-                                    Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
-                                </p>
-                                <span>發表人</span>
-                                <span>發表時間</span>
-                            </div>
-                        </div>
+                    	<c:forEach var="comVO" items="${comSvc.all}" varStatus="no">
+                    		<c:if test="${(comVO.movNo == movVO.movno) and (comVO.comStatus == 0)}">
+		                         <div class="reviews-container ${(no.index mod 2 == 0) ? 'right' : 'left'}">
+		                            <div class="reviews-content">
+		                                <h2><span>Ratings</span><i class="fa fa-star" aria-hidden="true"></i></h2> 
+		                                <p>${comVO.comContent}</p>
+		                                <span>發表人&emsp;${comVO.memNo}</span>
+		                                <span>發表時間&emsp;${comVO.comTime}</span>
+		                            </div>
+		                        </div>
+		                      </c:if>                    
+	                    </c:forEach>
                     </div>
                 </div>
             </div>
@@ -178,9 +131,13 @@
 
                     <div class="row align-items-center">
                         <div class="col-lg-12 col-md-12">
-                            <form action="">
-                                <textarea name="" cols="30" rows="5" style="width: 100%;" placeholder="Write something here..."></textarea>                          
+                            <form method="post" action="<%=request.getContextPath()%>/comment/com.do">
+                                <textarea name="comContent" cols="30" rows="5" style="width: 100%; margin: 20px 0 5px 0;" placeholder="Write something here..."></textarea>                          
                                 
+  								<input type="hidden" name="movNo" value="${movVO.movno}" />
+  								<input type="hidden" name="memNo" value="1" /> <!-- 會員編號 外來鍵要配合db -->
+  								<%-- <input type="hidden" name="memNo" value="${memVO.memno}" />  --%>
+  								
 								<input type="hidden" name="action" value="insert">
                             	<input class="combtn" type="submit" value="送出">
                             </form>
@@ -199,10 +156,6 @@
             <!-- Footer End -->
         </div>
         
-<%@ include file="../files/comJsLinks.file"%>     
-
-<script>
-
-</script>
+<%@ include file="../files/comJsLinks.file"%>
 </body>
 </html>

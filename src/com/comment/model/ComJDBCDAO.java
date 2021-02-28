@@ -229,40 +229,40 @@ public class ComJDBCDAO implements ComDAO_interface{
 		time = Timestamp.valueOf(timeStr); 
 		
 		// 新增
-		ComVO comVO = new ComVO();
-		comVO.setMovNo(1);
-		comVO.setMemNo(1);
-		comVO.setComTime(time);
-		comVO.setComContent("contentTest");
-		comVO.setComStatus(0);
-		dao.insert(comVO);
+//		ComVO comVO = new ComVO();
+//		comVO.setMovNo(1);
+//		comVO.setMemNo(1);
+//		comVO.setComTime(time);
+//		comVO.setComContent("contentTest");
+//		comVO.setComStatus(0);
+//		dao.insert(comVO);
 		
 		// 修改
-		ComVO comVO2 = new ComVO();
-		comVO2.setComStatus(0);
-		comVO2.setComNo(2);
-		dao.update(comVO2);
+//		ComVO comVO2 = new ComVO();
+//		comVO2.setComStatus(0);
+//		comVO2.setComNo(3);
+//		dao.update(comVO2);
 		
 		// 查詢
-		ComVO comVO3 = dao.findByPrimaryKey(1);
-		System.out.print(comVO3.getComNo() + ",");
-		System.out.print(comVO3.getMovNo() + ",");
-		System.out.print(comVO3.getMemNo() + ",");
-		System.out.print(comVO3.getComTime() + ",");
-		System.out.print(comVO3.getComContent() + ",");
-		System.out.print(comVO3.getComStatus());
-		System.out.println("---------------------");
+//		ComVO comVO3 = dao.findByPrimaryKey(1);
+//		System.out.print(comVO3.getComNo() + ",");
+//		System.out.print(comVO3.getMovNo() + ",");
+//		System.out.print(comVO3.getMemNo() + ",");
+//		System.out.print(comVO3.getComTime() + ",");
+//		System.out.print(comVO3.getComContent() + ",");
+//		System.out.print(comVO3.getComStatus());
+//		System.out.println("---------------------");
 		
 		// 查詢
-		List<ComVO> list = dao.getAll();
-		for (ComVO aCom : list) {
-			System.out.print(aCom.getComNo() + ",");
-			System.out.print(aCom.getMovNo() + ",");
-			System.out.print(aCom.getMemNo() + ",");
-			System.out.print(aCom.getComTime() + ",");
-			System.out.print(aCom.getComContent() + ",");
-			System.out.print(aCom.getComStatus());
-			System.out.println();
-		}
+//		List<ComVO> list = dao.getAll();
+//		for (ComVO aCom : list) {
+//			System.out.print(aCom.getComNo() + ",");
+//			System.out.print(aCom.getMovNo() + ",");
+//			System.out.print(aCom.getMemNo() + ",");
+//			System.out.print(aCom.getComTime() + ",");
+//			System.out.print(aCom.getComContent() + ",");
+//			System.out.print(aCom.getComStatus());
+//			System.out.println();
+//		}
 	}
 }

@@ -314,9 +314,7 @@
 	</tr>
 	<tr>
 		<td><b>簡介</b></td>
-		<td>
-			<textarea name="movdes" class="sty-input mr-left">${movVO.movdes}</textarea>
-		</td>
+		<td><textarea name="movdes" class="sty-input mr-left">${movVO.movdes}</textarea></td>
 		<c:if test="${not empty errorMsgs.movdes}">
 			<td class="errmsg-pos">		
 				<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
