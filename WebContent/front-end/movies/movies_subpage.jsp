@@ -35,16 +35,30 @@
                                 <p>上映日期 &emsp;|&emsp; ${movVO.movondate}</p>
                                 <p>類&emsp;&emsp;型 &emsp;|&emsp; ${movVO.movtype}</p>
                                 <p>級&emsp;&emsp;數 &emsp;|&emsp; ${movVO.movrating}</p>
-                                <p>片&emsp;&emsp;長 &emsp;|&emsp; ${movVO.movdurat}</p>
+                                <p>片&emsp;&emsp;長 &emsp;|&emsp; ${movVO.movdurat}小時</p>
                                 <p>導&emsp;&emsp;演 &emsp;|&emsp; ${movVO.movditor}</p>
                                 <p>演&emsp;&emsp;員 &emsp;|&emsp; ${movVO.movcast}</p>
+                                <p>期待度&emsp; &emsp;|&emsp; </p>
+                                <p>滿意度&emsp; &emsp;|&emsp; </p>
                             </div>
+                        </div>
+                    </div>
+                    
+					<!-- 電影--未上映：顯示，已上映：不顯示 -->
+                    <div class="row">
+                        <div class="col-lg-1 col-md-1">
+                            <p style="color:#aa9166;">期待度</p>
+                        </div>
+                        <div class="col-lg-11 col-md-11">
+                            <input type="radio">&ensp;想看<i class="far fa-smile" style="color:#aa9166;"></i>&emsp;&emsp;
+                            <input type="radio">&ensp;不想看<i class="far fa-meh" style="color:#aa9166;"></i>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Information End -->
 
+<!-- ================================= 以下 電影--未上映：不顯示，已上映：顯示 ====================================== -->
             <!-- Synopsis Start -->
             <div class="movinfo">
                 <div class="container">
@@ -76,6 +90,8 @@
                                 <p>
                                     Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
                                 </p>
+                                <span>發表人</span>
+                                <span>發表時間</span>
                             </div>
                         </div>
                         <div class="reviews-container right">
@@ -84,6 +100,8 @@
                                 <p>
                                     Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
                                 </p>
+                                <span>發表人</span>
+                                <span>發表時間</span>
                             </div>
                         </div>
                         <div class="reviews-container left">
@@ -92,6 +110,8 @@
                                 <p>
                                     Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
                                 </p>
+                                <span>發表人</span>
+                                <span>發表時間</span>
                             </div>
                         </div>
                         <div class="reviews-container right">
@@ -100,6 +120,8 @@
                                 <p>
                                     Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
                                 </p>
+                                <span>發表人</span>
+                                <span>發表時間</span>
                             </div>
                         </div>
                         <div class="reviews-container left">
@@ -108,6 +130,8 @@
                                 <p>
                                     Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
                                 </p>
+                                <span>發表人</span>
+                                <span>發表時間</span>
                             </div>
                         </div>
                         <div class="reviews-container right">
@@ -116,6 +140,8 @@
                                 <p>
                                     Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
                                 </p>
+                                <span>發表人</span>
+                                <span>發表時間</span>
                             </div>
                         </div>
                     </div>
@@ -134,10 +160,10 @@
                             </div>
                         </div>
                     </div>
-
+                    
                     <div class="row">
                         <div class="col-lg-1 col-md-1">
-                            <p>評分</p>
+                            <p>滿意度</p>
                         </div>
                         <div class="col-lg-11 col-md-11">
                             <form action="" style="display: inline-block;">
@@ -153,9 +179,11 @@
                     <div class="row align-items-center">
                         <div class="col-lg-12 col-md-12">
                             <form action="">
-                                <textarea name="" id="" cols="30" rows="5" style="width: 100%;"> Wite something here...</textarea>
+                                <textarea name="" cols="30" rows="5" style="width: 100%;" placeholder="Write something here..."></textarea>                          
+                                
+								<input type="hidden" name="action" value="insert">
+                            	<input class="combtn" type="submit" value="送出">
                             </form>
-                            <input class="combtn" type="button" value="送出">
                         </div>
                     </div>
                 </div>
