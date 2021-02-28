@@ -8,22 +8,6 @@
 <title>Movies</title>
 <%@ include file="../files/comCssLinks.file"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/frontendMovies.css">
-<style>
- .lightbox-content-pos{
- 	margin-top: 20px;
- }
- .lightbox-container{
- 	background-color: #fff;
-    padding: 50px;
-    box-sizing: border-box;
- }
-.lightbox-container h2{
-	font-family: none;
-	font-style: normal;
-    font-weight: 600;
-    color: #121518;
- }
-</style>
 </head>
 <body>
         <div class="wrapper">
@@ -38,8 +22,8 @@
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-5 col-md-6">
-                            <div class="movinfo-img">
-                                <img src="img/about.jpg" alt="Image">
+                            <div class="movinfo-vdo">
+                            	<video controls width="150"><source src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovTra" type="video/mp4"></video>
                             </div>
                         </div>
                         <div class="col-lg-7 col-md-6">
@@ -47,12 +31,13 @@
                                 <h2>Information</h2>
                             </div>
                             <div class="movinfo-text">
-                                <p>上映日期 </p>
-                                <p>類   型 </p>
-                                <p>級   數 </p>
-                                <p>片   長 </p>
-                                <p>導   演 </p>
-                                <p>演   員 </p>
+                                <p>名&emsp;&emsp;稱 &emsp;|&emsp; ${movVO.movname}</p>
+                                <p>上映日期 &emsp;|&emsp; ${movVO.movondate}</p>
+                                <p>類&emsp;&emsp;型 &emsp;|&emsp; ${movVO.movtype}</p>
+                                <p>級&emsp;&emsp;數 &emsp;|&emsp; ${movVO.movrating}</p>
+                                <p>片&emsp;&emsp;長 &emsp;|&emsp; ${movVO.movdurat}</p>
+                                <p>導&emsp;&emsp;演 &emsp;|&emsp; ${movVO.movditor}</p>
+                                <p>演&emsp;&emsp;員 &emsp;|&emsp; ${movVO.movcast}</p>
                             </div>
                         </div>
                     </div>
@@ -69,7 +54,7 @@
                                 <h2>Synopsis</h2>
                             </div>
                             <div class="movinfo-text">
-                                <p>電影簡介</p>
+                                <p>${movVO.movdes}</p>
                             </div>
                         </div>
                     </div>
@@ -170,7 +155,7 @@
                             <form action="">
                                 <textarea name="" id="" cols="30" rows="5" style="width: 100%;"> Wite something here...</textarea>
                             </form>
-                            <input type="button" value="送出">
+                            <input class="combtn" type="button" value="送出">
                         </div>
                     </div>
                 </div>

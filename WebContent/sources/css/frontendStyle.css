@@ -812,12 +812,18 @@ a:focus {
     height: 58px;
 }
 
-.booktickets .btn {
+.booktickets .combtn{
     position: absolute;
     top: 10px;
     right: 5px;
     height: 40px;
     left: 129px;
+}
+
+/*******************************/
+/********* Button CSS **********/
+/*******************************/
+.combtn{
     padding: 8px 20px;
     font-size: 14px;
     font-weight: 500;
@@ -829,7 +835,7 @@ a:focus {
     transition: .3s;
 }
 
-.booktickets .btn:hover {
+.combtn:hover {
     color: #121518;
     background: #aa9166;
 }
