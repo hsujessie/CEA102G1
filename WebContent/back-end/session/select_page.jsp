@@ -10,6 +10,24 @@
 	<%@ include file="../files/bootstrapCDN.file"%>
 	<!-- Your custom styles (optional) -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/backendMovie.css">
+<style>
+  .sty-input{
+	text-decoration: none;    
+	border-color: transparent;
+    width: 150px;
+    border-bottom: 2px dashed #bb9d52;
+    box-sizing: border-box;
+    padding-bottom: 3px;
+    color: #bb9d52;
+	line-hight: 5px;
+  }
+  .mr-left{
+    margin-left: 2%;
+  }
+  .mr-btm-normal{
+    margin-bottom: 10%;
+  }
+</style>
 </head>
 <body class="barber_version container-fluid">
     <div class="row">
@@ -55,33 +73,13 @@
 	                                    <option value="${sesVO.sesNo}">${sesVO.sesName}
 	                                </c:forEach>
 	                            </select>
-	                        <br><b>電影類型</b>
-	                            <select name="mov_type">
-	                                <option value=""></option>
-									<option value="劇情片">劇情片</option>
-									<option value="動作片">動作片</option>
-									<option value="動畫片">動畫片</option>
-									<option value="喜劇片">喜劇片</option>
-									<option value="愛情片">愛情片</option>
-									<option value="科幻片">科幻片</option>
-									<option value="恐怖片">恐怖片</option>
-	                            </select>
-	                        <br><b>選擇年份</b>
-	                        <select name="mov_ondate_year">
-	                            <option value=""></option>
-	                            <c:forEach var="year" begin="1970" end="<%= (int) (java.util.Calendar.getInstance().get(java.util.Calendar.YEAR))+1%>">
-	                                <option value="${year}">${year}年</option>
-	                            </c:forEach>
-	                        </select>
-	                        <br><b>選擇月份</b>
-	                        <select name="mov_ondate_month">
-	                            <option value=""></option>
-	                            <c:forEach var="month" begin="1" end="12">
-	                                <option value="${month}">${month}月</option>
-	                            </c:forEach>
-	                        </select>
+	                        <br><b>場次日期</b>
+	                        <input class="sty-input mr-left mr-btm-normal" name="" id="" type="date" value=""> 
+	                        ~<input class="sty-input mr-left mr-btm-normal" name="" id="" type="date" value="">
+	                        
 	                        <input type="hidden" name="action" value="listSessions_ByCompositeQuery">
-		        			<a class="btn btn-light btn-brd grd1 effect-1">
+	                        <br>
+		        			<a class="btn btn-light btn-brd grd1 effect-1" style="margin: -7% 0 0 13.5%;">
 								<input type="submit" value="送出" class="input-pos">
 		        			</a>
 	                    </FORM>
