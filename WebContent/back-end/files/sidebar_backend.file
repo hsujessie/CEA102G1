@@ -18,7 +18,7 @@
 <c:set var="memberSub" value="memberSub"/>
 <c:set var="orderSub" value="orderSub"/>
 <c:set var="sessionSub" value="sessionSub"/> 
-<c:set var="movieSub" value="movieSub"/>        <!-- Sub - listAllMovie.jsp | listAllMovies_ByCompositeQuery.jsp-->   			
+<c:set var="movieSub" value="movieSub"/>        <!-- Sub - listAllMovie.jsp | listAllMovies_ByCompositeQuery.jsp | listOneMovie.jsp -->   			
 <c:set var="clientSub" value="clientSub"/>
 <c:set var="reportSub" value="reportSub"/>
 <c:set var="theaterSub" value="theaterSub"/>    		

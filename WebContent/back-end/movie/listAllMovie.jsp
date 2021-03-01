@@ -21,12 +21,6 @@
 thead > tr{
  	text-align: center;
 }
- 
-.w-brk {
-    word-break: break-all;
-    min-width: 800px;
-    max-width: 1000px;
-}
 
 .sty-height{
 	line-height:25px;
@@ -71,9 +65,6 @@ thead > tr{
 							<th>級數</th>
 							<th>導演</th>
 							<th>演員</th>
-							<th>簡介</th>
-							<th>海報</th>
-							<th>預告片</th>
 							<th>查看</th>
 							<th>修改</th>
 						</tr>				
@@ -94,17 +85,6 @@ thead > tr{
 							<td>${movVO.getMovrating()}</td>
 							<td>${movVO.getMovditor()}</td>
 							<td>${movVO.getMovcast()}</td>
-							<td class="w-brk">${movVO.getMovdes()}</td>
-							<td>
-								<c:if test="${not empty movVO.movpos}">
-									<img width="150px" src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovPos">
-								</c:if>
-							</td>
-							<td>
-								<c:if test="${not empty movVO.movtra}">		
-									<video controls width="150px"><source src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovTra" type="video/mp4"></video>
-								</c:if>
-							</td>
 							<td>
 			        			 <a id="listOne" onclick="getData(this,${movVO.movno})" class="btn btn-light btn-brd grd1 effect-1" href="">
 									<input type="button" value="查看" class="input-pos">
