@@ -69,7 +69,7 @@ thead > tr{
 					</thead>
 							
 					<tbody>
-					<%@ include file="pages/page1.file" %> 	
+					<%@ include file="../pages/page1.file" %> 	
 						<c:forEach var="movVO" items="${list}" varStatus="no" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 						<tr class="sty-height" valign='middle' ${(movVO.movno==param.movno) ? 'style="background-color:#bb9d52; color:#fff;"':''}>
 							<td>${no.index+1}</td>
@@ -101,7 +101,7 @@ thead > tr{
 						</c:forEach>
 					</tbody>
 				</table>
-			    <%@ include file="pages/page2.file" %>
+			    <%@ include file="../pages/page2.file" %>
 			</div>
         </div><!-- end Section-->
     </div>
