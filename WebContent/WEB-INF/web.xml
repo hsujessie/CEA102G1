@@ -27,6 +27,15 @@
 	</servlet-mapping>
 
 	<servlet>
+		<servlet-name>SesServlet</servlet-name>
+		<servlet-class>com.session.controller.SesServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SesServlet</servlet-name>
+		<url-pattern>/session/ses.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
 		<servlet-name>ComServlet</servlet-name>
 		<servlet-class>com.comment.controller.ComServlet</servlet-class>
 	</servlet>
