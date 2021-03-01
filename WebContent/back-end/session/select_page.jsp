@@ -21,12 +21,6 @@
     color: #bb9d52;
 	line-hight: 5px;
   }
-  .mr-left{
-    margin-left: 2%;
-  }
-  .mr-btm-normal{
-    margin-bottom: 10%;
-  }
 </style>
 </head>
 <body class="barber_version container-fluid">
@@ -74,12 +68,12 @@
 	                                </c:forEach>
 	                            </select>
 	                        <br><b>場次日期</b>
-	                        <input class="sty-input mr-left mr-btm-normal" name="" id="" type="date" value=""> 
-	                        ~<input class="sty-input mr-left mr-btm-normal" name="" id="" type="date" value="">
+	                        <input class="sty-input" name="" id="" type="date" value="" style="margin-left: 10px;"> 
+	                        ~<input class="sty-input" name="" id="" type="date" value="">
 	                        
 	                        <input type="hidden" name="action" value="listSessions_ByCompositeQuery">
 	                        <br>
-		        			<a class="btn btn-light btn-brd grd1 effect-1" style="margin: -7% 0 0 13.5%;">
+		        			<a class="btn btn-light btn-brd grd1 effect-1" style="margin: 3% 0 0 13%;">
 								<input type="submit" value="送出" class="input-pos">
 		        			</a>
 	                    </FORM>
@@ -114,7 +108,7 @@
 		<div class="modal-content" style="background-color: rgba(119,136,153,.9);">
 				
 			<div class="modal-header" style="border: 1px solid rgba(119,136,153,.9);">
-                <h3 style="margin-left: 40%; margin-top: 3%;" class="modal-title h3-style" id="myModalLabel" style="text-align:center; position:relative;">電影新增</h3>
+                <h3 style="margin-left: 40%; margin-top: 3%;" class="modal-title h3-style" id="myModalLabel" style="text-align:center; position:relative;">場次新增</h3>
                 <button type="button" class="close sty-close-btn" data-dismiss="modal" aria-hidden="true"><i class="fa fa-close"></i></button>
             </div>
 			
