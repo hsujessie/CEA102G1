@@ -1,4 +1,4 @@
-package com.movie.controller;
+	package com.movie.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,7 +36,7 @@ public class MovServlet extends HttpServlet{
 		if("getOne_For_Display".equals(action)) { 
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
-			
+
 			try {
 				/***************************1.接收請求參數*****************************************/
 				Integer movno = new Integer(req.getParameter("movno"));

@@ -22,11 +22,6 @@ thead > tr{
 .input-pos {
     top: 0%;
 }   
-.w-brk {
-    word-break: break-all;
-    min-width: 800px;
-    max-width: 1000px;
-}
 .sty-height{
 	line-height:25px;
 }
@@ -64,9 +59,7 @@ thead > tr{
 							<th>級數</th>
 							<th>導演</th>
 							<th>演員</th>
-							<th>簡介</th>
-							<th>海報</th>
-							<th>預告片</th>
+							<th>查看</th>
 							<th>修改</th>
 						</tr>				
 					</thead>
@@ -86,16 +79,10 @@ thead > tr{
 							<td>${movVO.getMovrating()}</td>
 							<td>${movVO.getMovditor()}</td>
 							<td>${movVO.getMovcast()}</td>
-							<td class="w-brk">${movVO.getMovdes()}</td>			
 							<td>
-								<c:if test="${not empty movVO.movpos}">
-									<img width="150px" src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovPos">
-								</c:if>
-							</td>
-							<td>
-								<c:if test="${not empty movVO.movtra}">		
-									<video controls width="150px"><source src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovTra" type="video/mp4"></video>
-								</c:if>
+			        			 <a id="listOne" onclick="getData(this,${movVO.movno})" class="btn btn-light btn-brd grd1 effect-1" href="">
+									<input type="button" value="查看" class="input-pos">
+			        			 </a>	
 							</td>
 							<td>
 							   <a class="btn btn-light btn-brd grd1 effect-1">
@@ -142,6 +129,13 @@ thead > tr{
 		 <c:if test="${openUpdateLightbox == false}">
 			window.parent.location.reload();  
 		</c:if>
+			
+		function getData(e,movno){
+			let href = "<%=request.getContextPath()%>/movie/mov.do?action=getOne_For_Display&requestURL=<%=request.getServletPath()%>&movno="+movno;
+			let listOne = document.getElementById("listOne");
+			console.log("href= " + href);
+			listOne.setAttribute("href", href);
+		}
 	</script>
 <%--     <br>本網頁的路徑:<br><b>
    <font color=blue>request.getServletPath():</font> <%=request.getServletPath()%><br>

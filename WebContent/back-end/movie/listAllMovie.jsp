@@ -140,10 +140,9 @@ thead > tr{
 		 <c:if test="${openUpdateLightbox == false}">
 	   	   	$("#basicModal").modal("hide"); 
 		</c:if> 
-		
-		
+			
 		function getData(e,movno){
-			let href = "<%=request.getContextPath()%>/movie/mov.do?action=getOne_For_Display&listOne=true&movno="+movno;
+			let href = "<%=request.getContextPath()%>/movie/mov.do?action=getOne_For_Display&requestURL=<%=request.getServletPath()%>&movno="+movno;
 			let listOne = document.getElementById("listOne");
 			console.log("href= " + href);
 			listOne.setAttribute("href", href);

@@ -139,8 +139,8 @@ MovVO movVO = (MovVO) request.getAttribute("movVO");
 					<td><%=movVO.getMovexpepers()%></td>
 				</tr>
 			</table>
-	
-			<a id="a-color" style="font-size: 15px;" href="<%=request.getContextPath()%>/back-end/movie/listAllMovie.jsp">回上頁</a>
+			
+			   <a id="a-color" style="font-size: 15px;" href="<%=request.getContextPath()%>/back-end/movie/listAllMovie.jsp">回電影列表</a>
         </div><!-- end Section-->
     </div>
 </body>
