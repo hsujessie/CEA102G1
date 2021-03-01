@@ -58,15 +58,15 @@
 		            <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
 		            
 <!-- ========================================= 以下 複合查詢 "listSessions_ByCompositeQuery" ========================================== -->
-						<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/session/ses.do" class="sty-form pd-left">
-						
+						<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/session/ses.do" class="sty-form pd-left">						
+							<jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService"/>
 	                        <b>電影名稱</b>
-	                            <select name="mov_no">
+	                            <select name="movno">	                            
 	                                <option value=""></option>
-	                                <c:forEach var="movVO" items="${sesSvc.all}" >
-	                                    <option value="${sesVO.sesNo}">${sesVO.sesName}
-	                                </c:forEach>
-	                            </select>
+				                    <c:forEach var="movVO" items="${movSvc.all}" >
+				                    	<option value="${movVO.movno}">${movVO.movname}
+				                    </c:forEach>
+			                    </select>
 	                        <br><b>場次日期</b>
 	                        <input class="sty-input" name="" id="" type="date" value="" style="margin-left: 10px;"> 
 	                        ~<input class="sty-input" name="" id="" type="date" value="">
