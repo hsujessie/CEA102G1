@@ -7,7 +7,7 @@ MovVO movVO = (MovVO) request.getAttribute("movVO");
 
 <html>
 <head>
-<title>電影詳情 - listOneMovie.jsp</title>
+<title>電影詳情</title>
 	<!-- Common CSS -->
 	<%@ include file="../files/comCssLinks.file"%>
 	<!-- Bootstrap CDN -->

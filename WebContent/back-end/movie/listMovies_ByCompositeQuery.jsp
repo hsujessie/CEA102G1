@@ -5,7 +5,7 @@
 <jsp:useBean id="listMovies_ByCompositeQuery" scope="request" type="java.util.List<MovVO>"/>
 <html>
 <head>
-	<title>電影查詢 - listMovies_ByCompositeQuery.jsp</title>
+	<title>電影查詢</title>
 	<!-- Common CSS -->
 	<%@ include file="../files/comCssLinks.file"%> 
   	<!-- Bootstrap CDN -->	

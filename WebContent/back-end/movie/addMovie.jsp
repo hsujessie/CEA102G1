@@ -6,7 +6,7 @@
 
 <html>
 <head>
-	<title>電影新增 - addMov.jsp</title>	
+	<title>電影新增</title>	
 	<!-- Common CSS -->
 	<%@ include file="../files/comCssLinks.file"%>
 	<!-- Your custom styles (optional) -->

@@ -4,7 +4,7 @@
 
 <html>
 <head>
-	<title>電影修改 - Update Movie input.jsp</title>
+	<title>電影修改</title>
 	<!-- Common CSS -->
 	<%@ include file="../files/comCssLinks.file"%>
 	<!-- Your custom styles (optional) -->
