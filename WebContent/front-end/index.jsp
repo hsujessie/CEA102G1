@@ -80,7 +80,7 @@
 		                                    <h2>${movVO.movrating}</h2>
 		                                    <p>${movVO.movondate}</p>
 		                                    <div class="movie-social">
-		                                        <a href="">${movVO.movname}</a>
+		                                        <a href="<%=request.getContextPath()%>/movie/mov.do?action=getOne_For_Display&requestURL=<%=request.getServletPath()%>&movno=${movVO.movno}&fromFrontend=true">${movVO.movname}</a>
 		                                    </div>
 		                                </div>
 		                            </div>

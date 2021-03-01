@@ -59,8 +59,9 @@ public class MovServlet extends HttpServlet{
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("movVO", movVO);
 				String url = "/back-end/movie/listOneMovie.jsp";
-				
-				if("/front-end/movies/movies.jsp".equals(requestURL)) {
+
+				String fromFrontend = req.getParameter("fromFrontend");
+				if("/front-end/movies/movies.jsp".equals(requestURL) || fromFrontend.equals("true") ) {
 					url = "/front-end/movies/movies_subpage.jsp";
 				}
 				
