@@ -57,8 +57,6 @@ thead > tr{
 							<th>下檔日期</th>
 							<th>片長</th>
 							<th>級數</th>
-							<th>導演</th>
-							<th>演員</th>
 							<th>查看</th>
 							<th>修改</th>
 						</tr>				
@@ -77,10 +75,8 @@ thead > tr{
 							<td>${movVO.getMovoffdate()}</td>
 							<td>${movVO.getMovdurat()}小時</td>
 							<td>${movVO.getMovrating()}</td>
-							<td>${movVO.getMovditor()}</td>
-							<td>${movVO.getMovcast()}</td>
 							<td>
-			        			 <a id="listOne" onclick="getData(this,${movVO.movno})" class="btn btn-light btn-brd grd1 effect-1" href="">
+			        			 <a id="listOne" onclick="getData(this,${movVO.movno})" class="btn btn-light btn-brd grd1 effect-1">
 									<input type="button" value="查看" class="input-pos">
 			        			 </a>	
 							</td>
@@ -132,9 +128,7 @@ thead > tr{
 			
 		function getData(e,movno){
 			let href = "<%=request.getContextPath()%>/movie/mov.do?action=getOne_For_Display&requestURL=<%=request.getServletPath()%>&movno="+movno;
-			let listOne = document.getElementById("listOne");
-			console.log("href= " + href);
-			listOne.setAttribute("href", href);
+			e.setAttribute("href", href);
 		}
 	</script>
 <%--     <br>本網頁的路徑:<br><b>
