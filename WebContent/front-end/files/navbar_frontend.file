@@ -36,7 +36,7 @@
                     <a href="${home}" class="nav-item nav-link <c:if test="${urlRecog == home}">active</c:if>"><i class="fa fa-home iconPos"></i>首頁</a>
 
                     <div class="nav-item dropdown">
-                        <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown <c:if test="${(urlRecog == tickets) || (urlRecog == searchTickets) || (urlRecog == sessions) }">active</c:if>"><i class="fas fa-ticket-alt iconPos"></i>訂票</a>
+                        <a href="" class="nav-link dropdown-toggle <c:if test="${(urlRecog == tickets) || (urlRecog == searchTickets) || (urlRecog == sessions) }">active</c:if>" data-toggle="dropdown"><i class="fas fa-ticket-alt iconPos"></i>訂票</a>
                         <div class="dropdown-menu">
                             <a href="${tickets}" class="dropdown-item">線上訂票</a>
                             <a href="${searchTickets}" class="dropdown-item">查詢訂票</a>
