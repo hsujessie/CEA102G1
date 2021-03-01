@@ -74,6 +74,7 @@ thead > tr{
 							<th>簡介</th>
 							<th>海報</th>
 							<th>預告片</th>
+							<th>查看</th>
 							<th>修改</th>
 						</tr>				
 					</thead>
@@ -103,6 +104,11 @@ thead > tr{
 								<c:if test="${not empty movVO.movtra}">		
 									<video controls width="150px"><source src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovTra" type="video/mp4"></video>
 								</c:if>
+							</td>
+							<td>
+			        			 <a id="listOne" onclick="getData(this,${movVO.movno})" class="btn btn-light btn-brd grd1 effect-1" href="">
+									<input type="button" value="查看" class="input-pos">
+			        			 </a>	
 							</td>
 							<td>
 							  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" style="margin-bottom: 0px; text-align:center;">	
@@ -144,6 +150,7 @@ thead > tr{
 		</div>
 	</div>
 </div><!-- end Modal-->
+
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 	<script>
@@ -153,6 +160,14 @@ thead > tr{
 		 <c:if test="${openUpdateLightbox == false}">
 	   	   	$("#basicModal").modal("hide"); 
 		</c:if> 
+		
+		
+		function getData(e,movno){
+			let href = "<%=request.getContextPath()%>/movie/mov.do?action=getOne_For_Display&listOne=true&movno="+movno;
+			let listOne = document.getElementById("listOne");
+			console.log("href= " + href);
+			listOne.setAttribute("href", href);
+		}
 	</script>
     
 <%--     <br>本網頁的路徑:<br><b>
