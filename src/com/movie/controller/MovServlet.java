@@ -40,7 +40,6 @@ public class MovServlet extends HttpServlet{
 			try {
 				/***************************1.接收請求參數*****************************************/
 				Integer movno = new Integer(req.getParameter("movno"));
-				String requestURL = req.getParameter("requestURL");
 				
 				/***************************2.開始查詢資料*****************************************/
 				MovService movSvc = new MovService();
@@ -61,7 +60,7 @@ public class MovServlet extends HttpServlet{
 				String url = "/back-end/movie/listOneMovie.jsp";
 
 				String fromFrontend = req.getParameter("fromFrontend");
-				if("/front-end/movies/movies.jsp".equals(requestURL) || fromFrontend.equals("true") ) {
+				if("true".equals(fromFrontend) ) {
 					url = "/front-end/movies/movies_subpage.jsp";
 				}
 				
