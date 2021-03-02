@@ -76,7 +76,7 @@
 		<jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService"/>
 		<td><b>電影</b></td>
 		<td>
-			<select name="movno">
+			<select name="movNo">
 	             <option value=""></option>
 	             <c:forEach var="movVO" items="${movSvc.all}" >
 	             	<option value="${movVO.movno}">${movVO.movname}
@@ -88,9 +88,9 @@
 		<td><b>廳院</b></td>
 		<td style="padding-left: 10px;">
 			<!-- 多選checkbox -->
-			<input class="mr-left mr-btm-sm" type="checkbox" name="movver" value="2D" ${movver == null? "checked":""} ><span>Ａ廳(2D)</span><br>
-			<input class="mr-left mr-btm-sm" type="checkbox" name="movver" value="3D"><span>B廳(3D)</span><br>
-			<input class="mr-left mr-btm-sm" type="checkbox" name="movver" value="IMAX"><span>C廳(IMAX)</span><br>
+			<input class="mr-left mr-btm-sm" type="checkbox" name="theNo" value="2D" ${movver == null? "checked":""} ><span>Ａ廳(2D)</span><br>
+			<input class="mr-left mr-btm-sm" type="checkbox" name="theNo" value="3D"><span>B廳(3D)</span><br>
+			<input class="mr-left mr-btm-sm" type="checkbox" name="theNo" value="IMAX"><span>C廳(IMAX)</span><br>
 		</td>
 		<c:if test="${not empty errorMsgs.movver}">
 			<td class="errmsg-pos">		
@@ -102,8 +102,8 @@
 	<tr>
 		<td><b>日期</b></td>
 		<td>
-			<input class="sty-input" name="" id="" type="date" value="" style="margin-left: 10px;"> 
-	        ~<input class="sty-input" name="" id="" type="date" value="">
+			<input class="sty-input" name="sesDateBegin" id="" type="date" value="" style="margin-left: 10px;"> 
+	        ~<input class="sty-input" name="sesDateEnd" id="" type="date" value="">
 		</td>
 	</tr>
 	<tr>
