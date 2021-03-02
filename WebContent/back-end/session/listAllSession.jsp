@@ -1,18 +1,14 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
-<%-- <%@ page import="com.movie.model.*"%> --%>
 <%@ page import="com.session.model.*"%>
-
-<%
-   /*  MovService movSvc = new MovService();
-    List<MovVO> list = movSvc.getAll();
-    pageContext.setAttribute("list",list); */
-    
+<%    
     SesService sesSvc = new SesService();
     List<SesVO> list = sesSvc.getAll();
     pageContext.setAttribute("list",list);
 %>
+<jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService"/>
+
 <html>
 <head>
 	<title>場次列表</title>
@@ -36,7 +32,7 @@ thead > tr{
     <div class="row">
         <!-- Start Side Bar-->
         <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 sidebar-bgcolor">       
-			<c:set value="movieSub" var="urlRecog"></c:set>        <!-- 給sidebar_backend.file的參數-Sub -->
+			<c:set value="sessionSub" var="urlRecog"></c:set>        <!-- 給sidebar_backend.file的參數-Sub -->
 			<%@ include file="../files/sidebar_backend.file"%> <!-- ＊＊＊引入Side Bar＊＊＊ -->
         </div><!-- end Side Bar-->
  
@@ -71,12 +67,13 @@ thead > tr{
 					<tbody>
 					<%@ include file="../pages/page1.file" %> 	
 						<c:forEach var="sesVO" items="${list}" varStatus="no" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+						<c:set value="${movSvc.getOneMov(sesVO.sesNo)}" var="movObj"></c:set>
 						<tr class="sty-height" valign='middle' ${(sesVO.sesNo==param.sesNo) ? 'style="background-color:#bb9d52; color:#fff;"':''}>
 							<td>${no.index+1}</td>
-							<td>${sesVO.getMovNo()}</td>
+							<td>${movObj.movname}</td>
 							<td>${sesVO.getSesDate()}</td>
 							<td>${sesVO.getSesTime()}</td>
-							<td>${sesVO.getTheNo()}</td>
+							<td>${movObj.movver}</td>
 							<td>
 							  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/session/ses.do" style="margin-bottom: 0px; text-align:center;">	
 			        			 <a class="btn btn-light btn-brd grd1 effect-1">
