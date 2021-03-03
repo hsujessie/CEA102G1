@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -84,7 +85,41 @@ public class SesServlet extends HttpServlet {
 				failureVoew.forward(req,res);
 			}
 		}
-		
+
+		// 來自select_page.jsp的請求---複合查詢
+		if("listSessions_ByCompositeQuery".equals(action)) {
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			try {
+				HttpSession session = req.getSession();
+				Map<String, String[]> map = (Map<String,String[]>)session.getAttribute("map");
+				if(req.getParameter("whichPage") == null) {
+					HashMap<String, String[]> map1 = new HashMap<String, String[]>(req.getParameterMap());
+					
+					session.setAttribute("map",map1);
+					map = map1;
+				}
+				System.out.println("map.size()= " + map.size());
+
+			/***************************2.開始複合查詢***************************************/
+			SesService sesSvc = new SesService();
+			List<SesVO> list  = sesSvc.getAll(map);
+			
+			/***************************3.查詢完成,準備轉交(Send the Success view)************/
+			req.setAttribute("listSessions_ByCompositeQuery", list); // 資料庫取出的list物件,存入request
+			RequestDispatcher successView = req.getRequestDispatcher("/back-end/session/listSessions_ByCompositeQuery.jsp"); // 成功轉交listSessions_ByCompositeQuery.jsp
+			successView.forward(req, res);
+			
+			/***************************其他可能的錯誤處理**********************************/
+			}catch(Exception e) {
+				errorMsgs.add(e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/movie/select_page.jsp");
+				failureView.forward(req, res);
+			}
+		}
+	
+	
 		if ("insert".equals(action)) {
             Map<String,String> errorMsgs = new LinkedHashMap<String,String>();
             req.setAttribute("errorMsgs",errorMsgs);
