@@ -3,6 +3,7 @@
 <%@ page import="com.session.model.*"%>
 
 <jsp:useBean id="listSessions_ByCompositeQuery" scope="request" type="java.util.List<SesVO>"/>
+<jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService"/>
 <html>
 <head>
 	<title>場次查詢</title>
@@ -60,17 +61,13 @@ thead > tr{
 					<tbody>
 						<%@ include file="pages/page1_ByCompositeQuery.file"%> 
 						<c:forEach var="sesVO" varStatus="no" items="${listSessions_ByCompositeQuery}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+						<c:set value="${movSvc.getOneMov(sesVO.sesNo)}" var="movObj"></c:set>
 						<tr class="sty-height" valign='middle' ${(sesVO.sesNo==param.sesNo) ? 'style="background-color:#bb9d52; color:#fff;"':''}>
 							<td>${no.index+1}</td>
-							<td>${sesVO.getMovname()}</td>
+							<td>${movObj.movname}</td>
 							<td>${sesVO.getSesDate()}</td>
 							<td>${sesVO.getSesTime()}</td>
 							<td>${sesVO.getTheNo()}</td>
-							<td>
-			        			 <a id="listOne" onclick="getData(this,${sesVO.sesNo})" class="btn btn-light btn-brd grd1 effect-1">
-									<input type="button" value="查看" class="input-pos">
-			        			 </a>	
-							</td>
 							<td>
 							   <a class="btn btn-light btn-brd grd1 effect-1">
 									<input type="button" value="修改" class="input-pos update-btn" data-sesno="${sesVO.sesNo}">
@@ -116,11 +113,6 @@ thead > tr{
 		 <c:if test="${openUpdateLightbox == false}">
 			window.parent.location.reload();  
 		</c:if>
-			
-		function getData(e,sesNo){
-			let href = "<%=request.getContextPath()%>/session/ses.do?action=getOne_For_Display&requestURL=<%=request.getServletPath()%>&sesNo="+sesNo;
-			e.setAttribute("href", href);
-		}
 	</script>
 <%--     <br>本網頁的路徑:<br><b>
    <font color=blue>request.getServletPath():</font> <%=request.getServletPath()%><br>

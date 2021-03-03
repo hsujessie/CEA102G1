@@ -73,7 +73,7 @@ thead > tr{
 							<td>${movObj.movname}</td>
 							<td>${sesVO.getSesDate()}</td>
 							<td>${sesVO.getSesTime()}</td>
-							<td>${movObj.movver}</td>
+							<td>${sesVO.getTheNo()}</td>
 							<td>
 							  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/session/ses.do" style="margin-bottom: 0px; text-align:center;">	
 			        			 <a class="btn btn-light btn-brd grd1 effect-1">

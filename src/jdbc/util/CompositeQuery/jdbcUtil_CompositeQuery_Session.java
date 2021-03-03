@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-public class jdbcUtil_CompositeQuery_Movie {
+public class jdbcUtil_CompositeQuery_Session {
 	public static String get_aCondition_For_MySql(String columnName, String value) {
 		String aCondition = null;
 		System.out.println("columnName: " + columnName);
@@ -13,17 +13,16 @@ public class jdbcUtil_CompositeQuery_Movie {
 		if("mov_no".equals(columnName)) {
 			aCondition = columnName + "=" + value;
 		}
-		else if("mov_type".equals(columnName)) {
-			aCondition = columnName + "=" + "'" + value + "'";
-		}else if( "mov_ondate_year".equals(columnName)) {
-			columnName = "mov_ondate";
-			aCondition = "YEAR(" + columnName + ") " + "=" + "'" + value + "'";
+		else if("sesDateBegin".equals(columnName)) {
+			columnName = "ses_date";
+			aCondition = columnName + " >= " + "'" + value + "'" ;
 			System.out.println("aCondition= " + aCondition);
-		}else if( "mov_ondate_month".equals(columnName)) {
-			columnName = "mov_ondate";
-			aCondition = "MONTH(" + columnName + ") " + "=" + "'" + value + "'";
+		}
+		else if("sesDateEnd".equals(columnName)) {
+			columnName = "ses_date";
+			aCondition = columnName + " <= " + "'" + value + "'" ;
 			System.out.println("aCondition= " + aCondition);
-		}	
+		}
 
 		return aCondition + " ";
 	}
@@ -55,13 +54,12 @@ public class jdbcUtil_CompositeQuery_Movie {
 		// 配合 req.getParameterMap()方法 回傳 java.util.Map<java.lang.String,java.lang.String[]> 之測試
 		Map<String, String[]> map = new TreeMap<String, String[]>();
 		map.put("mov_no", new String[] { "1" });
-		map.put("mov_type", new String[] { "動畫片" });
-		map.put("mov_ondate", new String[] { "2020-12-25" });
 		map.put("action", new String[] { "getXXX" }); // 注意Map裡面會含有action的key
 
-		String finalSQL = "select * from movie "
-			       		   + jdbcUtil_CompositeQuery_Movie.get_WhereCondition(map)
-			       		   + " order by mov_no";
+		String finalSQL = "select * from session "
+			       		   + jdbcUtil_CompositeQuery_Session.get_WhereCondition(map)
+			       		   + " order by ses_time";
 		System.out.println("●●finalSQL (main) = " + finalSQL);
 	}
+
 }

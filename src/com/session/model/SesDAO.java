@@ -12,10 +12,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-
-import com.movie.model.MovVO;
-
-import jdbc.util.CompositeQuery.jdbcUtil_CompositeQuery_Movie;
+import jdbc.util.CompositeQuery.jdbcUtil_CompositeQuery_Session;
 
 public class SesDAO implements SesDAO_interface{
 	private static DataSource ds = null;
@@ -245,37 +242,25 @@ public class SesDAO implements SesDAO_interface{
 			con = ds.getConnection();
 			
 			String finalSQL = "select * from session"
-			          		   + jdbcUtil_CompositeQuery_Movie.get_WhereCondition(map)
-			          		   + " order by ses_date";
+			          		   + jdbcUtil_CompositeQuery_Session.get_WhereCondition(map)
+			          		   + " order by ses_time";
 			pstmt = con.prepareStatement(finalSQL);
 			System.out.println("●●finalSQL(by SesDAO) = "+finalSQL);
 			
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				sesVO = new SesVO();
-//				movVO.setMovno(rs.getInt("mov_no"));
-//				movVO.setMovname(rs.getString("mov_name"));
-//				movVO.setMovver(rs.getString("mov_ver"));
-//				movVO.setMovtype(rs.getString("mov_type"));
-//				movVO.setMovlan(rs.getString("mov_lan"));
-//				movVO.setMovondate(rs.getDate("mov_ondate"));
-//				movVO.setMovoffdate(rs.getDate("mov_offdate"));
-//				movVO.setMovdurat(rs.getInt("mov_durat"));
-//				movVO.setMovrating(rs.getString("mov_rating"));
-//				movVO.setMovditor(rs.getString("mov_ditor"));
-//				movVO.setMovcast(rs.getString("mov_cast"));
-//				movVO.setMovdes(rs.getString("mov_des"));
-//				movVO.setMovpos(rs.getBytes("mov_pos"));
-//				movVO.setMovtra(rs.getBytes("mov_tra"));
-//				movVO.setMovsatitotal(rs.getInt("mov_satitotal"));
-//				movVO.setMovsatipers(rs.getInt("mov_satipers"));
-//				movVO.setMovexpetotal(rs.getInt("mov_expetotal"));
-//				movVO.setMovexpepers(rs.getInt("mov_expepers"));
-//				list.add(movVO);
+				sesVO = new SesVO();sesVO = new SesVO();
+				sesVO.setSesNo(rs.getInt("ses_no"));
+				sesVO.setMovNo(rs.getInt("mov_no"));
+				sesVO.setTheNo(rs.getInt("the_no"));
+				sesVO.setSesDate(rs.getDate("ses_date"));
+				sesVO.setSesTime(rs.getTimestamp("ses_time"));
+				sesVO.setSesSeatStatus(rs.getString("ses_seat_status"));
+				list.add(sesVO);
 			}
 		}catch(SQLException se) {
-			throw new RuntimeException("MovDAO Map getAll A database error occured. " + se.getMessage());
+			throw new RuntimeException("SesDAO Map getAll A database error occured. " + se.getMessage());
 		} finally {
 			if(rs != null) {
 				try {

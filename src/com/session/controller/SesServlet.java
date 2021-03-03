@@ -114,7 +114,7 @@ public class SesServlet extends HttpServlet {
 			/***************************其他可能的錯誤處理**********************************/
 			}catch(Exception e) {
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/movie/select_page.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/session/select_page.jsp");
 				failureView.forward(req, res);
 			}
 		}

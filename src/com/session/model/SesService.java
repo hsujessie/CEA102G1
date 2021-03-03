@@ -49,7 +49,6 @@ public class SesService {
 	}
 
 	public List<SesVO> getAll(Map<String, String[]> map) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.getAll(map);
 	}
 }
