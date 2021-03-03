@@ -3,6 +3,7 @@ package com.session.model;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 public class SesService {
 	private SesDAO_interface dao;
@@ -45,5 +46,10 @@ public class SesService {
 	
 	public List<SesVO> getAll(){
 		return dao.getAll();
+	}
+
+	public List<SesVO> getAll(Map<String, String[]> map) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -9,7 +9,7 @@
 	<!-- Bootstrap CDN -->	
 	<%@ include file="../files/bootstrapCDN.file"%>
 	<!-- Your custom styles (optional) -->
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/backendMovie.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/backendMovie.css">
 </head>
 <body class="barber_version container-fluid">
     <div class="row">

@@ -613,14 +613,14 @@ public class MovServlet extends HttpServlet{
 		}
 	} 
 	
-	public static String[] token(String str, String[] token){
+	public String[] token(String str, String[] token){
 		if(str != null) {
 			token = str.split(",");
 		}
 		return token;
 	}
 	
-	public static String appendStr(String[] str) {	
+	public String appendStr(String[] str) {	
 		String resultStr = null;
         StringBuilder strSb = new StringBuilder();
         

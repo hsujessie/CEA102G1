@@ -17,7 +17,7 @@
 	<!-- Bootstrap CDN -->	
 	<%@ include file="../files/bootstrapCDN.file"%>
 	<!-- Your custom styles (optional) -->
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/sources/css/backendMovie.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/backendMovie.css">
 <style>
 thead > tr{
  	text-align: center;
@@ -65,7 +65,7 @@ thead > tr{
 					</thead>
 							
 					<tbody>
-					<%@ include file="../pages/page1.file" %> 	
+					<%@ include file="../movie/pages/page1.file" %> 	
 						<c:forEach var="sesVO" items="${list}" varStatus="no" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 						<c:set value="${movSvc.getOneMov(sesVO.sesNo)}" var="movObj"></c:set>
 						<tr class="sty-height" valign='middle' ${(sesVO.sesNo==param.sesNo) ? 'style="background-color:#bb9d52; color:#fff;"':''}>
@@ -89,7 +89,7 @@ thead > tr{
 						</c:forEach>
 					</tbody>
 				</table>
-			    <%@ include file="../pages/page2.file" %>
+			    <%@ include file="../movie/pages/page2.file" %>
 			</div>
         </div><!-- end Section-->
     </div>

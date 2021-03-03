@@ -100,8 +100,6 @@ public class SesServlet extends HttpServlet {
 //               java.sql.Date sesDateEnd = null;
 //               sesDateBegin = java.sql.Date.valueOf(req.getParameter("sesDateBegin").trim());
 //               sesDateEnd = java.sql.Date.valueOf(req.getParameter("sesDateEnd").trim());
-//               String sesDate = null;
-
                
                String sesDateBegin = req.getParameter("sesDateBegin").trim();
                String sesDateEnd = req.getParameter("sesDateEnd").trim();
@@ -115,7 +113,7 @@ public class SesServlet extends HttpServlet {
                
                Integer theNo = null;
                if (theNoArr == null || theNoArr.length == 0) {
-                   System.out.println("theNo has errors!");
+                   System.out.println("theNo is empty!");
                }else {
                    for(int i = 0; i < theNoArr.length; i++) {                       
                        theNo = new Integer(theNoArr[i]);
@@ -126,7 +124,7 @@ public class SesServlet extends HttpServlet {
                java.time.LocalTime sesTime = null;
 	           String[] sesTimeArr = req.getParameterValues("sesTime");
                if (sesTimeArr == null || sesTimeArr.length == 0) {
-                   System.out.println("sesTime has errors!");
+                   System.out.println("sesTime is empty!");
                }else {
                    for(int i = 0; i < sesTimeArr.length; i++) {
                        sesTime = java.time.LocalTime.parse(sesTimeArr[i]);
@@ -196,7 +194,7 @@ public class SesServlet extends HttpServlet {
 	            if(requestURL.equals("/back-end/session/listSessions_ByCompositeQuery.jsp")){
 					HttpSession session = req.getSession();
 					Map<String, String[]> map = (Map<String, String[]>)session.getAttribute("map");
-					List<MovVO> list  = movSvc.getAll(map);
+					List<SesVO> list  = sesSvc.getAll(map);
 					req.setAttribute("listSessions_ByCompositeQuery",list); //  複合查詢, 資料庫取出的list物件,存入
 					url = "/back-end/session/update_session_input.jsp";
 				}
@@ -232,6 +230,7 @@ public class SesServlet extends HttpServlet {
 				Integer movNo = new Integer(req.getParameter("movNo").trim());
 				Integer theNo = new Integer(req.getParameter("theNo").trim());
 				java.sql.Date sesDate = null;
+//				java.time.LocalTime sesTime = null;
 				
 				SesVO sesVO = new SesVO();
                 sesVO.setSesNo(sesNo);
@@ -281,7 +280,7 @@ public class SesServlet extends HttpServlet {
 		
 	}
 	
-	public static List<String> getDates(String dateBegin, String dateEnd) throws ParseException, java.text.ParseException {
+	public List<String> getDates(String dateBegin, String dateEnd) throws ParseException, java.text.ParseException {
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
  
         // parse String dateBegin to Date
@@ -305,4 +304,11 @@ public class SesServlet extends HttpServlet {
         System.out.println(Datelist);
         return Datelist;
     }
+	
+	public List<String> getTimes(String times) {
+        List<String> TimeList = new ArrayList<String>();
+        TimeList.add(times);
+		return TimeList;
+	}
+
 }
