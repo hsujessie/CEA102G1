@@ -4,7 +4,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -87,59 +92,58 @@ public class SesServlet extends HttpServlet {
 //            try {
                 /***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
                  Integer movNo = new Integer(req.getParameter("movNo"));
+                 System.out.println("movNo= " + movNo);
                  String[] theNoArr = req.getParameterValues("theNo");
+                 
+                 java.sql.Date sesDate = null;
+//               java.sql.Date sesDateBegin = null;
+//               java.sql.Date sesDateEnd = null;
+//               sesDateBegin = java.sql.Date.valueOf(req.getParameter("sesDateBegin").trim());
+//               sesDateEnd = java.sql.Date.valueOf(req.getParameter("sesDateEnd").trim());
+//               String sesDate = null;
 
-               java.sql.Date sesDate = null;
-               java.sql.Date sesDateBegin = null;
-               sesDateBegin = java.sql.Date.valueOf(req.getParameter("sesDateBegin").trim());
-               java.sql.Date sesDateEnd = null;
-               sesDateEnd = java.sql.Date.valueOf(req.getParameter("sesDateEnd").trim());
-               java.time.LocalTime sesTime = null;
-               sesTime = java.time.LocalTime.parse(req.getParameter("sesTime"));
-               System.out.println("sesTime= " + sesTime);
-
-               System.out.println("movNo= " + movNo);
+               
+               String sesDateBegin = req.getParameter("sesDateBegin").trim();
+               String sesDateEnd = req.getParameter("sesDateEnd").trim();
                System.out.println("sesDateBegin= " + sesDateBegin);
                System.out.println("sesDateEnd= " + sesDateEnd);
+               try {
+            	   getDates(sesDateBegin,sesDateEnd);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
                
-               String theNoStr = null;
                Integer theNo = null;
                if (theNoArr == null || theNoArr.length == 0) {
                    System.out.println("theNo has errors!");
                }else {
-                   for(int i = 0; i< theNoArr.length; i++) {
-                       System.out.println("thenoArr= " + theNoArr[i]);
-                       theNoStr = theNoArr[i];
-                       
-                       theNo = new Integer(theNoStr);
+                   for(int i = 0; i < theNoArr.length; i++) {                       
+                       theNo = new Integer(theNoArr[i]);
                        System.out.println("theNo= " + theNo);
                    }
                }
-
-//	             String[] sesTimeArr = req.getParameterValues("sesTime");
-//               String sesTimeStr = null;
-//               if (sesTimeArr == null || sesTimeArr.length == 0) {
-//                   System.out.println("sesTime has errors!");
-//               }else {
-//                   for(int i = 0; i<= sesTimeArr.length; i++) {
-//                       System.out.println("sesTimeArr= " + sesTimeArr[i]);
-//                       sesTimeStr = sesTimeArr[i];
-//                   }
-//                   sesTime = java.sql.Timestamp.valueOf(sesTimeStr);
-//                   System.out.println("sesTime= " + sesTime);
-//               }
-//
-//               
-//              // Send the use back to the form, if there were errors
-//              if (!errorMsgs.isEmpty()) {
-//                  Boolean openAddLightbox = true;
-//                  req.setAttribute("openAddLightbox", openAddLightbox);
-//                  String url = "/back-end/session/select_page.jsp";
-//                  RequestDispatcher failureView = req.getRequestDispatcher(url);
-//                  failureView.forward(req, res);
-//                  return;
-//              }
-//              
+               
+               java.time.LocalTime sesTime = null;
+	           String[] sesTimeArr = req.getParameterValues("sesTime");
+               if (sesTimeArr == null || sesTimeArr.length == 0) {
+                   System.out.println("sesTime has errors!");
+               }else {
+                   for(int i = 0; i < sesTimeArr.length; i++) {
+                       sesTime = java.time.LocalTime.parse(sesTimeArr[i]);
+                       System.out.println("sesTime= " + sesTime);
+                   }
+               }
+             
+              // Send the use back to the form, if there were errors
+              if (!errorMsgs.isEmpty()) {
+                  Boolean openAddLightbox = true;
+                  req.setAttribute("openAddLightbox", openAddLightbox);
+                  String url = "/back-end/session/select_page.jsp";
+                  RequestDispatcher failureView = req.getRequestDispatcher(url);
+                  failureView.forward(req, res);
+                  return;
+              }
+              
 //              SesVO sesVO = new SesVO();
 //              sesVO.setTheNo(theNo);
 //              sesVO.setSesDate(sesDate);
@@ -276,4 +280,29 @@ public class SesServlet extends HttpServlet {
 		
 		
 	}
+	
+	public static List<String> getDates(String dateBegin, String dateEnd) throws ParseException, java.text.ParseException {
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+ 
+        // parse String dateBegin to Date
+        Calendar calBegin = Calendar.getInstance();
+        calBegin.setTime(format.parse(dateBegin));
+ 
+        // parse String dateEnd to Date
+        Calendar calEnd = Calendar.getInstance();
+        calEnd.setTime(format.parse(dateEnd));
+        
+        List<String> Datelist = new ArrayList<String>();
+        Datelist.add(format.format(calBegin.getTime()));
+        
+        // whether dateEnd is after calBegin
+        // if it's true -> calBegin will be plus a day via using「 Calendar.DAY_OF_MONTH 」
+        while (format.parse(dateEnd).after(calBegin.getTime()))  {
+            calBegin.add(Calendar.DAY_OF_MONTH, 1);   // DAY_OF_MONTH 取出當前月的第幾天
+            Datelist.add(format.format(calBegin.getTime()));
+        }
+ 
+        System.out.println(Datelist);
+        return Datelist;
+    }
 }

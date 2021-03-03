@@ -98,8 +98,6 @@
 		<td>
 			<input class="sty-input" name="sesDateBegin" id="" type="date" value="" style="margin-left: 10px;"> 
 	        ~<input class="sty-input" name="sesDateEnd" id="" type="date" value="">
-	        
-	        <input class="sty-input" name="sesTime" id="" type="time" value="">
 		</td>
 	</tr>
 	<tr>
