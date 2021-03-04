@@ -120,23 +120,22 @@ public class SesServlet extends HttpServlet {
 	
 		if ("insert".equals(action)) {
             Map<String,String> errorMsgs = new LinkedHashMap<String,String>();
-            req.setAttribute("errorMsgs",errorMsgs);
+			req.setAttribute("errorMsgs",errorMsgs);
 
-            SesVO sesVO = new SesVO();
             try {
                 /***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
-                 Integer movNo = new Integer(req.getParameter("movNo"));
-                 System.out.println("movNo= " + movNo);
+                 Integer movNo = new Integer(req.getParameter("movNo").trim());
+	             System.out.println("movNo= " + movNo);
                  
                  String[] theNoArr = req.getParameterValues("theNo");
                  Integer theNo = null;
                  if (theNoArr == null || theNoArr.length == 0) {
+                	 errorMsgs.put("theNo"," 請選擇廳院");
                      System.out.println("theNo is empty!");
                  }else {
                      for(int i = 0; i < theNoArr.length; i++) {                       
                          theNo = new Integer(theNoArr[i]);
-                         System.out.println("theNo= " + theNo);  
-                         sesVO.setTheNo(theNo);
+                         System.out.println("theNo= " + theNo); 
                      }
                  }
                  
@@ -144,11 +143,11 @@ public class SesServlet extends HttpServlet {
 	             String sesDateEnd = req.getParameter("sesDateEnd").trim();            
 	             List<String> sesDateList = null;
 	             java.sql.Date sesDate = null;
-	             try {
+            	 try {
 	            	 sesDateList = getDates(sesDateBegin,sesDateEnd);
 	             } catch (ParseException e) {
 					e.printStackTrace();
-	             }
+	             }             
 	             String[] sesDateArr = new String[sesDateList.size()];
 	             sesDateArr = sesDateList.toArray(sesDateArr);
 	             
@@ -156,18 +155,23 @@ public class SesServlet extends HttpServlet {
 	             Time sesTime = null;              
 	             String[] sesTimeArr = req.getParameterValues("sesTime");
 	             if (sesTimeArr == null || sesTimeArr.length == 0) {
+				   errorMsgs.put("sesTime"," 請選擇電影時間");
                    System.out.println("sesTime is empty!");
 	             }else {
                    for(int j = 0; j < sesTimeArr.length; j++) {
                      sesTime = Time.valueOf(java.time.LocalTime.parse(sesTimeArr[j]));  
-                     System.out.println("sesTime= " + sesTime);
                    }
 	             }
              
+             	SesVO sesVO = new SesVO();
+                sesVO.setSesNo(movNo);
+                sesVO.setTheNo(theNo);
+                sesVO.setSesDate(sesDate);
+                sesVO.setSesTime(sesTime);
+	                
 	             // Send the use back to the form, if there were errors
 	             if (!errorMsgs.isEmpty()) {
-					  Boolean openAddLightbox = true;
-					  req.setAttribute("openAddLightbox", openAddLightbox);
+					  req.setAttribute("sesVO", sesVO);
 					  String url = "/back-end/session/select_page.jsp";
 					  RequestDispatcher failureView = req.getRequestDispatcher(url);
 					  failureView.forward(req, res);
@@ -175,26 +179,19 @@ public class SesServlet extends HttpServlet {
 	             }
               
             
-
-               for(int i = 0; i < sesDateArr.length; i++) { 
+	           SesService sesSvc = new SesService();
+               for(int i = 0; i < sesDateArr.length; i++) {
+	                 sesDate = Date.valueOf(sesDateArr[i]);  
                    for(int j = 0; j < sesTimeArr.length; j++) {
-  	                 sesDate = Date.valueOf(sesDateArr[i]); 
                      sesTime = Time.valueOf(java.time.LocalTime.parse(sesTimeArr[j])); 
-
-                     sesVO.setSesDate(sesDate);
-                     sesVO.setSesTime(sesTime);      
+                     /***************************2.開始新增資料***************************************/   
+                      sesSvc.addSes(movNo, theNo, sesDate, sesTime, null, null, 0);      //暫時寫死
+//   	              sesSvc.addSes(movNo, theNo, sesDate, sesTime, null, null, null);    
                    }
                }
-
-               
-               /***************************2.開始新增資料***************************************/                
-	              SesService sesSvc = new SesService();
-	              sesSvc.addSes(movNo, theNo, sesDate, sesTime, null, null, 0); 
-//	              sesSvc.addSes(movNo, theNo, sesDate, sesTime, null, null, null); 
-              
-              
-             
-               /***************************3.新增完成,準備轉交(Send the Success view)***********/                
+                                         
+	                                      
+              /***************************3.新增完成,準備轉交(Send the Success view)***********/                
               String addSuccess = "【 場次 】" + "新增成功";
               req.setAttribute("addSuccess", addSuccess);    
               
@@ -218,17 +215,13 @@ public class SesServlet extends HttpServlet {
 			
 			String requestURL = req.getParameter("requestURL");
 		
-		
 			try {
 				/***************************1.接收請求參數****************************************/
 				Integer sesNo = new Integer(req.getParameter("sesNo").trim());
-				Integer movNo = new Integer(req.getParameter("movNo").trim());
 				
 				/***************************2.開始查詢資料****************************************/
 				SesService sesSvc = new SesService();
 				SesVO sesVO = sesSvc.getOneSes(sesNo);
-				MovService movSvc = new MovService();
-				MovVO movVO = movSvc.getOneMov(movNo);
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				String url = requestURL;
@@ -236,13 +229,11 @@ public class SesServlet extends HttpServlet {
 					HttpSession session = req.getSession();
 					Map<String, String[]> map = (Map<String, String[]>)session.getAttribute("map");
 					List<SesVO> list  = sesSvc.getAll(map);
-					req.setAttribute("listSessions_ByCompositeQuery",list); //  複合查詢, 資料庫取出的list物件,存入
+					req.setAttribute("listSessions_ByCompositeQuery",list); // 複合查詢, 資料庫取出的list物件,存入
 					url = "/back-end/session/update_session_input.jsp";
 				}
 	            
-
 	            req.setAttribute("sesVO", sesVO);  
-	            req.setAttribute("movVO", movVO);  
 	
 				Boolean openUpdateLightbox = true;
 				req.setAttribute("openUpdateLightbox", openUpdateLightbox);

@@ -92,6 +92,12 @@
 			<input class="mr-left mr-btm-sm" type="checkbox" name="theNo" value="2"><span>B廳(3D)</span><br>
 			<input class="mr-left mr-btm-sm" type="checkbox" name="theNo" value="3"><span>C廳(IMAX)</span><br>
 		</td>
+		<c:if test="${not empty errorMsgs.theNo}">
+			<td class="errmsg-pos">		
+				<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
+				<label class="err-color">${errorMsgs.theNo}</label>
+			</td>
+		</c:if>
 	</tr>
 	<tr>
 		<td><b>日期</b></td>
@@ -99,6 +105,12 @@
 			<input class="sty-input" name="sesDateBegin" id="" type="date" value="" style="margin-left: 10px;"> 
 	        ~<input class="sty-input" name="sesDateEnd" id="" type="date" value="">
 		</td>
+		<c:if test="${not empty errorMsgs.sesDate}">
+			<td class="errmsg-pos">		
+				<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
+				<label class="err-color">${errorMsgs.sesDate}</label>
+			</td>
+		</c:if>
 	</tr>
 	<tr>
 		<td>	

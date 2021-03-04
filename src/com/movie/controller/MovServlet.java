@@ -143,7 +143,7 @@ public class MovServlet extends HttpServlet{
 				try {
 					movondate = java.sql.Date.valueOf(req.getParameter("movondate").trim());
 				} catch (IllegalArgumentException e) {
-					movondate = new java.sql.Date(System.currentTimeMillis());
+					movondate = new java.sql.Date(System.currentTimeMillis());				
 					errorMsgs.put("movondate"," 請輸入上映日期!");
 				}
 
