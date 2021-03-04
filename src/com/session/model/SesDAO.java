@@ -29,7 +29,7 @@ public class SesDAO implements SesDAO_interface{
 	private static final String INSERT_STMT =
 		"INSERT INTO SESSION (mov_no,the_no,ses_date,ses_time,ses_seat_status,ses_seatno,ses_order) VALUES (?,?,?,?,?,?,?)"; 
 	private static final String GET_ALL_STMT =
-		"SELECT ses_no,mov_no,the_no,ses_date,ses_time,ses_seat_status,ses_seatno,ses_order FROM SESSION ORDER BY ses_no";
+		"SELECT ses_no,mov_no,the_no,ses_date,ses_time,ses_seat_status,ses_seatno,ses_order FROM SESSION ORDER BY ses_date DESC,ses_time DESC";
 	private static final String GET_ONE_STMT =
 		"SELECT ses_no,mov_no,the_no,ses_date,ses_time,ses_seat_status,ses_seatno,ses_order FROM SESSION WHERE ses_no=?";
 	private static final String UPDATE =
@@ -243,7 +243,7 @@ public class SesDAO implements SesDAO_interface{
 			
 			String finalSQL = "select * from session"
 			          		   + jdbcUtil_CompositeQuery_Session.get_WhereCondition(map)
-			          		   + " order by ses_time";
+			          		   + " order by ses_date DESC,ses_time DESC";
 			pstmt = con.prepareStatement(finalSQL);
 			System.out.println("●●finalSQL(by SesDAO) = "+finalSQL);
 			

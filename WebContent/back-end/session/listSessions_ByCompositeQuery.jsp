@@ -57,7 +57,7 @@ thead > tr{
 							<th>修改</th>
 						</tr>				
 					</thead>
-							
+
 					<tbody>
 						<%@ include file="pages/page1_ByCompositeQuery.file"%> 
 						<c:forEach var="sesVO" varStatus="no" items="${listSessions_ByCompositeQuery}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
