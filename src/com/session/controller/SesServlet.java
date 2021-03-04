@@ -1,13 +1,12 @@
 package com.session.controller;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Date;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -19,7 +18,6 @@ import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -128,54 +126,54 @@ public class SesServlet extends HttpServlet {
                 /***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
                  Integer movNo = new Integer(req.getParameter("movNo"));
                  System.out.println("movNo= " + movNo);
-                 String[] theNoArr = req.getParameterValues("theNo");
                  
-                 java.sql.Date sesDate = null;
-//               java.sql.Date sesDateBegin = null;
-//               java.sql.Date sesDateEnd = null;
-//               sesDateBegin = java.sql.Date.valueOf(req.getParameter("sesDateBegin").trim());
-//               sesDateEnd = java.sql.Date.valueOf(req.getParameter("sesDateEnd").trim());
-               
-               String sesDateBegin = req.getParameter("sesDateBegin").trim();
-               String sesDateEnd = req.getParameter("sesDateEnd").trim();
-               System.out.println("sesDateBegin= " + sesDateBegin);
-               System.out.println("sesDateEnd= " + sesDateEnd);
-               try {
-            	   getDates(sesDateBegin,sesDateEnd);
-				} catch (ParseException e) {
+                 String[] theNoArr = req.getParameterValues("theNo");
+                 Integer theNo = null;
+                 if (theNoArr == null || theNoArr.length == 0) {
+                     System.out.println("theNo is empty!");
+                 }else {
+                     for(int i = 0; i < theNoArr.length; i++) {                       
+                         theNo = new Integer(theNoArr[i]);
+                         System.out.println("theNo= " + theNo);
+                     }
+                 }
+                 
+                 String sesDateBegin = req.getParameter("sesDateBegin").trim();
+	             String sesDateEnd = req.getParameter("sesDateEnd").trim();            
+	             List<String> sesDateList = null;
+	//           java.sql.Date sesDate = null;
+	             try {
+	            	 sesDateList = getDates(sesDateBegin,sesDateEnd);
+	             } catch (ParseException e) {
 					e.printStackTrace();
-				}
-               
-               Integer theNo = null;
-               if (theNoArr == null || theNoArr.length == 0) {
-                   System.out.println("theNo is empty!");
-               }else {
-                   for(int i = 0; i < theNoArr.length; i++) {                       
-                       theNo = new Integer(theNoArr[i]);
-                       System.out.println("theNo= " + theNo);
-                   }
-               }
-               
-               java.time.LocalTime sesTime = null;
-	           String[] sesTimeArr = req.getParameterValues("sesTime");
-               if (sesTimeArr == null || sesTimeArr.length == 0) {
+	             }
+	             String[] sesDateArr = new String[sesDateList.size()];
+	             sesDateArr = sesDateList.toArray(sesDateArr);
+	             
+           
+	             Time sesTime = null;              
+	             String[] sesTimeArr = req.getParameterValues("sesTime");
+	             if (sesTimeArr == null || sesTimeArr.length == 0) {
                    System.out.println("sesTime is empty!");
-               }else {
-                   for(int i = 0; i < sesTimeArr.length; i++) {
-                       sesTime = java.time.LocalTime.parse(sesTimeArr[i]);
-                       System.out.println("sesTime= " + sesTime);
-                   }
-               }
+	             }else {
+	               for(int i = 0; i < sesDateArr.length; i++) { 
+	                   System.out.println("sesDateArr[i]= " + sesDateArr[i]);
+	                   for(int j = 0; j < sesTimeArr.length; j++) {
+	                     sesTime = Time.valueOf(java.time.LocalTime.parse(sesTimeArr[j]));  
+	                     System.out.println("sesTime= " + sesTime);
+	                   }
+	               }
+	             }
              
-              // Send the use back to the form, if there were errors
-              if (!errorMsgs.isEmpty()) {
-                  Boolean openAddLightbox = true;
-                  req.setAttribute("openAddLightbox", openAddLightbox);
-                  String url = "/back-end/session/select_page.jsp";
-                  RequestDispatcher failureView = req.getRequestDispatcher(url);
-                  failureView.forward(req, res);
-                  return;
-              }
+	             // Send the use back to the form, if there were errors
+	             if (!errorMsgs.isEmpty()) {
+					  Boolean openAddLightbox = true;
+					  req.setAttribute("openAddLightbox", openAddLightbox);
+					  String url = "/back-end/session/select_page.jsp";
+					  RequestDispatcher failureView = req.getRequestDispatcher(url);
+					  failureView.forward(req, res);
+					  return;
+	             }
               
 //              SesVO sesVO = new SesVO();
 //              sesVO.setTheNo(theNo);
@@ -184,7 +182,7 @@ public class SesServlet extends HttpServlet {
               
                /***************************2.開始新增資料***************************************/                
 //              SesService sesSvc = new SesService();
-//              sesSvc.addSes(movNo, theNo, sesDate, sesTime, null, null, null); 
+//              sesSvc.addSes(movNo, theNo, sesDate[i], sesTime[j], null, null, null); 
               
               
              
@@ -335,8 +333,6 @@ public class SesServlet extends HttpServlet {
             calBegin.add(Calendar.DAY_OF_MONTH, 1);   // DAY_OF_MONTH 取出當前月的第幾天
             Datelist.add(format.format(calBegin.getTime()));
         }
- 
-        System.out.println(Datelist);
         return Datelist;
     }
 	

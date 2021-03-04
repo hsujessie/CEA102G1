@@ -38,7 +38,7 @@ public class SesJDBCDAO implements SesDAO_interface{
 			pstmt.setInt(1,sesVO.getMovNo());
 			pstmt.setInt(2,sesVO.getTheNo());
 			pstmt.setDate(3,sesVO.getSesDate());
-			pstmt.setTimestamp(4,sesVO.getSesTime());
+			pstmt.setTime(4,sesVO.getSesTime());
 			pstmt.setString(5,sesVO.getSesSeatStatus());
 			pstmt.setString(6,sesVO.getSesSeatNo());
 			pstmt.setInt(7,sesVO.getSesOrder());
@@ -81,7 +81,7 @@ public class SesJDBCDAO implements SesDAO_interface{
 			pstmt.setInt(1,sesVO.getMovNo());
 			pstmt.setInt(2,sesVO.getTheNo());
 			pstmt.setDate(3,sesVO.getSesDate());
-			pstmt.setTimestamp(4,sesVO.getSesTime());
+			pstmt.setTime(4,sesVO.getSesTime());
 			pstmt.setInt(5,sesVO.getSesOrder());
 			pstmt.setInt(6,sesVO.getSesNo());
 			
@@ -132,7 +132,7 @@ public class SesJDBCDAO implements SesDAO_interface{
 				sesVO.setMovNo(rs.getInt("mov_no"));
 				sesVO.setTheNo(rs.getInt("the_no"));
 				sesVO.setSesDate(rs.getDate("ses_date"));
-				sesVO.setSesTime(rs.getTimestamp("ses_time"));
+				sesVO.setSesTime(rs.getTime("ses_time"));
 				sesVO.setSesSeatStatus(rs.getString("ses_seat_status"));
 				sesVO.setSesSeatNo(rs.getString("ses_seatno"));
 				sesVO.setSesOrder(rs.getInt("ses_order"));
@@ -191,7 +191,7 @@ public class SesJDBCDAO implements SesDAO_interface{
 				sesVO.setMovNo(rs.getInt("mov_no"));
 				sesVO.setTheNo(rs.getInt("the_no"));
 				sesVO.setSesDate(rs.getDate("ses_date"));
-				sesVO.setSesTime(rs.getTimestamp("ses_time"));
+				sesVO.setSesTime(rs.getTime("ses_time"));
 				sesVO.setSesSeatStatus(rs.getString("ses_seat_status"));
 				sesVO.setSesSeatNo(rs.getString("ses_seatno"));
 				sesVO.setSesOrder(rs.getInt("ses_order"));

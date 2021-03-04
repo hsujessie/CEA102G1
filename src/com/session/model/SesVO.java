@@ -2,14 +2,14 @@ package com.session.model;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.sql.Timestamp;
+import java.sql.Time;
 
 public class SesVO implements Serializable{
 	private Integer sesNo;
 	private Integer movNo;
 	private Integer theNo;
 	private Date sesDate;
-	private Timestamp sesTime;
+	private Time sesTime;
 	private String sesSeatStatus;
 	private String sesSeatNo;
 	private Integer sesOrder;
@@ -48,12 +48,12 @@ public class SesVO implements Serializable{
 		this.sesDate = sesDate;
 	}
 
-	public Timestamp getSesTime() {
+	public Time getSesTime() {
 		return sesTime;
 	}
 
-	public void setSesTime(Timestamp sesTime) {
-		this.sesTime = sesTime;
+	public void setSesTime(Time sesTime2) {
+		this.sesTime = sesTime2;
 	}
 
 	public String getSesSeatStatus() {

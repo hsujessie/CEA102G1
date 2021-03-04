@@ -1,7 +1,7 @@
 package com.session.model;
 
 import java.sql.Date;
-import java.sql.Timestamp;
+import java.sql.Time;
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +12,7 @@ public class SesService {
 		dao = new SesDAO();
 	}
 	
-	public SesVO addSes(Integer movNo, Integer theNo, Date sesDate, Timestamp sesTime, String sesSeatStatus, String sesSeatNo, Integer sesOrder) {
+	public SesVO addSes(Integer movNo, Integer theNo, Date sesDate, Time sesTime, String sesSeatStatus, String sesSeatNo, Integer sesOrder) {
 		SesVO sesVO = new SesVO();
 		sesVO.setMovNo(movNo);
 		sesVO.setTheNo(theNo);
@@ -27,7 +27,7 @@ public class SesService {
 	}
 	
 	//mov_no=?,the_no=?,ses_date=?,ses_time=?,ses_order=?
-	public SesVO updateSes(Integer movNo, Integer theNo, Date sesDate, Timestamp sesTime, Integer sesOrder, Integer sesNo) {
+	public SesVO updateSes(Integer movNo, Integer theNo, Date sesDate, Time sesTime, Integer sesOrder, Integer sesNo) {
 		SesVO sesVO = new SesVO();
 		sesVO.setMovNo(movNo);
 		sesVO.setTheNo(theNo);
