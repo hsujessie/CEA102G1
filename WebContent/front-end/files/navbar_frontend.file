@@ -19,7 +19,7 @@
 <div class="nav-bar">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg bg-light navbar-light">
-            <a href="${home}" class="navbar-brand"><img src="<%=request.getContextPath()%>/resources/images/logos/logo_B.png" alt="Logo"></a>
+            <a href="${home}" class="navbar-brand"><img src="<%=request.getContextPath()%>/resource/images/logos/logo_B.png" alt="Logo"></a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -28,7 +28,7 @@
 
                 <div class="mr-auto">
                     <a class="logo" href="${home}">
-                        <img src="<%=request.getContextPath()%>/resources/images/logos/logo_B.png" alt="Logo">
+                        <img src="<%=request.getContextPath()%>/resource/images/logos/logo_B.png" alt="Logo">
                     </a>
                 </div>
 

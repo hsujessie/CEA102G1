@@ -9,7 +9,7 @@
 	<!-- Bootstrap CDN -->	
 	<%@ include file="../files/bootstrapCDN.file"%>
 	<!-- Your custom styles (optional) -->
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/backendMovie.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/backendMovie.css">
 <style>
   .sty-input{
 	text-decoration: none;    

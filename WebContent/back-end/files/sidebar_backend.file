@@ -33,7 +33,7 @@
     <div id="sidebar-wrapper">
         <div class="side-top">
             <div class="logo-sidebar">
-                <img src="<%=request.getContextPath()%>/resources/images/logos/logo_B.png" alt="image">
+                <img src="<%=request.getContextPath()%>/resource/images/logos/logo_B.png" alt="image">
             </div>
             <ul class="sidebar-nav">
                 <li><a <c:if test="${(urlRecog == admin)   || (urlRecog == adminSub)}">   class="active" </c:if> href="${admin}"   >後台管理員管理</a></li>

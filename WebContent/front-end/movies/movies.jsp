@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Movies</title>
 <%@ include file="../files/comCssLinks.file"%>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/frontendMovies.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/frontendMovies.css">
 </head>
 <body>
         <div class="wrapper">
@@ -50,7 +50,7 @@
 		                            <div class="movies-wrap" onclick="sendData(this,${movVO.movno})">
 		                                <img src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movpos&action=get_One_MovPos" alt="Movies Image">
 		                                <figure>
-		                                    <p><img style="width:100%; max-width: 40px;" src="<%=request.getContextPath()%>/resources/images/logos/seenema_W.ico" alt="Logo"></p>
+		                                    <p><img style="width:100%; max-width: 40px;" src="<%=request.getContextPath()%>/resource/images/logos/seenema_W.ico" alt="Logo"></p>
 		                                    <a href="">${movVO.movname}</a>
 		                                    <span>${movVO.movondate}</span>
 		                                </figure>

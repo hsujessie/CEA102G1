@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>SEENEMA</title>
 <%@ include file="files/comCssLinks.file"%>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/frontendIndex.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/frontendIndex.css">
 </head>
 <body>
         <div class="wrapper">
@@ -25,7 +25,7 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="<%=request.getContextPath()%>/resources/images/carousel-1.jpg" alt="Carousel Image">
+                        <img src="<%=request.getContextPath()%>/resource/images/carousel-1.jpg" alt="Carousel Image">
                         <div class="carousel-caption">
                             <h1 class="animated fadeInLeft">Welcome to the SEENEMA</h1>
                             <p class="animated fadeInRight">the best cinema in the world...</p>
@@ -33,7 +33,7 @@
                     </div>
 
                     <div class="carousel-item">
-                        <img class="filter" src="<%=request.getContextPath()%>/resources/images/carousel-2.jpg" alt="Carousel Image">
+                        <img class="filter" src="<%=request.getContextPath()%>/resource/images/carousel-2.jpg" alt="Carousel Image">
                         <div class="carousel-caption">
                             <h1 class="animated fadeInLeft">Enjoy the Films here</h1>
                             <p class="animated fadeInRight">with the people who are important in your life...</p>
@@ -41,7 +41,7 @@
                     </div>
 
                     <div class="carousel-item">
-                        <img src="<%=request.getContextPath()%>/resources/images/carousel-3.jpg" alt="Carousel Image">
+                        <img src="<%=request.getContextPath()%>/resource/images/carousel-3.jpg" alt="Carousel Image">
                         <div class="carousel-caption">
                             <h1 class="animated fadeInLeft">Having a Lovely time</h1>
                             <p class="animated fadeInRight">cherish the memories of the time we spent together...</p>
@@ -99,7 +99,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-5 col-md-6">
                             <div class="about-img">
-                                <img src="<%=request.getContextPath()%>/resources/images/about.png" alt="About Image">
+                                <img src="<%=request.getContextPath()%>/resource/images/about.png" alt="About Image">
                             </div>
                         </div>
                         <div class="col-lg-7 col-md-6">
