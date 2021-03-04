@@ -16,7 +16,7 @@
 	<!-- Bootstrap CDN -->	
 	<%@ include file="../files/bootstrapCDN.file"%>
 	<!-- Your custom styles (optional) -->
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/backendMovie.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/movie/backendMovie.css">
 <style>
 thead > tr{
  	text-align: center;

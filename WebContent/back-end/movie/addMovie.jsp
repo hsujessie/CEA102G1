@@ -10,7 +10,7 @@
 	<!-- Common CSS -->
 	<%@ include file="../files/comCssLinks.file"%>
 	<!-- Your custom styles (optional) -->
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/backendMovie.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/movie/backendMovie.css">
 <style>
   .err-color{
     font-size: 12px;

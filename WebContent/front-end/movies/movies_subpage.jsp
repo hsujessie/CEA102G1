@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Movies</title>
 <%@ include file="../files/comCssLinks.file"%>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/frontendMovies.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/movie/frontendMovies.css">
 <style>
 	.ml{
 		margin-left: 2px;
