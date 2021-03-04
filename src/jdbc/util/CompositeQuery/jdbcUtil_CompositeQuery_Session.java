@@ -10,7 +10,8 @@ public class jdbcUtil_CompositeQuery_Session {
 		System.out.println("columnName: " + columnName);
 		System.out.println("value: " + value);
 		
-		if("mov_no".equals(columnName)) {
+		if("movNo".equals(columnName)) {
+			columnName = "mov_no";
 			aCondition = columnName + "=" + value;
 		}
 		else if("sesDateBegin".equals(columnName)) {

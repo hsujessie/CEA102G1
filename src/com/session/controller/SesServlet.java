@@ -121,8 +121,9 @@ public class SesServlet extends HttpServlet {
 		if ("insert".equals(action)) {
             Map<String,String> errorMsgs = new LinkedHashMap<String,String>();
             req.setAttribute("errorMsgs",errorMsgs);
-            
-//            try {
+
+            SesVO sesVO = new SesVO();
+            try {
                 /***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
                  Integer movNo = new Integer(req.getParameter("movNo"));
                  System.out.println("movNo= " + movNo);
@@ -134,14 +135,15 @@ public class SesServlet extends HttpServlet {
                  }else {
                      for(int i = 0; i < theNoArr.length; i++) {                       
                          theNo = new Integer(theNoArr[i]);
-                         System.out.println("theNo= " + theNo);
+                         System.out.println("theNo= " + theNo);  
+                         sesVO.setTheNo(theNo);
                      }
                  }
                  
                  String sesDateBegin = req.getParameter("sesDateBegin").trim();
 	             String sesDateEnd = req.getParameter("sesDateEnd").trim();            
 	             List<String> sesDateList = null;
-	//           java.sql.Date sesDate = null;
+	             java.sql.Date sesDate = null;
 	             try {
 	            	 sesDateList = getDates(sesDateBegin,sesDateEnd);
 	             } catch (ParseException e) {
@@ -156,13 +158,10 @@ public class SesServlet extends HttpServlet {
 	             if (sesTimeArr == null || sesTimeArr.length == 0) {
                    System.out.println("sesTime is empty!");
 	             }else {
-	               for(int i = 0; i < sesDateArr.length; i++) { 
-	                   System.out.println("sesDateArr[i]= " + sesDateArr[i]);
-	                   for(int j = 0; j < sesTimeArr.length; j++) {
-	                     sesTime = Time.valueOf(java.time.LocalTime.parse(sesTimeArr[j]));  
-	                     System.out.println("sesTime= " + sesTime);
-	                   }
-	               }
+                   for(int j = 0; j < sesTimeArr.length; j++) {
+                     sesTime = Time.valueOf(java.time.LocalTime.parse(sesTimeArr[j]));  
+                     System.out.println("sesTime= " + sesTime);
+                   }
 	             }
              
 	             // Send the use back to the form, if there were errors
@@ -175,32 +174,41 @@ public class SesServlet extends HttpServlet {
 					  return;
 	             }
               
-//              SesVO sesVO = new SesVO();
-//              sesVO.setTheNo(theNo);
-//              sesVO.setSesDate(sesDate);
-//              sesVO.setSesTime(sesTime);
-              
+            
+
+               for(int i = 0; i < sesDateArr.length; i++) { 
+                   for(int j = 0; j < sesTimeArr.length; j++) {
+  	                 sesDate = Date.valueOf(sesDateArr[i]); 
+                     sesTime = Time.valueOf(java.time.LocalTime.parse(sesTimeArr[j])); 
+
+                     sesVO.setSesDate(sesDate);
+                     sesVO.setSesTime(sesTime);      
+                   }
+               }
+
+               
                /***************************2.開始新增資料***************************************/                
-//              SesService sesSvc = new SesService();
-//              sesSvc.addSes(movNo, theNo, sesDate[i], sesTime[j], null, null, null); 
+	              SesService sesSvc = new SesService();
+	              sesSvc.addSes(movNo, theNo, sesDate, sesTime, null, null, 0); 
+//	              sesSvc.addSes(movNo, theNo, sesDate, sesTime, null, null, null); 
               
               
              
                /***************************3.新增完成,準備轉交(Send the Success view)***********/                
-//              String addSuccess = "【 場次 " + sesNo + " 】" + "新增成功";
-//              req.setAttribute("addSuccess", addSuccess);    
-//              
-//              String url = "/back-end/movie/listAllMovie.jsp";
-//              RequestDispatcher successView = req.getRequestDispatcher(url);
-//              successView.forward(req, res);    
+              String addSuccess = "【 場次 】" + "新增成功";
+              req.setAttribute("addSuccess", addSuccess);    
+              
+              String url = "/back-end/session/listAllSession.jsp";
+              RequestDispatcher successView = req.getRequestDispatcher(url);
+              successView.forward(req, res);    
                
                /***************************其他可能的錯誤處理**********************************/
-//			}catch (Exception e) {
-//	            errorMsgs.put("Exception",e.getMessage());
-//	            String url = "/back-end/session/select_page.jsp";
-//	            RequestDispatcher failureView = req.getRequestDispatcher(url);
-//	            failureView.forward(req, res);
-//	        }		
+			}catch (Exception e) {
+	            errorMsgs.put("Exception",e.getMessage());
+	            String url = "/back-end/session/select_page.jsp";
+	            RequestDispatcher failureView = req.getRequestDispatcher(url);
+	            failureView.forward(req, res);
+	        }		
 		}
 		
 		// 來自listAllSession.jsp的請求

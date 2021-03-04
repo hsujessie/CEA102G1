@@ -61,7 +61,7 @@ thead > tr{
 					<tbody>
 						<%@ include file="pages/page1_ByCompositeQuery.file"%> 
 						<c:forEach var="sesVO" varStatus="no" items="${listSessions_ByCompositeQuery}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-						<c:set value="${movSvc.getOneMov(sesVO.sesNo)}" var="movObj"></c:set>
+						<c:set value="${movSvc.getOneMov(sesVO.movNo)}" var="movObj"></c:set>
 						<tr class="sty-height" valign='middle' ${(sesVO.sesNo==param.sesNo) ? 'style="background-color:#bb9d52; color:#fff;"':''}>
 							<td>${no.index+1}</td>
 							<td>${movObj.movname}</td>
