@@ -220,6 +220,7 @@ public class SesServlet extends HttpServlet {
 			try {
 				/***************************1.接收請求參數****************************************/
 				Integer sesNo = new Integer(req.getParameter("sesNo").trim());
+				System.out.println("sesNo= " + sesNo);
 				
 				/***************************2.開始查詢資料****************************************/
 				SesService sesSvc = new SesService();
@@ -260,8 +261,11 @@ public class SesServlet extends HttpServlet {
 			
 			try {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
+				Integer sesNo = new Integer(req.getParameter("sesNo").trim());
+	            System.out.println("sesNo= " + sesNo);
+				
 				Integer movNo = new Integer(req.getParameter("movNo").trim());
-	             System.out.println("movNo= " + movNo);
+	            System.out.println("movNo= " + movNo);
                 
                 String[] theNoArr = req.getParameterValues("theNo");
                 Integer theNo = null;
@@ -336,7 +340,7 @@ public class SesServlet extends HttpServlet {
 					req.setAttribute("listSessions_ByCompositeQuery",list); //  複合查詢, 資料庫取出的list物件,存入
 				}
 				
-				String updateSuccess = "【 場次 】" + "修改成功";
+				String updateSuccess = "【 場次 "+sesNo+" 】" + "修改成功";
 				req.setAttribute("updateSuccess", updateSuccess);
 				Boolean openUpdateLightbox = false;
 				req.setAttribute("openUpdateLightbox", openUpdateLightbox); //update success不要跳出燈箱

@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.session.model.*"%>
-<%@ page import="com.movie.model.*"%>
-
-<%SesVO sesVO = (SesVO) request.getAttribute("sesVO");%>
 
 <html>
 <head>
@@ -54,16 +51,28 @@
   #timetb tbody{
   	border-bottom: 2px dotted #bb9d52;
   }
+  #timetb th{
+  	line-height: 28px;
+  }
+  #addtime, #delete{
+    border: transparent;
+    color: #fff;
+    box-sizing: border-box;
+    border-radius: 10px;
+  }
+  #delete{
+  	background: rgb(16,16,16);
+    padding: 6px 15px;
+    font-size: 14px;
+    position: absolute;
+    left: 48%;
+    bottom: 15.5%;
+  }
   #addtime{
   	width: 80px;
     margin: 20px 0 8px 0;
-    border: transparent;
-    color: #fff;
-    background-color: #bb9d52;
-    box-sizing: border-box;
     padding: 10px;
-    border-radius: 10px;
-}
+    background-color: #bb9d52;
   }
 </style>
 
@@ -71,17 +80,12 @@
 <body>
 <FORM class="center-linehigh-content" style="width:100%; margin: 6% 0 0 23%;" method="post" action="<%=request.getContextPath()%>/session/ses.do" name="form_addSession" enctype="multipart/form-data">
 <table class="add-mov-table">
-	<tr style="line-height: 50px;">
-	
+	<tr style="line-height: 50px;">	
 		<jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService"/>
 		<td><b>電影</b></td>
 		<td>
-			<select name="movNo">
-	             <option value=""></option>
-	             <c:forEach var="movVO" items="${movSvc.all}" >
-	             	<option value="${movVO.movno}">${movVO.movname}
-	             </c:forEach>
-             </select>
+			<c:set value="${movSvc.getOneMov(sesVO.movNo)}" var="movObj"></c:set>
+		    <span>${movObj.movname}</span>
 		</td>
 	</tr>
 	<tr>
@@ -92,13 +96,25 @@
 			<input class="mr-left mr-btm-sm" type="checkbox" name="theNo" value="2"><span>B廳(3D)</span><br>
 			<input class="mr-left mr-btm-sm" type="checkbox" name="theNo" value="3"><span>C廳(IMAX)</span><br>
 		</td>
+		<c:if test="${not empty errorMsgs.theNo}">
+			<td class="errmsg-pos">		
+				<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
+				<label class="err-color">${errorMsgs.theNo}</label>
+			</td>
+		</c:if>
 	</tr>
 	<tr>
 		<td><b>日期</b></td>
 		<td>
-			<input class="sty-input" name="sesDateBegin" id="" type="date" value="" style="margin-left: 10px;"> 
+			<input class="sty-input" name="sesDateBegin" id="" type="date" value="${sesVO.sesDate}" style="margin-left: 10px;"> 
 	        ~<input class="sty-input" name="sesDateEnd" id="" type="date" value="">
 		</td>
+		<c:if test="${not empty errorMsgs.sesDate}">
+			<td class="errmsg-pos">		
+				<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
+				<label class="err-color">${errorMsgs.sesDate}</label>
+			</td>
+		</c:if>
 	</tr>
 	<tr>
 		<td>	
@@ -106,11 +122,24 @@
 		</td>
 	</tr>
 </table>
-<table id="timetb" style="width:200px; display:none;">
+
+<table id="timetb" style="width:200px; display:${(not empty sesVO.sesTime)? none: block};">
 	<tr>
 		<th><b>編號</b></th>
 		<th style="padding-left: 10px;"><b>時間</b></th>
 	</tr>
+   <%--  <c:forEach var="sesVO" items="${sesSvc.all}" varStatus="no" > --%>
+		<tr>
+		    <%-- <td>${no.index+1}</td> --%>
+		    <td>1</td>
+		    <td>
+		        <input type="time" name="sesTime" value="${sesVO.sesTime}">
+		    </td>
+		    <td>
+		        <input type="button" value="刪除" id="delete" onclick="removeTr(this)">
+		    </td>
+		</tr>
+<%--     </c:forEach> --%>
 </table>
 <br>
 <input type="hidden" name="action" value="update">

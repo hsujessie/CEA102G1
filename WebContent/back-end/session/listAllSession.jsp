@@ -2,12 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.session.model.*"%>
+
 <%    
     SesService sesSvc = new SesService();
     List<SesVO> list = sesSvc.getAll();
     pageContext.setAttribute("list",list);
 %>
-<jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService"/>
 
 <html>
 <head>
@@ -32,7 +32,7 @@ thead > tr{
     <div class="row">
         <!-- Start Side Bar-->
         <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 sidebar-bgcolor">       
-			<c:set value="sessionSub" var="urlRecog"></c:set>        <!-- 給sidebar_backend.file的參數-Sub -->
+			<c:set value="sessionSub" var="urlRecog"></c:set>  <!-- 給sidebar_backend.file的參數-Sub -->
 			<%@ include file="../files/sidebar_backend.file"%> <!-- ＊＊＊引入Side Bar＊＊＊ -->
         </div><!-- end Side Bar-->
  
@@ -65,8 +65,9 @@ thead > tr{
 					</thead>
 							
 					<tbody>
-					<%@ include file="../movie/pages/page1.file" %> 	
+					<%@ include file="../movie/pages/page1.file" %> 
 						<c:forEach var="sesVO" items="${list}" varStatus="no" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+						<jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService"/>	
 						<c:set value="${movSvc.getOneMov(sesVO.movNo)}" var="movObj"></c:set>
 						<tr class="sty-height" valign='middle' ${(sesVO.sesNo==param.sesNo) ? 'style="background-color:#bb9d52; color:#fff;"':''}>
 							<td>${no.index+1}</td>

@@ -41,10 +41,7 @@
 			        	<h3 class="h3-style">列表</h3>
 			        </div>
 		            <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 content-pos">
-		           		<a class="font-weight-seven pd-left" id="a-color" href="<%=request.getContextPath()%>/back-end/session/listAllSession.jsp">LIST</a> all Sessions.<br>  
-		            	
-		            	<jsp:useBean id="sesSvc" scope="page" class="com.session.model.SesService"/>
-		           
+		           		<a class="font-weight-seven pd-left" id="a-color" href="<%=request.getContextPath()%>/back-end/session/listAllSession.jsp">LIST</a> all Sessions.<br>		           
 		            </div>
 		         </div><!-- end Center-content-->
 			</div><!-- end Center-box-->
