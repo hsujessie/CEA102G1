@@ -197,7 +197,8 @@ public class MovServlet extends HttpServlet{
 				movtrais.read(movtra);
 				movtrais.close();
 				
-				
+
+	            // Here're parameters for sending back to the front page, if there were errors   
 				MovVO movVO = new MovVO();
 				movVO.setMovname(movname);
 				movVO.setMovver(movver);
@@ -523,6 +524,8 @@ public class MovServlet extends HttpServlet{
 					movSvc.updateMovtra(movtra, movno);
 				}
 				
+
+	            // Here're parameters for sending back to the front page, if there were errors   
 				movVO.setMovno(movno);
 				movVO.setMovname(movname);
 				movVO.setMovver(movver);

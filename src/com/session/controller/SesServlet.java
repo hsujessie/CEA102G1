@@ -162,14 +162,16 @@ public class SesServlet extends HttpServlet {
                      sesTime = Time.valueOf(java.time.LocalTime.parse(sesTimeArr[j]));  
                    }
 	             }
-             
-             	SesVO sesVO = new SesVO();
-                sesVO.setSesNo(movNo);
-                sesVO.setTheNo(theNo);
-                sesVO.setSesDate(sesDate);
-                sesVO.setSesTime(sesTime);
-	                
-	             // Send the use back to the form, if there were errors
+
+
+	             // Here're parameters for sending back to the front page, if there were errors   
+             	 SesVO sesVO = new SesVO();
+                 sesVO.setSesNo(movNo);
+                 sesVO.setTheNo(theNo);
+                 sesVO.setSesDate(sesDate);
+                 sesVO.setSesTime(sesTime);
+
+	             // Send the use back to the form, if there were errors   
 	             if (!errorMsgs.isEmpty()) {
 					  req.setAttribute("sesVO", sesVO);
 					  String url = "/back-end/session/select_page.jsp";
@@ -258,37 +260,87 @@ public class SesServlet extends HttpServlet {
 			
 			try {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
-				Integer sesNo = new Integer(req.getParameter("sesNo").trim());
 				Integer movNo = new Integer(req.getParameter("movNo").trim());
-				Integer theNo = new Integer(req.getParameter("theNo").trim());
-				java.sql.Date sesDate = null;
-//				java.time.LocalTime sesTime = null;
-				
-				SesVO sesVO = new SesVO();
-                sesVO.setSesNo(sesNo);
-                sesVO.setTheNo(theNo);
-                sesVO.setSesDate(sesDate);
-//                sesVO.setSesTime(sesTime);
-				
-				// Send the use back to the form, if there were errors
-				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("sesVO", sesVO);       
-					
-					RequestDispatcher failureView = req.getRequestDispatcher(requestURL);
-					failureView.forward(req, res);
-					return;
-				}
-				/***************************2.開始修改資料*****************************************/
-				SesService sesSvc = new SesService();
-//				sesVO = sesSvc.updateSes(movNo, theNo, sesDate, sesTime, null, sesNo);
+	             System.out.println("movNo= " + movNo);
+                
+                String[] theNoArr = req.getParameterValues("theNo");
+                Integer theNo = null;
+                if (theNoArr == null || theNoArr.length == 0) {
+               	 errorMsgs.put("theNo"," 請選擇廳院");
+                    System.out.println("theNo is empty!");
+                }else {
+                    for(int i = 0; i < theNoArr.length; i++) {                       
+                        theNo = new Integer(theNoArr[i]);
+                        System.out.println("theNo= " + theNo); 
+                    }
+                }
+                
+                String sesDateBegin = req.getParameter("sesDateBegin").trim();
+	             String sesDateEnd = req.getParameter("sesDateEnd").trim();            
+	             List<String> sesDateList = null;
+	             java.sql.Date sesDate = null;
+           	 try {
+	            	 sesDateList = getDates(sesDateBegin,sesDateEnd);
+	             } catch (ParseException e) {
+					e.printStackTrace();
+	             }             
+	             String[] sesDateArr = new String[sesDateList.size()];
+	             sesDateArr = sesDateList.toArray(sesDateArr);
+	             
+          
+	             Time sesTime = null;              
+	             String[] sesTimeArr = req.getParameterValues("sesTime");
+	             if (sesTimeArr == null || sesTimeArr.length == 0) {
+				   errorMsgs.put("sesTime"," 請選擇電影時間");
+                  System.out.println("sesTime is empty!");
+	             }else {
+                  for(int j = 0; j < sesTimeArr.length; j++) {
+                    sesTime = Time.valueOf(java.time.LocalTime.parse(sesTimeArr[j]));  
+                  }
+	             }
+
+	             // Here're parameters for sending back to the front page, if there were errors   
+	             SesVO sesVO = new SesVO();
+	             sesVO.setSesNo(movNo);
+	             sesVO.setTheNo(theNo);
+	             sesVO.setSesDate(sesDate);
+	             sesVO.setSesTime(sesTime);
+	                
+	             // Send the use back to the form, if there were errors
+	             if (!errorMsgs.isEmpty()) {
+					  req.setAttribute("sesVO", sesVO);
+					  Boolean openUpdateLightbox = true;
+					  req.setAttribute("openUpdateLightbox", openUpdateLightbox);
+					  RequestDispatcher failureView = req.getRequestDispatcher(requestURL);
+					  failureView.forward(req, res);
+					  return;
+	             }
+                       
+	             
+		         SesService sesSvc = new SesService();
+	             for(int i = 0; i < sesDateArr.length; i++) {
+		             sesDate = Date.valueOf(sesDateArr[i]);  
+	                 for(int j = 0; j < sesTimeArr.length; j++) {
+	                 sesTime = Time.valueOf(java.time.LocalTime.parse(sesTimeArr[j])); 
+	    			/***************************2.開始修改資料*****************************************/
+	                  sesSvc.updateSes(movNo, theNo, sesDate, sesTime, null, null);      //暫時寫死
+	//  	          sesSvc.updateSes(movNo, theNo, sesDate, sesTime, null, null);    
+	                }
+	            }
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/	
 				if(requestURL.equals("/back-end/session/listSessions_ByCompositeQuery.jsp")){
 					HttpSession session = req.getSession();
 					Map<String, String[]> map = (Map<String, String[]>)session.getAttribute("map");
-//					List<sesVO> list  = sesSvc.getAll(map);
-//					req.setAttribute("listSessions_ByCompositeQuery",list); //  複合查詢, 資料庫取出的list物件,存入
+					List<SesVO> list  = sesSvc.getAll(map);
+					req.setAttribute("listSessions_ByCompositeQuery",list); //  複合查詢, 資料庫取出的list物件,存入
 				}
+				
+				String updateSuccess = "【 場次 】" + "修改成功";
+				req.setAttribute("updateSuccess", updateSuccess);
+				Boolean openUpdateLightbox = false;
+				req.setAttribute("openUpdateLightbox", openUpdateLightbox); //update success不要跳出燈箱
+				
 				String url = requestURL;
 
 				RequestDispatcher successView = req.getRequestDispatcher(url);
@@ -302,9 +354,7 @@ public class SesServlet extends HttpServlet {
 				
 				RequestDispatcher failureView = req.getRequestDispatcher(requestURL);
 				failureView.forward(req, res);
-			}
-			
-			
+			}			
 		}
 		
 		
