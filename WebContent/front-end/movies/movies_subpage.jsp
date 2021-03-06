@@ -43,16 +43,8 @@
                                 <p>片&emsp;&emsp;長 &emsp;|&emsp; ${movVO.movdurat}小時</p>
                                 <p>導&emsp;&emsp;演 &emsp;|&emsp; ${movVO.movditor}</p>
                                 <p>演&emsp;&emsp;員 &emsp;|&emsp; ${movVO.movcast}</p>
-                                <p><span style="letter-spacing: 8px;">期待度</span><span style="margin-left: 12px;">|</span>&emsp;${expVO.expRating}
-                   					<%-- <c:set value="0" var="sum" />
-                   					<c:forEach var="expVO" items="${expSvc.all}">                   					
-                   						<c:if test="${(expVO.movNo == movVO.movno)}">
-								        	<c:set value="${sum + expVO.expRating}" var="sum" />
-                   						</c:if>
-								    </c:forEach>
-								    ${sum} --%>
-                    			</p>
-                                <p><span style="letter-spacing: 8px;">滿意度</span><span style="margin-left: 12px;">|</span>&emsp; </p>
+                                <p><span style="letter-spacing: 8px;">期待度</span><span style="margin-left: 12px;">|</span>&emsp;</p>
+                                <p><span style="letter-spacing: 8px;">滿意度</span><span style="margin-left: 12px;">|</span>&emsp;</p>
                             </div>
                         </div>
                     </div>
@@ -65,7 +57,7 @@
                         <div class="col-lg-11 col-md-11">
                         
                             <form method="post" action="<%=request.getContextPath()%>/expectation/exp.do">                                                       
-	                            <input type="radio" name="expRating" value="5"><span class="ml">想看</span><i class="far fa-smile ml" style="color:#aa9166;"></i>&emsp;&emsp;
+	                            <input type="radio" name="expRating" value="1"><span class="ml">想看</span><i class="far fa-smile ml" style="color:#aa9166;"></i>&emsp;&emsp;
 	                            <input type="radio" name="expRating" value="0"><span class="ml">不想看</span><i class="far fa-meh ml" style="color:#aa9166;"></i>
 
   								<input type="hidden" name="movNo" value="${movVO.movno}" />

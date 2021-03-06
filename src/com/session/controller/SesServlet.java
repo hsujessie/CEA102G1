@@ -131,15 +131,6 @@ public class SesServlet extends HttpServlet {
                 	 errorMsgs.put("theNo"," 請選擇廳院");
                      System.out.println("theNo is empty!");
                  }
-//                 if (theNoArr == null || theNoArr.length == 0) {
-//                	 errorMsgs.put("theNo"," 請選擇廳院");
-//                     System.out.println("theNo is empty!");
-//                 }else {
-//                     for(int i = 0; i < theNoArr.length; i++) {                       
-//                         theNo = new Integer(theNoArr[i]);
-//                         System.out.println("theNo= " + theNo); 
-//                     }
-//                 }
                  
                  String sesDateBegin = req.getParameter("sesDateBegin").trim();
 	             String sesDateEnd = req.getParameter("sesDateEnd").trim();            
