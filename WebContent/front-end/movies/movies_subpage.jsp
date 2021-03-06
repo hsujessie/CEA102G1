@@ -116,6 +116,7 @@
 
 
             <!-- Reviews Start -->
+            <jsp:useBean id="satSvc" scope="page" class="com.satisfaction.model.SatService"/>
             <div class="reviews">
                 <div class="container">
                     <div class="section-header">
@@ -126,7 +127,8 @@
                     		<c:if test="${(comVO.movNo == movVO.movno) and (comVO.comStatus == 0)}">
 		                         <div class="reviews-container ${(no.index mod 2 == 0) ? 'right' : 'left'}">
 		                            <div class="reviews-content">
-		                                <h2><span>Ratings</span><i class="fa fa-star" aria-hidden="true"></i></h2> 
+		                                <c:set var="satObj" value="${satSvc.getOneSat(comVO.movNo,comVO.memNo)}"></c:set>                            
+		                                <h2><span>Ratings</span><c:forEach var="i" begin="1" end="${satObj.satRating}"><i class="fa fa-star" aria-hidden="true"></i></c:forEach></h2>	                                
 		                                <p>${comVO.comContent}</p>
 		                                <span>發表人&emsp;${comVO.memNo}</span>
 		                                <span>發表時間&emsp;${comVO.comTime}</span>
