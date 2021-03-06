@@ -132,11 +132,12 @@
 		                                <p>${comVO.comContent}</p>
 		                                <span>發表人&emsp;${comVO.memNo}</span>
 		                                <span>發表時間&emsp;${comVO.comTime}</span>
+                   						<span><a href="<%=request.getContextPath()%>/comment_report/comrep.do">檢舉</a></span>   
 		                            </div>
 		                        </div>
-		                      </c:if>                    
+		                      </c:if>                 
 	                    </c:forEach>
-                    </div>
+                    </div>                   
                 </div>
             </div>
             <!-- Reviews End -->
