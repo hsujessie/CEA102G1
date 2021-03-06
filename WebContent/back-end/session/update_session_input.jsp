@@ -81,11 +81,12 @@
 <FORM class="center-linehigh-content" style="width:100%; margin: 6% 0 0 23%;" method="post" action="<%=request.getContextPath()%>/session/ses.do" name="form_addSession" enctype="multipart/form-data">
 <table class="add-mov-table">
 	<tr style="line-height: 50px;">	
-		<jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService"/>
+		<%-- <jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService"/> --%>
 		<td><b>電影</b></td>
 		<td>
 			<c:set value="${movSvc.getOneMov(sesVO.movNo)}" var="movObj"></c:set>
-		    <span>${movObj.movname}</span>
+		    <%-- <span>${movObj.movname}</span> --%>
+		    <span>${sesVO.movNo}</span>
 		</td>
 	</tr>
 	<tr>
@@ -128,9 +129,9 @@
 		<th><b>編號</b></th>
 		<th style="padding-left: 10px;"><b>時間</b></th>
 	</tr>
-   <%--  <c:forEach var="sesVO" items="${sesSvc.all}" varStatus="no" > --%>
+   <c:forEach var="sesVO" items="${sesSvc.all}" varStatus="no" >
 		<tr>
-		    <%-- <td>${no.index+1}</td> --%>
+		    <td>${no.index+1}</td>
 		    <td>1</td>
 		    <td>
 		        <input type="time" name="sesTime" value="${sesVO.sesTime}">
@@ -139,7 +140,7 @@
 		        <input type="button" value="刪除" id="delete" onclick="removeTr(this)">
 		    </td>
 		</tr>
-<%--     </c:forEach> --%>
+	</c:forEach>
 </table>
 <br>
 <input type="hidden" name="action" value="update">

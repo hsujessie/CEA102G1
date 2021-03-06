@@ -65,9 +65,9 @@ thead > tr{
 					</thead>
 							
 					<tbody>
+					<jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService"/>	
 					<%@ include file="../movie/pages/page1.file" %> 
 						<c:forEach var="sesVO" items="${list}" varStatus="no" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-						<jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService"/>	
 						<c:set value="${movSvc.getOneMov(sesVO.movNo)}" var="movObj"></c:set>
 						<tr class="sty-height" valign='middle' ${(sesVO.sesNo==param.sesNo) ? 'style="background-color:#bb9d52; color:#fff;"':''}>
 							<td>${no.index+1}</td>

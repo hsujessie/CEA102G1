@@ -54,6 +54,7 @@ public class MovService {
 	}
 	
 	public MovVO getOneMov(Integer movno) {
+		System.out.println("getOneMov movno= " + movno);
 		return dao.findByPrimaryKey(movno);
 	}
 	

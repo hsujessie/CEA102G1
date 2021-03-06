@@ -228,6 +228,7 @@ public class SesServlet extends HttpServlet {
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				String url = requestURL;
+				System.out.println("requestURL= " + requestURL);
 	            if(requestURL.equals("/back-end/session/listSessions_ByCompositeQuery.jsp")){
 					HttpSession session = req.getSession();
 					Map<String, String[]> map = (Map<String, String[]>)session.getAttribute("map");
@@ -236,8 +237,8 @@ public class SesServlet extends HttpServlet {
 					url = "/back-end/session/update_session_input.jsp";
 				}
 	            
-	            req.setAttribute("sesVO", sesVO);  
-	
+	            req.setAttribute("sesVO", sesVO); 
+	            
 				Boolean openUpdateLightbox = true;
 				req.setAttribute("openUpdateLightbox", openUpdateLightbox);
 	
@@ -279,7 +280,7 @@ public class SesServlet extends HttpServlet {
                     }
                 }
                 
-                String sesDateBegin = req.getParameter("sesDateBegin").trim();
+                 String sesDateBegin = req.getParameter("sesDateBegin").trim();
 	             String sesDateEnd = req.getParameter("sesDateEnd").trim();            
 	             List<String> sesDateList = null;
 	             java.sql.Date sesDate = null;
