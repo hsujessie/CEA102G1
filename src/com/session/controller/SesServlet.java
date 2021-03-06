@@ -3,7 +3,6 @@ package com.session.controller;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.Time;
-import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,7 +21,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 
 import com.movie.model.MovService;
 import com.movie.model.MovVO;
@@ -256,7 +254,6 @@ public class SesServlet extends HttpServlet {
 		// 來自update_session_input.jsp的請求
 		if ("update".equals(action)) {
 			Map<String,String> errorMsgs = new LinkedHashMap<String,String>();
-			req.setAttribute("errorMsgs", errorMsgs);
 			
 			String requestURL = req.getParameter("requestURL");
 			
@@ -264,75 +261,22 @@ public class SesServlet extends HttpServlet {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 				Integer sesNo = new Integer(req.getParameter("sesNo").trim());
 	            System.out.println("sesNo= " + sesNo);
-				
-				Integer movNo = new Integer(req.getParameter("movNo").trim());
-	            System.out.println("movNo= " + movNo);
-                
-                String[] theNoArr = req.getParameterValues("theNo");
-                Integer theNo = null;
-                if (theNoArr == null || theNoArr.length == 0) {
-               	 errorMsgs.put("theNo"," 請選擇廳院");
-                    System.out.println("theNo is empty!");
-                }else {
-                    for(int i = 0; i < theNoArr.length; i++) {                       
-                        theNo = new Integer(theNoArr[i]);
-                        System.out.println("theNo= " + theNo); 
-                    }
-                }
-                
-                 String sesDateBegin = req.getParameter("sesDateBegin").trim();
-	             String sesDateEnd = req.getParameter("sesDateEnd").trim();            
-	             List<String> sesDateList = null;
-	             java.sql.Date sesDate = null;
-           	 try {
-	            	 sesDateList = getDates(sesDateBegin,sesDateEnd);
-	             } catch (ParseException e) {
-					e.printStackTrace();
-	             }             
-	             String[] sesDateArr = new String[sesDateList.size()];
-	             sesDateArr = sesDateList.toArray(sesDateArr);
-	             
-          
-	             Time sesTime = null;              
-	             String[] sesTimeArr = req.getParameterValues("sesTime");
-	             if (sesTimeArr == null || sesTimeArr.length == 0) {
-				   errorMsgs.put("sesTime"," 請選擇電影時間");
-                  System.out.println("sesTime is empty!");
-	             }else {
-                  for(int j = 0; j < sesTimeArr.length; j++) {
-                    sesTime = Time.valueOf(java.time.LocalTime.parse(sesTimeArr[j]));  
-                  }
-	             }
 
-	             // Here're parameters for sending back to the front page, if there were errors   
-	             SesVO sesVO = new SesVO();
-	             sesVO.setSesNo(movNo);
-	             sesVO.setTheNo(theNo);
-	             sesVO.setSesDate(sesDate);
-	             sesVO.setSesTime(sesTime);
-	                
-	             // Send the use back to the form, if there were errors
-	             if (!errorMsgs.isEmpty()) {
-					  req.setAttribute("sesVO", sesVO);
-					  Boolean openUpdateLightbox = true;
-					  req.setAttribute("openUpdateLightbox", openUpdateLightbox);
-					  RequestDispatcher failureView = req.getRequestDispatcher(requestURL);
-					  failureView.forward(req, res);
-					  return;
-	             }
+                Integer theNo = new Integer(req.getParameter("theNo").trim());
+	            System.out.println("theNo= " + theNo);
+                
+                String sesDateStr = req.getParameter("sesDate").trim();
+	            java.sql.Date sesDate = null;
+                sesDate = Date.valueOf(sesDateStr);  
+          
+	            Time sesTime = null;
+                String sesTimeStr = req.getParameter("sesTime").trim();  
+                sesTime = Time.valueOf(java.time.LocalTime.parse(sesTimeStr));  
                        
-	             
-		         SesService sesSvc = new SesService();
-	             for(int i = 0; i < sesDateArr.length; i++) {
-		             sesDate = Date.valueOf(sesDateArr[i]);  
-	                 for(int j = 0; j < sesTimeArr.length; j++) {
-	                 sesTime = Time.valueOf(java.time.LocalTime.parse(sesTimeArr[j])); 
-	    			/***************************2.開始修改資料*****************************************/
-	                  sesSvc.updateSes(movNo, theNo, sesDate, sesTime, null, null);      //暫時寫死
-	//  	          sesSvc.updateSes(movNo, theNo, sesDate, sesTime, null, null);    
-	                }
-	            }
-				
+	    	    /***************************2.開始修改資料*****************************************/ 
+ 	            SesService sesSvc = new SesService();
+	            sesSvc.updateSes(theNo, sesDate, sesTime, sesNo);
+	            
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/	
 				if(requestURL.equals("/back-end/session/listSessions_ByCompositeQuery.jsp")){
 					HttpSession session = req.getSession();
@@ -341,22 +285,19 @@ public class SesServlet extends HttpServlet {
 					req.setAttribute("listSessions_ByCompositeQuery",list); //  複合查詢, 資料庫取出的list物件,存入
 				}
 				
-				String updateSuccess = "【 場次 "+sesNo+" 】" + "修改成功";
+				String updateSuccess = "【 場次 】" + "修改成功";
 				req.setAttribute("updateSuccess", updateSuccess);
 				Boolean openUpdateLightbox = false;
 				req.setAttribute("openUpdateLightbox", openUpdateLightbox); //update success不要跳出燈箱
 				
 				String url = requestURL;
-
+				System.out.println("url= " + url);
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 
 				/***************************其他可能的錯誤處理*************************************/
 			}catch (Exception e) {
-				errorMsgs.put("Exception","修改資料失敗:"+e.getMessage());
-				Boolean openUpdateLightbox = true;
-				req.setAttribute("openUpdateLightbox", openUpdateLightbox);
-				
+				System.out.println("修改資料失敗 " + e.getMessage());
 				RequestDispatcher failureView = req.getRequestDispatcher(requestURL);
 				failureView.forward(req, res);
 			}			

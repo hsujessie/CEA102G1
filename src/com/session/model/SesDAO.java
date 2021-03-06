@@ -33,7 +33,7 @@ public class SesDAO implements SesDAO_interface{
 	private static final String GET_ONE_STMT =
 		"SELECT ses_no,mov_no,the_no,ses_date,ses_time,ses_seat_status,ses_seatno,ses_order FROM SESSION WHERE ses_no=?";
 	private static final String UPDATE =
-		"UPDATE SESSION SET mov_no=?,the_no=?,ses_date=?,ses_time=?,ses_order=? WHERE ses_no=?";
+		"UPDATE SESSION SET the_no=?,ses_date=?,ses_time=? WHERE ses_no=?";
 
 	@Override
 	public void insert(SesVO sesVO) {
@@ -84,12 +84,10 @@ public class SesDAO implements SesDAO_interface{
 			con = ds.getConnection();
 			
 			pstmt = con.prepareStatement(UPDATE);
-			pstmt.setInt(1,sesVO.getMovNo());
-			pstmt.setInt(2,sesVO.getTheNo());
-			pstmt.setDate(3,sesVO.getSesDate());
-			pstmt.setTime(4,sesVO.getSesTime());
-			pstmt.setInt(5,sesVO.getSesOrder());
-			pstmt.setInt(6,sesVO.getSesNo());
+			pstmt.setInt(1,sesVO.getTheNo());
+			pstmt.setDate(2,sesVO.getSesDate());
+			pstmt.setTime(3,sesVO.getSesTime());
+			pstmt.setInt(4,sesVO.getSesNo());
 			
 			pstmt.executeUpdate();
 			

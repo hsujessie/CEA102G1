@@ -75,12 +75,13 @@
 <FORM class="center-linehigh-content" style="width:100%; margin: 6% 0 0 23%;" method="post" action="<%=request.getContextPath()%>/session/ses.do" name="form_addSession" enctype="multipart/form-data">
 <table class="add-mov-table">
 	<tr>	
-		<%-- <jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService"/> --%>
+		<jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService"/>
 		<td><b>電影</b></td>
-		<td>
-			<c:set value="${movSvc.getOneMov(sesVO.movNo)}" var="movObj"></c:set>
-		    <%-- <span>${movObj.movname}</span> --%>
-		    <span>${sesVO.movNo}</span>
+		<td style="color: #bb9d52; padding-left: 3%;">
+			<c:if test="${not empty sesVO.movNo}"> <!-- 沒寫這行判斷，會有java.lang.NullPointerException -->
+				<c:set value="${movSvc.getOneMov(sesVO.movNo)}" var="movObj"></c:set>
+			    ${movObj.movname}
+		   </c:if>
 		</td>
 	</tr>
 	<tr style="line-height: 28px;"></tr>
@@ -88,9 +89,9 @@
 		<td><b>廳院</b></td>
 		<td style="padding-left: 10px;">
 			<!-- 多選checkbox -->			
-			<input class="mr-left mr-btm-sm" type="checkbox" name="theNo" value="1" <c:if test="${sesVO.theNo == 1}">checked</c:if> ><span>Ａ廳(2D)</span><br>
-			<input class="mr-left mr-btm-sm" type="checkbox" name="theNo" value="2" <c:if test="${sesVO.theNo == 2}">checked</c:if> ><span>B廳(3D)</span><br>
-			<input class="mr-left mr-btm-sm" type="checkbox" name="theNo" value="3" <c:if test="${sesVO.theNo == 3}">checked</c:if> ><span>C廳(IMAX)</span><br>
+			<input class="mr-left mr-btm-sm" type="radio" name="theNo" value="1" <c:if test="${sesVO.theNo == 1}">checked</c:if> ><span>Ａ廳(2D)</span><br>
+			<input class="mr-left mr-btm-sm" type="radio" name="theNo" value="2" <c:if test="${sesVO.theNo == 2}">checked</c:if> ><span>B廳(3D)</span><br>
+			<input class="mr-left mr-btm-sm" type="radio" name="theNo" value="3" <c:if test="${sesVO.theNo == 3}">checked</c:if> ><span>C廳(IMAX)</span><br>
 		</td>
 		<c:if test="${not empty errorMsgs.theNo}">
 			<td class="errmsg-pos">		

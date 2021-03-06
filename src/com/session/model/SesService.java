@@ -26,14 +26,12 @@ public class SesService {
 		return sesVO;
 	}
 	
-	//mov_no=?,the_no=?,ses_date=?,ses_time=?,ses_order=?
-	public SesVO updateSes(Integer movNo, Integer theNo, Date sesDate, Time sesTime, Integer sesOrder, Integer sesNo) {
+	
+	public SesVO updateSes(Integer theNo, Date sesDate, Time sesTime, Integer sesNo) {
 		SesVO sesVO = new SesVO();
-		sesVO.setMovNo(movNo);
 		sesVO.setTheNo(theNo);
 		sesVO.setSesDate(sesDate);
 		sesVO.setSesTime(sesTime);
-		sesVO.setSesOrder(sesOrder);
 		sesVO.setSesNo(sesNo);
 		dao.update(sesVO);
 		
