@@ -47,11 +47,11 @@
 						<c:forEach var="movVO" items="${movSvc.all}" >
 							<c:if test="${not empty movVO.movpos}">						    
 		                        <div class="col-lg-4 col-md-6 col-sm-12 movies-item">
-		                            <div class="movies-wrap" onclick="sendData(this,${movVO.movno})">
+		                            <div class="movies-wrap" onclick="sendData(this,${movVO.movno})" style="cursor:pointer;">
 		                                <img src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movpos&action=get_One_MovPos" alt="Movies Image">
 		                                <figure>
 		                                    <p><img style="width:100%; max-width: 40px;" src="<%=request.getContextPath()%>/resource/images/logos/seenema_W.ico" alt="Logo"></p>
-		                                    <a href="">${movVO.movname}</a>
+		                                    <a href="<%=request.getContextPath()%>/movie/mov.do?action=getOne_For_Display&fromFrontend=true&movno=${movVO.movno}">${movVO.movname}</a>
 		                                    <span>${movVO.movondate}</span>
 		                                </figure>
 		                            </div>
