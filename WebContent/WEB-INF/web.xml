@@ -52,4 +52,13 @@
 		<servlet-name>ExpServlet</servlet-name>
 		<url-pattern>/expectation/exp.do</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>SatServlet</servlet-name>
+		<servlet-class>com.satisfaction.controller.SatServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SatServlet</servlet-name>
+		<url-pattern>/satisfaction/sat.do</url-pattern>
+	</servlet-mapping>
 </web-app>

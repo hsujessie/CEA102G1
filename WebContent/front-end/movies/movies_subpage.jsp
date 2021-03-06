@@ -54,8 +54,7 @@
                         <div class="col-lg-1 col-md-1">
                             <p style="color:#aa9166;">期待度</p>
                         </div>
-                        <div class="col-lg-11 col-md-11">
-                        
+                        <div class="col-lg-11 col-md-11">                     
                             <form method="post" action="<%=request.getContextPath()%>/expectation/exp.do">                                                       
 	                            <input type="radio" name="expRating" value="1"><span class="ml">想看</span><i class="far fa-smile ml" style="color:#aa9166;"></i>&emsp;&emsp;
 	                            <input type="radio" name="expRating" value="0"><span class="ml">不想看</span><i class="far fa-meh ml" style="color:#aa9166;"></i>
@@ -65,6 +64,27 @@
   								<%-- <input type="hidden" name="memNo" value="${memVO.memno}" />  --%>
 								<input type="hidden" name="action" value="insert">
                             	<input class="combtn" type="submit" value="送出" style="margin-left: 5%;">
+                            </form>
+                        </div>
+                    </div>
+                    
+                     <div class="row" style="margin-top: 5px;">
+                        <div class="col-lg-1 col-md-1">
+                            <p style="color:#aa9166;">滿意度</p>
+                        </div>
+                        <div class="col-lg-11 col-md-11">                   
+                            <form method="post" action="<%=request.getContextPath()%>/satisfaction/sat.do">  
+                             	<span class="star" data-star = "1"><i class="fa fa-star" aria-hidden="true"></i></span>
+                                <span class="star" data-star = "2"><i class="fa fa-star" aria-hidden="true"></i></span>
+                                <span class="star" data-star = "3"><i class="fa fa-star" aria-hidden="true"></i></span>
+                                <span class="star" data-star = "4"><i class="fa fa-star" aria-hidden="true"></i></span>
+                                <span class="star" data-star = "5"><i class="fa fa-star" aria-hidden="true"></i></span>
+
+  								<input type="hidden" name="movNo" value="${movVO.movno}" />
+  								<input type="hidden" name="memNo" value="1" /> <!-- 會員編號 外來鍵要配合db -->
+  								<%-- <input type="hidden" name="memNo" value="${memVO.memno}" />  --%>
+								<input type="hidden" name="action" value="insert">
+                            	<input class="combtn" type="submit" value="送出" style="margin-left: 13.4%;">
                             </form>
                         </div>
                     </div>
@@ -125,21 +145,6 @@
                             <div class="section-header">
                                 <h2>Comments</h2>
                             </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-lg-1 col-md-1">
-                            <p>滿意度</p>
-                        </div>
-                        <div class="col-lg-11 col-md-11">
-                            <form action="" style="display: inline-block;">
-                                <span class="star" data-star = "1"><i class="fa fa-star" aria-hidden="true"></i></span>
-                                <span class="star" data-star = "2"><i class="fa fa-star" aria-hidden="true"></i></span>
-                                <span class="star" data-star = "3"><i class="fa fa-star" aria-hidden="true"></i></span>
-                                <span class="star" data-star = "4"><i class="fa fa-star" aria-hidden="true"></i></span>
-                                <span class="star" data-star = "5"><i class="fa fa-star" aria-hidden="true"></i></span>
-                            </form>
                         </div>
                     </div>
 
