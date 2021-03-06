@@ -68,6 +68,135 @@
     padding: 10px;
     background-color: #bb9d52;
   }
+<c:choose>
+    <c:when test="${cssForListSessionsByCompositeQuery}">
+      .form-sty{
+			padding: 6% 0 0 21%;
+       }   	
+	  .fake-txt::after{
+	    top: 46%;
+    	left: 67.5%;
+	    right: 0;
+	    bottom: 0;
+	  }
+	  .btn-pos{
+	  	margin-left: 30%;
+	    margin-top: 10%;
+	    margin-bottom: 1%;
+	  }
+	  .input-pos {
+	    position: absolute;
+	    top: 1%;
+	    right: 0;
+	    left: 15%;
+	    bottom: 0;
+	    font-size: 14px;
+	    text-decoration: none;
+	    background-color: transparent;
+	    border: 0px;
+	    cursor: pointer;
+      }
+      
+/*------------------------------------------------------------------
+    BUTTON
+-------------------------------------------------------------------*/      
+	.btn {
+	    width: 30px;
+	    height: 22px;
+    }
+	.grd1 {
+		color: #ffffff;
+	    background: rgb(16,16,16);
+	}
+	.grd1:hover,
+	.grd1:focus {
+		color: #ffffff;
+	    background: #bb9d52;
+	}
+	.effect-1:after, .btn-brd {
+	    -webkit-border-radius: 10px;
+	    -moz-border-radius: 10px;
+	    border-radius: 10px;
+	}	
+	.effect-1:after {
+	    box-shadow: 0 0 0 2px #bb9d52;
+	}
+	.effect-1 {
+	    display: inline-block;
+	    cursor: pointer;
+	    text-align: center;
+	    position: relative;
+	    text-decoration: none;
+	    z-index: 1;
+	}	
+	.effect-1 {
+	    -webkit-transition: background 0.2s, color 0.2s;
+	    -moz-transition: background 0.2s, color 0.2s;
+	    transition: background 0.2s, color 0.2s;
+	}	
+	.effect-1:after {
+	    top: -2px;
+	    left: -2px;
+	    padding: 2px;
+	    box-shadow: 0 0 0 2px #bb9d52;
+	    -webkit-transition: -webkit-transform 0.2s, opacity 0.2s;
+	    -webkit-transform: scale(.8);
+	    -moz-transition: -moz-transform 0.2s, opacity 0.2s;
+	    -moz-transform: scale(.8);
+	    -ms-transform: scale(.8);
+	    transition: transform 0.2s, opacity 0.2s;
+	    transform: scale(.8);
+	    opacity: 0;
+	}	
+	.effect-1:after {
+	    pointer-events: none;
+	    position: absolute;
+	    width: 100%;
+	    height: 100%;
+	    border-radius: 10px;
+	    content: '';
+	    -webkit-box-sizing: content-box;
+	    -moz-box-sizing: content-box;
+	    box-sizing: content-box;
+	}
+	.effect-1:hover:after {
+	    -webkit-transform: scale(1);
+	    -moz-transform: scale(1);
+	    -ms-transform: scale(1);
+	    transform: scale(1);
+	    opacity: 1;
+	}	
+	.effect-1:after {
+	    -webkit-transform: scale(1.2);
+	    -moz-transform: scale(1.2);
+	    -ms-transform: scale(1.2);
+	    transform: scale(1.2);
+	}	
+	.effect-1:hover:after {
+	    -webkit-transform: scale(1);
+	    -moz-transform: scale(1);
+	    -ms-transform: scale(1);
+	    transform: scale(1);
+	    opacity: 1;
+	}
+    </c:when>
+    <c:otherwise>
+    	.form-sty{
+			padding: 6% 0 0 23%;
+    	}  	
+	  .fake-txt::after{
+	    top: 40.5%;
+	    left: 67%;
+	    right: 0;
+	    bottom: 0;
+	  }
+	  .btn-pos{
+	  	margin-left: -46%;
+	    margin-top: 10%;
+	    margin-bottom: 1%;
+	  }
+    </c:otherwise>
+</c:choose>
 </style>
 
 </head>

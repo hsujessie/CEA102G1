@@ -238,6 +238,8 @@ public class SesServlet extends HttpServlet {
 					Map<String, String[]> map = (Map<String, String[]>)session.getAttribute("map");
 					List<SesVO> list  = sesSvc.getAll(map);
 					req.setAttribute("listSessions_ByCompositeQuery",list); // 複合查詢, 資料庫取出的list物件,存入
+					Boolean cssForListSessionsByCompositeQuery = true;
+					req.setAttribute("cssForListSessionsByCompositeQuery",cssForListSessionsByCompositeQuery);
 					url = "/back-end/session/update_session_input.jsp";
 				}
 	            
