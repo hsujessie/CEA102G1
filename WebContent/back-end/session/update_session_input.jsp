@@ -92,10 +92,10 @@
 	<tr>
 		<td><b>廳院</b></td>
 		<td style="padding-left: 10px;">
-			<!-- 多選checkbox -->
-			<input class="mr-left mr-btm-sm" type="checkbox" name="theNo" value="1"><span>Ａ廳(2D)</span><br>
-			<input class="mr-left mr-btm-sm" type="checkbox" name="theNo" value="2"><span>B廳(3D)</span><br>
-			<input class="mr-left mr-btm-sm" type="checkbox" name="theNo" value="3"><span>C廳(IMAX)</span><br>
+			<!-- 多選checkbox -->			
+			<input class="mr-left mr-btm-sm" type="checkbox" name="theNo" value="1" <c:if test="${sesVO.theNo == 1}">checked</c:if> ><span>Ａ廳(2D)</span><br>
+			<input class="mr-left mr-btm-sm" type="checkbox" name="theNo" value="2" <c:if test="${sesVO.theNo == 2}">checked</c:if> ><span>B廳(3D)</span><br>
+			<input class="mr-left mr-btm-sm" type="checkbox" name="theNo" value="3" <c:if test="${sesVO.theNo == 3}">checked</c:if> ><span>C廳(IMAX)</span><br>
 		</td>
 		<c:if test="${not empty errorMsgs.theNo}">
 			<td class="errmsg-pos">		
