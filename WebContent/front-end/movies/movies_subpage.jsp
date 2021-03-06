@@ -76,22 +76,13 @@
                             <p style="color:#aa9166;">滿意度</p>
                         </div>
                         <div class="col-lg-11 col-md-11">                   
-                            <form method="post" action="<%=request.getContextPath()%>/satisfaction/sat.do">  
-                            	<label><input type="checkbox" name="satRating" value="1" /><i class="fa fa-star" aria-hidden="true"></i></label>
-                            	<label><input type="checkbox" name="satRating" value="2" /><i class="fa fa-star" aria-hidden="true"></i></label>
-                            	
-                            	<!-- <label><input type="checkbox" name="satRating" value="1" style="display:none;" /><i class="fa fa-star" aria-hidden="true"></i></label>
-                            	<label><input type="checkbox" name="satRating" value="2" style="display:none;" /><i class="fa fa-star" aria-hidden="true"></i></label>
-                            	<label><input type="checkbox" name="satRating" value="3" style="display:none;" /><i class="fa fa-star" aria-hidden="true"></i></label>
-                            	<label><input type="checkbox" name="satRating" value="4" style="display:none;" /><i class="fa fa-star" aria-hidden="true"></i></label>
-                            	<label><input type="checkbox" name="satRating" value="5" style="display:none;" /><i class="fa fa-star" aria-hidden="true"></i></label> -->
-                             	
-                             	<!-- <span class="star" data-star = "1"><i class="fa fa-star" aria-hidden="true"></i></span>
-                                <span class="star" data-star = "2"><i class="fa fa-star" aria-hidden="true"></i></span>
-                                <span class="star" data-star = "3"><i class="fa fa-star" aria-hidden="true"></i></span>
-                                <span class="star" data-star = "4"><i class="fa fa-star" aria-hidden="true"></i></span>
-                                <span class="star" data-star = "5"><i class="fa fa-star" aria-hidden="true"></i></span> -->
-
+                            <form method="post" action="<%=request.getContextPath()%>/satisfaction/sat.do">        	
+                            	<label><input type="checkbox" name="satRating" value="1" style="display:none;" /><i class="fa fa-star" aria-hidden="true"></i></label>
+                            	<label><input type="checkbox" name="satRating" value="1" style="display:none;" /><i class="fa fa-star" aria-hidden="true"></i></label>
+                            	<label><input type="checkbox" name="satRating" value="1" style="display:none;" /><i class="fa fa-star" aria-hidden="true"></i></label>
+                            	<label><input type="checkbox" name="satRating" value="1" style="display:none;" /><i class="fa fa-star" aria-hidden="true"></i></label>
+                            	<label><input type="checkbox" name="satRating" value="1" style="display:none;" /><i class="fa fa-star" aria-hidden="true"></i></label>
+                  
   								<input type="hidden" name="movNo" value="${movVO.movno}" />
   								<input type="hidden" name="memNo" value="1" /> <!-- 會員編號 外來鍵要配合db -->
   								<%-- <input type="hidden" name="memNo" value="${memVO.memno}" />  --%>

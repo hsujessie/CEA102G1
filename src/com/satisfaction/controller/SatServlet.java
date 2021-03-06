@@ -33,7 +33,9 @@ public class SatServlet extends HttpServlet {
 			try {
 				/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
 				Integer satRating = null;
-				satRating = new Integer(req.getParameter("satRating").trim());
+				String[] satRatingArr = null;
+				satRatingArr = req.getParameterValues("satRating");
+				satRating = satRatingArr.length;
 				
 				Integer movNo = null;
 				Integer memNo = null;
@@ -43,7 +45,7 @@ public class SatServlet extends HttpServlet {
 				System.out.println("satRating= " + satRating);
 				System.out.println("movNo= " + movNo);
 				System.out.println("memNo= " + memNo);
-                 
+				
 				/***************************2.開始新增資料***************************************/				
 				SatService satSvc = new SatService();
 				satSvc.addSat(movNo, memNo, satRating);
