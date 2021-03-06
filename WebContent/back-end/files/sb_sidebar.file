@@ -1,0 +1,85 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+    <div class="sb-sidenav-menu">
+        <div class="nav">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#admin" aria-expanded="false" aria-controls="admin">
+                <div class="sb-nav-link-icon"><i class="fas fa-user-cog"></i></div>
+                管理員管理
+                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="admin" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                <nav class="sb-sidenav-menu-nested nav">
+                    <a class="nav-link" href="">管理員列表</a>
+                    <a class="nav-link" href="">管理員新增</a>
+                </nav>
+            </div>
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#member" aria-expanded="false" aria-controls="member">
+                <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                會員管理
+                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="member" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                <nav class="sb-sidenav-menu-nested nav">
+                    <a class="nav-link" href="">會員列表</a>
+                </nav>
+            </div>
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#order" aria-expanded="false" aria-controls="order">
+                <div class="sb-nav-link-icon"><i class="far fa-file-alt"></i></div>
+                訂單管理
+                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="order" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                <nav class="sb-sidenav-menu-nested nav">
+                    <a class="nav-link" href="">訂單列表</a>
+                </nav>
+            </div>
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#session" aria-expanded="false" aria-controls="session">                        
+                <div class="sb-nav-link-icon"><i class="far fa-clock"></i></div>
+                場次排程管理
+                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="session" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                <nav class="sb-sidenav-menu-nested nav">
+                    <a class="nav-link" href="">場次列表</a>
+                    <a class="nav-link" href="">場次新增</a>
+                </nav>
+            </div>
+            
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#movie" aria-expanded="false" aria-controls="movie">
+                <div class="sb-nav-link-icon"><i class="fas fa-film iconPos"></i></div>
+                電影資訊管理
+                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+            </a>
+            <div class="collapse" id="movie" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                <nav class="sb-sidenav-menu-nested nav">
+                    <a class="nav-link" href="">電影列表</a>
+                    <a class="nav-link" href="">電影新增</a>
+                </nav>
+            </div>
+            <a class="nav-link collapsed" href="#">
+                <div class="sb-nav-link-icon"><i class="fas fa-user-friends"></i></div>
+                即時客服管理
+            </a>
+            <a class="nav-link collapsed" href="#">
+                <div class="sb-nav-link-icon"><i class="fas fa-user-alt-slash"></i></div>
+                檢舉管理
+            </a>
+            <a class="nav-link collapsed" href="#">
+                <div class="sb-nav-link-icon"><i class="fab fa-fort-awesome-alt"></i></div>
+                影廳管理
+            </a>
+            <a class="nav-link collapsed" href="#">
+                <div class="sb-nav-link-icon"><i class="fas fa-utensils"></i></div>
+                餐點管理
+            </a>
+            <a class="nav-link collapsed" href="#">
+                <div class="sb-nav-link-icon"><i class="fa fa-bullhorn iconPos"></i></div>
+                公告管理
+            </a>
+            <a class="nav-link collapsed" href="#">
+                <div class="sb-nav-link-icon"><i class="fas fa-question-circle"></i></div>
+                FAQ管理
+            </a>
+        </div>
+    </div>
+</nav>

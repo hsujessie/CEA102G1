@@ -21,9 +21,11 @@
 thead > tr{
  	text-align: center;
 }
-
 .sty-height{
 	line-height:25px;
+}
+.table thead th{
+	width: 200px;
 }
 </style>
 </head>

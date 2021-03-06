@@ -31,6 +31,9 @@ thead > tr{
 	width: 650px;
 	margin-left: 7%;
 }
+.th-sty th{
+	width: 200px;
+}
 </style>
 </head>
 <body class="barber_version container-fluid">
@@ -43,11 +46,13 @@ thead > tr{
 
         <!-- Start Section-->
         <div id="section" class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-        	<div style="width: 1050px; box-sizing: border-box; padding: 2% 2% 2% 0;">
+        	<div style="box-sizing: border-box; padding: 2% 2% 2% 0;">
 	        	<h3 class="h3-style">電影查詢</h3>
-	            <table class="table table-responsive table-hover">
+	        	
+                <div class="table-responsive">
+	            <table id="dataTable" width="100%" cellspacing="0" class="table table-responsive table-hover">
 					<thead>
-						<tr style="border-bottom: 3px solid #bb9d52;">
+						<tr class="th-sty" style="border-bottom: 3px solid #bb9d52;">
 							<th>編號</th>
 							<th>名稱</th>
 							<th>種類</th>
@@ -89,6 +94,7 @@ thead > tr{
 						</c:forEach>
 					</tbody>
 				</table>
+				</div>
 				<%@ include file="pages/page2_ByCompositeQuery.file" %>
 			</div>
         </div><!-- end Section-->

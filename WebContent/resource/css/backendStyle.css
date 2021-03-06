@@ -44,8 +44,13 @@ ul, li, ol{
 	margin: 0px;
 	padding: 0px;
 }
-
-.sidebar-bgcolor{
+#sidebar{
+	position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+}
+.sidebar-bgcolor{    
 	background-color: rgb(187,157,82,0.2);
 }
 
