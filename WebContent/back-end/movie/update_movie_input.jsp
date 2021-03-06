@@ -220,13 +220,13 @@
 		<td><b>類型</b></td>
 		<td>
 			<select class="mr-left mr-btm-normal" name="movtype">
-				<option value= "劇情片" <c:forEach var="movVO" items="${movSvc.all}">  <c:if test="${movVO.movtype.contains('劇情片')}"> selected </c:if></c:forEach> >劇情片</option>
-				<option value= "動作片" <c:forEach var="movVO" items="${movSvc.all}">  <c:if test="${movVO.movtype.contains('動作片')}"> selected </c:if></c:forEach> >動作片</option>
-				<option value= "動畫片" <c:forEach var="movVO" items="${movSvc.all}">  <c:if test="${movVO.movtype.contains('動畫片')}"> selected </c:if></c:forEach> >動畫片</option>
-				<option value= "喜劇片" <c:forEach var="movVO" items="${movSvc.all}">  <c:if test="${movVO.movtype.contains('喜劇片')}"> selected </c:if></c:forEach> >喜劇片</option>
-				<option value= "愛情片" <c:forEach var="movVO" items="${movSvc.all}">  <c:if test="${movVO.movtype.contains('愛情片')}"> selected </c:if></c:forEach> >愛情片</option>
-				<option value= "科幻片" <c:forEach var="movVO" items="${movSvc.all}">  <c:if test="${movVO.movtype.contains('科幻片')}"> selected </c:if></c:forEach> >科幻片</option>
-				<option value= "恐怖片" <c:forEach var="movVO" items="${movSvc.all}">  <c:if test="${movVO.movtype.contains('恐怖片')}"> selected </c:if></c:forEach> >恐怖片</option>
+				<option <c:if test="${movVO.movtype.contains('劇情片')}"> selected </c:if>>劇情片</option>	
+				<option <c:if test="${movVO.movtype.contains('動作片')}"> selected </c:if>>動作片</option>
+				<option <c:if test="${movVO.movtype.contains('動畫片')}"> selected </c:if>>動畫片</option>
+				<option <c:if test="${movVO.movtype.contains('喜劇片')}"> selected </c:if>>喜劇片</option>
+				<option <c:if test="${movVO.movtype.contains('愛情片')}"> selected </c:if>>愛情片</option>
+				<option <c:if test="${movVO.movtype.contains('科幻片')}"> selected </c:if>>科幻片</option>
+				<option <c:if test="${movVO.movtype.contains('恐怖片')}"> selected </c:if>>恐怖片</option> 
 			</select>
 		</td>
 		<c:if test="${not empty errorMsgs.movtype}">
@@ -285,10 +285,10 @@
 		<td><b>級數</b></td>
 		<td>
 			<select class="mr-left mr-btm-normal" name="movrating">
-				<option value="普遍級" <c:forEach var="movVO" items="${movSvc.all}"><c:if test="${movVO.movrating.contains('普遍級')}"> selected </c:if></c:forEach> >普遍級</option>
-				<option value="保護級" <c:forEach var="movVO" items="${movSvc.all}"><c:if test="${movVO.movrating.contains('保護級')}"> selected </c:if></c:forEach> >保護級</option>
-				<option value="輔導級" <c:forEach var="movVO" items="${movSvc.all}"><c:if test="${movVO.movrating.contains('輔導級')}"> selected </c:if></c:forEach> >輔導級</option>
-				<option value="限制級" <c:forEach var="movVO" items="${movSvc.all}"><c:if test="${movVO.movrating.contains('限制級')}"> selected </c:if></c:forEach> >限制級</option>
+				<option <c:if test="${movVO.movrating.contains('普遍級')}"> selected </c:if>>普遍級</option>
+				<option <c:if test="${movVO.movrating.contains('保護級')}"> selected </c:if>>保護級</option>
+				<option <c:if test="${movVO.movrating.contains('輔導級')}"> selected </c:if>>輔導級</option>
+				<option <c:if test="${movVO.movrating.contains('限制級')}"> selected </c:if>>限制級</option>
 			</select>
 		</td>
 	</tr>
