@@ -12,6 +12,9 @@
 	.ml{
 		margin-left: 2px;
 	}
+	.str-color{
+		color: #bb9d52
+	}
 </style>
 </head>
 <body>
@@ -56,8 +59,8 @@
                         </div>
                         <div class="col-lg-11 col-md-11">                     
                             <form method="post" action="<%=request.getContextPath()%>/expectation/exp.do">                                                       
-	                            <input type="radio" name="expRating" value="1"><span class="ml">想看</span><i class="far fa-smile ml" style="color:#aa9166;"></i>&emsp;&emsp;
-	                            <input type="radio" name="expRating" value="0"><span class="ml">不想看</span><i class="far fa-meh ml" style="color:#aa9166;"></i>
+	                            <label><input type="radio" name="expRating" value="1"><span class="ml">想看</span><i class="far fa-smile ml" style="color:#aa9166;"></i></label>&emsp;&emsp;
+	                            <label><input type="radio" name="expRating" value="0"><span class="ml">不想看</span><i class="far fa-meh ml" style="color:#aa9166;"></i></label>
 
   								<input type="hidden" name="movNo" value="${movVO.movno}" />
   								<input type="hidden" name="memNo" value="1" /> <!-- 會員編號 外來鍵要配合db -->
@@ -74,11 +77,20 @@
                         </div>
                         <div class="col-lg-11 col-md-11">                   
                             <form method="post" action="<%=request.getContextPath()%>/satisfaction/sat.do">  
-                             	<span class="star" data-star = "1"><i class="fa fa-star" aria-hidden="true"></i></span>
+                            	<label><input type="checkbox" name="satRating" value="1" /><i class="fa fa-star" aria-hidden="true"></i></label>
+                            	<label><input type="checkbox" name="satRating" value="2" /><i class="fa fa-star" aria-hidden="true"></i></label>
+                            	
+                            	<!-- <label><input type="checkbox" name="satRating" value="1" style="display:none;" /><i class="fa fa-star" aria-hidden="true"></i></label>
+                            	<label><input type="checkbox" name="satRating" value="2" style="display:none;" /><i class="fa fa-star" aria-hidden="true"></i></label>
+                            	<label><input type="checkbox" name="satRating" value="3" style="display:none;" /><i class="fa fa-star" aria-hidden="true"></i></label>
+                            	<label><input type="checkbox" name="satRating" value="4" style="display:none;" /><i class="fa fa-star" aria-hidden="true"></i></label>
+                            	<label><input type="checkbox" name="satRating" value="5" style="display:none;" /><i class="fa fa-star" aria-hidden="true"></i></label> -->
+                             	
+                             	<!-- <span class="star" data-star = "1"><i class="fa fa-star" aria-hidden="true"></i></span>
                                 <span class="star" data-star = "2"><i class="fa fa-star" aria-hidden="true"></i></span>
                                 <span class="star" data-star = "3"><i class="fa fa-star" aria-hidden="true"></i></span>
                                 <span class="star" data-star = "4"><i class="fa fa-star" aria-hidden="true"></i></span>
-                                <span class="star" data-star = "5"><i class="fa fa-star" aria-hidden="true"></i></span>
+                                <span class="star" data-star = "5"><i class="fa fa-star" aria-hidden="true"></i></span> -->
 
   								<input type="hidden" name="movNo" value="${movVO.movno}" />
   								<input type="hidden" name="memNo" value="1" /> <!-- 會員編號 外來鍵要配合db -->
@@ -177,6 +189,19 @@
         
 <%@ include file="../files/comJsLinks.file"%>
 <script>
+	  $(document).ready(function () {
+	      $('input[name="satRating"]').click(function () {
+
+	        if ($(this).prop('checked')) { 
+	           console.log("Checked");
+	           $(this).next().addClass('str-color');
+	        }
+	        else {     
+	           console.log("Unchecked");
+	           $(this).next().removeClass('str-color');
+	        }
+	      });
+	  });
 </script>
 </body>
 </html>
