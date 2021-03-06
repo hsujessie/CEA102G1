@@ -12,7 +12,6 @@ public class SesVO implements Serializable{
 	private Time sesTime;
 	private String sesSeatStatus;
 	private String sesSeatNo;
-	private Integer sesOrder;
 	
 	public SesVO() {}
 
@@ -70,13 +69,5 @@ public class SesVO implements Serializable{
 
 	public void setSesSeatNo(String sesSeatNo) {
 		this.sesSeatNo = sesSeatNo;
-	}
-
-	public Integer getSesOrder() {
-		return sesOrder;
-	}
-
-	public void setSesOrder(Integer sesOrder) {
-		this.sesOrder = sesOrder;
 	}
 }

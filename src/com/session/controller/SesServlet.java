@@ -130,12 +130,16 @@ public class SesServlet extends HttpServlet {
                  if (theNoArr == null || theNoArr.length == 0) {
                 	 errorMsgs.put("theNo"," 請選擇廳院");
                      System.out.println("theNo is empty!");
-                 }else {
-                     for(int i = 0; i < theNoArr.length; i++) {                       
-                         theNo = new Integer(theNoArr[i]);
-                         System.out.println("theNo= " + theNo); 
-                     }
                  }
+//                 if (theNoArr == null || theNoArr.length == 0) {
+//                	 errorMsgs.put("theNo"," 請選擇廳院");
+//                     System.out.println("theNo is empty!");
+//                 }else {
+//                     for(int i = 0; i < theNoArr.length; i++) {                       
+//                         theNo = new Integer(theNoArr[i]);
+//                         System.out.println("theNo= " + theNo); 
+//                     }
+//                 }
                  
                  String sesDateBegin = req.getParameter("sesDateBegin").trim();
 	             String sesDateEnd = req.getParameter("sesDateEnd").trim();            
@@ -183,10 +187,12 @@ public class SesServlet extends HttpServlet {
                for(int i = 0; i < sesDateArr.length; i++) {
 	                 sesDate = Date.valueOf(sesDateArr[i]);  
                    for(int j = 0; j < sesTimeArr.length; j++) {
-                     sesTime = Time.valueOf(java.time.LocalTime.parse(sesTimeArr[j])); 
-                     /***************************2.開始新增資料***************************************/   
-                      sesSvc.addSes(movNo, theNo, sesDate, sesTime, null, null, 0);      //暫時寫死
-//   	              sesSvc.addSes(movNo, theNo, sesDate, sesTime, null, null, null);    
+                       sesTime = Time.valueOf(java.time.LocalTime.parse(sesTimeArr[j])); 
+                       for(int k = 0; k < theNoArr.length; k++) {                       
+                           theNo = new Integer(theNoArr[k]);
+                           /***************************2.開始新增資料***************************************/   
+                           sesSvc.addSes(movNo, theNo, sesDate, sesTime, null, null);      //暫時寫死
+                       }
                    }
                }
                                          

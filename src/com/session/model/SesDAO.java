@@ -27,11 +27,11 @@ public class SesDAO implements SesDAO_interface{
 
 	
 	private static final String INSERT_STMT =
-		"INSERT INTO SESSION (mov_no,the_no,ses_date,ses_time,ses_seat_status,ses_seatno,ses_order) VALUES (?,?,?,?,?,?,?)"; 
+		"INSERT INTO SESSION (mov_no,the_no,ses_date,ses_time,ses_seat_status,ses_seatno) VALUES (?,?,?,?,?,?)"; 
 	private static final String GET_ALL_STMT =
-		"SELECT ses_no,mov_no,the_no,ses_date,ses_time,ses_seat_status,ses_seatno,ses_order FROM SESSION ORDER BY ses_date DESC,ses_time ASC";
+		"SELECT ses_no,mov_no,the_no,ses_date,ses_time,ses_seat_status,ses_seatno FROM SESSION ORDER BY ses_date DESC,ses_time ASC,the_no ASC";
 	private static final String GET_ONE_STMT =
-		"SELECT ses_no,mov_no,the_no,ses_date,ses_time,ses_seat_status,ses_seatno,ses_order FROM SESSION WHERE ses_no=?";
+		"SELECT ses_no,mov_no,the_no,ses_date,ses_time,ses_seat_status,ses_seatno FROM SESSION WHERE ses_no=? ORDER BY ses_date DESC,ses_time ASC,the_no ASC";
 	private static final String UPDATE =
 		"UPDATE SESSION SET the_no=?,ses_date=?,ses_time=? WHERE ses_no=?";
 
@@ -50,7 +50,6 @@ public class SesDAO implements SesDAO_interface{
 			pstmt.setTime(4,sesVO.getSesTime());
 			pstmt.setString(5,sesVO.getSesSeatStatus());
 			pstmt.setString(6,sesVO.getSesSeatNo());
-			pstmt.setInt(7,sesVO.getSesOrder());
 			
 			pstmt.executeUpdate();
 			
@@ -136,7 +135,6 @@ public class SesDAO implements SesDAO_interface{
 				sesVO.setSesTime(rs.getTime("ses_time"));
 				sesVO.setSesSeatStatus(rs.getString("ses_seat_status"));
 				sesVO.setSesSeatNo(rs.getString("ses_seatno"));
-				sesVO.setSesOrder(rs.getInt("ses_order"));
 			}		
 			
 		} catch(SQLException se) {
@@ -192,7 +190,6 @@ public class SesDAO implements SesDAO_interface{
 				sesVO.setSesTime(rs.getTime("ses_time"));
 				sesVO.setSesSeatStatus(rs.getString("ses_seat_status"));
 				sesVO.setSesSeatNo(rs.getString("ses_seatno"));
-				sesVO.setSesOrder(rs.getInt("ses_order"));
 				list.add(sesVO);
 			}
 			
@@ -241,7 +238,7 @@ public class SesDAO implements SesDAO_interface{
 			
 			String finalSQL = "select * from session"
 			          		   + jdbcUtil_CompositeQuery_Session.get_WhereCondition(map)
-			          		   + " order by ses_date DESC,ses_time ASC";
+			          		   + " ORDER BY ses_date DESC,ses_time ASC,the_no ASC";
 			pstmt = con.prepareStatement(finalSQL);
 			System.out.println("●●finalSQL(by SesDAO) = "+finalSQL);
 			

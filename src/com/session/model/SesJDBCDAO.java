@@ -17,13 +17,13 @@ public class SesJDBCDAO implements SesDAO_interface{
 
 	
 	private static final String INSERT_STMT =
-		"INSERT INTO SESSION (mov_no,the_no,ses_date,ses_time,ses_seat_status,ses_seatno,ses_order) VALUES (?,?,?,?,?,?,?)"; 
+		"INSERT INTO SESSION (mov_no,the_no,ses_date,ses_time,ses_seat_status,ses_seatno) VALUES (?,?,?,?,?,?)"; 
 	private static final String GET_ALL_STMT =
-		"SELECT ses_no,mov_no,the_no,ses_date,ses_time,ses_seat_status,ses_seatno,ses_order FROM SESSION ORDER BY ses_no";
+		"SELECT ses_no,mov_no,the_no,ses_date,ses_time,ses_seat_status,ses_seatno FROM SESSION ORDER BY ses_no";
 	private static final String GET_ONE_STMT =
-		"SELECT ses_no,mov_no,the_no,ses_date,ses_time,ses_seat_status,ses_seatno,ses_order FROM SESSION WHERE ses_no=?";
+		"SELECT ses_no,mov_no,the_no,ses_date,ses_time,ses_seat_status,ses_seatno FROM SESSION WHERE ses_no=?";
 	private static final String UPDATE =
-		"UPDATE SESSION SET mov_no=?,the_no=?,ses_date=?,ses_time=?,ses_order=? WHERE ses_no=?";
+		"UPDATE SESSION SET mov_no=?,the_no=?,ses_date=?,ses_time=? WHERE ses_no=?";
 
 	@Override
 	public void insert(SesVO sesVO) {
@@ -41,7 +41,6 @@ public class SesJDBCDAO implements SesDAO_interface{
 			pstmt.setTime(4,sesVO.getSesTime());
 			pstmt.setString(5,sesVO.getSesSeatStatus());
 			pstmt.setString(6,sesVO.getSesSeatNo());
-			pstmt.setInt(7,sesVO.getSesOrder());
 			
 			pstmt.executeUpdate();
 			
@@ -82,8 +81,7 @@ public class SesJDBCDAO implements SesDAO_interface{
 			pstmt.setInt(2,sesVO.getTheNo());
 			pstmt.setDate(3,sesVO.getSesDate());
 			pstmt.setTime(4,sesVO.getSesTime());
-			pstmt.setInt(5,sesVO.getSesOrder());
-			pstmt.setInt(6,sesVO.getSesNo());
+			pstmt.setInt(5,sesVO.getSesNo());
 			
 			pstmt.executeUpdate();
 			
@@ -135,7 +133,6 @@ public class SesJDBCDAO implements SesDAO_interface{
 				sesVO.setSesTime(rs.getTime("ses_time"));
 				sesVO.setSesSeatStatus(rs.getString("ses_seat_status"));
 				sesVO.setSesSeatNo(rs.getString("ses_seatno"));
-				sesVO.setSesOrder(rs.getInt("ses_order"));
 			}		
 			
 		}  catch(ClassNotFoundException e) {
@@ -194,7 +191,6 @@ public class SesJDBCDAO implements SesDAO_interface{
 				sesVO.setSesTime(rs.getTime("ses_time"));
 				sesVO.setSesSeatStatus(rs.getString("ses_seat_status"));
 				sesVO.setSesSeatNo(rs.getString("ses_seatno"));
-				sesVO.setSesOrder(rs.getInt("ses_order"));
 				list.add(sesVO);
 			}
 			
@@ -242,7 +238,6 @@ public class SesJDBCDAO implements SesDAO_interface{
 		sesVO.setSesTime(null);
 		sesVO.setSesSeatStatus("9900");
 		sesVO.setSesSeatNo("A01");
-		sesVO.setSesOrder(1);
 		dao.insert(sesVO);
 		
 		// 修改
@@ -252,7 +247,6 @@ public class SesJDBCDAO implements SesDAO_interface{
 		sesVO2.setTheNo(1);
 		sesVO2.setSesDate(null);
 		sesVO2.setSesTime(null);
-		sesVO2.setSesOrder(1);
 		sesVO2.setSesNo(1);
 		dao.update(sesVO2);
 		
@@ -264,8 +258,7 @@ public class SesJDBCDAO implements SesDAO_interface{
 		System.out.print(sesVO3.getSesDate() + ",");
 		System.out.print(sesVO3.getSesTime() + ",");
 		System.out.print(sesVO3.getSesSeatStatus() + ",");
-		System.out.print(sesVO3.getSesSeatNo() + ",");
-		System.out.print(sesVO3.getSesOrder());
+		System.out.print(sesVO3.getSesSeatNo());
 		System.out.println("---------------------");
 		
 		// 查詢
@@ -277,8 +270,7 @@ public class SesJDBCDAO implements SesDAO_interface{
 			System.out.print(aSes.getSesDate() + ",");
 			System.out.print(aSes.getSesTime() + ",");
 			System.out.print(aSes.getSesSeatStatus() + ",");
-			System.out.print(aSes.getSesSeatNo() + ",");
-			System.out.print(aSes.getSesOrder());
+			System.out.print(aSes.getSesSeatNo());
 			System.out.println();
 		}
 	}

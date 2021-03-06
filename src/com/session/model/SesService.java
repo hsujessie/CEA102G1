@@ -12,7 +12,7 @@ public class SesService {
 		dao = new SesDAO();
 	}
 	
-	public SesVO addSes(Integer movNo, Integer theNo, Date sesDate, Time sesTime, String sesSeatStatus, String sesSeatNo, Integer sesOrder) {
+	public SesVO addSes(Integer movNo, Integer theNo, Date sesDate, Time sesTime, String sesSeatStatus, String sesSeatNo) {
 		SesVO sesVO = new SesVO();
 		sesVO.setMovNo(movNo);
 		sesVO.setTheNo(theNo);
@@ -20,7 +20,6 @@ public class SesService {
 		sesVO.setSesTime(sesTime);
 		sesVO.setSesSeatStatus(sesSeatStatus);
 		sesVO.setSesSeatNo(sesSeatNo);
-		sesVO.setSesOrder(sesOrder);
 		dao.insert(sesVO);
 		
 		return sesVO;
