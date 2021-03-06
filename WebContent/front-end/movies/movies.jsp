@@ -37,13 +37,15 @@
                     <div class="row">
                         <div class="col-12">
                             <ul id="movies-flters">
-                                <li data-filter="*" class="filter-active">All</li>
-                                <li data-filter=".first">Now Showing</li>
-                                <li data-filter=".second">Comming Soon</li>
+                                <li <c:if test="${empty nowShowing && empty commingSoon}">class="filter-active"</c:if> ><a href="${movies}">All</a></li>
+                                <li <c:if test="${not empty nowShowing}">class="filter-active"</c:if> ><a href="<%=request.getContextPath()%>/movie/mov.do?action=now_Showing">Now Showing</a></li>
+                                <li <c:if test="${not empty commingSoon}">class="filter-active"</c:if> ><a href="<%=request.getContextPath()%>/movie/mov.do?action=comming_Soon">Comming Soon</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="row movies-container">
+                    
+						<c:if test="${empty nowShowing && empty commingSoon}">	
 						<c:forEach var="movVO" items="${movSvc.all}" >
 							<c:if test="${not empty movVO.movpos}">						    
 		                        <div class="col-lg-4 col-md-6 col-sm-12 movies-item">
@@ -58,6 +60,43 @@
 		                        </div>
 	                        </c:if>
 						</c:forEach>
+	                    </c:if>
+						
+						<!-- Now Showing -->
+						<c:if test="${not empty nowShowing}">	
+						<c:forEach var="movVO" items="${nowShowing}" >
+							<%-- <c:if test="${not empty movVO.movpos}">	 --%>					    
+		                        <div class="col-lg-4 col-md-6 col-sm-12 movies-item">
+		                            <div class="movies-wrap" onclick="sendData(this,${movVO.movno})" style="cursor:pointer;">
+		                                <img src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movpos&action=get_One_MovPos" alt="Movies Image">
+		                                <figure>
+		                                    <p><img style="width:100%; max-width: 40px;" src="<%=request.getContextPath()%>/resource/images/logos/seenema_W.ico" alt="Logo"></p>
+		                                    <a href="<%=request.getContextPath()%>/movie/mov.do?action=getOne_For_Display&fromFrontend=true&movno=${movVO.movno}">${movVO.movname}</a>
+		                                    <span>${movVO.movondate}</span>
+		                                </figure>
+		                            </div>
+		                        </div>
+	                       <%--  </c:if> --%>
+						</c:forEach>
+	                    </c:if>
+	                    
+						<!-- Comming Soon -->
+						<c:if test="${not empty commingSoon}">	
+						<c:forEach var="movVO" items="${commingSoon}" >
+							<%-- <c:if test="${not empty movVO.movpos}">		 --%>				    
+		                        <div class="col-lg-4 col-md-6 col-sm-12 movies-item">
+		                            <div class="movies-wrap" onclick="sendData(this,${movVO.movno})" style="cursor:pointer;">
+		                                <img src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movpos&action=get_One_MovPos" alt="Movies Image">
+		                                <figure>
+		                                    <p><img style="width:100%; max-width: 40px;" src="<%=request.getContextPath()%>/resource/images/logos/seenema_W.ico" alt="Logo"></p>
+		                                    <a href="<%=request.getContextPath()%>/movie/mov.do?action=getOne_For_Display&fromFrontend=true&movno=${movVO.movno}">${movVO.movname}</a>
+		                                    <span>${movVO.movondate}</span>
+		                                </figure>
+		                            </div>
+		                        </div>
+	                        <%-- </c:if> --%>
+						</c:forEach>
+	                    </c:if>
                     </div>
                 </div>
             </div>

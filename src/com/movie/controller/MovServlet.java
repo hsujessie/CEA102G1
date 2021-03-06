@@ -2,6 +2,8 @@
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -614,6 +616,45 @@ public class MovServlet extends HttpServlet{
 				failureView.forward(req, res);
 			}
 		}
+		
+
+		// 來自frontend movies.jsp的請求
+		if("now_Showing".equals(action)) {
+			MovService movSvc = new MovService();
+			List<MovVO> list = movSvc.getAll();
+		    MovVO movObj = null;
+			Date date = new Date();
+			List<MovVO> nowShowingList = new ArrayList<MovVO>();
+			for(int i = 0; i < list.size(); i++) {
+				movObj = (MovVO)list.get(i);
+				if (movObj.getMovondate().before(date)) {
+				    System.out.println("now_Showing======" + movObj.getMovondate());
+				    nowShowingList.add(movObj);
+				    req.setAttribute("nowShowing", nowShowingList);
+				}
+			}
+			RequestDispatcher successView = req.getRequestDispatcher("/front-end/movies/movies.jsp");
+			successView.forward(req, res);
+		}
+		
+		if("comming_Soon".equals(action)) {
+			MovService movSvc = new MovService();
+			List<MovVO> list = movSvc.getAll();
+		    MovVO movObj = null;
+			Date date = new Date();
+			List<MovVO> commingSoonList = new ArrayList<MovVO>();
+			for(int i = 0; i < list.size(); i++) {
+				movObj = (MovVO)list.get(i);
+				if (movObj.getMovondate().after(date)) {
+				    System.out.println("comming_Soon======" + movObj.getMovondate());
+				    commingSoonList.add(movObj);
+				    req.setAttribute("commingSoon", commingSoonList);
+				}
+			}
+			RequestDispatcher successView = req.getRequestDispatcher("/front-end/movies/movies.jsp");
+			successView.forward(req, res);
+		}
+	
 	} 
 	
 	public String[] token(String str, String[] token){
