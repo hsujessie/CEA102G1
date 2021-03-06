@@ -48,12 +48,6 @@
   	padding-left: 3%;
   	color: #bb9d52;
   }
-  #timetb tbody{
-  	border-bottom: 2px dotted #bb9d52;
-  }
-  #timetb th{
-  	line-height: 28px;
-  }
   #addtime, #delete{
     border: transparent;
     color: #fff;
@@ -80,7 +74,7 @@
 <body>
 <FORM class="center-linehigh-content" style="width:100%; margin: 6% 0 0 23%;" method="post" action="<%=request.getContextPath()%>/session/ses.do" name="form_addSession" enctype="multipart/form-data">
 <table class="add-mov-table">
-	<tr style="line-height: 50px;">	
+	<tr>	
 		<%-- <jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService"/> --%>
 		<td><b>電影</b></td>
 		<td>
@@ -89,6 +83,7 @@
 		    <span>${sesVO.movNo}</span>
 		</td>
 	</tr>
+	<tr style="line-height: 28px;"></tr>
 	<tr>
 		<td><b>廳院</b></td>
 		<td style="padding-left: 10px;">
@@ -104,11 +99,11 @@
 			</td>
 		</c:if>
 	</tr>
+	<tr style="line-height: 28px;"></tr>
 	<tr>
 		<td><b>日期</b></td>
 		<td>
-			<input class="sty-input" name="sesDateBegin" id="" type="date" value="${sesVO.sesDate}" style="margin-left: 10px;"> 
-	        ~<input class="sty-input" name="sesDateEnd" id="" type="date" value="">
+			<input class="sty-input" name="sesDate" id="" type="date" value="${sesVO.sesDate}" style="margin-left: 10px;">
 		</td>
 		<c:if test="${not empty errorMsgs.sesDate}">
 			<td class="errmsg-pos">		
@@ -117,30 +112,13 @@
 			</td>
 		</c:if>
 	</tr>
+	<tr style="line-height: 28px;"></tr>
 	<tr>
-		<td>	
-			<input id="addtime" type="button" value="新增時間">
+		<td><b>時間</b></td>
+		<td style="padding-left: 10px;">	
+		    <input class="sty-input" type="time" name="sesTime" value="${sesVO.sesTime}">
 		</td>
 	</tr>
-</table>
-
-<table id="timetb" style="width:200px; display:${(not empty sesVO.sesTime)? none: block};">
-	<tr>
-		<th><b>編號</b></th>
-		<th style="padding-left: 10px;"><b>時間</b></th>
-	</tr>
-   <c:forEach var="sesVO" items="${sesSvc.all}" varStatus="no" >
-		<tr>
-		    <td>${no.index+1}</td>
-		    <td>1</td>
-		    <td>
-		        <input type="time" name="sesTime" value="${sesVO.sesTime}">
-		    </td>
-		    <td>
-		        <input type="button" value="刪除" id="delete" onclick="removeTr(this)">
-		    </td>
-		</tr>
-	</c:forEach>
 </table>
 <br>
 <input type="hidden" name="action" value="update">
@@ -152,21 +130,4 @@
 </a>
 </FORM>
 </body>
-<script>
-	let addtime = document.getElementById("addtime");
-	let i = 0;
-	addtime.addEventListener("click",function(){
-		i+=1;
-		let timetb = document.getElementById("timetb");
-		timetb.style.display="block";
-		let tag = "<tr><td>"+i+"</td><td><input type="+"\""+"time"+"\""+"name="+"\""+"sestime"+"\""+"></td><td><input type="+"\""+"button"+"\""+"value="+"\""+"刪除"+"\""+"id="+"\""+"delete"+"\""+"onclick='removeTr(this)'></td></tr>";
-		timetb.innerHTML += tag;
-		
-	},false);
-	
-	function removeTr(e){
-		i--;
-		e.closest('tr').remove();
-	}
-</script>
 </html>
