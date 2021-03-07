@@ -1,6 +1,7 @@
 package com.session.model;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -276,6 +277,69 @@ public class SesDAO implements SesDAO_interface{
 					con.close();
 				}catch(SQLException se) {
 					se.printStackTrace(System.err);
+				}
+			}
+		}
+		
+		return list;
+	}
+
+	@Override
+	public List<SesVO> findMoviesBySesDate(Date sesDateBegin, Date sesDateEnd) {
+		List<SesVO> list = new ArrayList<SesVO>();
+		SesVO sesVO = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = ds.getConnection();
+			
+//			select * from session where ses_date >= '2021-03-07'  and ses_date <= '2021-03-08'  ORDER BY ses_date DESC,ses_time ASC,the_no ASC
+			String getMoviesBySesDate = "select * from session where ses_date >= '"
+	          		   + sesDateBegin + "' and ses_date <= '" + sesDateEnd
+	          		   + "' ORDER BY ses_date DESC,ses_time ASC,the_no ASC";
+			
+			System.out.println("getMoviesBySesDate= " + getMoviesBySesDate);
+			pstmt = con.prepareStatement(getMoviesBySesDate);
+			rs = pstmt.executeQuery();			
+			while(rs.next()){
+				sesVO = new SesVO();
+				sesVO.setSesNo(rs.getInt("ses_no"));
+				sesVO.setMovNo(rs.getInt("mov_no"));
+				sesVO.setTheNo(rs.getInt("the_no"));
+				sesVO.setSesDate(rs.getDate("ses_date"));
+				sesVO.setSesTime(rs.getTime("ses_time"));
+				sesVO.setSesSeatStatus(rs.getString("ses_seat_status"));
+				sesVO.setSesSeatNo(rs.getString("ses_seatno"));
+				list.add(sesVO);
+			}
+			
+		} catch(SQLException se) {
+			throw new RuntimeException("SesDAO findMoviesBySesDate A database error occured. " + se.getMessage());	
+		} finally {
+			if(rs != null) {
+				try {
+					rs.close();
+				}catch(SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				}catch(SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			
+			if(con != null) {
+				try {
+					con.close();
+				}catch(Exception e) {
+					e.printStackTrace(System.err);
 				}
 			}
 		}

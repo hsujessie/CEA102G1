@@ -1,6 +1,7 @@
 package com.session.model;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -277,6 +278,12 @@ public class SesJDBCDAO implements SesDAO_interface{
 
 	@Override
 	public List<SesVO> getAll(Map<String, String[]> map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<SesVO> findMoviesBySesDate(Date sesDateBegin, Date sesDateEnd) {
 		// TODO Auto-generated method stub
 		return null;
 	}

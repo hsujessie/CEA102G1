@@ -48,4 +48,8 @@ public class SesService {
 	public List<SesVO> getAll(Map<String, String[]> map) {
 		return dao.getAll(map);
 	}
+
+	public List<SesVO> findMoviesBySesDate(Date sesDateBegin, Date sesDateEnd) {
+		return dao.findMoviesBySesDate(sesDateBegin,sesDateEnd);
+	}
 }

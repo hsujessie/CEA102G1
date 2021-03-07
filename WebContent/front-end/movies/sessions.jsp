@@ -43,8 +43,7 @@
 		                        <input class="sty-input" name="sesDateBegin" id="" type="date" value="" style="margin-left: 10px;"> 
 		                        ~<input class="sty-input" name="sesDateEnd" id="" type="date" value="">
 		                        
-		                        <input type="hidden" name="action" value="listSessions_ByCompositeQuery">
-		                        <input type="hidden" name="action_from" value="frontend">
+		                        <input type="hidden" name="action" value="searchSesDate">
 								<input type="submit" value="搜尋" class="combtn">
 	                    	</FORM>                    
                         </div>
@@ -64,27 +63,25 @@
 		                                <div class="col-7">
 		                                    <h3>${movVO.movname}</h3>
 		                                    
-		                                    <p><c:forEach var="sesVO" items="${sesSvc.all}" >
-			                                    	<c:if test="${sesVO.movNo == movVO.movno}">
-			                                    		${sesVO.sesDate}&emsp;
-			                                    	</c:if>
-		                                    	</c:forEach>
-		                                    </p>
+		                                    <c:if test="${empty getMovies_BySesDate}">
+			                                    <p><c:forEach var="sesVO" items="${sesSvc.all}" >
+				                                    	<c:if test="${sesVO.movNo == movVO.movno}">
+				                                    		${sesVO.sesDate}&emsp;
+				                                    	</c:if>
+			                                    	</c:forEach>
+			                                    </p>
+		                                    </c:if>
 		                                    
-		                                    <!-- 取不到 listSessions_ByCompositeQuery ??? -->
-		                                    <%-- <%=request.getAttribute("listSessions_ByCompositeQuery") != null%>
-		                                    <c:forEach var="sesVO" items="${listSessions_ByCompositeQuery}" >
-		                                    	${sesVO.sesNo}
-		                                    </c:forEach> --%>
-		                                    <%-- <c:if test="${fromFrontend}">		                                    
-		                                     <p>
-		                                    	<c:forEach var="sesVO" items="${listSessions_ByCompositeQuery}" >
-			                                    	<c:if test="${sesVO.movNo == movVO.movno}">
-			                                    		${sesVO.sesDate}&emsp;
-			                                    	</c:if>
-		                                    	</c:forEach>
-		                                    </p>
-		                                    </c:if> --%>
+		                                    
+		                                    <c:if test="${not empty getMovies_BySesDate}">		                                    
+			                                     <p>
+			                                    	<c:forEach var="sesVO" items="${getMovies_BySesDate}" >
+				                                    	<c:if test="${sesVO.movNo == movVO.movno}">
+				                                    		${sesVO.sesDate}&emsp;
+				                                    	</c:if>
+			                                    	</c:forEach>
+			                                    </p>
+		                                    </c:if>
 		                                    
 		                                </div>
 		                            </div>

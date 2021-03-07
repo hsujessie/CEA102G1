@@ -104,15 +104,8 @@ public class SesServlet extends HttpServlet {
 			
 			/***************************3.查詢完成,準備轉交(Send the Success view)************/
 			req.setAttribute("listSessions_ByCompositeQuery", list); // 資料庫取出的list物件,存入request
-			String url = "/back-end/session/listSessions_ByCompositeQuery.jsp";
 			
-			//sessions.jsp 前台 取不到 listSessions_ByCompositeQuery ??? 
-			String action_from = req.getParameter("action_from");
-			if("frontend".equals(action_from) ) {
-				url = "/front-end/movies/sessions.jsp";
-			}
-			
-			RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交listSessions_ByCompositeQuery.jsp
+			RequestDispatcher successView = req.getRequestDispatcher("/back-end/session/listSessions_ByCompositeQuery.jsp"); // 成功轉交listSessions_ByCompositeQuery.jsp
 			successView.forward(req, res);
 			
 			/***************************其他可能的錯誤處理**********************************/
@@ -310,6 +303,32 @@ public class SesServlet extends HttpServlet {
 			}			
 		}
 		
+		// 來自frontend sessions.jsp的請求
+		if ("searchSesDate".equals(action)) {
+			try {
+				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
+                 String sesDateBeginStr = req.getParameter("sesDateBegin").trim();
+	             String sesDateEndStr = req.getParameter("sesDateEnd").trim();         
+	             java.sql.Date sesDateBegin = null;
+	             java.sql.Date sesDateEnd = null;
+	             sesDateBegin = Date.valueOf(sesDateBeginStr);  
+	             sesDateEnd = Date.valueOf(sesDateEndStr);  
+                       
+	    	    /***************************2.開始修改資料*****************************************/ 
+ 	            SesService sesSvc = new SesService();
+				List<SesVO> list  =  sesSvc.findMoviesBySesDate(sesDateBegin, sesDateEnd);
+				req.setAttribute("getMovies_BySesDate",list); 
+	            
+				/***************************3.修改完成,準備轉交(Send the Success view)*************/		            
+				RequestDispatcher successView = req.getRequestDispatcher("/front-end/movies/sessions.jsp");
+				successView.forward(req, res);
+
+				/***************************其他可能的錯誤處理*************************************/
+			}catch (Exception e) {
+				System.out.println("修改資料失敗 " + e.getMessage());
+				return;
+			}		
+		}
 		
 		
 		
