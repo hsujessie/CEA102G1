@@ -8,6 +8,14 @@
 <title>Movies</title>
 <%@ include file="../files/comCssLinks.file"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/movie/frontendMovies.css">
+
+<style>
+#movies-flters a:hover,
+#movies-flters a:active,
+#movies-flters a:focus {
+    color: #454545;
+}
+</style>
 </head>
 <body>
         <div class="wrapper">

@@ -31,9 +31,23 @@
 
 
             <jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService"/>
+            <jsp:useBean id="sesSvc" scope="page" class="com.session.model.SesService"/>
             <!-- Sessions Start -->
             <div class="session">
                 <div class="container">
+                    <div class="row">
+                        <div class="col-12">                          
+                           	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/session/ses.do">	
+		                        <b>場次日期</b>
+		                        <input class="sty-input" name="sesDateBegin" id="" type="date" value="" style="margin-left: 10px;"> 
+		                        ~<input class="sty-input" name="sesDateEnd" id="" type="date" value="">
+		                      
+		                        <input type="hidden" name="action" value="listSessions_ByCompositeQuery">
+								<input type="submit" value="搜尋" class="combtn">
+	                    	</FORM>                    
+                        </div>
+                    </div>
+                    
                     <div class="row">
                         <div class="col-md-12">
                         
@@ -47,7 +61,12 @@
 		                                </div>
 		                                <div class="col-7">
 		                                    <h3>${movVO.movname}</h3>
-		                                    <p></p>
+		                                    <p><c:forEach var="sesVO" items="${sesSvc.all}" >
+			                                    	<c:if test="${sesVO.movNo == movVO.movno}">
+			                                    		${sesVO.sesDate}&emsp;
+			                                    	</c:if>
+		                                    	</c:forEach>
+		                                    </p>
 		                                </div>
 		                            </div>
 	                            </c:if>
