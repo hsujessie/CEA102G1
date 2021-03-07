@@ -15,6 +15,14 @@
 	<%@ include file="../files/sb_head.file"%>
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/backendStyles.css">
 </head>
+<style>
+	.success-span{
+	    color: #bb9d52;
+		position: absolute;
+	    top: 10%;
+	    left: 17%;
+	}
+</style>
 <body class="sb-nav-fixed">
 		<%@ include file="../files/sb_navbar.file"%> <!-- 引入snavbar (上方) -->
         <div id="layoutSidenav">
@@ -28,13 +36,13 @@
                     	<!-- listSession Start -->
                     	<h3 class="h3-style" style="display: inline-block;">場次列表&ensp;</h3>
 						<c:if test="${addSuccess != null}">
-							<span style="color: #bb9d52">  
+							<span class="success-span">  
 								${addSuccess}
 								<i class="fa fa-hand-peace-o"></i>
 							</span>
 						</c:if>
 						<c:if test="${updateSuccess != null }">
-							<span style="color: #bb9d52">  
+							<span class="success-span">  
 								${updateSuccess}
 								<i class="far fa-laugh-wink"></i>
 							</span>

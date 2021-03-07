@@ -223,24 +223,18 @@ public class SesServlet extends HttpServlet {
 				SesVO sesVO = sesSvc.getOneSes(sesNo);
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
-				String url = requestURL;
-				System.out.println("requestURL= " + requestURL);
-	            if(requestURL.equals("/back-end/session/listSessions_ByCompositeQuery.jsp")){
+				if(requestURL.equals("/back-end/session/listSessions_ByCompositeQuery.jsp")){
 					HttpSession session = req.getSession();
 					Map<String, String[]> map = (Map<String, String[]>)session.getAttribute("map");
 					List<SesVO> list  = sesSvc.getAll(map);
 					req.setAttribute("listSessions_ByCompositeQuery",list); // 複合查詢, 資料庫取出的list物件,存入
 					Boolean cssForListSessionsByCompositeQuery = true;
 					req.setAttribute("cssForListSessionsByCompositeQuery",cssForListSessionsByCompositeQuery);
-					url = "/back-end/session/update_session_input.jsp";
 				}
 	            
-	            req.setAttribute("sesVO", sesVO); 
-	            
-				Boolean openUpdateLightbox = true;
-				req.setAttribute("openUpdateLightbox", openUpdateLightbox);
+	            req.setAttribute("sesVO", sesVO);
 	
-				RequestDispatcher successView = req.getRequestDispatcher(url);
+				RequestDispatcher successView = req.getRequestDispatcher("/back-end/session/update_session_input.jsp");
 				successView.forward(req, res);
 	
 				/***************************其他可能的錯誤處理**********************************/
@@ -287,17 +281,20 @@ public class SesServlet extends HttpServlet {
 				
 				String updateSuccess = "【 場次 】" + "修改成功";
 				req.setAttribute("updateSuccess", updateSuccess);
-				Boolean openUpdateLightbox = false;
-				req.setAttribute("openUpdateLightbox", openUpdateLightbox); //update success不要跳出燈箱
 				
 				String url = requestURL;
 				System.out.println("url= " + url);
+				if(requestURL.equals("/back-end/session/update_session_input.jsp")){
+					url = "/back-end/session/listAllSession.jsp";
+				}
+				
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 
 				/***************************其他可能的錯誤處理*************************************/
 			}catch (Exception e) {
 				System.out.println("修改資料失敗 " + e.getMessage());
+				
 				RequestDispatcher failureView = req.getRequestDispatcher(requestURL);
 				failureView.forward(req, res);
 			}			

@@ -556,7 +556,7 @@ public class MovServlet extends HttpServlet{
 				req.setAttribute("updateSuccess", updateSuccess);
 
 				String url = requestURL;
-				System.out.println("requestURL= " + requestURL);
+				System.out.println("url= " + url);
 				if(requestURL.equals("/back-end/movie/update_movie_input.jsp")){
 					url = "/back-end/movie/listAllMovie.jsp";
 				}
@@ -566,7 +566,7 @@ public class MovServlet extends HttpServlet{
 
 				/***************************其他可能的錯誤處理*************************************/
 			}catch (Exception e) {
-				errorMsgs.put("Exception","修改資料失敗:"+e.getMessage());
+				errorMsgs.put("Exception","修改資料失敗:" + e.getMessage());
 				
 				RequestDispatcher failureView = req.getRequestDispatcher(requestURL);
 				failureView.forward(req, res);
