@@ -8,48 +8,38 @@
 <html>
 <head>
 	<title>場次新增</title>	
-	<!-- Common CSS -->
-	<%@ include file="../files/comCssLinks.file"%>
-	<!-- Your custom styles (optional) -->
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/movie/backendMovie.css">
+	<%@ include file="../files/sb_head.file"%>
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/backendStyles.css">
+
 <style>
-  .err-color{
-    font-size: 12px;
-    text-shadow: 0 0 0.2em #f87, 0 0 0.2em #f87;
+  table {
+	width: 750px;
+	margin: 5px auto 5px auto;
+    background-color: rgb(255,255,255);
+    border-radius: 10px;
+	-webkit-box-shadow: 0px 3px 5px rgb(8,8,8, 0.3);
+	-moz-box-shadow: 0px 3px 5px rgb(8,8,8, 0.3);
+	box-shadow: 0px 3px 5px rgb(8,8,8, 0.3);
   }
-  .errmsg-pos{
-  	padding-left: 15%;
-  	width: 290px;
+  th,td{
+  	box-sizing:border-box;
+    border-radius: 10px;
   }
-  .sty-input{
-	text-decoration: none;    
-	border-color: transparent;
-    width: 150px;
-    border-bottom: 2px dashed #bb9d52;
-    box-sizing: border-box;
-    padding-bottom: 3px;
-    color: #bb9d52;
-	line-hight: 5px;
+  th{
+  	width: 200px;
+  	padding: 10px 0px 10px 70px;
   }
-  .mr-btm-sm{
-    margin-bottom: 5%;
+  td{
+  	width: 250px;
+  	padding: 10px 20px 10px 30px;
+    border-bottom: 2px dotted #bb9d52;
   }
-  .fake-txt::after{
-   	content: "小時";
-    color: #bb9d52;
-    position: absolute;
-    top: 40%;
-    left: 67%;
-    right: 0;
-    bottom: 0;
+  .listOne-h3-pos{
+  	display: inline-block;	
+  	margin-left: 45%;
   }
-  .add-mov-table tr{
-  	height: 30px;
-  }
-  .add-mov-table span{
-  	box-sizing: border-box;
-  	padding-left: 3%;
-  	color: #bb9d52;
+  .ml-ten{
+  	margin-left: 10px;
   }
   #timetb tbody{
   	border-bottom: 2px dotted #bb9d52;
@@ -63,73 +53,90 @@
     box-sizing: border-box;
     padding: 10px;
     border-radius: 10px;
-}
+    font-size: 16px;
   }
 </style>
-
 </head>
-<body>
-<FORM class="center-linehigh-content" style="width:100%; margin: 6% 0 0 23%;" method="post" action="<%=request.getContextPath()%>/session/ses.do" name="form_addSession" enctype="multipart/form-data">
-<table class="add-mov-table">
-	<tr style="line-height: 50px;">
-	
-		<jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService"/>
-		<td><b>電影</b></td>
-		<td>
-			<select name="movNo">
-	             <option value=""></option>
-	             <c:forEach var="movVO" items="${movSvc.all}" >
-	             	<option value="${movVO.movno}">${movVO.movname}
-	             </c:forEach>
-             </select>
-		</td>
-	</tr>
-	<tr>
-		<td><b>廳院</b></td>
-		<td style="padding-left: 10px;">
-			<!-- 多選checkbox -->
-			<input class="mr-left mr-btm-sm" type="checkbox" name="theNo" value="1"><span>Ａ廳(2D)</span><br>
-			<input class="mr-left mr-btm-sm" type="checkbox" name="theNo" value="2"><span>B廳(3D)</span><br>
-			<input class="mr-left mr-btm-sm" type="checkbox" name="theNo" value="3"><span>C廳(IMAX)</span><br>
-		</td>
-		<c:if test="${not empty errorMsgs.theNo}">
-			<td class="errmsg-pos">		
-				<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
-				<label class="err-color">${errorMsgs.theNo}</label>
-			</td>
-		</c:if>
-	</tr>
-	<tr>
-		<td><b>日期</b></td>
-		<td>
-			<input class="sty-input" name="sesDateBegin" id="" type="date" value="" style="margin-left: 10px;"> 
-	        ~<input class="sty-input" name="sesDateEnd" id="" type="date" value="">
-		</td>
-		<c:if test="${not empty errorMsgs.sesDate}">
-			<td class="errmsg-pos">		
-				<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
-				<label class="err-color">${errorMsgs.sesDate}</label>
-			</td>
-		</c:if>
-	</tr>
-	<tr>
-		<td>	
-			<input id="addtime" type="button" value="新增時間">
-		</td>
-	</tr>
-</table>
-<table id="timetb" style="width:200px; display:none;">
-	<tr>
-		<th><b>編號</b></th>
-		<th style="padding-left: 10px;"><b>時間</b></th>
-	</tr>
-</table>
-<br>
-<input type="hidden" name="action" value="insert">
-<a class="btn btn-light btn-brd grd1 effect-1 btn-pos">
-	<input type="submit" value="送出" class="input-pos">
-</a>
-</FORM>
+<body class="sb-nav-fixed">
+		<%@ include file="../files/sb_navbar.file"%> <!-- 引入snavbar (上方) -->
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+				<%@ include file="../files/sb_sidebar.file"%> <!-- 引入sidebar (左方) -->
+            </div>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid">
+                    
+                       <!-- addSession Start -->  
+						<FORM method="post" action="<%=request.getContextPath()%>/session/ses.do" name="form_addSession"  enctype="multipart/form-data">
+						<h3 class="h3-style listOne-h3-pos">電影新增&ensp;</h3>
+						<table>
+							<tr>
+							<jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService"/>
+								<th>電影</th>
+								<td>
+									<select name="movNo">
+							             <option value=""></option>
+							             <c:forEach var="movVO" items="${movSvc.all}" >
+							             	<option value="${movVO.movno}">${movVO.movname}
+							             </c:forEach>
+						             </select>
+								</td>
+							</tr>
+							<tr>
+								<th>廳院</th>
+								<td>
+									<!-- 多選checkbox -->
+									<input class="mr-left mr-btm-sm" type="checkbox" name="theNo" value="1"><span class="ml-ten">A廳 (2D)</span><br>
+									<input class="mr-left mr-btm-sm" type="checkbox" name="theNo" value="2"><span class="ml-ten">B廳 (3D)</span><br>
+									<input class="mr-left mr-btm-sm" type="checkbox" name="theNo" value="3"><span class="ml-ten">C廳 (IMAX)</span><br>
+								</td>
+								<c:if test="${not empty errorMsgs.theNo}">
+									<td class="errmsg-pos">		
+										<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
+										<label class="err-color">${errorMsgs.theNo}</label>
+									</td>
+								</c:if>
+							</tr>
+							<tr>
+								<th>日期</th>
+								<td>
+									<input class="sty-input" name="sesDateBegin" id="" type="date" value=""> 
+							        ~ <input class="sty-input" name="sesDateEnd" id="" type="date" value="">
+								</td>
+								<c:if test="${not empty errorMsgs.sesDate}">
+									<td class="errmsg-pos">		
+										<i class="fa fa-hand-o-left" style="color:#bb9d52"></i>
+										<label class="err-color">${errorMsgs.sesDate}</label>
+									</td>
+								</c:if>
+							</tr>
+							<tr>
+								<th>	
+									<input id="addtime" type="button" value="新增時間">
+								</th>
+							</tr>
+						</table>
+						<table id="timetb" style="display:none;">
+							<tr>
+								<th>編號</th>
+								<th style="padding-left: 10px;">時間</th>
+							</tr>
+						</table>
+						<br>
+						<input type="hidden" name="action" value="insert">
+						<a class="btn btn-light btn-brd grd1 effect-1 btn-pos" style="margin: 1% 0 1% 50%;" >
+							<input type="submit" value="送出" class="input-pos">
+						</a>
+						</FORM>
+                       <!-- addSession End -->
+                    
+                    </div>
+                </main>
+                <%@ include file="../files/sb_footer.file"%>
+            </div>
+        </div>
+		<%@ include file="../files/sb_importJs.file"%> <!-- 引入template要用的js -->
 </body>
 <script>
 	let addtime = document.getElementById("addtime");
@@ -138,7 +145,7 @@
 		i+=1;
 		let timetb = document.getElementById("timetb");
 		timetb.style.display="block";
-		let tag = "<tr><td>"+i+"</td><td><input type="+"\""+"time"+"\""+"name="+"\""+"sesTime"+"\""+"></td><td><input type="+"\""+"button"+"\""+"value="+"\""+"刪除"+"\""+"id="+"\""+"delete"+"\""+"onclick='removeTr(this)'></td></tr>";
+		let tag = "<tr><th>"+i+"</th><td><input type="+"\""+"time"+"\""+"name="+"\""+"sesTime"+"\""+"></td><td><input type="+"\""+"button"+"\""+"value="+"\""+"刪除"+"\""+"id="+"\""+"delete"+"\""+"onclick='removeTr(this)'></td></tr>";
 		timetb.innerHTML += tag;
 		
 	},false);
