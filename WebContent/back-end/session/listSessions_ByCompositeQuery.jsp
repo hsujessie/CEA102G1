@@ -45,7 +45,7 @@
 									<td>${sesVO.getSesTime()}</td>
 									<td>${sesVO.getTheNo()}</td>
 									<td>
-									   <a class="btn btn-light btn-brd grd1 effect-1">
+									   <a class="btn btn-light btn-brd grd1 effect-1" onclick="updateData(this,${sesVO.sesNo})" >
 										 <input type="button" value="修改" class="input-pos update-btn">
 					        		   </a>
 									</td>
@@ -62,5 +62,12 @@
             </div>
         </div>
 		<%@ include file="../files/sb_importJs.file"%> <!-- 引入template要用的js -->
+		
+<script>				
+	function updateData(e,sesNo){
+		let href = "<%=request.getContextPath()%>/session/ses.do?action=getOne_For_Update&requestURL=<%=request.getServletPath()%>&sesNo="+sesNo;
+		e.setAttribute("href", href);
+	}
+</script>
 </body>
 </html>

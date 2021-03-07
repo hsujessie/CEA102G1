@@ -57,8 +57,8 @@
 					        			 </a>	
 									</td>
 									<td>
-									   <a class="btn btn-light btn-brd grd1 effect-1">
-											<input type="button" value="修改" class="input-pos update-btn">
+										<a class="btn btn-light btn-brd grd1 effect-1" onclick="updateData(this,${movVO.movno})" >
+											<input type="submit" value="修改" class="input-pos">
 					        			 </a>
 									</td>
 								</tr>
@@ -78,6 +78,10 @@
 <script>				
 	function getData(e,movno){
 		let href = "<%=request.getContextPath()%>/movie/mov.do?action=getOne_For_Display&requestURL=<%=request.getServletPath()%>&movno="+movno;
+		e.setAttribute("href", href);
+	}		
+	function updateData(e,movno){
+		let href = "<%=request.getContextPath()%>/movie/mov.do?action=getOne_For_Update&requestURL=<%=request.getServletPath()%>&movno="+movno;
 		e.setAttribute("href", href);
 	}
 </script>

@@ -105,11 +105,11 @@
         </div>
 		<%@ include file="../files/sb_importJs.file"%> <!-- 引入template要用的js -->
 		
-	<script>
-		function updateData(e,sesNo){
-			let href = "<%=request.getContextPath()%>/session/ses.do?action=getOne_For_Update&requestURL=<%=request.getServletPath()%>&whichPage=<%=whichPage%>&sesNo="+sesNo;
-			e.setAttribute("href", href);
-		}
-	</script>
+<script>
+	function updateData(e,sesNo){
+		let href = "<%=request.getContextPath()%>/session/ses.do?action=getOne_For_Update&requestURL=<%=request.getServletPath()%>&whichPage=<%=whichPage%>&sesNo="+sesNo;
+		e.setAttribute("href", href);
+	}
+</script>
 </body>
 </html>
