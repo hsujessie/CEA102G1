@@ -219,8 +219,6 @@ public class MovServlet extends HttpServlet{
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("movVO", movVO);
-					Boolean openAddLightbox = true;
-					req.setAttribute("openAddLightbox", openAddLightbox);
 					String url = "/back-end/movie/select_page.jsp";
 					RequestDispatcher failureView = req.getRequestDispatcher(url);
 					failureView.forward(req, res);
@@ -242,8 +240,6 @@ public class MovServlet extends HttpServlet{
 				/***************************其他可能的錯誤處理**********************************/
 			}catch (Exception e) {
 				errorMsgs.put("Exception",e.getMessage());
-				Boolean openAddLightbox = true;
-				req.setAttribute("openAddLightbox", openAddLightbox);
 				String url = "/back-end/movie/select_page.jsp";
 				RequestDispatcher failureView = req.getRequestDispatcher(url);
 				failureView.forward(req, res);
@@ -281,8 +277,6 @@ public class MovServlet extends HttpServlet{
 					Map<String, String[]> map = (Map<String, String[]>)session.getAttribute("map");
 					List<MovVO> list  = movSvc.getAll(map);
 					req.setAttribute("listMovies_ByCompositeQuery",list); //  複合查詢, 資料庫取出的list物件,存入
-					Boolean cssForListMoviesByCompositeQuery = true;
-					req.setAttribute("cssForListMoviesByCompositeQuery",cssForListMoviesByCompositeQuery);
 				}
 	            
 	            req.setAttribute("movVO", movVO);  
