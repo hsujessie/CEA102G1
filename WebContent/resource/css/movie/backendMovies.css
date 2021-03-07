@@ -1,0 +1,48 @@
+@charset "UTF-8";
+/*------------------------------------------------------------------
+    測試用的OUTLINE
+-------------------------------------------------------------------*/
+/* *{
+	outline:1px solid red;	
+}   */
+
+.red{
+	border:3px solid red;
+}
+.purple{
+	border:3px solid purple;
+}
+.blue{
+	border:3px solid blue;
+}
+.green{
+	border:3px solid green;
+}
+.orange{
+	border-left:3px solid orange;
+	box-sizing:border-box;
+	padding-left: -2%;
+}
+.deeppink{
+	border:3px solid deeppink;
+}
+
+/*------------------------------------------------------------------
+    UPLOAD IMG & VIDEO
+-------------------------------------------------------------------*/  
+ #uploadFile, #uploadTrailer{
+	width: 75px;
+	font-size: 18px;
+ }
+ #show-poster, #show-trailer{
+	position: relative; 
+ }
+ #fileImg .img, #trailerVdo .vdo{
+	height: 100px;
+	width: auto;
+	position: absolute;
+	top: -85%;
+	left: 260%;
+	right: 0;
+	bottom: 0;
+ }
