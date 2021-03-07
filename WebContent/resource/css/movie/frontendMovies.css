@@ -423,7 +423,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #121518;
+    background: rgba(18,21,24);
 }
 
 .session .session-icon i {

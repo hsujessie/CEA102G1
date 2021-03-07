@@ -30,39 +30,29 @@
             <!-- Page Header End -->
 
 
-            <%-- <jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService"/> --%>
+            <jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService"/>
             <!-- Sessions Start -->
             <div class="session">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="row align-items-center session-item">
-                                <div class="col-5">
-                                    <div class="session-icon">
-                                        <!-- <i class="fa fa-gavel"></i> -->
-                                    </div>
-                                </div>
-                                <div class="col-7">
-                                    <h3>Best law practices</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate.
-                                    </p>
-                                </div>
-                            </div>
-                            
-                            <div class="row align-items-center session-item">
-                                <div class="col-5">
-                                    <div class="session-icon">
-                                        <i class="fa fa-balance-scale"></i>
-                                    </div>
-                                </div>
-                                <div class="col-7">
-                                    <h3>Efficiency & Trust</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate.
-                                    </p>
-                                </div>
-                            </div>
+                        
+                            <c:forEach var="movVO" items="${movSvc.all}" >
+	                            <c:if test="${not empty movVO.movpos}">
+		                            <div class="row align-items-center session-item">
+		                                <div class="col-5">
+		                                    <div class="session-icon">
+		                                        <img onclick="sendData(this,${movVO.movno})"  style="width: 125px; cursor: pointer;" src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movpos&action=get_One_MovPos" alt="Movies Image">
+		                                    </div>
+		                                </div>
+		                                <div class="col-7">
+		                                    <h3>${movVO.movname}</h3>
+		                                    <p></p>
+		                                </div>
+		                            </div>
+	                            </c:if>
+	                         </c:forEach>
+	                         
                         </div>
                     </div>
                 </div>
@@ -80,5 +70,12 @@
         
 <%@ include file="../files/comJsLinks.file"%>    
 
+
+<script>
+	function sendData(e,movno){
+	    let url = "<%=request.getContextPath()%>/movie/mov.do?action=getOne_For_Display&fromFrontend=true&movno="+movno;
+	    window.location.href = url;
+	}
+</script>
 </body>
 </html>
