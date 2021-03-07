@@ -58,7 +58,7 @@
 									</td>
 									<td>
 									   <a class="btn btn-light btn-brd grd1 effect-1">
-											<input type="button" value="修改" class="input-pos update-btn" data-movno="${movVO.movno}">
+											<input type="button" value="修改" class="input-pos update-btn">
 					        			 </a>
 									</td>
 								</tr>
