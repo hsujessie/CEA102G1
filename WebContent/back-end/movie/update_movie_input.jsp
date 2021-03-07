@@ -6,7 +6,6 @@
 <head>
 	<title>電影修改</title>
 	<%@ include file="../files/sb_head.file"%>
-	<!-- Your custom styles (optional) -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/backendStyles.css">
 
 <style>

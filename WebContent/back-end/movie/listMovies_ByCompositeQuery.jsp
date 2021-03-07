@@ -7,7 +7,6 @@
 <head>
 	<title>電影查詢</title>
 	<%@ include file="../files/sb_head.file"%>
-	<!-- Your custom styles (optional) -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/backendStyles.css">
 </head>
 <body class="sb-nav-fixed">

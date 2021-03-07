@@ -3,10 +3,9 @@
 
 <html>
 <head>
-	<title>Management</title>
+	<title>Movies Management</title>
 	<%@ include file="../files/sb_head.file"%>
-	<!-- Your custom styles (optional) -->
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/movie/backendMovie.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/backendStyles.css">
 </head>
 <body class="sb-nav-fixed">
 		<%@ include file="../files/sb_navbar.file"%> <!-- 引入snavbar (上方) -->
@@ -18,7 +17,8 @@
                 <main>
                     <div class="container-fluid">
                     
-                    <!-- PUT HERE -->
+                    <!-- PUT HERE Start-->
+                    <!-- PUT HERE End-->
                     
                     </div>
                 </main>
