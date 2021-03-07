@@ -35,8 +35,9 @@
             <!-- Sessions Start -->
             <div class="session">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-12">                          
+                    <div class="row " style="margin: -50px 0 50px 0;">         
+		                <div class="col-5"></div>
+                        <div class="col-7">                          
                            	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/session/ses.do">	
 		                        <b>場次日期</b>
 		                        <input class="sty-input" name="sesDateBegin" id="" type="date" value="" style="margin-left: 10px;"> 
