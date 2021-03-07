@@ -104,7 +104,15 @@ public class SesServlet extends HttpServlet {
 			
 			/***************************3.查詢完成,準備轉交(Send the Success view)************/
 			req.setAttribute("listSessions_ByCompositeQuery", list); // 資料庫取出的list物件,存入request
-			RequestDispatcher successView = req.getRequestDispatcher("/back-end/session/listSessions_ByCompositeQuery.jsp"); // 成功轉交listSessions_ByCompositeQuery.jsp
+			String url = "/back-end/session/listSessions_ByCompositeQuery.jsp";
+			
+			//sessions.jsp 前台 取不到 listSessions_ByCompositeQuery ??? 
+			String action_from = req.getParameter("action_from");
+			if("frontend".equals(action_from) ) {
+				url = "/front-end/movies/sessions.jsp";
+			}
+			
+			RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交listSessions_ByCompositeQuery.jsp
 			successView.forward(req, res);
 			
 			/***************************其他可能的錯誤處理**********************************/
