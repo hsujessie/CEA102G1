@@ -147,12 +147,5 @@ MovVO movVO = (MovVO) request.getAttribute("movVO");
             </div>
         </div>
 		<%@ include file="../files/sb_importJs.file"%> <!-- 引入template要用的js -->
-		
-	<script>				
-		function getData(e,movno){
-			let href = "<%=request.getContextPath()%>/movie/mov.do?action=getOne_For_Display&requestURL=<%=request.getServletPath()%>&movno="+movno;
-			e.setAttribute("href", href);
-		}
-	</script>
 </body>
 </html>

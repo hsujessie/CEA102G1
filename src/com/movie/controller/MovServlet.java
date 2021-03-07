@@ -276,7 +276,6 @@ public class MovServlet extends HttpServlet{
 	            movlanToken = token(movlanStrs, movlanToken);
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
-				String url = requestURL;
 	            if(requestURL.equals("/back-end/movie/listMovies_ByCompositeQuery.jsp")){
 					HttpSession session = req.getSession();
 					Map<String, String[]> map = (Map<String, String[]>)session.getAttribute("map");
@@ -284,17 +283,13 @@ public class MovServlet extends HttpServlet{
 					req.setAttribute("listMovies_ByCompositeQuery",list); //  複合查詢, 資料庫取出的list物件,存入
 					Boolean cssForListMoviesByCompositeQuery = true;
 					req.setAttribute("cssForListMoviesByCompositeQuery",cssForListMoviesByCompositeQuery);
-					url = "/back-end/movie/update_movie_input.jsp";
 				}
 	            
 	            req.setAttribute("movVO", movVO);  
 				req.setAttribute("movverToken", movverToken);    
 				req.setAttribute("movlanToken", movlanToken);
 
-				Boolean openUpdateLightbox = true;
-				req.setAttribute("openUpdateLightbox", openUpdateLightbox);
-
-				RequestDispatcher successView = req.getRequestDispatcher(url);
+				RequestDispatcher successView = req.getRequestDispatcher("/back-end/movie/update_movie_input.jsp");
 				successView.forward(req, res);
 
 				/***************************其他可能的錯誤處理**********************************/
@@ -565,19 +560,19 @@ public class MovServlet extends HttpServlet{
 				
 				String updateSuccess = "【  " + movname + " 】" + "修改成功";
 				req.setAttribute("updateSuccess", updateSuccess);
-				Boolean openUpdateLightbox = false;
-				req.setAttribute("openUpdateLightbox", openUpdateLightbox); //update success不要跳出燈箱
 
 				String url = requestURL;
-
+				System.out.println("requestURL= " + requestURL);
+				if(requestURL.equals("/back-end/movie/update_movie_input.jsp")){
+					url = "/back-end/movie/listAllMovie.jsp";
+				}
+				
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 
 				/***************************其他可能的錯誤處理*************************************/
 			}catch (Exception e) {
 				errorMsgs.put("Exception","修改資料失敗:"+e.getMessage());
-				Boolean openUpdateLightbox = true;
-				req.setAttribute("openUpdateLightbox", openUpdateLightbox);
 				
 				RequestDispatcher failureView = req.getRequestDispatcher(requestURL);
 				failureView.forward(req, res);

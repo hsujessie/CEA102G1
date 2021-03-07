@@ -38,7 +38,7 @@
 						<c:if test="${updateSuccess != null }">
 							<span style="color: #bb9d52">  
 								${updateSuccess}
-								<i class="fa fa-hand-peace-o"></i>
+								<i class="far fa-laugh-wink"></i>
 							</span>
 						</c:if>
 						
@@ -78,15 +78,9 @@
 					        			 </a>	
 									</td>
 									<td>
-									  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do" style="margin-bottom: 0px; text-align:center;">	
-					        			 <a class="btn btn-light btn-brd grd1 effect-1">
+										<a class="btn btn-light btn-brd grd1 effect-1" onclick="updateData(this,${movVO.movno})" >
 											<input type="submit" value="修改" class="input-pos">
-					        			 </a>				            					             
-									     <input type="hidden" name="movno" value="${movVO.movno}">
-										 <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
-										 <input type="hidden" name="whichPage"	value="<%=whichPage%>">
-									     <input type="hidden" name="action"	value="getOne_For_Update">
-									   </FORM>
+					        			 </a>
 									</td>
 								</tr>
 								</c:forEach>
@@ -102,11 +96,15 @@
         </div>
 		<%@ include file="../files/sb_importJs.file"%> <!-- 引入template要用的js -->
 		
-		<script>				
-			function getData(e,movno){
-				let href = "<%=request.getContextPath()%>/movie/mov.do?action=getOne_For_Display&requestURL=<%=request.getServletPath()%>&movno="+movno;
-				e.setAttribute("href", href);
-			}
-		</script>
+	<script>				
+		function getData(e,movno){
+			let href = "<%=request.getContextPath()%>/movie/mov.do?action=getOne_For_Display&requestURL=<%=request.getServletPath()%>&movno="+movno;
+			e.setAttribute("href", href);
+		}				
+		function updateData(e,movno){
+			let href = "<%=request.getContextPath()%>/movie/mov.do?action=getOne_For_Update&requestURL=<%=request.getServletPath()%>&whichPage=<%=whichPage%>&movno="+movno;
+			e.setAttribute("href", href);
+		}
+	</script>
 </body>
 </html>
