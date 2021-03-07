@@ -41,6 +41,50 @@
 							</span>
 						</c:if>
 						
+                    	<div class="row " style="margin: -50px 0 50px 0;">         
+			                <div class="col-3"></div>
+	                        <div class="col-9">          
+		            			<jsp:useBean id="movSvcAll" scope="page" class="com.movie.model.MovService"/>                        
+	                           	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do">				                        
+			                        <b>電影名稱</b>
+			                            <select name="mov_no" style="width: 80px;">
+			                                <option value=""></option>
+			                                <c:forEach var="movVO" items="${movSvcAll.all}" >
+			                                    <option value="${movVO.movno}">${movVO.movname}
+			                                </c:forEach>
+			                            </select>
+			                        <b>電影類型</b>
+			                            <select name="mov_type">
+			                                <option value=""></option>
+											<option value="劇情片">劇情片</option>
+											<option value="動作片">動作片</option>
+											<option value="動畫片">動畫片</option>
+											<option value="喜劇片">喜劇片</option>
+											<option value="愛情片">愛情片</option>
+											<option value="科幻片">科幻片</option>
+											<option value="恐怖片">恐怖片</option>
+			                            </select>
+			                        <b>選擇年份</b>
+			                        <select name="mov_ondate_year">
+			                            <option value=""></option>
+			                            <c:forEach var="year" begin="1970" end="<%= (int) (java.util.Calendar.getInstance().get(java.util.Calendar.YEAR))+1%>">
+			                                <option value="${year}">${year}年</option>
+			                            </c:forEach>
+			                        </select>
+			                        <b>選擇月份</b>
+			                        <select name="mov_ondate_month">
+			                            <option value=""></option>
+			                            <c:forEach var="month" begin="1" end="12">
+			                                <option value="${month}">${month}月</option>
+			                            </c:forEach>
+			                        </select>
+			                        <input type="hidden" name="action" value="listMovies_ByCompositeQuery">
+				        			<a class="btn btn-light btn-brd grd1 effect-1">
+										<input type="submit" value="搜尋" class="input-pos">
+				        			</a>
+		                    	</FORM>                    
+                        	</div>                 
+                        </div>
 			            <table class="table table-hover">
 							<thead>
 								<tr style="border-bottom: 3px solid #bb9d52;">
