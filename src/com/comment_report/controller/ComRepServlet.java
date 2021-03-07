@@ -30,10 +30,7 @@ public class ComRepServlet extends HttpServlet {
 		System.out.println("action:"+action);
 		
 		// 來自前台 movies_subpage.jsp的請求
-		if ("insert".equals(action)) {
-			Map<String,String> errorMsgs = new LinkedHashMap<String,String>();
-			req.setAttribute("errorMsgs",errorMsgs);
-			
+		if ("insert".equals(action)) {			
 			try {
 				/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/					
 				Integer comNo = null;
@@ -54,41 +51,36 @@ public class ComRepServlet extends HttpServlet {
 				
 
 				Integer movNo = new Integer(req.getParameter("movNo").trim());
-				
-				System.out.println("memNo= " + memNo);
+
 				System.out.println("comNo= " + comNo);
+				System.out.println("movNo= " + movNo);
+				System.out.println("memNo= " + memNo);
 				System.out.println("comRepReason= " + comRepReason);
 				System.out.println("comRepTime= " + comRepTime);
-				System.out.println("movNo= " + movNo);
-				
-//				ComRepVO comRepVO = new ComRepVO();
-//				comRepVO.setComNo(comNo);
-//				comRepVO.setMemNo(memNo);
-//				comRepVO.setComRepTime(comRepTime);
-//				comRepVO.setComRepReason(comRepReason);
-//				comRepVO.setComRepStatus(comRepStatus);
+				System.out.println("comRepStatus= " + comRepStatus);
 				
 				/***************************2.開始新增資料***************************************/				
 				ComRepService comRepSvc = new ComRepService();
 				comRepSvc.addComRep(comNo, memNo, comRepReason, comRepTime, comRepStatus);
 				
-//				ComService comSvc = new ComService();
-//				ComVO comVO = comSvc.getOneCom(comNo);
-//
-//				MovService movSvc = new MovService();
-//				MovVO movVO = movSvc.getOneMov(movNo);
+				ComService comSvc = new ComService();
+				ComVO comVO = comSvc.getOneCom(comNo);
+
+				MovService movSvc = new MovService();
+				MovVO movVO = movSvc.getOneMov(movNo);
 					
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/	
-//				req.setAttribute("comVO", comVO);
-//				req.setAttribute("movVO", movVO);
-//				
-//				String url = "/front-end/movies/movies_subpage.jsp";
-//				RequestDispatcher successView = req.getRequestDispatcher(url);
-//				successView.forward(req, res);	
+				req.setAttribute("comVO", comVO);
+				req.setAttribute("movVO", movVO);
+				
+				String url = "/front-end/movies/movies_subpage.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, res);	
 				
 				/***************************其他可能的錯誤處理**********************************/
+			
 			}catch (Exception e) {
-				errorMsgs.put("Exception",e.getMessage());
+				System.out.println("Exception: " + e.getMessage());
 				String url = "/front-end/movies/movies_subpage.jsp";
 				RequestDispatcher failureView = req.getRequestDispatcher(url);
 				failureView.forward(req, res);

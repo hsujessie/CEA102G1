@@ -125,7 +125,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-5 col-md-6">
                             <div class="movinfo-vdo">
-                            	<video controls width="150"><source src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovTra" type="video/mp4"></video>
+                             	<video controls width="150"><source src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&action=get_One_MovTra" type="video/mp4"></video>
                             </div>
                         </div>
                         <div class="col-lg-7 col-md-6">
@@ -226,7 +226,7 @@
 		                                <p>${comVO.comContent}</p>
 		                                <span>發表人&emsp;${comVO.memNo}</span>
 		                                <span>發表時間&emsp;${comVO.comTime}</span>
-                   						<span id="comrep" onclick='openComRepLightbox(this)'><a>檢舉</a></span>   
+                   						<span id="comrep" onclick='openComRepLightbox(this,${comVO.comNo},${comVO.memNo},${comVO.movNo})'><a>檢舉</a></span>   
 		                            </div>
 		                        </div>
 		                      </c:if>                 
@@ -281,8 +281,7 @@
 	  	<div class="close"></div>
 		<div class="movies-lightbox-inside"></div>
 		<div>
-			<%-- <form id="comrepForm" method="post" action="<%=request.getContextPath()%>/comment_report/comrep.do"> --%>
-			<form id="comrepForm" method="post" action="<%=request.getContextPath()%>/comment_report/comrep.do">
+			<form id="comrepForm" method="post" action="">
 				<ul>
 				<li><input type="radio" name="comRepReason" value="1"><label>與本電影無關、捏造假冒、不實敘述</label></li>
 				<li><input type="radio" name="comRepReason" value="2"><label>具有廣告性質或大量重複散布</label></li>
@@ -290,10 +289,6 @@
 				<li><input type="radio" name="comRepReason" value="4"><label>侵犯隱私權、違反智慧財產權、涉及違法情事</label></li>
 				<li><input type="radio" name="comRepReason" value="5"><label>違背善良風俗</label></li>
 				</ul>
-				<input type="hidden" name="comNo" value="${comVO.comNo}">
-				<input type="hidden" name="memNo" value="${comVO.memNo}">
-				<input type="hidden" name="movNo" value="${comVO.movNo}">
-				<input type="hidden" name="action" value="insert">
                 <input class="combtn lightbox-btn" type="submit" value="確認送出">
 			</form>
 		</div>
@@ -322,8 +317,13 @@
       closeLightbox.onclick=function(){
           lightbox.style.display="none";
       }
-      function openComRepLightbox(e){
+      
+      function openComRepLightbox(e,comNo,memNo,movNo){
           lightbox.style.display="block";
+          
+          let url = "<%=request.getContextPath()%>/comment_report/comrep.do?action=insert&comNo=" + comNo + "&memNo=" + memNo + "&movNo=" + movNo;
+          console.log("url= " + url);
+          $('#comrepForm').attr("action", url);
       }
 </script>
 </body>
