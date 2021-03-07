@@ -11,7 +11,7 @@
 
 <html>
 <head>
-	<title>Management</title>
+	<title>Movies Management</title>
 	<%@ include file="../files/sb_head.file"%>
 	<!-- Your custom styles (optional) -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/backendStyles.css">
@@ -108,5 +108,5 @@
 				e.setAttribute("href", href);
 			}
 		</script>
-    </body>
+</body>
 </html>
