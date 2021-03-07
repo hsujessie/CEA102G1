@@ -30,7 +30,7 @@ public class ComServlet extends HttpServlet {
 		System.out.println("action:"+action);
 		
 
-		 // 來自前台 movies_subpage.jsp的請求
+		// 來自前台 movies_subpage.jsp的請求
 		if ("insert".equals(action)) {
 			Map<String,String> errorMsgs = new LinkedHashMap<String,String>();
 			req.setAttribute("errorMsgs",errorMsgs);

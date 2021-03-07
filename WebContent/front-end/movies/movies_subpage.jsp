@@ -226,7 +226,7 @@
 		                                <p>${comVO.comContent}</p>
 		                                <span>發表人&emsp;${comVO.memNo}</span>
 		                                <span>發表時間&emsp;${comVO.comTime}</span>
-                   						<span id="comrep"><a>檢舉</a></span>   
+                   						<span id="comrep" onclick='openComRepLightbox(this)'><a>檢舉</a></span>   
 		                            </div>
 		                        </div>
 		                      </c:if>                 
@@ -284,14 +284,15 @@
 			<%-- <form id="comrepForm" method="post" action="<%=request.getContextPath()%>/comment_report/comrep.do"> --%>
 			<form id="comrepForm" method="post" action="<%=request.getContextPath()%>/comment_report/comrep.do">
 				<ul>
-				<li><input type="radio" name="comrepReason" value="1"><label>與本電影無關、捏造假冒、不實敘述</label></li>
-				<li><input type="radio" name="comrepReason" value="2"><label>具有廣告性質或大量重複散布</label></li>
-				<li><input type="radio" name="comrepReason" value="3"><label>相互惡意攻訐、猥褻騷擾、人身攻擊</label></li>
-				<li><input type="radio" name="comrepReason" value="4"><label>侵犯隱私權、違反智慧財產權、涉及違法情事</label></li>
-				<li><input type="radio" name="comrepReason" value="5"><label>違背善良風俗</label></li>
+				<li><input type="radio" name="comRepReason" value="1"><label>與本電影無關、捏造假冒、不實敘述</label></li>
+				<li><input type="radio" name="comRepReason" value="2"><label>具有廣告性質或大量重複散布</label></li>
+				<li><input type="radio" name="comRepReason" value="3"><label>相互惡意攻訐、猥褻騷擾、人身攻擊</label></li>
+				<li><input type="radio" name="comRepReason" value="4"><label>侵犯隱私權、違反智慧財產權、涉及違法情事</label></li>
+				<li><input type="radio" name="comRepReason" value="5"><label>違背善良風俗</label></li>
 				</ul>
-				<input type="hidden" name="movNo">
-				<input type="hidden" name="memNo">
+				<input type="hidden" name="comNo" value="${comVO.comNo}">
+				<input type="hidden" name="memNo" value="${comVO.memNo}">
+				<input type="hidden" name="movNo" value="${comVO.movNo}">
 				<input type="hidden" name="action" value="insert">
                 <input class="combtn lightbox-btn" type="submit" value="確認送出">
 			</form>
@@ -321,8 +322,7 @@
       closeLightbox.onclick=function(){
           lightbox.style.display="none";
       }
-      let comrep = document.getElementById("comrep");
-      comrep.onclick=function(){
+      function openComRepLightbox(e){
           lightbox.style.display="block";
       }
 </script>
