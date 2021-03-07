@@ -27,8 +27,8 @@
                 <main>
                     <div class="container-fluid">
                     
-                    <!-- listAllMovie Start -->
-                    <h3 class="h3-style" style="display: inline-block;">電影列表&ensp;</h3>
+                    	<!-- listAllMovie Start -->
+                    	<h3 class="h3-style" style="display: inline-block;">電影列表&ensp;</h3>
 						<c:if test="${addSuccess != null}">
 							<span style="color: #bb9d52">  
 								${addSuccess}
@@ -41,7 +41,8 @@
 								<i class="fa fa-hand-peace-o"></i>
 							</span>
 						</c:if>
-			            <table class="table table-responsive table-hover">
+						
+			            <table class="table table-hover">
 							<thead>
 								<tr style="border-bottom: 3px solid #bb9d52;">
 									<th>編號</th>
