@@ -8,7 +8,6 @@
 	<%@ include file="../files/sb_head.file"%>
 	<!-- Your custom styles (optional) -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/backendStyles.css">
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/movie/backendMovies.css">
 
 <style>
   table {
@@ -244,7 +243,7 @@
 						<input type="hidden" name="requestURL" value="<%=request.getParameter("requestURL")%>">
 						<input type="hidden" name="whichPage"  value="<%=request.getParameter("whichPage")%>">
 						<a class="btn btn-light btn-brd grd1 effect-1 btn-pos" style="margin: 1% 0 1% 50%;" >
-							<input type="submit" value="修改" class="input-pos">
+							<input type="submit" value="送出" class="input-pos">
 						</a>
 						</FORM>
                        <!-- update movie End -->
