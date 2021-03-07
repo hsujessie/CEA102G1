@@ -15,6 +15,100 @@
 	.str-color{
 		color: #bb9d52
 	}
+	
+/* -- Light box -- */
+	#movies-comrep{
+		position: fixed;
+		top: 0;
+    	left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: rgba(0,0,0,.9);
+		z-index: 100;
+	}
+	.movies-comrep-content{
+		width: 40%;
+    	height: 50%;
+		box-sizing: border-box;
+		padding: 3% 0 0 5%;
+		position: fixed;
+		top: 20%;
+		left:50%;
+		transform: translateX(-50%);
+        background-color: rgba(187,157,82, .7);
+        box-shadow: 0px 1px 5px 0px rgb(110 110 110 / 90%);
+	}
+	.close{
+		width: 30px;
+		height: 30px;
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		z-index: 1;
+	}
+	.close:hover{
+		cursor: pointer;
+	}
+	.movies-lightbox-inside{
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		margin: auto;
+	}
+	.movies-comrep-content:before{
+		content: "";
+	    display: block;
+	    height: 30px;
+	    width: 3px;
+	    background-color: #bb9d52;
+	    position: absolute;
+	    top: 0px;
+	    right: 15px;
+	    transform: rotate(45deg);
+	}
+	.movies-comrep-content:after{
+		content: "";
+	    display: block;
+	    height: 30px;
+	    width: 3px;
+	    background-color: #bb9d52;
+	    position: absolute;
+	    top: 0px;
+	    right: 15px;
+	    transform: rotate(-45deg);
+	}
+	ol, ul {
+    	list-style: none;
+	}
+	#comrepForm ul {
+    	line-height: 2;
+	}
+	#comrepForm ul li input{
+    	margin-right: 10px;
+	}
+	#comrepForm label{
+       color: #2C2C2C;
+	}
+	.lightbox-btn{
+		position: absolute;
+	    bottom: 5%;
+	    right: 4%;
+	}
+	
+	/* -- 檢舉btn -- */
+	#comrep a {
+	    color: #454545;
+	    transition: .3s;
+	    cursor: pointer;
+	}
+	
+	#comrep a:hover,
+	#comrep a:active,
+	#comrep a:focus {
+	    color: #aa9166;
+	    outline: none;
+	    text-decoration: none;
+	}
 </style>
 </head>
 <body>
@@ -132,7 +226,7 @@
 		                                <p>${comVO.comContent}</p>
 		                                <span>發表人&emsp;${comVO.memNo}</span>
 		                                <span>發表時間&emsp;${comVO.comTime}</span>
-                   						<span><a href="<%=request.getContextPath()%>/comment_report/comrep.do">檢舉</a></span>   
+                   						<span id="comrep"><a>檢舉</a></span>   
 		                            </div>
 		                        </div>
 		                      </c:if>                 
@@ -181,6 +275,30 @@
             <!-- Footer End -->
         </div>
         
+<!-- ================================================Light Box============================================ -->
+<div class="movies-lightbox" id="movies-comrep" style="display: none;">
+  	<div class="movies-comrep-content">
+	  	<div class="close"></div>
+		<div class="movies-lightbox-inside"></div>
+		<div>
+			<%-- <form id="comrepForm" method="post" action="<%=request.getContextPath()%>/comment_report/comrep.do"> --%>
+			<form id="comrepForm" method="post" action="<%=request.getContextPath()%>/comment_report/comrep.do">
+				<ul>
+				<li><input type="radio" name="comrepReason" value="1"><label>與本電影無關、捏造假冒、不實敘述</label></li>
+				<li><input type="radio" name="comrepReason" value="2"><label>具有廣告性質或大量重複散布</label></li>
+				<li><input type="radio" name="comrepReason" value="3"><label>相互惡意攻訐、猥褻騷擾、人身攻擊</label></li>
+				<li><input type="radio" name="comrepReason" value="4"><label>侵犯隱私權、違反智慧財產權、涉及違法情事</label></li>
+				<li><input type="radio" name="comrepReason" value="5"><label>違背善良風俗</label></li>
+				</ul>
+				<input type="hidden" name="movNo">
+				<input type="hidden" name="memNo">
+				<input type="hidden" name="action" value="insert">
+                <input class="combtn lightbox-btn" type="submit" value="確認送出">
+			</form>
+		</div>
+ 	</div>
+</div>
+
 <%@ include file="../files/comJsLinks.file"%>
 <script>
 	  $(document).ready(function () {
@@ -196,6 +314,17 @@
 	        }
 	      });
 	  });
+	  
+      /* -- Light box -- */
+	  let lightbox = document.getElementsByClassName("movies-lightbox")[0];
+	  let closeLightbox = document.getElementsByClassName("close")[0];
+      closeLightbox.onclick=function(){
+          lightbox.style.display="none";
+      }
+      let comrep = document.getElementById("comrep");
+      comrep.onclick=function(){
+          lightbox.style.display="block";
+      }
 </script>
 </body>
 </html>
