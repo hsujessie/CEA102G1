@@ -41,7 +41,7 @@
                            	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/session/ses.do">	
 		                        <b>場次日期</b>
 		                        <input class="sty-input" name="sesDateBegin" id="" type="date" value="" style="margin-left: 10px;"> 
-		                        ~<input class="sty-input" name="sesDateEnd" id="" type="date" value="">
+		                        ~ <input class="sty-input" name="sesDateEnd" id="" type="date" value="">
 		                        
 		                        <input type="hidden" name="action" value="searchSesDate">
 								<input type="submit" value="搜尋" class="combtn">
@@ -57,7 +57,7 @@
 		                            <div class="row align-items-center session-item">
 		                                <div class="col-5">
 		                                    <div class="session-icon">
-		                                        <img onclick="sendData(this,${movVO.movno})"  style="width: 125px; cursor: pointer;" src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movpos&action=get_One_MovPos" alt="Movies Image">
+		                                        <img onclick="sendData(this,${movVO.movno})"  style="height: 100%; cursor: pointer;" src="<%=request.getContextPath()%>/movie/mov.do?movno=${movVO.movno}&img=movpos&action=get_One_MovPos" alt="Movies Image">
 		                                    </div>
 		                                </div>
 		                                <div class="col-7">
