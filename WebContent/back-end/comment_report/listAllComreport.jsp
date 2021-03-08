@@ -66,7 +66,7 @@
 							<thead>
 								<tr style="border-bottom: 3px solid #bb9d52;">
 									<th>編號</th>
-									<th>檢舉人會員編號</th>
+									<th>檢舉人帳號</th>
 									<th>檢舉原因</th>
 									<th>檢舉時間</th>
 									<th>檢舉狀態</th>
@@ -78,11 +78,11 @@
 								<jsp:useBean id="comSvc" scope="page" class="com.comment.model.ComService"/>	
 								<%@ include file="/back-end/movie/pages/page1.file" %> 
 									<c:forEach var="comRepVO" items="${list}" varStatus="no" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-									<c:set value="${comSvc.getOneCom(comRepVO.comNo)}" var="movObj"></c:set>
-									<tr class="sty-height" valign='middle' ${(comVO.comNo==param.comNo) ? 'style="background-color:#bb9d52; color:#fff;"':''}>
+									<c:set value="${comSvc.getOneCom(comRepVO.comNo)}" var="comObj"></c:set>
+									<tr class="sty-height" valign='middle' ${(comRepVO.comNo==param.comNo) ? 'style="background-color:#bb9d52; color:#fff;"':''}>
 										<td>${no.index+1}</td>
 										<td>${comRepVO.getMemNo()}</td>
-										<td>${comRepVO.getComRepReason}</td>
+										<td>${comRepVO.getComRepReason()}</td>
 										<td>${comRepVO.getComRepTime()}</td>
 										<td>${comRepVO.getComRepStatus()}</td>
 										<td>
