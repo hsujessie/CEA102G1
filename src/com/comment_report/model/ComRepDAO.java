@@ -28,9 +28,9 @@ public class ComRepDAO implements ComRepDAO_interface{
 	private static final String INSERT_STMT =
 		"INSERT INTO COMMENT_REPORT (com_no,mem_no,comrep_reason,comrep_time,comrep_status) VALUES (?,?,?,?,?)"; 
 	private static final String GET_ALL_STMT =
-		"SELECT comrep_no,com_no,mem_no,comrep_reason,comrep_time,comrep_status FROM COMMENT_REPORT ORDER BY comrep_no";
+		"SELECT comrep_no,com_no,mem_no,comrep_reason,comrep_time,comrep_status FROM COMMENT_REPORT ORDER BY comrep_no DESC";
 	private static final String GET_ONE_STMT =
-		"SELECT comrep_no,com_no,mem_no,comrep_reason,comrep_time,comrep_status FROM COMMENT_REPORT WHERE comrep_no=?";
+		"SELECT comrep_no,com_no,mem_no,comrep_reason,comrep_time,comrep_status FROM COMMENT_REPORT WHERE comrep_no=? ORDER BY comrep_no DESC";
 	private static final String UPDATE =
 		"UPDATE COMMENT_REPORT SET comrep_status=? WHERE comrep_no=?";
 

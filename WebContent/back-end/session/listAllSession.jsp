@@ -74,7 +74,7 @@
 			            <table class="table table-hover">
 							<thead>
 								<tr style="border-bottom: 3px solid #bb9d52;">
-									<th>編號</th>
+									<th>列表編號</th>
 									<th>電影</th>
 									<th>場次日期</th>
 									<th>場次時間</th>

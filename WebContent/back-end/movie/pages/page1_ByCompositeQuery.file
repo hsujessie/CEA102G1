@@ -8,7 +8,7 @@
 %>
 
 <%
-    rowNumber=listComReps_ByQuery.size();
+    rowNumber=listMovies_ByCompositeQuery.size();
     if (rowNumber%rowsPerPage !=0)
          pageNumber=rowNumber/rowsPerPage + 1;
     else pageNumber=rowNumber/rowsPerPage;

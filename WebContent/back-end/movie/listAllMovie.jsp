@@ -95,7 +95,7 @@
 			            <table class="table table-hover">
 							<thead>
 								<tr style="border-bottom: 3px solid #bb9d52;">
-									<th>編號</th>
+									<th>列表編號</th>
 									<th>名稱</th>
 									<th>種類</th>
 									<th>類型</th>
