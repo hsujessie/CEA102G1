@@ -6,14 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Sessions</title>
-<%@ include file="../files/comCssLinks.file"%>
+<%@ include file="../files/frontend_importCss.file"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/movie/frontendMovies.css">
 </head>
 <body>
         <div class="wrapper">
             <!-- Nav Bar Start -->
 			<c:set value="${pageContext.request.requestURI}" var="urlRecog"></c:set>
-            <%@ include file="../files/navbar_frontend.file"%>
+            <%@ include file="../files/frontend_navbar.file"%>
             <!-- Nav Bar End -->
 
 
@@ -95,15 +95,15 @@
             <!-- Sessions End -->
             
             <!-- Book Tickets Start -->
-            <%@ include file="../files/bookTicketsTamplate.file"%>
+            <%@ include file="../files/frontend_bookTicketsTamplate.file"%>
             <!-- Book Tickets End -->
 
             <!-- Footer Start -->
-            <%@ include file="../files/footer_frontend.file"%>
+            <%@ include file="../files/frontend_footer.file"%>
             <!-- Footer End -->
         </div>
         
-<%@ include file="../files/comJsLinks.file"%>    
+<%@ include file="../files/frontend_importJs.file"%>   
 
 
 <script>

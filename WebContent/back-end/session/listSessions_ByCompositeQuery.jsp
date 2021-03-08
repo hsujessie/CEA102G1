@@ -8,7 +8,6 @@
 <head>
 	<title>場次查詢</title>
 	<%@ include file="../files/sb_head.file"%>
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/backendStyles.css">
 </head>
 <body class="sb-nav-fixed">
 		<%@ include file="../files/sb_navbar.file"%> <!-- 引入snavbar (上方) -->

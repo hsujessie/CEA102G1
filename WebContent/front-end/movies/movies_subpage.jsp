@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Movies</title>
-<%@ include file="../files/comCssLinks.file"%>
+<%@ include file="../files/frontend_importCss.file"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/movie/frontendMovies.css">
 <style>
 	.ml{
@@ -115,7 +115,7 @@
         <div class="wrapper">
             <!-- Nav Bar Start -->
 			<c:set value="moviesSub" var="urlRecog"></c:set>        <!-- 給navbar_frontend.file的參數-Sub -->
-            <%@ include file="../files/navbar_frontend.file"%>
+            <%@ include file="../files/frontend_navbar.file"%>
             <!-- Nav Bar End -->
 
 
@@ -267,11 +267,11 @@
             <!-- Comment End -->
             
             <!-- Book Tickets Start -->
-            <%@ include file="../files/bookTicketsTamplate.file"%>
+            <%@ include file="../files/frontend_bookTicketsTamplate.file"%>
             <!-- Book Tickets End -->
 
             <!-- Footer Start -->
-            <%@ include file="../files/footer_frontend.file"%>
+            <%@ include file="../files/frontend_footer.file"%>
             <!-- Footer End -->
         </div>
         
@@ -295,7 +295,7 @@
  	</div>
 </div>
 
-<%@ include file="../files/comJsLinks.file"%>
+<%@ include file="../files/frontend_importJs.file"%>
 <script>
 	  $(document).ready(function () {
 	      $('input[name="satRating"]').click(function () {

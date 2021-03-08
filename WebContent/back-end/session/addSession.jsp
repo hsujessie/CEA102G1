@@ -9,7 +9,6 @@
 <head>
 	<title>場次新增</title>	
 	<%@ include file="../files/sb_head.file"%>
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/backendStyles.css">
 
 <style>
   table {

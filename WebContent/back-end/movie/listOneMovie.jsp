@@ -8,8 +8,7 @@ MovVO movVO = (MovVO) request.getAttribute("movVO");
 <head>
 	<title>Movies Management</title>
 	<%@ include file="../files/sb_head.file"%>
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/backendStyles.css">
-
+	
 <style>
   table {
 	width: 750px;

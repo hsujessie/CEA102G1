@@ -13,8 +13,7 @@
 <head>
 	<title>Movies Management</title>
 	<%@ include file="../files/sb_head.file"%>
-	<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/backendStyles.css">
-</head>
+
 <style>
 	.success-span{
 	    color: #bb9d52;
