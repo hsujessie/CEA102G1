@@ -35,7 +35,7 @@
 							</thead>
 									
 							<tbody>
-								<%@ include file="pages/page1_ByCompositeQuery.file"%> 
+								<%@ include file="/back-end/session/pages/page1_ByCompositeQuery.file"%> 
 								<c:forEach var="sesVO" varStatus="no" items="${listSessions_ByCompositeQuery}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 								<c:set value="${movSvc.getOneMov(sesVO.movNo)}" var="movObj"></c:set>
 								<tr class="sty-height" valign='middle' ${(sesVO.sesNo==param.sesNo) ? 'style="background-color:#bb9d52; color:#fff;"':''}>
@@ -53,7 +53,7 @@
 								</c:forEach>
 							</tbody>
 						</table>
-						<%@ include file="pages/page2_ByCompositeQuery.file" %>
+						<%@ include file="/back-end/session/pages/page2_ByCompositeQuery.file" %>
                        <!-- listAllSessions_ByCompositeQuery End -->
                     
                     </div>
