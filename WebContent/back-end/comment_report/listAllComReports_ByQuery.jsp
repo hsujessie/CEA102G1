@@ -78,7 +78,7 @@
 								<jsp:useBean id="comSvc" scope="page" class="com.comment.model.ComService"/>	
 								<%@ include file="/back-end/comment_report/pages/page1_ByQuery.file"%> 
 									<c:forEach var="comRepVO" items="${listComReps_ByQuery}" varStatus="no" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-									<tr class="sty-height" valign='middle' ${(comRepVO.comNo==param.comNo) ? 'style="background-color:#bb9d52; color:#fff;"':''}>																				
+									<tr class="sty-height" valign='middle' ${(comRepVO.comRepNo==param.comRepNo) ? 'style="background-color:#bb9d52; color:#fff;"':''}>																				
 										<td>${no.index+1}</td>
 										<td>${comRepVO.comNo}</td>
 										<c:if test="${comRepVO.comRepReason eq 1}"><td>與本電影無關、捏造假冒、不實敘述</td></c:if>	
@@ -92,9 +92,14 @@
 										<c:if test="${comRepVO.comRepStatus eq 1}"><td>檢舉成功 </td></c:if>
 										<c:if test="${comRepVO.comRepStatus eq 2}"><td>檢舉失敗</td></c:if>
 										<td>
-											<a class="btn btn-light btn-brd grd1 effect-1" onclick="updateData(this,${comRepVO.comRepNo},${comRepVO.comNo})" >
-												<input type="submit" value="審核" class="input-pos">
-						        			 </a>
+										<c:if test="${comRepVO.comRepStatus eq 0}">
+											<a class="btn btn-light btn-brd grd1 effect-1" onclick="updateData(this,${comRepVO.comRepNo},${comRepVO.comNo})" >											
+												<input type="button" value="審核" class="input-pos">											
+						        			</a>										
+										</c:if>
+										<c:if test="${comRepVO.comRepStatus ne 0}">
+											已審核		
+										</c:if>
 										</td>
 									 </tr>
 									</c:forEach>	

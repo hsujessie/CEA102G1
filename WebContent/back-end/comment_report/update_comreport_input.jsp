@@ -50,8 +50,7 @@
                 <main>
                     <div class="container-fluid">
                     
-                       <!-- update comreport Start -->  
-					   <FORM method="post" action="<%=request.getContextPath()%>/comment_report/comrep.do" name="form_updateComReport" enctype="multipart/form-data">	                 	
+                       <!-- update comreport Start -->                	
                        <h3 class="h3-style listOne-h3-pos">短評檢舉審核</h3>
 						<c:if test="${addSuccess != null}">
 							<span style="color: #bb9d52">  
@@ -95,15 +94,9 @@
 								</td>
 							</tr>
 						</table>
-						<br>
-						<input type="hidden" name="action" value="update">
-						<input type="hidden" name="comRepNo" value="${comRepVO.comRepNo}">
-						<input type="hidden" name="requestURL" value="<%=request.getParameter("requestURL")%>">
-						<input type="hidden" name="whichPage"  value="<%=request.getParameter("whichPage")%>">
-						<a class="btn btn-light btn-brd grd1 effect-1 btn-pos" style="margin: 1% 0 1% 50%;" >
-							<input type="submit" value="送出" class="input-pos">
+						<a class="btn btn-light btn-brd grd1 effect-1 btn-pos" style="margin: 1% 0 1% 50%;" onclick="updateData(this,${comRepVO.comRepNo},${comVO.comNo})"  >
+							<input type="button" value="送出" class="input-pos">
 						</a>
-						</FORM>
                        <!-- update comreport End -->
                     
                     </div>
@@ -112,5 +105,14 @@
             </div>
         </div>
 		<%@ include file="/back-end/files/sb_importJs.file"%> <!-- 引入template要用的js -->
+
+<script>				
+	function updateData(e,comRepNo,comNo){
+		let comRepStatus = $("[name='comRepStatus']:checked").val();
+		console.log("comRepStatus= " + comRepStatus);
+		let href = "<%=request.getContextPath()%>/comment_report/comrep.do?action=update&requestURL=<%=request.getServletPath()%>&whichPage=<%=request.getParameter("whichPage")%>&comRepStatus="+comRepStatus+"&comRepNo="+comRepNo+"&comNo="+comNo;
+		e.setAttribute("href", href);
+	}
+</script>
 </body>
 </html>

@@ -126,11 +126,11 @@ public class ComRepServlet extends HttpServlet {
 				Integer comRepNo = new Integer(req.getParameter("comRepNo").trim());
 				Integer comNo = new Integer(req.getParameter("comNo").trim());
 				System.out.println("comRepStatus= " + comRepStatus);
-				System.out.println("comRepNo= " + comRepNo);
+				System.out.println("comRepNo= " + comRepNo);	
+				System.out.println("comNo= " + comNo);
 				
-				Integer comStatus = 1;          //短評狀態不顯示
-				if(comRepStatus == comStatus) { //檢舉成功				
-					System.out.println("enter comNo= " + comNo);	
+				if("1".equals(req.getParameter("comRepStatus").trim())) { //檢舉成功	
+					Integer comStatus = 1; //短評狀態不顯示		
 					ComService comSvc = new ComService();				
 					ComVO comVO = comSvc.updateCom(comStatus, comNo);
 				}
@@ -140,7 +140,7 @@ public class ComRepServlet extends HttpServlet {
 				ComRepVO comRepVO = comRepSvc.updateComRep(comRepStatus, comRepNo);
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/	
-				String updateSuccess = "【 檢舉狀態 】" + "修改成功";
+				String updateSuccess = "【 檢舉狀態 】" + "已審核";
 				req.setAttribute("updateSuccess", updateSuccess);
 				
 				RequestDispatcher successView = req.getRequestDispatcher("/back-end/comment_report/listAllComReport.jsp");
