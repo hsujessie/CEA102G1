@@ -2,21 +2,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-	<title>Management</title>
-	<%@ include file="../files/sb_head.file"%>
+	<title>Back-End table</title>
+	<%@ include file="/back-end/files/sb_head.file"%>
 </head>
 <body class="sb-nav-fixed">
-		<%@ include file="../files/sb_navbar.file"%> <!-- 引入navbar (上方) -->
+		<%@ include file="/back-end/files/sb_navbar.file"%> <!-- 引入navbar (上方) -->
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
-				<%@ include file="../files/sb_sidebar.file"%> <!-- 引入sidebar (左方) -->
+                <%-- <c:set value="movieSub" var="urlRecog"></c:set> --%> <!-- 子頁面jsp，加上這行，「value」請參照「sb_sidebar.file」給予相對應的值，給sb_sidebar.file的參數-Sub -->  
+				<%@ include file="/back-end/files/sb_sidebar.file"%> <!-- 引入sidebar (左方) -->
             </div>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
                     
                     <!-- table Start -->
-                    <h3 class="h3-style" style="display: inline-block;">電影列表&ensp;</h3>
+                    <h3 class="h3-style" style="display: inline-block;">Table Example</h3>
 				
 		            <table class="table table-hover">
 						<thead>
@@ -42,9 +43,9 @@
                     
                     </div>
                 </main>
-                <%@ include file="../files/sb_footer.file"%>
+                <%@ include file="/back-end/files/sb_footer.file"%>
             </div>
         </div>
-		<%@ include file="../files/sb_importJs.file"%> <!-- 引入template要用的js -->
+		<%@ include file="/back-end/files/sb_importJs.file"%> <!-- 引入template要用的js -->
     </body>
 </html>

@@ -7,7 +7,7 @@ MovVO movVO = (MovVO) request.getAttribute("movVO");
 
 <head>
 	<title>Movies Management</title>
-	<%@ include file="../files/sb_head.file"%>
+	<%@ include file="/back-end/files/sb_head.file"%>
 	
 <style>
   table {
@@ -45,11 +45,11 @@ MovVO movVO = (MovVO) request.getAttribute("movVO");
 </head>
 
 <body class="sb-nav-fixed">
-		<%@ include file="../files/sb_navbar.file"%> <!-- 引入navbar (上方) -->
+		<%@ include file="/back-end/files/sb_navbar.file"%> <!-- 引入navbar (上方) -->
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
             	<c:set value="movieSub" var="urlRecog"></c:set> <!-- 給sb_sidebar.file的參數-Sub -->
-				<%@ include file="../files/sb_sidebar.file"%> <!-- 引入sidebar (左方) -->
+				<%@ include file="/back-end/files/sb_sidebar.file"%> <!-- 引入sidebar (左方) -->
             </div>
             <div id="layoutSidenav_content">
                 <main>
@@ -141,9 +141,9 @@ MovVO movVO = (MovVO) request.getAttribute("movVO");
                     
                     </div>
                 </main>
-                <%@ include file="../files/sb_footer.file"%>
+                <%@ include file="/back-end/files/sb_footer.file"%>
             </div>
         </div>
-		<%@ include file="../files/sb_importJs.file"%> <!-- 引入template要用的js -->
+		<%@ include file="/back-end/files/sb_importJs.file"%> <!-- 引入template要用的js -->
 </body>
 </html>

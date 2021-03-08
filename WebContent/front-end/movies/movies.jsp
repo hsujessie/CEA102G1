@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Movies</title>
-<%@ include file="../files/frontend_importCss.file"%>
+<%@ include file="/front-end/files/frontend_importCss.file"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/movie/frontendMovies.css">
 
 <style>
@@ -21,7 +21,7 @@
         <div class="wrapper">
             <!-- Nav Bar Start -->
 			<c:set value="${pageContext.request.requestURI}" var="urlRecog"></c:set>
-            <%@ include file="../files/frontend_navbar.file"%>
+            <%@ include file="/front-end/files/frontend_navbar.file"%>
             <!-- Nav Bar End -->
 
 
@@ -111,15 +111,15 @@
             <!-- Movies End -->
             
             <!-- Book Tickets Start -->
-            <%@ include file="../files/frontend_bookTicketsTamplate.file"%>
+            <%@ include file="/front-end/files/frontend_bookTicketsTamplate.file"%>
             <!-- Book Tickets End -->
 
             <!-- Footer Start -->
-            <%@ include file="../files/frontend_footer.file"%>
+            <%@ include file="/front-end/files/frontend_footer.file"%>
             <!-- Footer End -->
         </div>
         
-<%@ include file="../files/frontend_importJs.file"%>      
+<%@ include file="/front-end/files/frontend_importJs.file"%>      
 
 <script>
 	function sendData(e,movno){

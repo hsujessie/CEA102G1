@@ -8,7 +8,7 @@
 <html>
 <head>
 	<title>場次新增</title>	
-	<%@ include file="../files/sb_head.file"%>
+	<%@ include file="/back-end/files/sb_head.file"%>
 
 <style>
   table {
@@ -57,11 +57,11 @@
 </style>
 </head>
 <body class="sb-nav-fixed">
-		<%@ include file="../files/sb_navbar.file"%> <!-- 引入navbar (上方) -->
+		<%@ include file="/back-end/files/sb_navbar.file"%> <!-- 引入navbar (上方) -->
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
                 <c:set value="sessionAdd" var="urlRecog"></c:set> <!-- 給sb_sidebar.file的參數-Add -->            
-				<%@ include file="../files/sb_sidebar.file"%> <!-- 引入sidebar (左方) -->
+				<%@ include file="/back-end/files/sb_sidebar.file"%> <!-- 引入sidebar (左方) -->
             </div>
             <div id="layoutSidenav_content">
                 <main>
@@ -133,10 +133,10 @@
                     
                     </div>
                 </main>
-                <%@ include file="../files/sb_footer.file"%>
+                <%@ include file="/back-end/files/sb_footer.file"%>
             </div>
         </div>
-		<%@ include file="../files/sb_importJs.file"%> <!-- 引入template要用的js -->
+		<%@ include file="/back-end/files/sb_importJs.file"%> <!-- 引入template要用的js -->
 </body>
 <script>
 	let addtime = document.getElementById("addtime");
