@@ -161,21 +161,22 @@ public class ComRepServlet extends HttpServlet {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 				Integer comRepStatus = new Integer(req.getParameter("comRepStatus").trim());  
 
-	    	    /***************************2.開始修改資料*****************************************/ 
+	    	    /***************************2.開始查詢資料*****************************************/ 		
 				ComRepService comRepSvc = new ComRepService();
 				List<ComRepVO> list = comRepSvc.findComRepByComReStatus(comRepStatus);
+				req.setAttribute("listComReps_ByQuery",list);
 				
-				req.setAttribute("getComRes_ByRepStatus",list); 	            
-				/***************************3.修改完成,準備轉交(Send the Success view)*************/		            
+				/***************************3.查詢完成,準備轉交(Send the Success view)*************/		            
 				RequestDispatcher successView = req.getRequestDispatcher("/back-end/comment_report/listAllComReports_ByQuery.jsp");
 				successView.forward(req, res);
 
 				/***************************其他可能的錯誤處理*************************************/
 			}catch (Exception e) {
-				System.out.println("搜尋資料失敗: " + e.getMessage());
-				return;
-			}		
-			
+				System.out.println("Exception: " + e.getMessage());
+				
+				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/comment_report/listAllComReport.jsp");
+				failureView.forward(req, res);
+			}				
 		}
 				
 								

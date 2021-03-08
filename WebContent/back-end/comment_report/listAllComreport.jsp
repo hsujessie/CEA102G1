@@ -49,12 +49,12 @@
 						</c:if>
 						
                     	<div class="row " style="margin: -50px 0 50px 0;">         
-			                <div class="col-9"></div>
-	                        <div class="col-3">                                 
+			                <div class="col-8"></div>
+	                        <div class="col-4">                                 
 	                           	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/comment_report/comrep.do">	
 			                        <b>檢舉狀態</b>
-		                            <select name="comRepStatus" style="width: 80px;">
-	                                	<option value=""></option>
+		                            <select name="comRepStatus">
+	                                	<option value="">全部</option>
 	                                    <option value="0">未處理 
 	                                    <option value="1">檢舉成功 
 	                                    <option value="2">檢舉失敗

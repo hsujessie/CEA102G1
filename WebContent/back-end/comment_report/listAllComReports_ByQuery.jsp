@@ -45,15 +45,15 @@
 						</c:if>
 						
                     	<div class="row " style="margin: -50px 0 50px 0;">         
-			                <div class="col-9"></div>
-	                        <div class="col-3">                                 
+			                <div class="col-8"></div>
+	                        <div class="col-4">                                 
 	                           	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/comment_report/comrep.do">	
 			                        <b>檢舉狀態</b>
-		                            <select name="comRepStatus" style="width: 80px;">
-	                                	<option value=""></option>
-	                                    <option value="0">未處理 
-	                                    <option value="1">檢舉成功 
-	                                    <option value="2">檢舉失敗
+		                            <select name="comRepStatus">
+	                                	<option value="">全部</option>
+	                                    <option value="0" <c:if test="${param.comRepStatus == 0}">selected</c:if> >未處理 
+	                                    <option value="1" <c:if test="${param.comRepStatus == 1 }">selected</c:if> >檢舉成功 
+	                                    <option value="2" <c:if test="${param.comRepStatus == 2}">selected</c:if> >檢舉失敗
 		                            </select>
 			                        <input type="hidden" name="action" value="searchComRepStatus">
 				        			<a class="btn btn-light btn-brd grd1 effect-1">
@@ -79,14 +79,14 @@
 								<%@ include file="/back-end/comment_report/pages/page1_ByQuery.file"%> 
 									<c:forEach var="comRepVO" items="${listComReps_ByQuery}" varStatus="no" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 									<tr class="sty-height" valign='middle' ${(comRepVO.comNo==param.comNo) ? 'style="background-color:#bb9d52; color:#fff;"':''}>																				
-											<td>${no.index+1}</td>
+										<td>${no.index+1}</td>
 										<td>${comRepVO.comNo}</td>
 										<c:if test="${comRepVO.comRepReason eq 1}"><td>與本電影無關、捏造假冒、不實敘述</td></c:if>	
 										<c:if test="${comRepVO.comRepReason eq 2}"><td>具有廣告性質或大量重複散布</td></c:if>	
 										<c:if test="${comRepVO.comRepReason eq 3}"><td>相互惡意攻訐、猥褻騷擾、人身攻擊</td></c:if>	
 										<c:if test="${comRepVO.comRepReason eq 4}"><td>侵犯隱私權、違反智慧財產權、涉及違法情事</td></c:if>	
 										<c:if test="${comRepVO.comRepReason eq 5}"><td>違背善良風俗</td></c:if>										
-										<td>${comRepVO.cemNo}</td>
+										<td>${comRepVO.memNo}</td>
 										<td>${comRepVO.comRepTime}</td>
 										<c:if test="${comRepVO.comRepStatus eq 0}"><td>未處理</td></c:if>
 										<c:if test="${comRepVO.comRepStatus eq 1}"><td>檢舉成功 </td></c:if>
