@@ -266,4 +266,10 @@ public class ComRepJDBCDAO implements ComRepDAO_interface{
 		}
 	}
 
+	@Override
+	public List<ComRepVO> findComRepByComReStatus(Integer comReStatus) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

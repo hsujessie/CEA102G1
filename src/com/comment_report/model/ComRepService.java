@@ -40,4 +40,8 @@ public class ComRepService {
 	public List<ComRepVO> getAll(){
 		return dao.getAll();
 	}
+
+	public List<ComRepVO> findComRepByComReStatus(Integer comRepStatus) {
+		return dao.findComRepByComReStatus(comRepStatus);
+	}
 }

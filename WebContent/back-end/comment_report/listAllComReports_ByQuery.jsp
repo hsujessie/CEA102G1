@@ -3,11 +3,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.comment_report.model.*"%>
 
-<%    
-	ComRepService comRepSvc = new ComRepService();
-    List<ComRepVO> list = comRepSvc.getAll();
-    pageContext.setAttribute("list",list);
-%>
+<jsp:useBean id="listComReps_ByQuery" scope="request" type="java.util.List<ComRepVO>"/>
 
 <html>
 <head>
@@ -33,7 +29,7 @@
                 <main>
                     <div class="container-fluid">
                     
-                    	<!-- listComReport Start -->
+                    	<!-- listComReports_ByQuery Start -->
                     	<h3 class="h3-style" style="display: inline-block;">短評檢舉列表</h3>
 						<c:if test="${addSuccess != null}">
 							<span class="success-span">  
@@ -80,32 +76,32 @@
 							</thead>	
 							<tbody>
 								<jsp:useBean id="comSvc" scope="page" class="com.comment.model.ComService"/>	
-								<%@ include file="/back-end/movie/pages/page1.file" %> 
-								<c:forEach var="comRepVO" items="${list}" varStatus="no" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-								<tr class="sty-height" valign='middle' ${(comRepVO.comNo==param.comNo) ? 'style="background-color:#bb9d52; color:#fff;"':''}>										
-									<td>${no.index+1}</td>
-									<td>${comRepVO.getComNo()}</td>
-									<c:if test="${comRepVO.getComRepReason() eq 1}"><td>與本電影無關、捏造假冒、不實敘述</td></c:if>	
-									<c:if test="${comRepVO.getComRepReason() eq 2}"><td>具有廣告性質或大量重複散布</td></c:if>	
-									<c:if test="${comRepVO.getComRepReason() eq 3}"><td>相互惡意攻訐、猥褻騷擾、人身攻擊</td></c:if>	
-									<c:if test="${comRepVO.getComRepReason() eq 4}"><td>侵犯隱私權、違反智慧財產權、涉及違法情事</td></c:if>	
-									<c:if test="${comRepVO.getComRepReason() eq 5}"><td>違背善良風俗</td></c:if>										
-									<td>${comRepVO.getMemNo()}</td>
-									<td>${comRepVO.getComRepTime()}</td>
-									<c:if test="${comRepVO.getComRepStatus() eq 0}"><td>未處理</td></c:if>
-									<c:if test="${comRepVO.getComRepStatus() eq 1}"><td>檢舉成功 </td></c:if>
-									<c:if test="${comRepVO.getComRepStatus() eq 2}"><td>檢舉失敗</td></c:if>
-									<td>
-										<a class="btn btn-light btn-brd grd1 effect-1" onclick="updateData(this,${comRepVO.comRepNo},${comRepVO.comNo})" >
-											<input type="submit" value="審核" class="input-pos">
-					        			 </a>
-									</td>
-								 </tr>
-								</c:forEach>	
+								<%@ include file="/back-end/comment_report/pages/page1_ByQuery.file"%> 
+									<c:forEach var="comRepVO" items="${listComReps_ByQuery}" varStatus="no" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+									<tr class="sty-height" valign='middle' ${(comRepVO.comNo==param.comNo) ? 'style="background-color:#bb9d52; color:#fff;"':''}>																				
+											<td>${no.index+1}</td>
+										<td>${comRepVO.comNo}</td>
+										<c:if test="${comRepVO.comRepReason eq 1}"><td>與本電影無關、捏造假冒、不實敘述</td></c:if>	
+										<c:if test="${comRepVO.comRepReason eq 2}"><td>具有廣告性質或大量重複散布</td></c:if>	
+										<c:if test="${comRepVO.comRepReason eq 3}"><td>相互惡意攻訐、猥褻騷擾、人身攻擊</td></c:if>	
+										<c:if test="${comRepVO.comRepReason eq 4}"><td>侵犯隱私權、違反智慧財產權、涉及違法情事</td></c:if>	
+										<c:if test="${comRepVO.comRepReason eq 5}"><td>違背善良風俗</td></c:if>										
+										<td>${comRepVO.cemNo}</td>
+										<td>${comRepVO.comRepTime}</td>
+										<c:if test="${comRepVO.comRepStatus eq 0}"><td>未處理</td></c:if>
+										<c:if test="${comRepVO.comRepStatus eq 1}"><td>檢舉成功 </td></c:if>
+										<c:if test="${comRepVO.comRepStatus eq 2}"><td>檢舉失敗</td></c:if>
+										<td>
+											<a class="btn btn-light btn-brd grd1 effect-1" onclick="updateData(this,${comRepVO.comRepNo},${comRepVO.comNo})" >
+												<input type="submit" value="審核" class="input-pos">
+						        			 </a>
+										</td>
+									 </tr>
+									</c:forEach>	
 							</tbody>
 						</table>
-			    		<%@ include file="/back-end/movie/pages/page2.file" %>
-                       <!-- listComReport End -->
+			    		<%@ include file="/back-end/comment_report/pages/page2_ByQuery.file" %>
+                       <!-- listComReports_ByQuery End -->
                     
                     </div>
                 </main>

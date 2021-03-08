@@ -39,7 +39,7 @@
 							</thead>
 									
 							<tbody>
-								<%@ include file="pages/page1_ByCompositeQuery.file"%> 
+								<%@ include file="/back-end/movie/pages/page1_ByCompositeQuery.file"%> 
 								<c:forEach var="movVO" varStatus="no" items="${listMovies_ByCompositeQuery}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 								<tr class="sty-height" valign='middle' ${(movVO.movno==param.movno) ? 'style="background-color:#bb9d52; color:#fff;"':''}>
 									<td>${no.index+1}</td>
@@ -65,7 +65,7 @@
 								</c:forEach>
 							</tbody>
 						</table>
-						<%@ include file="pages/page2_ByCompositeQuery.file" %>
+						<%@ include file="/back-end/movie/pages/page2_ByCompositeQuery.file" %>
                        <!-- listAllMovie_ByCompositeQuery End -->
                     
                     </div>

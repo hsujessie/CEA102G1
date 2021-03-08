@@ -12,6 +12,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import com.session.model.SesVO;
+
 public class ComRepDAO implements ComRepDAO_interface{
 	private static DataSource ds = null;
 	static {
@@ -185,6 +187,64 @@ public class ComRepDAO implements ComRepDAO_interface{
 			
 		} catch(SQLException se) {
 			throw new RuntimeException("ComRepDAO getAll A database error occured. " + se.getMessage());	
+		} finally {
+			if(rs != null) {
+				try {
+					rs.close();
+				}catch(SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				}catch(SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			
+			if(con != null) {
+				try {
+					con.close();
+				}catch(Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}	
+		return list;
+	}
+
+	@Override
+	public List<ComRepVO> findComRepByComReStatus(Integer comReStatus) {
+		List<ComRepVO> list = new ArrayList<ComRepVO>();
+		ComRepVO comRepVO = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = ds.getConnection();
+			
+			String getComRepByComReStatus = "SELECT * FROM COMMENT_REPORT WHERE comrep_status= " + comReStatus;
+			System.out.println(getComRepByComReStatus);
+			
+			pstmt = con.prepareStatement(getComRepByComReStatus);
+			rs = pstmt.executeQuery();			
+			while(rs.next()){
+				comRepVO = new ComRepVO();
+				comRepVO.setComRepNo(rs.getInt("comrep_no"));
+				comRepVO.setComNo(rs.getInt("com_no"));
+				comRepVO.setMemNo(rs.getInt("mem_no"));
+				comRepVO.setComRepReason(rs.getString("comrep_reason"));
+				comRepVO.setComRepTime(rs.getTimestamp("comrep_time"));
+				comRepVO.setComRepStatus(rs.getInt("comrep_status"));
+				list.add(comRepVO);
+			}
+			
+		} catch(SQLException se) {
+			throw new RuntimeException("ComRepDAO findComRepByComReStatus A database error occured. " + se.getMessage());	
 		} finally {
 			if(rs != null) {
 				try {

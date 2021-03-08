@@ -317,12 +317,12 @@ public class SesServlet extends HttpServlet {
 				req.setAttribute("getMovies_BySesDate",list); 
 	            
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/		            
-				RequestDispatcher successView = req.getRequestDispatcher("/front-end/movies/sessions.jsp");
+				RequestDispatcher successView = req.getRequestDispatcher("/front-end/sessions/sessions.jsp");
 				successView.forward(req, res);
 
 				/***************************其他可能的錯誤處理*************************************/
 			}catch (Exception e) {
-				System.out.println("修改資料失敗 " + e.getMessage());
+				System.out.println("搜尋資料失敗 " + e.getMessage());
 				return;
 			}		
 		}

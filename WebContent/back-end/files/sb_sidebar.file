@@ -7,7 +7,7 @@
 <c:set var="session" value="/CEA102G1/back-end/session/listAllSession.jsp"/>
 <c:set var="movie" value="/CEA102G1/back-end/movie/listAllMovie.jsp"/>       
 <c:set var="client" value=""/>  
-<c:set var="movieComreport" value="/CEA102G1/back-end/comment_report/listAllComreport.jsp"/>                               
+<c:set var="movieComreport" value="/CEA102G1/back-end/comment_report/listAllComReport.jsp"/>                               
 <c:set var="theater" value=""/> 
 <c:set var="food" value=""/>
 <c:set var="board" value=""/> 
@@ -32,6 +32,7 @@
 <c:set var="sessionSub" value="sessionSub"/>   <!-- Sub - update_session_input.jsp | listAllSessions_ByCompositeQuery.jsp -->   
 <c:set var="movieSub" value="movieSub"/>       <!-- Sub - update_movie_input.jsp   | listAllMovies_ByCompositeQuery.jsp | listOneMovie.jsp -->   			
 <c:set var="clientSub" value="clientSub"/>
+<c:set var="movieComreportSub" value="movieComreportSub"/> <!-- Sub - update_comreport_input.jsp -->        
 <c:set var="theaterSub" value="theaterSub"/>    		
 <c:set var="foodSub" value="foodSub"/>   	
 <c:set var="boardSub" value="boardSub"/>      		
@@ -100,7 +101,8 @@
                 <div class="sb-nav-link-icon"><i class="fas fa-user-friends"></i></div>
                 即時客服管理
             </a>
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#report" aria-expanded="false" aria-controls="report">
+            
+            <a class="nav-link collapsed <c:if test="${urlRecog == movieComreportSub}">active</c:if>" href="#" data-toggle="collapse" data-target="#report" aria-expanded="false" aria-controls="report">
                 <div class="sb-nav-link-icon"><i class="fas fa-user-alt-slash"></i></div>
                 檢舉管理                
                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
