@@ -49,13 +49,17 @@
 						</c:if>
 						
                     	<div class="row " style="margin: -50px 0 50px 0;">         
-			                <div class="col-3"></div>
-	                        <div class="col-9">                                 
+			                <div class="col-9"></div>
+	                        <div class="col-3">                                 
 	                           	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/comment_report/comrep.do">	
-			                        <b>月份</b>
-			                        <input class="sty-input" name="" id="" type="date" value=""> 
-			                        
-			                        <input type="hidden" name="action" value="">
+			                        <b>檢舉狀態</b>
+		                            <select name="comRepStatus" style="width: 80px;">
+	                                	<option value=""></option>
+	                                    <option value="0">未處理 
+	                                    <option value="1">檢舉成功 
+	                                    <option value="2">檢舉失敗
+		                            </select>
+			                        <input type="hidden" name="action" value="findComrepBycomRepStatus">
 				        			<a class="btn btn-light btn-brd grd1 effect-1">
 										<input type="submit" value="搜尋" class="input-pos">
 				        			</a>
@@ -72,8 +76,7 @@
 									<th>檢舉狀態</th>
 									<th>審核</th>
 								</tr>				
-							</thead>
-									
+							</thead>	
 							<tbody>
 								<jsp:useBean id="comSvc" scope="page" class="com.comment.model.ComService"/>	
 								<%@ include file="/back-end/movie/pages/page1.file" %> 
@@ -82,11 +85,17 @@
 									<tr class="sty-height" valign='middle' ${(comRepVO.comNo==param.comNo) ? 'style="background-color:#bb9d52; color:#fff;"':''}>
 										<td>${no.index+1}</td>
 										<td>${comRepVO.getMemNo()}</td>
-										<td>${comRepVO.getComRepReason()}</td>
+										<c:if test="${comRepVO.getComRepReason() eq 1}"><td>與本電影無關、捏造假冒、不實敘述</td></c:if>	
+										<c:if test="${comRepVO.getComRepReason() eq 2}"><td>具有廣告性質或大量重複散布</td></c:if>	
+										<c:if test="${comRepVO.getComRepReason() eq 3}"><td>相互惡意攻訐、猥褻騷擾、人身攻擊</td></c:if>	
+										<c:if test="${comRepVO.getComRepReason() eq 4}"><td>侵犯隱私權、違反智慧財產權、涉及違法情事</td></c:if>	
+										<c:if test="${comRepVO.getComRepReason() eq 5}"><td>違背善良風俗</td></c:if>	
 										<td>${comRepVO.getComRepTime()}</td>
-										<td>${comRepVO.getComRepStatus()}</td>
+										<c:if test="${comRepVO.getComRepStatus() eq 0}"><td>未處理</td></c:if>
+										<c:if test="${comRepVO.getComRepStatus() eq 1}"><td>檢舉成功 </td></c:if>
+										<c:if test="${comRepVO.getComRepStatus() eq 2}"><td>檢舉失敗</td></c:if>
 										<td>
-											<a class="btn btn-light btn-brd grd1 effect-1" onclick="updateData(this,${comVO.comNo})" >
+											<a class="btn btn-light btn-brd grd1 effect-1" onclick="updateData(this,${comRepVO.comNo})" >
 												<input type="submit" value="審核" class="input-pos">
 						        			 </a>
 										</td>
