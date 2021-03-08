@@ -262,7 +262,7 @@
     								以下 CALCULATE mov_ondate & mov_offdate
 	 ===========================================================================================  -->
 <script>
-	<%@ include file="../files/changeMovOffDate.file"%>
+	<%@ include file="changeMovOffDate.file"%>
 		let mov_ondate = document.getElementById('mov_ondate');
 		mov_ondate.addEventListener('change',function(){
 			changeMovOffDate();
