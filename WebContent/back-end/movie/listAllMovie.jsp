@@ -23,7 +23,7 @@
 	}
 </style>
 <body class="sb-nav-fixed">
-		<%@ include file="../files/sb_navbar.file"%> <!-- 引入snavbar (上方) -->
+		<%@ include file="../files/sb_navbar.file"%> <!-- 引入navbar (上方) -->
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
 				<c:set value="${pageContext.request.requestURI}" var="urlRecog"></c:set> <!-- 給sb_sidebar.file的參數-Home -->
