@@ -21,7 +21,7 @@
                     <div class="container-fluid">
                     
                     	<!-- listAllSessions_ByCompositeQuery Start -->
-                    	<h3 class="h3-style" style="display: inline-block;">場次查詢&ensp;</h3>
+                    	<h3 class="h3-style" style="display: inline-block;">場次查詢</h3>
 			            <table class="table table-hover">
 							<thead>
 								<tr class="th-sty" style="border-bottom: 3px solid #bb9d52;">

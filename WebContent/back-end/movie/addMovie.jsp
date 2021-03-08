@@ -54,7 +54,7 @@
                     
                        <!-- addMovie Start -->  
 						<FORM method="post" action="<%=request.getContextPath()%>/movie/mov.do" name="form_addMovie" enctype="multipart/form-data">
-						<h3 class="h3-style listOne-h3-pos">電影新增&ensp;</h3>
+						<h3 class="h3-style listOne-h3-pos">電影新增</h3>
 						<table>
 							<tr>
 								<th>名稱</th>

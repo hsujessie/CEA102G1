@@ -3,6 +3,8 @@ package com.comment_report.controller;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -86,7 +88,72 @@ public class ComRepServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		} 
+
+		// 來自listAllComreport.jsp的請求
+		if("getOne_For_Update".equals(action)) { 
+			String requestURL = req.getParameter("requestURL");		
+			try {
+				/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/			
+				Integer comRepNo = new Integer(req.getParameter("comRepNo").trim());
 				
+				/***************************2.開始新增資料***************************************/				
+				ComRepService comRepSvc = new ComRepService();
+				ComRepVO comRepVO = comRepSvc.getOneComRep(comRepNo);
+									
+				/***************************3.新增完成,準備轉交(Send the Success view)***********/	
+	            req.setAttribute("comRepVO", comRepVO);  
+				RequestDispatcher successView = req.getRequestDispatcher("/back-end/comment_report/update_movie_input.jsp");				
+				successView.forward(req, res);	
+				
+				/***************************其他可能的錯誤處理**********************************/
+			
+			}catch (Exception e) {
+				System.out.println("Exception: " + e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher(requestURL);
+				failureView.forward(req, res);
+			}
+		}
+		
+		// 來自update_cpmreport_input.jsp的請求
+		if ("update".equals(action)) {
+			String requestURL = req.getParameter("requestURL");
+			try {
+				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
+				Integer comRepStatus = new Integer(req.getParameter("comRepStatus").trim());
+				Integer comRepNo = new Integer(req.getParameter("comRepNo").trim());
+				Integer comNo = new Integer(req.getParameter("comNo").trim());
+				System.out.println("comRepStatus= " + comRepStatus);
+				System.out.println("comRepNo= " + comRepNo);
+
+				
+				if(comRepStatus == 1) {     //檢舉成功  
+					Integer comStatus = 1;  //短評狀態不顯示
+					
+					System.out.println("comNo= " + comNo);
+					ComService comSvc = new ComService();					
+					ComVO comVO = comSvc.updateCom(comStatus, comNo);
+				}
+				
+				/***************************2.開始修改資料*****************************************/		
+				ComRepService comRepSvc = new ComRepService();
+				ComRepVO comRepVO = comRepSvc.updateComRep(comRepStatus, comRepNo);
+				
+				/***************************3.修改完成,準備轉交(Send the Success view)*************/	
+				String updateSuccess = "【 檢舉狀態 】" + "修改成功";
+				req.setAttribute("updateSuccess", updateSuccess);
+				
+				RequestDispatcher successView = req.getRequestDispatcher("/back-end/comment_report/listAllComreport.jsp");
+				successView.forward(req, res);
+
+				/***************************其他可能的錯誤處理*************************************/
+			}catch (Exception e) {
+				System.out.println("修改資料失敗: " + e.getMessage());
+				
+				RequestDispatcher failureView = req.getRequestDispatcher(requestURL);
+				failureView.forward(req, res);
+			}
+			
+		}
 				
 								
 		

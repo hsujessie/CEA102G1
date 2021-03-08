@@ -56,7 +56,7 @@ MovVO movVO = (MovVO) request.getAttribute("movVO");
                     <div class="container-fluid">
                     
                        <!-- listOneMovie Start -->
-                       <h3 class="h3-style listOne-h3-pos">電影詳情&ensp;</h3>
+                       <h3 class="h3-style listOne-h3-pos">電影詳情</h3>
 					   <table>
 							<tr>
 								<th>名稱</th>

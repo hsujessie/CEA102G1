@@ -50,9 +50,9 @@
                 <main>
                     <div class="container-fluid">
                     
-                       <!-- update sessopm Start -->  
+                       <!-- update session Start -->  
 					   <FORM method="post" action="<%=request.getContextPath()%>/session/ses.do" name="form_updateSession" enctype="multipart/form-data">	                 	
-                       <h3 class="h3-style listOne-h3-pos">場次修改&ensp;</h3>
+                       <h3 class="h3-style listOne-h3-pos">場次修改</h3>
 						<c:if test="${addSuccess != null}">
 							<span style="color: #bb9d52">  
 								${addSuccess}
@@ -120,7 +120,7 @@
 							<input type="submit" value="送出" class="input-pos">
 						</a>
 						</FORM>
-                       <!-- update sessopm End -->
+                       <!-- update session End -->
                     
                     </div>
                 </main>

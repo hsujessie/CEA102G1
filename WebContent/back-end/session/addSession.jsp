@@ -69,7 +69,7 @@
                     
                        <!-- addSession Start -->  
 						<FORM method="post" action="<%=request.getContextPath()%>/session/ses.do" name="form_addSession"  enctype="multipart/form-data">
-						<h3 class="h3-style listOne-h3-pos">電影新增&ensp;</h3>
+						<h3 class="h3-style listOne-h3-pos">場次新增</h3>
 						<table>
 							<tr>
 							<jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService"/>

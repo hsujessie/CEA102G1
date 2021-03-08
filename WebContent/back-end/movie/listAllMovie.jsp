@@ -34,7 +34,7 @@
                     <div class="container-fluid">
                     
                     	<!-- listAllMovie Start -->
-                    	<h3 class="h3-style" style="display: inline-block;">電影列表&ensp;</h3>
+                    	<h3 class="h3-style" style="display: inline-block;">電影列表</h3>
 						<c:if test="${addSuccess != null}">
 							<span class="success-span"> 
 								${addSuccess}

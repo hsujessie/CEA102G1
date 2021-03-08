@@ -1,4 +1,4 @@
-	package com.movie.controller;
+package com.movie.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -556,7 +556,6 @@ public class MovServlet extends HttpServlet{
 				req.setAttribute("updateSuccess", updateSuccess);
 
 				String url = requestURL;
-				System.out.println("url= " + url);
 				if(requestURL.equals("/back-end/movie/update_movie_input.jsp")){
 					url = "/back-end/movie/listAllMovie.jsp";
 				}

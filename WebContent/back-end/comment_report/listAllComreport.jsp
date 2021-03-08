@@ -33,8 +33,8 @@
                 <main>
                     <div class="container-fluid">
                     
-                    	<!-- listComreport Start -->
-                    	<h3 class="h3-style" style="display: inline-block;">電影短評檢舉列表&ensp;</h3>
+                    	<!-- listComReport Start -->
+                    	<h3 class="h3-style" style="display: inline-block;">短評檢舉列表</h3>
 						<c:if test="${addSuccess != null}">
 							<span class="success-span">  
 								${addSuccess}
@@ -95,7 +95,7 @@
 										<c:if test="${comRepVO.getComRepStatus() eq 1}"><td>檢舉成功 </td></c:if>
 										<c:if test="${comRepVO.getComRepStatus() eq 2}"><td>檢舉失敗</td></c:if>
 										<td>
-											<a class="btn btn-light btn-brd grd1 effect-1" onclick="updateData(this,${comRepVO.comNo})" >
+											<a class="btn btn-light btn-brd grd1 effect-1" onclick="updateData(this,${comRepVO.comRepNo})" >
 												<input type="submit" value="審核" class="input-pos">
 						        			 </a>
 										</td>
@@ -104,7 +104,7 @@
 							</tbody>
 						</table>
 			    		<%@ include file="/back-end/movie/pages/page2.file" %>
-                       <!-- listComreport End -->
+                       <!-- listComReport End -->
                     
                     </div>
                 </main>
@@ -114,8 +114,8 @@
 		<%@ include file="/back-end/files/sb_importJs.file"%> <!-- 引入template要用的js -->
 		
 <script>
-	function updateData(e,comNo){
-		let href = "<%=request.getContextPath()%>/comment_report/comrep.do?action=getOne_For_Update&requestURL=<%=request.getServletPath()%>&whichPage=<%=whichPage%>&comNo="+comNo;
+	function updateData(e,comRepNo){
+		let href = "<%=request.getContextPath()%>/comment_report/comrep.do?action=getOne_For_Update&requestURL=<%=request.getServletPath()%>&whichPage=<%=whichPage%>&comRepNo="+comRepNo;
 		e.setAttribute("href", href);
 	}
 </script>
