@@ -1,11 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.session.model.*"%>
+<%@ page import="com.comment_report.model.*"%>
 
 <%    
-    SesService sesSvc = new SesService();
-    List<SesVO> list = sesSvc.getAll();
+	ComRepService comRepSvc = new ComRepService();
+    List<ComRepVO> list = comRepSvc.getAll();
     pageContext.setAttribute("list",list);
 %>
 
@@ -50,21 +50,12 @@
 						
                     	<div class="row " style="margin: -50px 0 50px 0;">         
 			                <div class="col-3"></div>
-	                        <div class="col-9">          
-		            			<jsp:useBean id="movSvcAll" scope="page" class="com.movie.model.MovService"/>                        
-	                           	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/session/ses.do">				                        
-			                        <b>電影名稱</b>
-			                            <select name="movNo" style="width: 80px;">
-			                                <option value=""></option>
-			                                <c:forEach var="movVO" items="${movSvcAll.all}" >
-			                                    <option value="${movVO.movno}">${movVO.movname}
-			                                </c:forEach>
-			                            </select>&ensp;&ensp;
-			                        <b>場次日期</b>
-			                        <input class="sty-input" name="sesDateBegin" id="" type="date" value=""> 
-			                        ~ <input class="sty-input" name="sesDateEnd" id="" type="date" value="">
+	                        <div class="col-9">                                 
+	                           	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/comment_report/comrep.do">	
+			                        <b>月份</b>
+			                        <input class="sty-input" name="" id="" type="date" value=""> 
 			                        
-			                        <input type="hidden" name="action" value="listSessions_ByCompositeQuery">
+			                        <input type="hidden" name="action" value="">
 				        			<a class="btn btn-light btn-brd grd1 effect-1">
 										<input type="submit" value="搜尋" class="input-pos">
 				        			</a>
@@ -75,28 +66,28 @@
 							<thead>
 								<tr style="border-bottom: 3px solid #bb9d52;">
 									<th>編號</th>
-									<th>電影</th>
-									<th>場次日期</th>
-									<th>場次時間</th>
-									<th>廳院</th>
-									<th>修改</th>
+									<th>檢舉人會員編號</th>
+									<th>檢舉原因</th>
+									<th>檢舉時間</th>
+									<th>檢舉狀態</th>
+									<th>審核</th>
 								</tr>				
 							</thead>
 									
 							<tbody>
-								<jsp:useBean id="movSvc" scope="page" class="com.movie.model.MovService"/>	
+								<jsp:useBean id="comSvc" scope="page" class="com.comment.model.ComService"/>	
 								<%@ include file="../movie/pages/page1.file" %> 
-									<c:forEach var="sesVO" items="${list}" varStatus="no" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-									<c:set value="${movSvc.getOneMov(sesVO.movNo)}" var="movObj"></c:set>
-									<tr class="sty-height" valign='middle' ${(sesVO.sesNo==param.sesNo) ? 'style="background-color:#bb9d52; color:#fff;"':''}>
+									<c:forEach var="comVO" items="${list}" varStatus="no" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+									<c:set value="${comSvc.getOneCom(comRepVO.comNo)}" var="movObj"></c:set>
+									<tr class="sty-height" valign='middle' ${(comVO.comNo==param.comNo) ? 'style="background-color:#bb9d52; color:#fff;"':''}>
 										<td>${no.index+1}</td>
-										<td>${movObj.movname}</td>
-										<td>${sesVO.getSesDate()}</td>
-										<td>${sesVO.getSesTime()}</td>
-										<td>${sesVO.getTheNo()}</td>
+										<td>${comRepVO.getMemNo()}</td>
+										<td>${comRepVO.getComRepReason}</td>
+										<td>${comRepVO.getComRepTime()}</td>
+										<td>${comRepVO.getComRepStatus()}</td>
 										<td>
-											<a class="btn btn-light btn-brd grd1 effect-1" onclick="updateData(this,${sesVO.sesNo})" >
-												<input type="submit" value="修改" class="input-pos">
+											<a class="btn btn-light btn-brd grd1 effect-1" onclick="updateData(this,${comVO.comNo})" >
+												<input type="submit" value="審核" class="input-pos">
 						        			 </a>
 										</td>
 									</tr>
@@ -114,8 +105,8 @@
 		<%@ include file="../files/sb_importJs.file"%> <!-- 引入template要用的js -->
 		
 <script>
-	function updateData(e,sesNo){
-		let href = "<%=request.getContextPath()%>/session/ses.do?action=getOne_For_Update&requestURL=<%=request.getServletPath()%>&whichPage=<%=whichPage%>&sesNo="+sesNo;
+	function updateData(e,comNo){
+		let href = "<%=request.getContextPath()%>/comment_report/comrep.do?action=getOne_For_Update&requestURL=<%=request.getServletPath()%>&whichPage=<%=whichPage%>&comNo="+comNo;
 		e.setAttribute("href", href);
 	}
 </script>
