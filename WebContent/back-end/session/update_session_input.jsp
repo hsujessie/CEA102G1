@@ -44,6 +44,7 @@
 		<%@ include file="../files/sb_navbar.file"%> <!-- 引入snavbar (上方) -->
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
+                <c:set value="sessionSub" var="urlRecog"></c:set> <!-- 給sb_sidebar.file的參數-Sub -->
 				<%@ include file="../files/sb_sidebar.file"%> <!-- 引入sidebar (左方) -->
             </div>
             <div id="layoutSidenav_content">
