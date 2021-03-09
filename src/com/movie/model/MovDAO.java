@@ -20,7 +20,7 @@ public class MovDAO implements MovDAO_interface{
 	static {
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/seenema");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/Seenema");
 		}catch(NamingException e) {
 			e.printStackTrace();
 		}
