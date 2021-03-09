@@ -304,16 +304,13 @@ public class SesServlet extends HttpServlet {
 		if ("searchSesDate".equals(action)) {
 			try {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
-                 String sesDateBeginStr = req.getParameter("sesDateBegin").trim();
-	             String sesDateEndStr = req.getParameter("sesDateEnd").trim();         
-	             java.sql.Date sesDateBegin = null;
-	             java.sql.Date sesDateEnd = null;
-	             sesDateBegin = Date.valueOf(sesDateBeginStr);  
-	             sesDateEnd = Date.valueOf(sesDateEndStr);  
+                 String sesDateStr = req.getParameter("sesDate").trim();     
+	             java.sql.Date sesDate = null;
+	             sesDate = Date.valueOf(sesDateStr);    
                        
 	    	    /***************************2.開始修改資料*****************************************/ 
  	            SesService sesSvc = new SesService();
-				List<SesVO> list  =  sesSvc.findMoviesBySesDate(sesDateBegin, sesDateEnd);
+				List<SesVO> list  =  sesSvc.getMoviesBySesDate(sesDate);
 				req.setAttribute("getMovies_BySesDate",list); 
 	            
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/		            

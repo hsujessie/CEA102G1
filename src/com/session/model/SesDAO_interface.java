@@ -10,5 +10,6 @@ public interface SesDAO_interface {
     public SesVO findByPrimaryKey(Integer sesNo);
     public List<SesVO> getAll();
     public List<SesVO> getAll(Map<String, String[]> map);  //複合查詢
-    public List<SesVO> findMoviesBySesDate(Date sesDateBegin, Date sesDateEnd);
+    public List<SesVO> findMoviesBySesDate(Date sesDate);
+    public List<SesVO> findDistinctSesDate();
 }

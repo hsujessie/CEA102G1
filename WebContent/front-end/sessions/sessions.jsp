@@ -51,7 +51,7 @@
 		                        <b>場次日期</b>
                         
 	                            <select name="sesDate" class="vta-bm">
-	                                <option value=""></option>
+	                                <!-- 下拉選單，日期搜尋，只顯示當天+6日(共7天日期)，如：2021-03-10星期三、2021-03-11星期四、2021-03-12星期五 -->
 	                                <c:forEach var="sesVO" items="${sesSvc.all}" >
 	                                    <option value="${sesVO.sesDate}">${sesVO.sesDate}
 	                                </c:forEach>
@@ -77,24 +77,35 @@
 		                                <div class="col-7">
 		                                    <h3>${movVO.movname}</h3>
 		                                    
-		                                    <c:if test="${empty getMovies_BySesDate}">
-			                                    <p><c:forEach var="sesVO" items="${sesSvc.all}" >
+		                                    <c:if test="${empty getMovies_BySesDate}">                                   			
+                                    			<!-- 只顯示當天，如：2021-03-10星期三 10:00 14:00 20:00 -->
+                                    			<c:forEach var="distinctSesDate" items="${sesSvc.getDistinctSesDate()}" >
+	                                    			 <p>${distinctSesDate.sesDate}</p>			                                    			 
+	                                    			 
+				                                   <c:forEach var="sesVO" items="${sesSvc.all}" >
 				                                    	<c:if test="${sesVO.movNo == movVO.movno}">
-				                                    		${sesVO.sesDate}&emsp;
+				                                    		<c:if test="${distinctSesDate.sesDate == sesVO.sesDate}">
+                                    							<p>${sesVO.sesTime}</p>
+				                                    		</c:if>
 				                                    	</c:if>
-			                                    	</c:forEach>
-			                                    </p>
+				                                   </c:forEach>	
+				                                   
+                                   				</c:forEach>	
 		                                    </c:if>
 		                                    
 		                                    
-		                                    <c:if test="${not empty getMovies_BySesDate}">		                                    
-			                                     <p>
-			                                    	<c:forEach var="sesVO" items="${getMovies_BySesDate}" >
+		                                    <c:if test="${not empty getMovies_BySesDate}">		                                   			
+                                    			<c:forEach var="distinctSesDate" items="${sesSvc.getDistinctSesDate()}" >
+	                                    			 <p>${distinctSesDate.sesDate}</p>			                                    			 
+	                                    			 
+				                                   <c:forEach var="sesVO" items="${sesSvc.all}" >
 				                                    	<c:if test="${sesVO.movNo == movVO.movno}">
-				                                    		${sesVO.sesDate}&emsp;
+				                                    		<c:if test="${distinctSesDate.sesDate == sesVO.sesDate}">
+                                    							<p>${sesVO.sesTime}</p>
+				                                    		</c:if>
 				                                    	</c:if>
-			                                    	</c:forEach>
-			                                    </p>
+				                                   </c:forEach>					                                   
+                                   				</c:forEach>
 		                                    </c:if>
 		                                    
 		                                </div>

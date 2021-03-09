@@ -49,7 +49,11 @@ public class SesService {
 		return dao.getAll(map);
 	}
 
-	public List<SesVO> findMoviesBySesDate(Date sesDateBegin, Date sesDateEnd) {
-		return dao.findMoviesBySesDate(sesDateBegin,sesDateEnd);
+	public List<SesVO> getMoviesBySesDate(Date sesDate) {
+		return dao.findMoviesBySesDate(sesDate);
+	}
+
+	public List<SesVO> getDistinctSesDate() {
+		return dao.findDistinctSesDate();
 	}
 }

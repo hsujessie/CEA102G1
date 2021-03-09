@@ -239,7 +239,7 @@ public class SesDAO implements SesDAO_interface{
 			
 			String finalSQL = "select * from session"
 			          		   + jdbcUtil_CompositeQuery_Session.get_WhereCondition(map)
-			          		   + " ORDER BY ses_date DESC,ses_time ASC,the_no ASC";
+			          		   + " ORDER BY ses_date DESC,ses_time ASC";
 			pstmt = con.prepareStatement(finalSQL);
 			System.out.println("●●finalSQL(by SesDAO) = "+finalSQL);
 			
@@ -285,7 +285,7 @@ public class SesDAO implements SesDAO_interface{
 	}
 
 	@Override
-	public List<SesVO> findMoviesBySesDate(Date sesDateBegin, Date sesDateEnd) {
+	public List<SesVO> findMoviesBySesDate(Date sesDate) {
 		List<SesVO> list = new ArrayList<SesVO>();
 		SesVO sesVO = null;
 		
@@ -295,11 +295,8 @@ public class SesDAO implements SesDAO_interface{
 		
 		try {
 			con = ds.getConnection();
-			
-//			select * from session where ses_date >= '2021-03-07'  and ses_date <= '2021-03-08'  ORDER BY ses_date DESC,ses_time ASC,the_no ASC
-			String getMoviesBySesDate = "select * from session where ses_date >= '"
-	          		   + sesDateBegin + "' and ses_date <= '" + sesDateEnd
-	          		   + "' ORDER BY ses_date DESC,ses_time ASC,the_no ASC";
+			String getMoviesBySesDate = "select * from session where ses_date = '"
+	          		   + sesDate +"' ORDER BY ses_date DESC,ses_time ASC";
 			
 			System.out.println("getMoviesBySesDate= " + getMoviesBySesDate);
 			pstmt = con.prepareStatement(getMoviesBySesDate);
@@ -318,6 +315,59 @@ public class SesDAO implements SesDAO_interface{
 			
 		} catch(SQLException se) {
 			throw new RuntimeException("SesDAO findMoviesBySesDate A database error occured. " + se.getMessage());	
+		} finally {
+			if(rs != null) {
+				try {
+					rs.close();
+				}catch(SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				}catch(SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			
+			if(con != null) {
+				try {
+					con.close();
+				}catch(Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+		return list;
+	}
+
+	@Override
+	public List<SesVO> findDistinctSesDate() {
+		List<SesVO> list = new ArrayList<SesVO>();
+		SesVO sesVO = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = ds.getConnection();
+			String getDistinctSesDate = "SELECT DISTINCT ses_date FROM session ORDER BY ses_date";
+			
+			System.out.println("getDistinctSesDate= " + getDistinctSesDate);
+			pstmt = con.prepareStatement(getDistinctSesDate);
+			rs = pstmt.executeQuery();			
+			while(rs.next()){
+				sesVO = new SesVO();
+				sesVO.setSesDate(rs.getDate("ses_date"));
+				list.add(sesVO);
+			}
+			
+		} catch(SQLException se) {
+			throw new RuntimeException("SesDAO findDistinctSesDate A database error occured. " + se.getMessage());	
 		} finally {
 			if(rs != null) {
 				try {

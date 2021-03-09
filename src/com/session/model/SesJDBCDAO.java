@@ -283,7 +283,13 @@ public class SesJDBCDAO implements SesDAO_interface{
 	}
 
 	@Override
-	public List<SesVO> findMoviesBySesDate(Date sesDateBegin, Date sesDateEnd) {
+	public List<SesVO> findMoviesBySesDate(Date sesDate) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<SesVO> findDistinctSesDate() {
 		// TODO Auto-generated method stub
 		return null;
 	}
