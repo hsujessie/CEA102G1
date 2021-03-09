@@ -160,7 +160,7 @@
   								<input type="hidden" name="memNo" value="1" /> <!-- 會員編號 外來鍵要配合db -->
   								<%-- <input type="hidden" name="memNo" value="${memVO.memno}" />  --%>
 								<input type="hidden" name="action" value="insert">
-                            	<input class="combtn" type="submit" value="送出" style="margin-left: 5%;">
+                            	<input class="combtn" type="submit" value="送出" style="margin-left: 5%; padding: 2px 10px;">
                             </form>
                         </div>
                     </div>
@@ -181,7 +181,7 @@
   								<input type="hidden" name="memNo" value="1" /> <!-- 會員編號 外來鍵要配合db -->
   								<%-- <input type="hidden" name="memNo" value="${memVO.memno}" />  --%>
 								<input type="hidden" name="action" value="insert">
-                            	<input class="combtn" type="submit" value="送出" style="margin-left: 13.4%;">
+                            	<input class="combtn" type="submit" value="送出" style="margin-left: 13.4%; padding: 2px 10px;">
                             </form>
                         </div>
                     </div>
