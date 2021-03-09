@@ -8,6 +8,15 @@
 <title>Sessions</title>
 <%@ include file="/front-end/files/frontend_importCss.file"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/movie/frontendMovies.css">
+
+<style type="text/css">
+.combtn {
+    padding: 2px 10px;
+}
+.vta-bm{
+	vertical-align: bottom;
+}
+</style>
 </head>
 <body>
         <div class="wrapper">
@@ -40,10 +49,15 @@
                         <div class="col-7">                          
                            	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/session/ses.do">	
 		                        <b>場次日期</b>
-		                        <input class="sty-input" name="sesDateBegin" id="" type="date" value="" style="margin-left: 10px;"> 
-		                        ~ <input class="sty-input" name="sesDateEnd" id="" type="date" value="">
-		                        
-		                        <input type="hidden" name="action" value="searchSesDate">
+                        
+	                            <select name="sesDate" class="vta-bm">
+	                                <option value=""></option>
+	                                <c:forEach var="sesVO" items="${sesSvc.all}" >
+	                                    <option value="${sesVO.sesDate}">${sesVO.sesDate}
+	                                </c:forEach>
+	                            </select>
+	                            
+		                        <input type="hidden" name="action" value="searchSesDate" class="vta-bm">
 								<input type="submit" value="搜尋" class="combtn">
 	                    	</FORM>                    
                         </div>
