@@ -19,8 +19,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import com.expectation.model.ExpService;
+import com.expectation.model.ExpVO;
 import com.movie.model.MovService;
 import com.movie.model.MovVO;
+import com.satisfaction.model.SatService;
+import com.satisfaction.model.SatVO;
 
 @MultipartConfig()
 public class MovServlet extends HttpServlet{
@@ -56,9 +60,25 @@ public class MovServlet extends HttpServlet{
 					failureView.forward(req, res);
 					return;
 				}
+					
+				SatService satSvc = new SatService();
+				List<SatVO> satlist = satSvc.getAll();
+				Double satSum = satlist.stream().filter(sat -> sat.getMovNo().equals(movno)).mapToDouble(sat -> sat.getSatRating()).sum();   //滿意度總分
+				Integer satPeo = (int) satlist.stream().filter(sat -> sat.getMovNo().equals(movno)).mapToInt(sat -> sat.getMemNo()).count(); //滿意度評價人數
+				
+				ExpService expSvc = new ExpService();
+				List<ExpVO> explist = expSvc.getAll();
+				System.out.print("movno= "+movno);
+				Double expSum = explist.stream().filter(exp -> exp.getMovNo().equals(movno)).mapToDouble(exp -> exp.getExpRating()).sum();   //期待度總分	
+				Integer expPeo = (int) explist.stream().filter(exp -> exp.getMovNo().equals(movno)).mapToInt(exp -> exp.getMemNo()).count(); //期待度評價人數				
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("movVO", movVO);
+				req.setAttribute("satSum", satSum);
+				req.setAttribute("satPeo", satPeo);
+				req.setAttribute("movVO", movVO);
+				req.setAttribute("expSum", expSum);
+				req.setAttribute("expPeo", expPeo);
 				String url = "/back-end/movie/listOneMovie.jsp";
 				
 				String fromFrontend = req.getParameter("fromFrontend");

@@ -120,19 +120,19 @@ MovVO movVO = (MovVO) request.getAttribute("movVO");
 							</tr>
 							<tr>
 								<th>滿意度總分</th>
-								<td><%=movVO.getMovsatitotal()%></td>
+								<td>${satSum}</td>
 							</tr>
 							<tr>
 								<th>滿意度評價人數</th>
-								<td><%=movVO.getMovsatipers()%></td>
+								<td>${satPeo}</td>
 							</tr>
 							<tr>
 								<th>期待度總分</th>
-								<td><%=movVO.getMovexpetotal()%></td>
+								<td>${expSum}</td>
 							</tr>
 							<tr>
 								<th>期待度評價人數</th>
-								<td><%=movVO.getMovexpepers()%></td>
+								<td>${expPeo}</td>
 							</tr>
 						</table>			
 			   			<a id="a-color" href="<%=request.getContextPath()%>/back-end/movie/listAllMovie.jsp">回電影列表</a>

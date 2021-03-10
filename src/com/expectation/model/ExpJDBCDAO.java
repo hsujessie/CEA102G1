@@ -235,15 +235,15 @@ public class ExpJDBCDAO implements ExpDAO_interface{
 			
 			rs = pstmt.executeQuery();	
 			
-			while(rs.next()) {         /*======= 注意注意 ======= 這邊沒有判斷等於true，會有 Exception in thread "main" java.lang.RuntimeException */ 
+			while(rs.next()) {         /*======= 注意注意 ======= 這邊沒有寫rs.next()，會有 Exception in thread "main" java.lang.RuntimeException */  //Before start of result set因為指標現在在column name這列，沒到下一列，會有這個exception!!
 				String expRatingAvgStr = rs.getString(1);
-				if(expRatingAvgStr == null) {        /*======= 注意注意 ======= 這邊沒有判斷，會有 java.lang.NullPointerException */ 
+				if(expRatingAvgStr == null) {        /*======= 注意注意 ======= 這邊沒有判斷，會有 java.lang.NullPointerException */	                  //指標到了下一列，才知道撈到的資料是null
 					System.out.println("is null");
 				}else {
 					System.out.println("not null");
 					expRatingAvg = Double.parseDouble(expRatingAvgStr);   //java.lang.NullPointerException 無法被parse
 				}
-			}
+			}	
 			
 			
 		     
