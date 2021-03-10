@@ -245,4 +245,10 @@ public class ExpJDBCDAO implements ExpDAO_interface{
 			System.out.println();
 		}
 	}
+
+	@Override
+	public List<ExpVO> getExpRatingAvg(Integer movNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

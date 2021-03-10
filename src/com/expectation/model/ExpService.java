@@ -38,4 +38,8 @@ public class ExpService {
 	public List<ExpVO> getAll(){
 		return dao.getAll();
 	}
+
+    public List<ExpVO> getExpRatingAvg(Integer movNo){
+		return dao.getExpRatingAvg(movNo);
+    }
 }

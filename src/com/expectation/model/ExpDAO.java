@@ -209,4 +209,60 @@ public class ExpDAO implements ExpDAO_interface{
 		
 		return list;
 	}
+
+	@Override
+	public List<ExpVO> getExpRatingAvg(Integer movNo) {
+		List<ExpVO> list = new ArrayList<ExpVO>();
+		ExpVO expVO = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = ds.getConnection();
+			String getExpRatingAvg = "SELECT AVG(exp_rating) FROM EXPECTATION where mov_no=" + movNo;
+			
+			System.out.println("getExpRatingAvg= " + getExpRatingAvg);
+			pstmt = con.prepareStatement(getExpRatingAvg);
+			rs = pstmt.executeQuery();	
+			while(rs.next()){
+				expVO = new ExpVO();
+				expVO.setMovNo(rs.getInt("mov_no"));
+				expVO.setMemNo(rs.getInt("mem_no"));
+				expVO.setExpRating(rs.getInt("exp_rating"));
+				list.add(expVO);
+			}
+			
+		} catch(SQLException se) {
+			throw new RuntimeException("ExpDAO getExpRatingAvg A database error occured. " + se.getMessage());	
+		} finally {
+			if(rs != null) {
+				try {
+					rs.close();
+				}catch(SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				}catch(SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			
+			if(con != null) {
+				try {
+					con.close();
+				}catch(Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+		return list;		
+	}
+	
 }

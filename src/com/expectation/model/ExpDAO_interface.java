@@ -7,4 +7,5 @@ public interface ExpDAO_interface {
 	public void update(ExpVO expVO);
     public ExpVO findByPrimaryKey(Integer movNo, Integer memNo);
     public List<ExpVO> getAll();
+    public List<ExpVO> getExpRatingAvg(Integer movNo);
 }
