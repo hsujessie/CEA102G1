@@ -213,28 +213,28 @@ public class ExpDAO implements ExpDAO_interface{
 
 	@Override
 	public Double getExpRatingAvg(Integer movNo) {
-
-
-		ExpVO expVO = null;
-		
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 
-		Double expRatingAvg= null;
+		Double expRatingAvg = null;
 		try {
 			con = ds.getConnection();
-//			String getExpRatingAvg = "SELECT AVG(exp_rating) FROM EXPECTATION WHERE mov_no=" + movNo;
-			String getExpRatingAvg = "SELECT AVG(exp_rating) FROM EXPECTATION WHERE mov_no=2";
+
+			System.out.println("movNo= " + movNo);
+			String getExpRatingAvg = "SELECT AVG(exp_rating) FROM EXPECTATION WHERE mov_no=" + movNo;
 			System.out.println("getExpRatingAvg= " + getExpRatingAvg);
 			pstmt = con.prepareStatement(getExpRatingAvg);
 			
-			rs = pstmt.executeQuery();	
-			
+			rs = pstmt.executeQuery();				
 			while(rs.next()){
 				String expRatingAvgStr = rs.getString(1);
-				expRatingAvg = Double.parseDouble(expRatingAvgStr);			
+				if(expRatingAvgStr == null) {
+					expRatingAvg = null;
+				}else {
+					expRatingAvg = Double.parseDouble(expRatingAvgStr);
+				}			
 			}
 			
 		} catch(SQLException se) {

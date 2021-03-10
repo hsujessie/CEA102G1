@@ -143,7 +143,6 @@
                                 
 		            			<jsp:useBean id="expSvc" scope="page" class="com.expectation.model.ExpService"/> 
 		            			<c:set var="expAvg" value="${expSvc.getExpRatingAvg(movVO.movno)}"/>
-                              <%--   <p><span style="letter-spacing: 8px;">期待度</span><span style="margin-left: 12px;">|</span>&emsp; ${expAvg == null}</p> --%>
                                 <p><span style="letter-spacing: 8px;">期待度</span><span style="margin-left: 12px;">|</span>&emsp; ${expSvc.getExpRatingAvg(movVO.movno)}</p>
                                 <p><span style="letter-spacing: 8px;">滿意度</span><span style="margin-left: 12px;">|</span>&emsp;</p>
                             </div>

@@ -222,19 +222,27 @@ public class ExpJDBCDAO implements ExpDAO_interface{
 		ResultSet rs = null;
 		
 
-		Double expRatingAvg= null; // 包裝型別才有null   //基本資料別沒有null	//這邊宣告null，是因為讓 前台 EL 取資料，若是空值，就不顯示		
+		Double expRatingAvg = null; // 包裝型別才有null   //基本資料別沒有null	//這邊宣告null，是因為讓 前台 EL 取資料，若是空值，就不顯示	
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
-//			String getExpRatingAvg = "SELECT AVG(exp_rating) FROM EXPECTATION WHERE mov_no=" + movNo;
-			String getExpRatingAvg = "SELECT AVG(exp_rating) FROM EXPECTATION WHERE mov_no=2";
+
+			System.out.println("movNo= " + movNo);
+			String getExpRatingAvg = "SELECT AVG(exp_rating) FROM EXPECTATION WHERE mov_no=" + movNo;
 			System.out.println("getExpRatingAvg= " + getExpRatingAvg);
+			
 			pstmt = con.prepareStatement(getExpRatingAvg);
 			
 			rs = pstmt.executeQuery();	
-			while(rs.next()) {         /*======= 注意注意 ======= 這邊沒有判斷等於true，會有 java.lang.NullPointerException */ 
+			
+			while(rs.next()) {         /*======= 注意注意 ======= 這邊沒有判斷等於true，會有 Exception in thread "main" java.lang.RuntimeException */ 
 				String expRatingAvgStr = rs.getString(1);
-				expRatingAvg = Double.parseDouble(expRatingAvgStr);
+				if(expRatingAvgStr == null) {        /*======= 注意注意 ======= 這邊沒有判斷，會有 java.lang.NullPointerException */ 
+					System.out.println("is null");
+				}else {
+					System.out.println("not null");
+					expRatingAvg = Double.parseDouble(expRatingAvgStr);   //java.lang.NullPointerException 無法被parse
+				}
 			}
 			
 			
@@ -253,7 +261,7 @@ public class ExpJDBCDAO implements ExpDAO_interface{
 		} catch(ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());	
 		} catch(SQLException se) {
-			throw new RuntimeException("ExpDAO getExpRatingAvg A database error occured. " + se.getMessage());	
+			throw new RuntimeException("ExpJDBC getExpRatingAvg A database error occured. " + se.getMessage());	
 		} finally {
 			if(rs != null) {
 				try {
@@ -318,9 +326,9 @@ public class ExpJDBCDAO implements ExpDAO_interface{
 //		}
 
 		// 查詢
-//		Double expRatingAvg = dao.getExpRatingAvg(1);
-//		System.out.print( "Avg: " + expRatingAvg);
-//		System.out.println("---------------------");
+		Double expRatingAvg = dao.getExpRatingAvg(5);
+		System.out.print( "Avg: " + expRatingAvg);
+		System.out.println("---------------------");
 	}
 
 }
