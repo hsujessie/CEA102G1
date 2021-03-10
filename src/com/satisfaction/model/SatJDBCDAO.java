@@ -246,4 +246,10 @@ public class SatJDBCDAO implements SatDAO_interface{
 			System.out.println();
 		}
 	}
+
+	@Override
+	public Double getSatRatingAvg(Integer movNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -38,4 +38,8 @@ public class SatService {
 	public List<SatVO> getAll(){
 		return dao.getAll();
 	}
+
+    public Double getSatRatingAvg(Integer movNo){
+		 return dao.getSatRatingAvg(movNo);
+    }
 }

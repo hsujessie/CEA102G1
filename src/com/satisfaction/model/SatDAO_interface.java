@@ -7,4 +7,5 @@ public interface SatDAO_interface {
 	public void update(SatVO satVO);
     public SatVO findByPrimaryKey(Integer movNo, Integer memNo);
     public List<SatVO> getAll();
+    public Double getSatRatingAvg(Integer movNo);
 }

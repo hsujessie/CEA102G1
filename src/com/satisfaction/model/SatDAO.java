@@ -211,4 +211,61 @@ public class SatDAO implements SatDAO_interface{
 		return list;
 	}
 
+	@Override
+	public Double getSatRatingAvg(Integer movNo) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+
+		Double satRatingAvg = null;
+		try {
+			con = ds.getConnection();
+
+			System.out.println("movNo= " + movNo);
+			String getSatRatingAvg = "SELECT AVG(sat_rating) FROM SATISFACTION WHERE mov_no=" + movNo;
+			System.out.println("getSatRatingAvg= " + getSatRatingAvg);
+			pstmt = con.prepareStatement(getSatRatingAvg);
+			
+			rs = pstmt.executeQuery();				
+			while(rs.next()){
+				String satRatingAvgStr = rs.getString(1);
+				if(satRatingAvgStr == null) {
+					satRatingAvg = null;
+				}else {
+					satRatingAvg = Double.parseDouble(satRatingAvgStr);
+				}			
+			}
+			
+		} catch(SQLException se) {
+			throw new RuntimeException("ExpDAO getSatRatingAvg A database error occured. " + se.getMessage());	
+		} finally {
+			if(rs != null) {
+				try {
+					rs.close();
+				}catch(SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				}catch(SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			
+			if(con != null) {
+				try {
+					con.close();
+				}catch(Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+		return satRatingAvg;	
+	}
+
 }

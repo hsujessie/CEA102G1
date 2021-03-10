@@ -141,10 +141,10 @@
                                 <p>導&emsp;&emsp;演 &emsp;|&emsp; ${movVO.movditor}</p>
                                 <p>演&emsp;&emsp;員 &emsp;|&emsp; ${movVO.movcast}</p>
                                 
-		            			<jsp:useBean id="expSvc" scope="page" class="com.expectation.model.ExpService"/> 
-		            			<c:set var="expAvg" value="${expSvc.getExpRatingAvg(movVO.movno)}"/>
+		            			<jsp:useBean id="expSvc" scope="page" class="com.expectation.model.ExpService"/>
+		            			<jsp:useBean id="satSvc" scope="page" class="com.satisfaction.model.SatService"/>
                                 <p><span style="letter-spacing: 8px;">期待度</span><span style="margin-left: 12px;">|</span>&emsp; ${expSvc.getExpRatingAvg(movVO.movno)}</p>
-                                <p><span style="letter-spacing: 8px;">滿意度</span><span style="margin-left: 12px;">|</span>&emsp;</p>
+                                <p><span style="letter-spacing: 8px;">滿意度</span><span style="margin-left: 12px;">|</span>&emsp; ${satSvc.getSatRatingAvg(movVO.movno)}</p>
                             </div>
                         </div>
                     </div>
@@ -213,7 +213,6 @@
 
 
             <!-- Reviews Start -->
-            <jsp:useBean id="satSvc" scope="page" class="com.satisfaction.model.SatService"/>
             <div class="reviews">
                 <div class="container">
                     <div class="section-header">
@@ -261,7 +260,7 @@
   								<%-- <input type="hidden" name="memNo" value="${memVO.memno}" />  --%>
   								
 								<input type="hidden" name="action" value="insert">
-                            	<input class="combtn" type="submit" value="送出">s
+                            	<input class="combtn" type="submit" value="送出">
                             </form>
                         </div>
                     </div>
