@@ -49,8 +49,8 @@
 						</c:if>
 						
                     	<div class="row " style="margin: -50px 0 50px 0;">         
-			                <div class="col-3"></div>
-	                        <div class="col-9">          
+			                <div class="col-2"></div>
+	                        <div class="col-10">          
 		            			<jsp:useBean id="movSvcAll" scope="page" class="com.movie.model.MovService"/>                        
 	                           	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do">				                        
 			                        <b>電影名稱</b>

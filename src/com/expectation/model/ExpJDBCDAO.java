@@ -211,44 +211,116 @@ public class ExpJDBCDAO implements ExpDAO_interface{
 		
 		return list;
 	}
+
+	@Override
+	public Double getExpRatingAvg(Integer movNo) {
+
+		ExpVO expVO = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+
+		Double expRatingAvg= null; // 包裝型別才有null   //基本資料別沒有null	//這邊宣告null，是因為讓 前台 EL 取資料，若是空值，就不顯示		
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+//			String getExpRatingAvg = "SELECT AVG(exp_rating) FROM EXPECTATION WHERE mov_no=" + movNo;
+			String getExpRatingAvg = "SELECT AVG(exp_rating) FROM EXPECTATION WHERE mov_no=2";
+			System.out.println("getExpRatingAvg= " + getExpRatingAvg);
+			pstmt = con.prepareStatement(getExpRatingAvg);
+			
+			rs = pstmt.executeQuery();	
+			while(rs.next()) {         /*======= 注意注意 ======= 這邊沒有判斷等於true，會有 java.lang.NullPointerException */ 
+				String expRatingAvgStr = rs.getString(1);
+				expRatingAvg = Double.parseDouble(expRatingAvgStr);
+			}
+			
+			
+		     
+			
+	/*=================================================================================
+		    不能用以下setMovNo、setMemNo、setExpRating,因為欄位名稱剩一個，叫 AVG(exp_rating)
+	  =================================================================================*/
+//			while(rs.next()){
+//				expVO = new ExpVO();
+//				expVO.setMovNo(rs.getInt("mov_no"));
+//				expVO.setMemNo(rs.getInt("mem_no"));
+//				expVO.setExpRating(rs.getInt("exp_rating"));
+//			}
+			
+		} catch(ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());	
+		} catch(SQLException se) {
+			throw new RuntimeException("ExpDAO getExpRatingAvg A database error occured. " + se.getMessage());	
+		} finally {
+			if(rs != null) {
+				try {
+					rs.close();
+				}catch(SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				}catch(SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			
+			if(con != null) {
+				try {
+					con.close();
+				}catch(Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+		return expRatingAvg;	
+	}
+	
 	
 	public static void main(String[] args) {
 		ExpJDBCDAO dao = new ExpJDBCDAO();
 		
 		// 新增
-		ExpVO expVO = new ExpVO();
-		expVO.setMovNo(1);
-		expVO.setMemNo(1);
-		expVO.setExpRating(1000);
-		dao.insert(expVO);
-		
-		// 修改
-		ExpVO expVO2 = new ExpVO();
-		expVO2.setMovNo(1);
-		expVO2.setMemNo(1);
-		expVO2.setExpRating(1500);
-		dao.update(expVO2);
-		
+//		ExpVO expVO = new ExpVO();
+//		expVO.setMovNo(1);
+//		expVO.setMemNo(1);
+//		expVO.setExpRating(1000);
+//		dao.insert(expVO);
+//		
+//		// 修改
+//		ExpVO expVO2 = new ExpVO();
+//		expVO2.setMovNo(1);
+//		expVO2.setMemNo(1);
+//		expVO2.setExpRating(1500);
+//		dao.update(expVO2);
+//		
+//		// 查詢
+//		ExpVO expVO3 = dao.findByPrimaryKey(1,1);
+//		System.out.print(expVO3.getMovNo() + ",");
+//		System.out.print(expVO3.getMemNo() + ",");
+//		System.out.print(expVO3.getExpRating());
+//		System.out.println("---------------------");
+//		
+//		// 查詢
+//		List<ExpVO> list = dao.getAll();
+//		for (ExpVO aExp : list) {
+//			System.out.print(aExp.getMovNo() + ",");
+//			System.out.print(aExp.getMemNo() + ",");
+//			System.out.print(aExp.getExpRating());
+//			System.out.println();
+//		}
+
 		// 查詢
-		ExpVO expVO3 = dao.findByPrimaryKey(1,1);
-		System.out.print(expVO3.getMovNo() + ",");
-		System.out.print(expVO3.getMemNo() + ",");
-		System.out.print(expVO3.getExpRating());
-		System.out.println("---------------------");
-		
-		// 查詢
-		List<ExpVO> list = dao.getAll();
-		for (ExpVO aExp : list) {
-			System.out.print(aExp.getMovNo() + ",");
-			System.out.print(aExp.getMemNo() + ",");
-			System.out.print(aExp.getExpRating());
-			System.out.println();
-		}
+//		Double expRatingAvg = dao.getExpRatingAvg(1);
+//		System.out.print( "Avg: " + expRatingAvg);
+//		System.out.println("---------------------");
 	}
 
-	@Override
-	public List<ExpVO> getExpRatingAvg(Integer movNo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

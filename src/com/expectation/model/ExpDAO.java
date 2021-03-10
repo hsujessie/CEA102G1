@@ -1,6 +1,7 @@
 package com.expectation.model;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -211,27 +212,29 @@ public class ExpDAO implements ExpDAO_interface{
 	}
 
 	@Override
-	public List<ExpVO> getExpRatingAvg(Integer movNo) {
-		List<ExpVO> list = new ArrayList<ExpVO>();
+	public Double getExpRatingAvg(Integer movNo) {
+
+
 		ExpVO expVO = null;
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
+
+		Double expRatingAvg= null;
 		try {
 			con = ds.getConnection();
-			String getExpRatingAvg = "SELECT AVG(exp_rating) FROM EXPECTATION where mov_no=" + movNo;
-			
+//			String getExpRatingAvg = "SELECT AVG(exp_rating) FROM EXPECTATION WHERE mov_no=" + movNo;
+			String getExpRatingAvg = "SELECT AVG(exp_rating) FROM EXPECTATION WHERE mov_no=2";
 			System.out.println("getExpRatingAvg= " + getExpRatingAvg);
 			pstmt = con.prepareStatement(getExpRatingAvg);
+			
 			rs = pstmt.executeQuery();	
+			
 			while(rs.next()){
-				expVO = new ExpVO();
-				expVO.setMovNo(rs.getInt("mov_no"));
-				expVO.setMemNo(rs.getInt("mem_no"));
-				expVO.setExpRating(rs.getInt("exp_rating"));
-				list.add(expVO);
+				String expRatingAvgStr = rs.getString(1);
+				expRatingAvg = Double.parseDouble(expRatingAvgStr);			
 			}
 			
 		} catch(SQLException se) {
@@ -262,7 +265,7 @@ public class ExpDAO implements ExpDAO_interface{
 			}
 		}
 		
-		return list;		
+		return expRatingAvg;	
 	}
 	
 }

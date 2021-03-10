@@ -140,7 +140,11 @@
                                 <p>片&emsp;&emsp;長 &emsp;|&emsp; ${movVO.movdurat}小時</p>
                                 <p>導&emsp;&emsp;演 &emsp;|&emsp; ${movVO.movditor}</p>
                                 <p>演&emsp;&emsp;員 &emsp;|&emsp; ${movVO.movcast}</p>
-                                <p><span style="letter-spacing: 8px;">期待度</span><span style="margin-left: 12px;">|</span>&emsp;</p>
+                                
+		            			<jsp:useBean id="expSvc" scope="page" class="com.expectation.model.ExpService"/> 
+		            			<c:set var="expAvg" value="${expSvc.getExpRatingAvg(movVO.movno)}"/>
+                              <%--   <p><span style="letter-spacing: 8px;">期待度</span><span style="margin-left: 12px;">|</span>&emsp; ${expAvg == null}</p> --%>
+                                <p><span style="letter-spacing: 8px;">期待度</span><span style="margin-left: 12px;">|</span>&emsp; ${expSvc.getExpRatingAvg(movVO.movno)}</p>
                                 <p><span style="letter-spacing: 8px;">滿意度</span><span style="margin-left: 12px;">|</span>&emsp;</p>
                             </div>
                         </div>
@@ -258,7 +262,7 @@
   								<%-- <input type="hidden" name="memNo" value="${memVO.memno}" />  --%>
   								
 								<input type="hidden" name="action" value="insert">
-                            	<input class="combtn" type="submit" value="送出">
+                            	<input class="combtn" type="submit" value="送出">s
                             </form>
                         </div>
                     </div>
@@ -317,7 +321,7 @@
       closeLightbox.onclick=function(){
           lightbox.style.display="none";
       }
-      
+
       function openComRepLightbox(e,comNo,memNo,movNo){
           lightbox.style.display="block";
           
