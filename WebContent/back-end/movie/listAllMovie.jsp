@@ -39,7 +39,7 @@
                 <main>
                     <div class="container-fluid">
                     
-                    	<!-- listAllMovie Start -->
+                    	<!-- search Start -->
                     	<h3 class="h3-style" style="display: inline-block;">電影列表</h3>
 						<c:if test="${addSuccess != null}">
 							<span class="success-span"> 
@@ -98,6 +98,9 @@
 		                    	</FORM>                    
                         	</div>                 
                         </div>
+                    	<!-- search End -->
+                    	
+                    	<!-- listAllMovie Start -->
 			            <table class="table table-hover">
 							<thead>
 								<tr style="border-bottom: 3px solid #bb9d52;">
