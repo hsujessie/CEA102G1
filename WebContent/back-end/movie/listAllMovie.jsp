@@ -21,6 +21,12 @@
 	    top: 10%;
 	    left: 17%;
 	}
+	.th-adjust{
+		width: 120px;
+	}
+	.form-sty{
+		margin: 20px 0 0 10px;
+	}
 </style>
 <body class="sb-nav-fixed">
 		<%@ include file="/back-end/files/sb_navbar.file"%> <!-- 引入navbar (上方) -->
@@ -48,11 +54,11 @@
 							</span>
 						</c:if>
 						
-                    	<div class="row " style="margin: -50px 0 50px 0;">         
+                    	<div class="row " style="margin: -60px 0 20px 0;">         
 			                <div class="col-2"></div>
 	                        <div class="col-10">          
 		            			<jsp:useBean id="movSvcAll" scope="page" class="com.movie.model.MovService"/>                        
-	                           	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do">				                        
+	                           	<FORM class="form-sty" METHOD="post" ACTION="<%=request.getContextPath()%>/movie/mov.do">				                        
 			                        <b>電影名稱</b>
 			                            <select name="mov_no" style="width: 80px;">
 			                                <option value=""></option>
@@ -96,10 +102,7 @@
 							<thead>
 								<tr style="border-bottom: 3px solid #bb9d52;">
 									<th>列表編號</th>
-									<th>名稱</th>
-									<th>種類</th>
-									<th>類型</th>
-									<th>語言</th>
+									<th class="th-adjust">名稱</th>
 									<th>上映日期</th>
 									<th>下檔日期</th>
 									<th>片長</th>
@@ -115,9 +118,6 @@
 								<tr class="sty-height" valign='middle' ${(movVO.movno==param.movno) ? 'style="background-color:#bb9d52; color:#fff;"':''}>
 									<td>${no.index+1}</td>
 									<td>${movVO.getMovname()}</td>
-									<td>${movVO.getMovver()}</td>
-									<td>${movVO.getMovtype()}</td>
-									<td>${movVO.getMovlan()}</td>
 									<td>${movVO.getMovondate()}</td>
 									<td>${movVO.getMovoffdate()}</td>
 									<td>${movVO.getMovdurat()}小時</td>
