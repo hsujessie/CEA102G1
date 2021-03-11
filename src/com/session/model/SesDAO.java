@@ -36,6 +36,7 @@ public class SesDAO implements SesDAO_interface{
 	private static final String UPDATE =
 		"UPDATE SESSION SET the_no=?,ses_date=?,ses_time=? WHERE ses_no=?";
 
+	private static final String UPDATE_SEAT_STATUS = "UPDATE SESSION SET SES_SEAT_STATUS=? WHERE SES_NO=?";
 	@Override
 	public void insert(SesVO sesVO) {
 		Connection con = null;
@@ -397,4 +398,42 @@ public class SesDAO implements SesDAO_interface{
 		return list;
 	}
 
+
+
+	@Override
+	public void updateSeatStatus(Integer sesNo, String sesSeatStatus) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATE_SEAT_STATUS);
+			
+			pstmt.setString(1, sesSeatStatus);
+			pstmt.setInt(2, sesNo);
+			
+			pstmt.executeUpdate();
+			
+		} catch (SQLException se) {
+			throw new RuntimeException("SesDAO Map getAll A database error occured. " + se.getMessage());
+		} finally {
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				}catch(SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				}catch(SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+		}
+		
+	}
+	
+	
 }

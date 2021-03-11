@@ -12,4 +12,6 @@ public interface SesDAO_interface {
     public List<SesVO> getAll(Map<String, String[]> map);  //複合查詢
     public List<SesVO> findMoviesBySesDate(Date sesDate);
     public List<SesVO> findDistinctSesDate();
+    
+    public void updateSeatStatus(Integer sesNo, String sesSeatStatus);
 }

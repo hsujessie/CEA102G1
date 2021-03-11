@@ -293,4 +293,10 @@ public class SesJDBCDAO implements SesDAO_interface{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void updateSeatStatus(Integer sesNo, String sesSeatStatus) {
+		// TODO Auto-generated method stub
+		
+	}
 }

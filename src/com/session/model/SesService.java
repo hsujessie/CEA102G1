@@ -2,6 +2,7 @@ package com.session.model;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -55,5 +56,25 @@ public class SesService {
 
 	public List<SesVO> getDistinctSesDate() {
 		return dao.findDistinctSesDate();
+	}
+	
+	public List<String> updateSeatStatus(String chooseSeatNo, Integer sesNo) {
+		SesVO sesVO = dao.findByPrimaryKey(sesNo);
+		
+		String orgSeatStatus = sesVO.getSesSeatStatus();
+		StringBuilder sb = new StringBuilder(orgSeatStatus);
+		String orgSeatNo = sesVO.getSesSeatNo();
+		
+		List<String> list = new ArrayList<String>();
+		for (int i = 0; i < chooseSeatNo.length() ; i +=3) {
+			String oneSeatNo = chooseSeatNo.substring(i, i + 3);
+			list.add(oneSeatNo);
+			
+			int index = orgSeatNo.indexOf(oneSeatNo) / 3;
+			sb.setCharAt(index, '1');
+		}
+		dao.updateSeatStatus(sesNo, sb.toString());
+		
+		return list;
 	}
 }
