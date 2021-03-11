@@ -77,7 +77,9 @@
 		                                <div class="col-7">
 		                                    <h3>${movVO.movname}</h3>
 		                                    
-		                                    <c:if test="${empty getMovies_BySesDate}">                                   			
+		                                    <c:if test="${empty getMovies_BySesDate}"> 		                                    
+
+                     			
                                     			<!-- 只顯示當天，如：2021-03-10星期三 10:00 14:00 20:00 -->
                                     			<c:forEach var="distinctSesDate" items="${sesSvc.getDistinctSesDate()}" >
 	                                    			 <p>${distinctSesDate.sesDate}</p>			                                    			 
