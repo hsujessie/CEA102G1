@@ -38,8 +38,8 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                    
-                    	<!-- search Start -->
+                    	
+                    	<!-- error message Start -->
                     	<h3 class="h3-style" style="display: inline-block;">電影列表</h3>
 						<c:if test="${addSuccess != null}">
 							<span class="success-span"> 
@@ -53,7 +53,9 @@
 								<i class="far fa-laugh-wink"></i>
 							</span>
 						</c:if>
+                    	<!-- error message End -->
 						
+                    	<!-- search Start -->
                     	<div class="row " style="margin: -60px 0 20px 0;">         
 			                <div class="col-2"></div>
 	                        <div class="col-10">          

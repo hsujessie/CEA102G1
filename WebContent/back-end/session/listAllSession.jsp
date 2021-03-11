@@ -21,6 +21,13 @@
 	    top: 10%;
 	    left: 17%;
 	}
+	.form-sty{
+		margin: 20px 0 0 0;
+	}
+	.time-input-sty{
+		font-size: 14px;
+	    vertical-align: middle;
+	}
 </style>
 <body class="sb-nav-fixed">
 		<%@ include file="/back-end/files/sb_navbar.file"%> <!-- 引入navbar (上方) -->
@@ -33,8 +40,8 @@
                 <main>
                     <div class="container-fluid">
                     
-                    	<!-- listSession Start -->
                     	<h3 class="h3-style" style="display: inline-block;">場次列表</h3>
+						<!-- error message Start -->
 						<c:if test="${addSuccess != null}">
 							<span class="success-span">  
 								${addSuccess}
@@ -47,12 +54,14 @@
 								<i class="far fa-laugh-wink"></i>
 							</span>
 						</c:if>
+                    	<!-- error message End -->
 						
-                    	<div class="row " style="margin: -50px 0 50px 0;">         
-			                <div class="col-3"></div>
-	                        <div class="col-9">          
+                    	<!-- search Start -->
+                    	<div class="row " style="margin: -60px 0 20px 50px;">          
+			                <div class="col-2"></div>
+	                        <div class="col-10">          
 		            			<jsp:useBean id="movSvcAll" scope="page" class="com.movie.model.MovService"/>                        
-	                           	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/session/ses.do">				                        
+	                           	<FORM class="form-sty" METHOD="post" ACTION="<%=request.getContextPath()%>/session/ses.do">				                        
 			                        <b>電影名稱</b>
 			                            <select name="movNo" style="width: 80px;">
 			                                <option value=""></option>
@@ -61,8 +70,8 @@
 			                                </c:forEach>
 			                            </select>&ensp;&ensp;
 			                        <b>場次日期</b>
-			                        <input class="sty-input" name="sesDateBegin" id="" type="date" value=""> 
-			                        ~ <input class="sty-input" name="sesDateEnd" id="" type="date" value="">
+			                        <input class="sty-input time-input-sty" name="sesDateBegin" id="" type="date" value=""> 
+			                        ~ <input class="sty-input time-input-sty" name="sesDateEnd" id="" type="date" value="">
 			                        
 			                        <input type="hidden" name="action" value="listSessions_ByCompositeQuery">
 				        			<a class="btn btn-light btn-brd grd1 effect-1">
@@ -71,6 +80,9 @@
 		                    	</FORM>                    
                         	</div>                 
                         </div>
+                    	<!-- search End -->
+                        
+                    	<!-- listSession Start -->
 			            <table class="table table-hover">
 							<thead>
 								<tr style="border-bottom: 3px solid #bb9d52;">

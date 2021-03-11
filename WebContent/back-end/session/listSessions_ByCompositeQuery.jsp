@@ -8,6 +8,16 @@
 <head>
 	<title>場次查詢</title>
 	<%@ include file="/back-end/files/sb_head.file"%>
+	
+<style>
+	.form-sty{
+		margin: 20px 0 0 0;
+	}
+	.time-input-sty{
+		font-size: 14px;
+	    vertical-align: middle;
+	}
+</style>
 </head>
 <body class="sb-nav-fixed">
 		<%@ include file="/back-end/files/sb_navbar.file"%> <!-- 引入navbar (上方) -->
@@ -20,8 +30,34 @@
                 <main>
                     <div class="container-fluid">
                     
-                    	<!-- listAllSessions_ByCompositeQuery Start -->
                     	<h3 class="h3-style" style="display: inline-block;">場次查詢</h3>
+                    	<!-- search Start -->
+                    	<div class="row " style="margin: -60px 0 20px 50px;">        
+			                <div class="col-2"></div>
+	                        <div class="col-10">          
+		            			<jsp:useBean id="movSvcAll" scope="page" class="com.movie.model.MovService"/>                        
+	                           	<FORM class="form-sty" METHOD="post" ACTION="<%=request.getContextPath()%>/session/ses.do">				                        
+			                        <b>電影名稱</b>
+			                            <select name="movNo" style="width: 80px;">
+			                                <option value=""></option>
+			                                <c:forEach var="movVO" items="${movSvcAll.all}" >
+			                                    <option value="${movVO.movno}">${movVO.movname}
+			                                </c:forEach>
+			                            </select>&ensp;&ensp;
+			                        <b>場次日期</b>
+			                        <input class="sty-input time-input-sty" name="sesDateBegin" id="" type="date" value=""> 
+			                        ~ <input class="sty-input time-input-sty" name="sesDateEnd" id="" type="date" value="">
+			                        
+			                        <input type="hidden" name="action" value="listSessions_ByCompositeQuery">
+				        			<a class="btn btn-light btn-brd grd1 effect-1">
+										<input type="submit" value="搜尋" class="input-pos">
+				        			</a>
+		                    	</FORM>                    
+                        	</div>                 
+                        </div>
+                    	<!-- search End -->
+                    	
+                    	<!-- listAllSessions_ByCompositeQuery Start -->
 			            <table class="table table-hover">
 							<thead>
 								<tr class="th-sty" style="border-bottom: 3px solid #bb9d52;">
